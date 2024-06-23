@@ -7,7 +7,7 @@ $career = isset($_GET['career']) ? $_GET['career'] : [];
 $education = isset($_GET['education']) ? $_GET['education'] : [];
 
 
-
+ 
 // Initialize the SQL query
 $sql = "SELECT * FROM jobs WHERE admin_status = 'Approved' AND application_status = 'active'";
 
