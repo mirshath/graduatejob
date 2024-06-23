@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <h2>Resume Database</h2>
+  
+    <!-- Search and Filter Form -->
+    <form id="search-filter-form" class="mb-3">
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" id="searchKeyword" placeholder="Search by keyword">
+        </div>
+        <div class="col">
+          <select class="form-control" id="filterSkill">
+            <option value="">Filter by Skill</option>
+            <!-- Add more skill options here -->
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-control" id="filterExperience">
+            <option value="">Filter by Experience</option>
+            <!-- Add more experience level options here -->
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-control" id="filterEducation">
+            <option value="">Filter by Education</option>
+            <!-- Add more education level options here -->
+          </select>
+        </div>
+        <div class="col">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </form>
+  
+    <!-- Table to display resumes -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Upload Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example row, replace with dynamic data from database -->
+        <tr>
+          <td>John Doe</td>
+          <td>john.doe@example.com</td>
+          <td>2024-05-15</td>
+          <td>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#viewResumeModal" data-id="1">View</button>
+            <a href="download_resume.php?id=1" class="btn btn-success btn-sm">Download</a>
+          </td>
+        </tr>
+        <!-- Add more rows dynamically based on database records -->
+      </tbody>
+    </table>
+  </div>
+  

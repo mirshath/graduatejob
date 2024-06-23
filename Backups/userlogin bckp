@@ -1,0 +1,173 @@
+<?php
+session_start();
+include "Database/connection.php";
+include "includes/header.php";
+
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    // SQL query to check if the user exists
+    $sql = "SELECT * FROM userregister WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Fetch the user's data
+        $user = $result->fetch_assoc();
+
+        // Verify the password
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_email'] = $user['email'];
+            $_SESSION['first_name'] = $user['firstname'];
+            $_SESSION['user_type'] = $user['usertype'];
+
+            
+            // Redirect based on user type
+            if ($user['usertype'] == 'jobSeeker') {
+                
+                echo '<script>window.location.href = "index";</script>';
+                $_SESSION['message'] = "Successfully logged in ";
+                exit();
+            } 
+        } else {
+            $_SESSION['message'] = "Please check your credentials.";
+        }
+    } else {
+        $_SESSION['message'] = "No user found with that email address!";
+    }
+
+    $stmt->close();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/formstyle.css">
+
+
+<body class="body_backgorund">
+    <div class="login-container">
+        <div class="row justify-content-center  ">
+            <div class="col-md-12">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body  ">
+                        <div class="col-md-12">
+
+                            <div class="">
+
+                                <div class="mb-4">
+                                    <h2 class=" text-gray-900 text-center">
+                                        <!-- <img src="images/Graduatejob Logo.jpg" alt="Logo" style="width: 300px; height: auto;"> -->
+                                    </h2>
+
+                                    <div class="mb-4">
+                                        <h4 class=" text-gray-900 mb-3"><b>Login</b></h4>
+                                        <h6 class="text-muted mb-3">Doesn't have an account yet? <a href="register">
+                                                sign Up </a> </h6>
+                                        <hr>
+                                    </div>
+                                    <form class="user" action="" method="post" autocomplete="">
+                                        <div class="form-group input-icon">
+                                            <h6>Email Address</h6>
+                                        </div>
+
+                                        <div class="form-group input-icon">
+                                            <i class="fas fa-envelope"></i>
+                                            <input type="email" class="form-control form-control-user" name="email" placeholder="example@gmail.com" required>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between mt-4">
+                                            <div class="form-group input-icon mb-2">
+                                                <h6>Password</h6>
+                                            </div>
+                                            <div class="form-group input-icon mb-2">
+                                                <a href="reset_password_request">
+                                                    <h6>Forgot Password</h6>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group input-icon">
+                                            <i class="fas fa-lock"></i>
+                                            <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Enter 6 Character or more" required>
+                                            <i class="fas fa-eye toggle-password text-right" id="togglePassword"></i>
+                                        </div>
+
+                                        <script>
+                                            document.getElementById('togglePassword').addEventListener('click', function(e) {
+                                                const passwordInput = document.getElementById('password');
+                                                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                                                passwordInput.setAttribute('type', type);
+
+                                                // Toggle the eye icon
+                                                this.classList.toggle('fa-eye');
+                                                this.classList.toggle('fa-eye-slash');
+                                            });
+                                        </script>
+
+
+                                        <div class="form-group form-check mt-2 ml-2">
+                                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                                            <label class="form-check-label" for="rememberMe">Remember Me</label>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                        <hr>
+
+                                        <!-- <div class="d-flex justify-content-between">
+                                            <button type="button" class="btn btn-google btn-user flex-fill">
+                                                <i class="fab fa-google fa-fw"></i> Login with Google
+                                            </button> &nbsp;&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-facebook btn-user flex-fill">
+                                                <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                            </button>
+                                        </div> -->
+
+
+                                    </form>
+
+
+                                    <hr>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // <?php
+
+
+        // if (isset($_SESSION['message'])) {
+        // ?> alertify.set('notifier', 'position', 'bottom-right');
+        //     alertify.success('Current position : ' + alertify.get('notifier', 'position'));
+
+        //     alertify.success('<?= $_SESSION['message'] ?>');
+        // <?php
+        //     unset($_SESSION['message']);
+        // }
+        // ?>
+    </script>
+
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>

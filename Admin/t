@@ -1,0 +1,51 @@
+  <!-- left side logo and details   -->
+                                <div class="col-md-3 order-md-1 mb-4 order-1 bbb">
+                                    <div class="card shadow" style="border-radius: 15px;">
+                                        <div class="card-center">
+                                            <?php if (!empty($user["profile"])) : ?>
+                                                <div class="mb-3 mr-3">
+                                                    <img src="uploads/company_profiles/<?= $user['profile'] ?>" alt="Profile Image" class="img-fluid circle-img shadow">
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <!-- Card body content -->
+                                            <h3 class="text-muted mb-2 text-center chakra-petch-bold"><b><?= $user['company_name'] ?></b></h3>
+
+                                            <hr>
+                                            <div class="container">
+                                                <div class="row mb-4">
+                                                    <div class="col d-flex justify-content-start ml-5">
+                                                        <h6><b><?= $user['firstname'] ?></b></h6>
+                                                    </div>
+                                                    <div class="col d-flex justify-content-end mr-5">
+                                                        <h6><b><?= $user['lastname'] ?></b></h6>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <div class="col-md-12 d-flex justify-content-start ml-5 ">
+                                                        <h6><b><?= $user['email'] ?></b></h6>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <div class="col d-flex justify-content-start ml-5">
+                                                        <h6><b><?= $user['websites'] ?></b></h6>
+                                                    </div>
+                                                    <div class="col d-flex justify-content-end mr-5">
+                                                        <h6><b><?= $user['phone_no'] ?></b></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+                                            <div class="p-3 text-center">
+                                                <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-square fa-3x"></i></a>
+                                                <a href="https://twitter.com/yourpage" target="_blank"><i class="fab fa-twitter-square fa-3x"></i></a>
+                                                <a href="https://www.instagram.com/yourpage" target="_blank"><i class="fab fa-instagram-square fa-3x"></i></a>
+                                                <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+                                                <a href="https://www.youtube.com/channel/yourchannel" target="_blank"><i class="fab fa-youtube-square fa-3x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
