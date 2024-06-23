@@ -4,68 +4,37 @@ session_start();
 require "Database/connection.php";
 
 
-include("includes/header.php");
-include("includes/navbar.php");
+include ("includes/header.php");
+include ("includes/navbar.php");
 ?>
 
 <main class="main">
 
+<!-- Hero Section -->
+<section id="hero" class="hero section">
 
+<img src="assets/img/bg1.jpg" alt="" data-aos="fade-in">
 
-  <!-- Hero Section -->
-  <section id="hero" class="hero section">
-
-    <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 d-flex flex-column align-items-center align-items-lg-start">
-          <h2 data-aos="fade-up" data-aos-delay="100">Welcome to <span>GRADUATEJOB.LK</span></h2>
-          <p data-aos="fade-up" data-aos-delay="200">Find your path and Do best</p>
-          <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-            <a href="#menu" class="cta-btn">About US</a>
-            <a href="#book-a-table" class="cta-btn">Find a Job</a>
-          </div>
-        </div>
-        <div class="col-lg-4 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
-          <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 d-flex flex-column align-items-center align-items-lg-start">
+      <h2 data-aos="fade-up" data-aos-delay="100">Welcome to <span>GRADUATEJOB.LK</span></h2>
+      <p data-aos="fade-up" data-aos-delay="200">Find your path and Do best</p>
+      <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+        <a href="#menu" class="cta-btn">About US</a>
+        <a href="#book-a-table" class="cta-btn">Find a Job</a>
       </div>
     </div>
-
-  </section><!-- /Hero Section -->
-
-  <!-- About Section -->
-  <section id="about" class="about section">
-
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-      <div class="row gy-4">
-        <div class="col-lg-6 order-1 order-lg-2">
-          <img src="assets/img/about.jpg" class="img-fluid about-img" alt="">
-        </div>
-        <div class="col-lg-6 order-2 order-lg-1 content">
-          <h3>Voluptatem dignissimos provident</h3>
-          <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-          </p>
-          <ul>
-            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-            <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-            <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-          </ul>
-          <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
-          </p>
-        </div>
-      </div>
-
+    <div class="col-lg-4 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
+      <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
     </div>
+  </div>
+</div>
 
-  </section>
-  <!-- /About Section -->
+</section><!-- /Hero Section -->
+
+
+
 
 
 
@@ -83,7 +52,8 @@ include("includes/navbar.php");
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-      <div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
+      <div class="swiper init-swiper" data-speed="600" data-delay="5000"
+        data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
         <script type="application/json" class="swiper-config">
           {
             "loop": true,
@@ -124,7 +94,7 @@ include("includes/navbar.php");
 
           if ($sql_run->num_rows > 0) {
             while ($row = mysqli_fetch_array($sql_run)) {
-          ?>
+              ?>
               <div class="swiper-slide">
                 <div class="testimonial-item">
                   <div class="card  border-0 bg-light rounded shadow">
@@ -135,8 +105,10 @@ include("includes/navbar.php");
                       </span>
                       <h5><b><?= $row['job_title'] ?></b></h5>
                       <div class="mt-3">
-                        <span class="text-muted d-block"><i class="fas fa-briefcase" style="font-size: 15px;">&nbsp; <?= $row['job_category'] ?></i></span>
-                        <span class="text-muted d-block"><i class="fas fa-map-marker-alt" style="font-size: 15px;">&nbsp; <?= $row['location'] ?></i></span>
+                        <span class="text-muted d-block"><i class="fas fa-briefcase" style="font-size: 15px;">&nbsp;
+                            <?= $row['job_category'] ?></i></span>
+                        <span class="text-muted d-block"><i class="fas fa-map-marker-alt" style="font-size: 15px;">&nbsp;
+                            <?= $row['location'] ?></i></span>
                       </div>
                       <div class="mt-3">
                         <a href="job-details?id=<?= $row['id']; ?>" class="btn btn-primary">View Details</a>
@@ -147,7 +119,7 @@ include("includes/navbar.php");
               </div>
               <!-- End testimonial item -->
 
-          <?php
+              <?php
             }
           }
           ?>
@@ -192,7 +164,8 @@ include("includes/navbar.php");
           <div class="card-item text-center"> <!-- Added text-center class for centering the icon -->
             <i class="fas fa-file-alt fa-2x mb-2"></i> <!-- Added icon -->
             <span>2. Apply for job</span>
-            <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+            <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest
+            </p>
           </div>
         </div><!-- Card Item -->
 
@@ -229,7 +202,8 @@ include("includes/navbar.php");
 
     <div class="container" data-aos="fade-up" data-aos-delay="100" id="design_Card">
 
-      <div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
+      <div class="swiper init-swiper" data-speed="600" data-delay="5000"
+        data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
         <script type="application/json" class="swiper-config">
           {
             "loop": true,
@@ -245,8 +219,8 @@ include("includes/navbar.php");
             },
             "breakpoints": {
               "320": {
-                "slidesPerView": 2,
-                "spaceBetween": 5
+                "slidesPerView": 3,
+                "spaceBetween": 0
               },
               "1200": {
                 "slidesPerView": 5,
@@ -269,16 +243,18 @@ include("includes/navbar.php");
 
           if ($sql_run->num_rows > 0) {
             while ($row = mysqli_fetch_array($sql_run)) {
-          ?>
+              ?>
               <div class="swiper-slide">
                 <div class="testimonial-item">
                   <div class="">
                     <div class="container">
                       <a href="company_data.php?id=<?= $row['id'] ?>">
-                        <div class="card">
-                          <div class="box p-3">
-                            <div class="content d-flex align-items-center justify-content-center"> <!-- Added justify-content-center class here -->
-                              <div class="me-3 d-flex justify-content-center align-items-center"> <!-- Updated this div for image centering -->
+                        <!-- <div class=""> -->
+                          <!-- <div class="box p-3"> -->
+                            <div class="content d-flex align-items-center justify-content-center">
+                              <!-- Added justify-content-center class here -->
+                              <div class="me-3 d-flex justify-content-center align-items-center">
+                                <!-- Updated this div for image centering -->
                                 <?php
                                 $imagePath = "Admin/uploads/company_profiles/" . $row["profile"]; // Path to the image
                                 if (file_exists($imagePath)) {
@@ -290,13 +266,14 @@ include("includes/navbar.php");
                                 }
                                 ?>
                               </div>
-                              <div class="text-start d-none d-md-block"> <!-- d-none d-md-block hides on mobile and shows on desktop -->
+                              <div class="text-start d-none d-md-block">
+                                <!-- d-none d-md-block hides on mobile and shows on desktop -->
                                 <h3 class="chakra-petch-bold"><b><?= $row['company_name'] ?></b></h3>
                                 <!-- <a href="company_data.php?id=<?= $row['id'] ?>">View</a> -->
                               </div>
                             </div>
-                          </div>
-                        </div>
+                          <!-- </div> -->
+                        <!-- </div> -->
                       </a>
                     </div>
                   </div>
@@ -307,7 +284,7 @@ include("includes/navbar.php");
 
 
 
-          <?php
+              <?php
             }
           }
 
@@ -344,7 +321,8 @@ include("includes/navbar.php");
 
     <div class="container" data-aos="fade-up" data-aos-delay="100" id="design_Card">
 
-      <div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
+      <div class="swiper init-swiper" data-speed="600" data-delay="5000"
+        data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
         <script type="application/json" class="swiper-config">
           {
             "loop": true,
@@ -383,7 +361,7 @@ include("includes/navbar.php");
 
           if ($sql_run->num_rows > 0) {
             while ($row = mysqli_fetch_array($sql_run)) {
-          ?>
+              ?>
               <div class="swiper-slide">
                 <div class="testimonial-item">
                   <div class="">
@@ -393,7 +371,9 @@ include("includes/navbar.php");
                           <div class="box p-3">
                             <div class="content text-center"> <!-- Added text-center class here -->
                               <div class="mb-3 d-flex justify-content-center align-items-center">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlSjpT0YPXyFzHpBKIPoedcq1J-G-9c25Jxw&s" alt="" class="img-fluid">
+                                <img
+                                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlSjpT0YPXyFzHpBKIPoedcq1J-G-9c25Jxw&s"
+                                  alt="" class="img-fluid">
                               </div>
                               <h6 class="m-5px-tb"><b><?= $row['category_name'] ?></b></h6>
                               <!-- <a href="company_data.php?id=<?= $row['id'] ?>">View</a> -->
@@ -408,7 +388,7 @@ include("includes/navbar.php");
 
 
 
-          <?php
+              <?php
             }
           }
 
@@ -442,11 +422,12 @@ include("includes/navbar.php");
 
 </main>
 
-<?php include("includes/footer.php");
- ?>
+<?php include ("includes/footer.php");
+?>
 
 <!-- Scroll Top -->
-<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+    class="bi bi-arrow-up-short"></i></a>
 
 <!-- Preloader -->
 <div id="preloader"></div>
@@ -480,14 +461,14 @@ include("includes/navbar.php");
   <?php
 
   // messages from corect or not 
-
+  
   if (isset($_SESSION['message'])) {
-  ?>
+    ?>
     alertify.set('notifier', 'position', 'bottom-right');
     alertify.success('Current position : ' + alertify.get('notifier', 'position'));
 
     alertify.success('<?= $_SESSION['message'] ?>');
-  <?php
+    <?php
     unset($_SESSION['message']);
   }
   ?>
