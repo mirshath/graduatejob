@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2024 at 12:32 PM
+-- Generation Time: Jun 24, 2024 at 01:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,9 +65,7 @@ CREATE TABLE `applicants` (
 --
 
 INSERT INTO `applicants` (`id`, `jobseeker_id`, `name`, `email`, `phone`, `resume_file`, `applied_job_id`, `applied_at`, `status`) VALUES
-(90, 147, 'Amaan', 'mirshath.mmm@gmail.com', '0254904455', 'CV.pdf', 92, '2024-06-05 03:52:31', 'Pending'),
-(91, 147, 'Amaan', 'mirshath.mmm@gmail.com', '0766158014', 'CV1.docx', 93, '2024-06-11 03:54:04', 'Pending'),
-(92, 147, 'Amaan', 'mirshath.mmm@gmail.com', '235', 'CV2.pdf', 95, '2024-06-11 03:54:21', 'Pending');
+(90, 147, 'Amaan', 'mirshath.mmm@gmail.com', '0254904455', 'CV.pdf', 92, '2024-06-05 03:52:31', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -86,7 +84,11 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `category_name`, `created_at`) VALUES
-(9, 'It', '2024-05-26 03:34:48');
+(9, 'It', '2024-05-26 03:34:48'),
+(18, 'Bussiness', '2024-06-23 09:40:56'),
+(19, 'Acc', '2024-06-23 09:41:01'),
+(20, 'Graph', '2024-06-23 09:41:09'),
+(21, 'Medi', '2024-06-23 09:41:15');
 
 -- --------------------------------------------------------
 
@@ -126,7 +128,7 @@ CREATE TABLE `jobs` (
 INSERT INTO `jobs` (`id`, `job_title`, `company_name`, `company_logo`, `job_category`, `categoryId`, `categoryName`, `job_description`, `employment_type`, `location`, `salary_range`, `skills_required`, `education_level`, `experience_level`, `application_deadline`, `contact_info`, `additional_info`, `created_at`, `recuiter_id`, `postedBy`, `admin_status`, `application_status`) VALUES
 (92, 'Network Intern', 'ESOFT', 'job2.jpg', 'It', NULL, NULL, 'Network Intern', 'Part-time', 'Kandy', '2500', 'c++, react, js', 'HighSchool', 'Entry_Level', '2024-06-27', '0254904455', 'Network Intern', '2024-06-09 17:37:20', 140, ' Admin', 'Approved', 'active'),
 (93, 'Graphics', 'BMS', 'job 1.jpg', 'it', NULL, NULL, 'cc', 'Part-time', 'Colobo', '5445', 'multimedia, pptx', 'PhD', 'Mid_Level', '2024-06-26', '025490455', 'sad', '2024-06-09 18:52:31', 11, ' Admin', 'Approved', 'active'),
-(95, 'PHP-Interns', 'BMS', 'php intern.jpg', 'it', NULL, NULL, 'sdassasasas', 'Internship', 'Anuradhapura', '6500', 'QQQ', 'HighSchool', 'Entry_Level', '2024-06-26', '0254904455', 'fdasf', '2024-06-10 05:23:16', 11, 'BMS', 'Pending', 'active'),
+(95, 'PHP-Interns', 'BMS', 'php intern.jpg', 'it', NULL, NULL, 'sdassasasas', 'Internship', 'Anuradhapura', '6500', 'QQQ', 'HighSchool', 'Entry_Level', '2024-06-26', '0254904455', 'fdasf', '2024-06-10 05:23:16', 11, 'BMS', 'Approved', 'active'),
 (101, 'Communications', 'ESOFT', 'download.png', 'It', NULL, NULL, 'asAS', 'Full-time', 'hf', '22222222', 'Sas', 'HighSchool', 'Entry_Level', '2024-06-29', '22222', 'sAS', '2024-06-22 07:09:38', 140, ' Admin', 'Approved', 'active');
 
 -- --------------------------------------------------------
@@ -147,8 +149,8 @@ CREATE TABLE `jobseeker_company_subscriptions` (
 
 INSERT INTO `jobseeker_company_subscriptions` (`id`, `jobseeker_id`, `company_id`) VALUES
 (90, 135, 11),
-(96, 147, 11),
-(97, 147, 140);
+(99, 147, 11),
+(100, 147, 140);
 
 -- --------------------------------------------------------
 
@@ -194,7 +196,7 @@ INSERT INTO `userregister` (`id`, `firstname`, `lastname`, `email`, `password`, 
 (11, 'Mirshath ', 'Mohamed', 'mmm@gmail.com', '$2y$10$FITQAH8/tOxb7d4Ww2YrG.STA5c3xi9sORYZQxdWIeGfBk4I.EJSK', '2024-05-16 16:14:11', 'recruiter', 2549044, 'bms.ac.lk', 'images.png', 'BMS', NULL, NULL),
 (135, 'Mirshath', 'Mohammed', 'mirmirsha123@gmail.com', '$2y$10$F/36U22ZK52rZXRfDvgEheB/792bXT9pe8btzi9X/jefFS.0C9CHi', '2024-05-28 16:51:06', 'jobSeeker', 766158014, '', 'ggg.jfif', '', '', 'Colombo'),
 (140, 'rec', 'rec', 'rec@gmail.com', '$2y$10$GZNv5WhzlwGL89jt7/v3QudRuWgKJZbEKaF/TotzWixlpF9HhZNEq', '2024-05-29 15:40:50', 'recruiter', 254904455, 'rec.ac.lk', 'images (1).png', 'ESOFT', NULL, NULL),
-(147, 'Amaan', 'Mohamed', 'mirshath.mmm@gmail.com', '$2y$10$S5aM70sZA1CFyeJFJHNm.Oee/PFVRYpFW54ykfuVQmmwoBIWKvVJq', '2024-06-03 10:42:16', 'jobSeeker', 254904455, '', 'profile.jpg', '', '', 'Wellampitiya');
+(147, 'Mirsha', 'Mirsha', 'mirshath.mmm@gmail.com', '$2y$10$O3u2B0BoYVngCL7lwh3tc.RsqQ8Yg.pbQjuCzNEWpuLjedJQR06Ju', '2024-06-03 10:42:16', 'jobSeeker', 254904455, '', 'profile.jpg', '', '', 'Anuradha Pura');
 
 --
 -- Indexes for dumped tables
@@ -262,13 +264,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -280,13 +282,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `jobseeker_company_subscriptions`
 --
 ALTER TABLE `jobseeker_company_subscriptions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `userregister`
