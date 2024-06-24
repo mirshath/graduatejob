@@ -90,10 +90,10 @@ if ($result->num_rows > 0) {
                     </ul>
                 </div>
 
-                
+
             </header>
 
-            <section class="profile-info-tabs">
+            <section class="profile-info-tabs mt-4">
                 <div class="row">
                     <div class="col-sm-offset-2 col-sm-10">
                         <ul class="user-details">
@@ -326,11 +326,7 @@ if ($result->num_rows > 0) {
                                 <div class="card mt-3">
                                     <div class="card-body">
                                         <div class="container p-3">
-                                            <div class="row mt-4 mb-4">
-                                                <div class="col-md-12">
 
-                                                </div>
-                                            </div>
 
 
 
@@ -361,26 +357,30 @@ if ($result->num_rows > 0) {
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                                                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+
+                                                                                        <div class=" text-sm-left mb-2 mb-sm-0">
+
                                                                                             <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
                                                                                                 <?= $row['firstname'] ?>
                                                                                                 <?= $row['lastname'] ?>
                                                                                             </h4>
-                                                                                            <p class="mb-0"><?= $row['email'] ?>
-                                                                                            </p>
+
+                                                                                            <p class="mb-0"><?= $row['email'] ?></p>
+
                                                                                             <div class="text-muted"><small>Last
                                                                                                     seen 2 hours ago</small>
                                                                                             </div>
+
                                                                                             <div class="mt-2">
                                                                                                 <label class="btn btn-primary">
                                                                                                     <input type="file" class="form-control-file fa fa-fw fa-camera" id="editCompanyLogo" name="editCompanyLogo" style="display: none;">
                                                                                                     <i class="fa fa-fw fa-camera"></i>
                                                                                                     Change Photo
                                                                                                 </label>
-
-
                                                                                             </div>
+
                                                                                         </div>
+
                                                                                         <div class="text-center text-sm-right">
                                                                                             <span class="badge badge-info"><?= $row['usertype'] ?></span>
                                                                                             <div class="text-muted">
