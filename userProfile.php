@@ -37,11 +37,8 @@ if ($result->num_rows > 0) {
 
 
 <style>
-    
     /* mobile view  */
-@media (max-width: 1199px) {
-
-}
+    @media (max-width: 1199px) {}
 </style>
 <main class="main" style="margin-top: 180px;">
 
@@ -211,60 +208,53 @@ if ($result->num_rows > 0) {
                                                     <a href="user_job_views.php?id=<?= $rows['job_id']; ?>">
                                                         <div class="card shadow">
                                                             <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-md-4 d-flex align-items-center justify-content-center">
-                                                                        <!-- Image -->
-                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-QCKIyHiPkoouLv349z1C4-vuEvaY8pX95A&s" alt="Image" class="img-fluid" style="max-width:100px; border-radius: 20px;">
+                                                                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                                                                    <!-- Image -->
+                                                                    <div class="d-flex align-items-center justify-content-center mb-3 mb-md-0">
+                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-QCKIyHiPkoouLv349z1C4-vuEvaY8pX95A&s" alt="Image" class="img-fluid" style="max-width: 100px; border-radius: 20px;">
                                                                     </div>
-                                                                    <div class="col-md-4 d-flex align-items-center">
-                                                                        <div>
-                                                                            <!-- Name and company -->
-                                                                            <h4 class="chakra-petch-bold mb-2" style="font-size: 20px;"><?= $rows['job_title'] ?>
-                                                                            </h4>
-                                                                            <p></p>
-                                                                            <!-- Location -->
-                                                                            <p><i class="fas fa-building mb-2" style="font-size: 15px;"></i> &nbsp;
-                                                                                <?= $rows['company_name'] ?>
-                                                                            </p>
-                                                                            <?php
-                                                                            $status = $rows['status'];
-                                                                            $badge_class = '';
 
-                                                                            switch ($status) {
-                                                                                case 'Pending':
-                                                                                    $badge_class = 'badge badge-info';
-                                                                                    break;
-                                                                                case 'Shortlisted':
-                                                                                    $badge_class = 'badge badge-success';
-                                                                                    break;
-                                                                                case 'Rejected':
-                                                                                    $badge_class = 'badge badge-danger';
-                                                                                    break;
-                                                                                default:
-                                                                                    $badge_class = 'badge badge-info'; // Default class if status is unknown
-                                                                                    break;
-                                                                            }
-                                                                            ?>
-                                                                            <span class="<?= $badge_class ?> px-3 py-1">
-                                                                                <?= $status ?> </span>
-                                                                        </div>
+                                                                    <!-- Name and company -->
+                                                                    <div class="text-center text-md-left mb-3 mb-md-0">
+                                                                        <h4 class="chakra-petch-bold mb-2" style="font-size: 20px;"><?= $rows['job_title'] ?></h4>
+                                                                        <p><span><?= $rows['company_name'] ?></span></p>
+                                                                        <?php
+                                                                        $status = $rows['status'];
+                                                                        $badge_class = '';
+
+                                                                        switch ($status) {
+                                                                            case 'Pending':
+                                                                                $badge_class = 'badge badge-info';
+                                                                                break;
+                                                                            case 'Shortlisted':
+                                                                                $badge_class = 'badge badge-success';
+                                                                                break;
+                                                                            case 'Rejected':
+                                                                                $badge_class = 'badge badge-danger';
+                                                                                break;
+                                                                            default:
+                                                                                $badge_class = 'badge badge-info'; // Default class if status is unknown
+                                                                                break;
+                                                                        }
+                                                                        ?>
+                                                                        <span class="badge <?= $badge_class ?> px-3 py-1"><?= $status ?></span>
                                                                     </div>
-                                                                    <div class="col-md-4 d-flex align-items-center">
-                                                                        <div>
-                                                                            <!-- Application Date -->
-                                                                            <p>
-                                                                                <i class="fas fa-calendar-alt" style="font-size: 15px;"></i>
-                                                                                &nbsp; &nbsp;
-                                                                                <?php
-                                                                                // Extract and format the date from applied_at
-                                                                                $applied_at_date = date('F j, Y', strtotime($rows['applied_at']));
-                                                                                echo $applied_at_date;
-                                                                                ?>
-                                                                            </p>
-                                                                        </div>
+
+                                                                    <!-- Application Date -->
+                                                                    <div class="text-center text-md-right">
+                                                                        <p>
+                                                                            <i class="fas fa-calendar-alt" style="font-size: 15px;"></i>
+                                                                            &nbsp; &nbsp;
+                                                                            <?php
+                                                                            // Extract and format the date from applied_at
+                                                                            $applied_at_date = date('F j, Y', strtotime($rows['applied_at']));
+                                                                            echo $applied_at_date;
+                                                                            ?>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                         </div>
                                                     </a>
                                                 </div>
@@ -375,11 +365,11 @@ if ($result->num_rows > 0) {
                                                                                                 <?= $row['lastname'] ?>
                                                                                             </h4>
 
-                                                                                            <p class="mb-0"><?= $row['email'] ?></p>
+                                                                                            <p class="mb-0 text-muted mb-4"><?= $row['email'] ?></p>
 
-                                                                                            <div class="text-muted"><small>Last
+                                                                                            <!-- <div class="text-muted"><small>Last
                                                                                                     seen 2 hours ago</small>
-                                                                                            </div>
+                                                                                            </div> -->
 
                                                                                             <div class="mt-2">
                                                                                                 <label class="btn btn-primary">
@@ -401,7 +391,7 @@ if ($result->num_rows > 0) {
                                                                                     </div>
                                                                                 </div>
                                                                                 <ul class="nav nav-tabs">
-                                                                                    <li class="nav-item"><a href="" class="active nav-link">Settings</a>
+                                                                                    <li class="nav-item"><a href="" class="active nav-link"><b>Update profiles</b></a>
                                                                                     </li>
                                                                                 </ul>
                                                                                 <div class="tab-content pt-3">
@@ -415,48 +405,48 @@ if ($result->num_rows > 0) {
 
                                                                                                     <div class="col">
                                                                                                         <div class="form-group">
-                                                                                                            <label>First
+                                                                                                            <label class="mb-2">First
                                                                                                                 Name
-                                                                                                            </label>
-                                                                                                            <input class="form-control" type="text" id="Fname" name="Fname" value="<?= $row['firstname'] ?>">
+                                                                                                         </label>
+                                                                                                            <input class="form-control text-muted mb-3" type="text" id="Fname" name="Fname" value="<?= $row['firstname'] ?>">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="col">
                                                                                                         <div class="form-group">
-                                                                                                            <label>Last
+                                                                                                            <label class="mb-2">Last
                                                                                                                 Name</label>
-                                                                                                            <input class="form-control" type="text" id="Lastname" name="Lastname" value="<?= $row['lastname'] ?>">
+                                                                                                         <input class="form-control text-muted mb-3" type="text" id="Lastname" name="Lastname" value="<?= $row['lastname'] ?>">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="row">
                                                                                                     <div class="col">
                                                                                                         <div class="form-group">
-                                                                                                            <label>Mobile
+                                                                                                            <label class="mb-2">Mobile
                                                                                                             </label>
-                                                                                                            <input class="form-control" type="text" id="Contact" name="Contact" value="<?= $row['phone_no'] ?>">
+                                                                                                         <input class="form-control text-muted mb-3" type="text" id="Contact" name="Contact" value="<?= $row['phone_no'] ?>">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="col">
                                                                                                         <div class="form-group">
-                                                                                                            <label>Address</label>
-                                                                                                            <input class="form-control" type="text" id="St_address" name="St_address" value="<?= $row['St_address'] ?>">
+                                                                                                            <label class="mb-2">Address</label>
+                                                                                                            <input class="form-control text-muted mb-3" type="text" id="St_address" name="St_address" value="<?= $row['St_address'] ?>">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="row">
                                                                                                     <div class="col">
                                                                                                         <div class="form-group">
-                                                                                                            <label>Email</label>
-                                                                                                            <input class="form-control" type="email" id="email" name="email" value="<?= $row['email'] ?>">
+                                                                                                            <label class="mb-2">Email</label>
+                                                                                                            <input class="form-control text-muted mb-3" type="email" id="email" name="email" value="<?= $row['email'] ?>">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="row">
                                                                                                     <div class="col mb-3">
                                                                                                         <div class="form-group">
-                                                                                                            <label>About</label>
-                                                                                                            <textarea class="form-control" rows="5" placeholder="My Bio" value="<?= $row['usertype'] ?>"></textarea></textarea>
+                                                                                                            <label class="mb-2">About</label>
+                                                                                                            <textarea class="form-control text-muted mb-3" rows="5" placeholder="My Bio" value="<?= $row['usertype'] ?>"></textarea></textarea>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>

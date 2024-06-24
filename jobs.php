@@ -42,8 +42,6 @@ $JobCounts = $row['total'];
 
 
   <style>
-
-    
     #pageHeader h1,
     h2,
     h3,
@@ -144,12 +142,98 @@ $JobCounts = $row['total'];
     #pageHeader .section-title {
       margin-bottom: 60px;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    /* ------------------------------ for butn design --------------  */
+
+
+    .wrap-check-62 {
+      --slider-height: 8px;
+      --slider-width: calc(var(--slider-height) * 4);
+      --switch-height: calc(var(--slider-height) * 3);
+      --switch-width: var(--switch-height);
+      --switch-shift: var(--slider-height);
+      --transition: all 0.2s ease;
+
+      --switch-on-color:
+        #ef0460;
+      --slider-on-color:
+        #fc5d9b;
+
+      --switch-off-color:
+        #eeeeee;
+      --slider-off-color:
+        #c5c5c5;
+    }
+
+    .wrap-check-62 .switch {
+      display: block;
+    }
+
+    .wrap-check-62 .switch .slider {
+      position: relative;
+      display: inline-block;
+      height: var(--slider-height);
+      width: var(--slider-width);
+      border-radius: var(--slider-height);
+      cursor: pointer;
+      background: var(--slider-off-color);
+      transition: var(--transition);
+    }
+
+    .wrap-check-62 .switch .slider:after {
+      background: var(--switch-off-color);
+      position: absolute;
+      left: calc(-1 * var(--switch-shift));
+      top: calc((var(--slider-height) - var(--switch-height)) / 2);
+      display: block;
+      width: var(--switch-height);
+      height: var(--switch-width);
+      border-radius: 50%;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, .2);
+      content: '';
+      transition: var(--transition);
+    }
+
+    .wrap-check-62 .switch label {
+      margin-right: 7px;
+    }
+
+    .wrap-check-62 .switch .input {
+      display: none;
+    }
+
+    .wrap-check-62 .switch .input~.label {
+      margin-left: var(--slider-height);
+    }
+
+    .wrap-check-62 .switch .input:checked~.slider:after {
+      left: calc(var(--slider-width) - var(--switch-width) + var(--switch-shift));
+    }
+
+    .wrap-check-62 .switch .input:checked~.slider {
+      background: var(--slider-on-color);
+    }
+
+    .wrap-check-62 .switch .input:checked~.slider:after {
+      background: var(--switch-on-color);
+    }
   </style>
 
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
-<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+  <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+  <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
   <section id="pageHeader" style="margin-top: -25px;">
 
     <!-- page-header -->
@@ -255,7 +339,52 @@ $JobCounts = $row['total'];
 
   </section>
 
+  <style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
 
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      /* position: absolute; */
+      content: "";
+      height: 12px;
+      width: 12px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(20px);
+    }
+  </style>
 
   <!-- fiter section  -->
 
@@ -271,26 +400,61 @@ $JobCounts = $row['total'];
                 <h5 style="margin-bottom: 15px">Type</h5>
 
                 <div class="dflx">
-                  <div>
+                  <!-- <div>
                     <label>
                       <input type="checkbox" class="filter-checkbox" name="type" value="Part-time">
                       <small>Part time (5)</small>
                     </label>
+                  </div> -->
+
+
+
+                  <div class="wrap-check-62 d-flex align-items-center mb-2">
+                    <div class="switch">
+                      <input id="one-62" class="input filter-checkbox" type="checkbox" name="type" value="Part-time" />
+                      <label for="one-62" class="slider"></label>
+                    </div>
+                    <span class="ms-2">Part-time</span>
                   </div>
 
-                  <div>
+                  <div class="wrap-check-62 d-flex align-items-center mb-2">
+                    <div class="switch">
+                      <input id="two-62" class="input filter-checkbox" type="checkbox" name="type" value="Full-time" />
+                      <label for="two-62" class="slider"></label>
+                    </div>
+                    <span class="ms-2">Full-time</span>
+                  </div>
+
+                  <div class="wrap-check-62 d-flex align-items-center mb-2">
+                    <div class="switch">
+                      <input id="three-62" class="input filter-checkbox" type="checkbox" name="type" value="Contract" />
+                      <label for="three-62" class="slider"></label>
+                    </div>
+                    <span class="ms-2">Contract</span>
+                  </div>
+
+
+                  <!-- <div>
                     <label>
                       <input type="checkbox" class="filter-checkbox" name="type" value="Full-time">
                       <small>Full time (5)</small>
                     </label>
+                  </div> -->
+
+                  <div class="wrap-check-62 d-flex align-items-center mb-2">
+                    <div class="switch">
+                      <input id="four-62" class="input filter-checkbox" type="checkbox" name="type" value="Internship" />
+                      <label for="four-62" class="slider"></label>
+                    </div>
+                    <span class="ms-2">Internship</span>
                   </div>
 
-                  <div>
+                  <!-- <div>
                     <label>
                       <input type="checkbox" class="filter-checkbox" name="type" value="Internship">
                       <small>Internship (5)</small>
                     </label>
-                  </div>
+                  </div> -->
                 </div>
 
                 <br>
@@ -301,14 +465,32 @@ $JobCounts = $row['total'];
                   <?php
 
                   if (mysqli_num_rows($resulting) > 0) {
+
+
+                    // echo '<label>';
+                    // echo '<input type="checkbox" class="filter-checkbox" name="category" value="' . $row['category_name'] . '">';
+                    // echo '  ';
+                    // echo '<small>' . $row['category_name'] . ' Jobs</small>';
+                    // echo '</label>';
+                    // echo '<br>';
+
+
+                    // Initialize a counter for generating unique IDs
+                    $counter = 1;
+
                     // Loop through each category and create a checkbox for each
                     while ($row = mysqli_fetch_assoc($resulting)) {
-                      echo '<label>';
-                      echo '<input type="checkbox" class="filter-checkbox" name="category" value="' . $row['category_name'] . '">';
-                      echo '  ';
-                      echo '<small>' . $row['category_name'] . ' Jobs</small>';
-                      echo '</label>';
-                      echo '<br>';
+                  ?>
+                      <div class="wrap-check-62 d-flex align-items-center mb-2">
+                        <div class="switch">
+                          <input id="check-<?= $counter ?>-62" class="input filter-checkbox" type="checkbox" name="category" value="<?= $row['category_name'] ?>" />
+                          <label for="check-<?= $counter ?>-62" class="slider"></label>
+                        </div>
+                        <span class="ms-2"><?= $row['category_name'] ?></span>
+                      </div>
+                  <?php
+                      // Increment the counter for the next checkbox
+                      $counter++;
                     }
                   }
                   ?>
@@ -317,31 +499,47 @@ $JobCounts = $row['total'];
                 <!-- Add more categories as needed -->
 
                 <br>
+                <!-- -----------------------------------------------------------------------------------------------  -->
 
                 <h5 style="margin-bottom: 15px">Career levels</h5>
 
                 <div class="dflx">
 
-                  <div>
+                  <!-- <div>
                     <label>
                       <input type="checkbox" class="filter-checkbox" name="career" value="Entry_Level">
                       <small>Entry Level</small>
                     </label>
+                  </div> -->
+
+                  <div class="wrap-check-62 d-flex align-items-center mb-2">
+                    <div class="switch">
+                      <input id="five-62" class="input filter-checkbox" type="checkbox" name="career" value="Entry_Level" />
+                      <label for="five-62" class="slider"></label>
+                    </div>
+                    <span class="ms-2">Entry Level</span>
+                  </div>
+                  <div class="wrap-check-62 d-flex align-items-center mb-2">
+                    <div class="switch">
+                      <input id="six-62" class="input filter-checkbox" type="checkbox" name="career" value="Mid_Level" />
+                      <label for="six-62" class="slider"></label>
+                    </div>
+                    <span class="ms-2">Mid Level</span>
                   </div>
 
-                  <div>
+                  <!-- <div>
                     <label>
                       <input type="checkbox" class="filter-checkbox" name="career" value="Mid_Level">
                       <small>Mid Level</small>
                     </label>
-                  </div>
+                  </div> -->
                 </div>
 
                 <br>
 
-                <h5 style="margin-bottom: 15px">Education levels</h5>
+                <!-- <h5 style="margin-bottom: 15px">Education levels</h5> -->
 
-                <div class="dflx">
+                <!-- <div class="dflx">
 
                   <div>
                     <label>
@@ -356,7 +554,7 @@ $JobCounts = $row['total'];
                       <small>High School (5)</small>
                     </label>
                   </div>
-                </div>
+                </div> -->
               </form>
 
             </div>
