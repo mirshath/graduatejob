@@ -138,6 +138,7 @@ $JobCounts = $row['total'];
 
     #pageHeader .card-block {
       padding: 20px;
+      border-radius: 20px;
     }
 
     #pageHeader .section-title {
@@ -188,6 +189,7 @@ $JobCounts = $row['total'];
                   .domain-form .form-group {
                     border: 1px solid #0b0f82;
                     padding: 9px;
+                    border-radius: 10px;
                   }
 
 

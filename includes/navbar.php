@@ -73,7 +73,7 @@ if (isset($_SESSION['user_id'])) {
                 <?= $_SESSION['first_name']; ?> <?php echo $row['lastname']; ?>
                 <?= $_SESSION['user_email']; ?>
               </div>
-              <li><a class="dropdown-item" href="profile.php"> <i class="fas fa-tachometer-alt"></i>&nbsp; Dashboard</a></li>
+              <li><a class="dropdown-item" href="userProfile"> <i class="fas fa-tachometer-alt"></i>&nbsp; Dashboard</a></li>
               <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i>
  &nbsp;              Logout</a></li>
             </ul>
