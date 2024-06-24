@@ -271,7 +271,7 @@ if ($result->num_rows > 0) {
                                                                                 break;
                                                                         }
                                                                         ?>
-                                                                        <span class="badge <?= $badge_class ?> px-3 py-1"><?= $status ?></span>
+                                                                        <span style="color: #931616;" class="badge <?= $badge_class ?> px-3 py-1"><?= $status ?></span>
                                                                     </div>
 
                                                                     <!-- Application Date -->
