@@ -451,19 +451,3 @@ include("includes/navbar.php");
 
 
 
-<script>
-  <?php
-
-  // messages from corect or not 
-
-  if (isset($_SESSION['message'])) {
-  ?>
-    alertify.set('notifier', 'position', 'bottom-right');
-    alertify.success('Current position : ' + alertify.get('notifier', 'position'));
-
-    alertify.success('<?= $_SESSION['message'] ?>');
-  <?php
-    unset($_SESSION['message']);
-  }
-  ?>
-</script>

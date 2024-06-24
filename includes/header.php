@@ -44,6 +44,15 @@
   <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
+  
+  <!-- ------------------------------- alertify notification ----------------------------------- -->
+  <!-- CSS -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+
+  <!-- JavaScript -->
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+
 
 </head>
 
@@ -52,3 +61,22 @@
 
 </style>
 <body class="index-page">
+
+
+
+<script>
+  <?php
+
+  // messages from corect or not 
+
+  if (isset($_SESSION['message'])) {
+  ?>
+    alertify.set('notifier', 'position', 'bottom-right');
+    // alertify.success('Current position : ' + aler  tify.get('notifier', 'position'));
+
+    alertify.success('<?= $_SESSION['message'] ?>');
+  <?php
+    unset($_SESSION['message']);
+  }
+  ?>
+</script>

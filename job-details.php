@@ -208,19 +208,19 @@ if (isset($_GET['id'])) {
 
 
       <!-- details  -->
-      <div class="container mt-4 mb-4">
+      <div class="container mt-4 mb-4" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row">
           <div class="col-md-4 order-md-2 mb-4 order-1">
             <div class="card shadow">
-              <div class="card-center d-flex justify-content-center align-items-center mb-3">
+              <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
                 <a href="company_data.php?id=<?= $company_id ?>">
                   <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow" style="max-width: 200px; border-radius: 20px; margin-top: -100px;">
                 </a>
               </div>
 
 
-              <div class="card-body">
+              <div class="card-body" data-aos="fade-up" data-aos-delay="300">
                 <!-- Card body content -->
                 <div class="container">
                   <h4 class="mb-2 chakra-petch-bold"><b><?= $rows['job_title']; ?></b></h4>
@@ -722,7 +722,6 @@ if (isset($_POST['login_modal_btn'])) {
 
 
 
-
     <script>
       <?php
 
@@ -731,7 +730,7 @@ if (isset($_POST['login_modal_btn'])) {
       if (isset($_SESSION['message'])) {
       ?>
         alertify.set('notifier', 'position', 'bottom-right');
-        alertify.success('Current position : ' + alertify.get('notifier', 'position'));
+        // alertify.success('Current position : ' + aler  tify.get('notifier', 'position'));
 
         alertify.success('<?= $_SESSION['message'] ?>');
       <?php

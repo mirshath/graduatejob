@@ -459,7 +459,7 @@ $JobCounts = $row['total'];
 
                 <br>
 
-                
+
                 <div class="dflx">
                   <h5 style="margin-bottom: 15px">Category</h5>
                   <?php
@@ -501,9 +501,9 @@ $JobCounts = $row['total'];
                 <br>
                 <!-- -----------------------------------------------------------------------------------------------  -->
 
-                
+
                 <div class="dflx">
-                  
+
                   <h5 style="margin-bottom: 15px">Career levels</h5>
                   <!-- <div>
                     <label>
@@ -727,9 +727,9 @@ $JobCounts = $row['total'];
                 <div class="card-body">
                   <div class="d-flex flex-column flex-lg-row">
                     <div class="row flex-fill">
-                      <div class="col-sm-5">
+                      <!-- <div class="col-sm-5">
                         <h4 class="h5 text-center text-muted"><?= $JobCounts ?> Total Jobs are Found</h4>
-                      </div>
+                      </div> -->
 
 
                       <!-- class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" -->
@@ -747,8 +747,8 @@ $JobCounts = $row['total'];
 
 
                       <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                  <script>
-                    $(document).ready(function() {
+                      <script>
+                      $(document).ready(function() {
                       $('#search-button').on('click', function() {
                         performSearch();
                       });
@@ -1104,27 +1104,6 @@ $JobCounts = $row['total'];
 <!-- -------------------------------- FOoter Section ----------------------------------- -->
 <!-- -------------------------------- FOoter Section ----------------------------------- -->
 <!-- -------------------------------- FOoter Section ----------------------------------- -->
-
-
-
-
-
-<script>
-  <?php
-
-  // messages from corect or not 
-
-  if (isset($_SESSION['message'])) {
-  ?>
-    alertify.set('notifier', 'position', 'bottom-right');
-    alertify.success('Current position : ' + alertify.get('notifier', 'position'));
-
-    alertify.success('<?= $_SESSION['message'] ?>');
-  <?php
-    unset($_SESSION['message']);
-  }
-  ?>
-</script>
 
 
 
