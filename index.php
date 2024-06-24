@@ -21,8 +21,8 @@ include("includes/navbar.php");
           <h2 data-aos="fade-up" data-aos-delay="100">Welcome to <span>GRADUATEJOB.LK</span></h2>
           <p data-aos="fade-up" data-aos-delay="200">Find your path and Do best</p>
           <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-            <a href="#menu" class="cta-btn">About US</a>
-            <a href="#book-a-table" class="cta-btn">Find a Job</a>
+            <a href="aboutus" class="cta-btn">About US</a>
+            <a href="jobs" class="cta-btn">Find a Job</a>
           </div>
         </div>
         <div class="col-lg-4 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
