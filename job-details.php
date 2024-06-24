@@ -1,7 +1,12 @@
 <?php
+
 session_start();
-require "includes/header.php";
-include("Database/connection.php");
+require "Database/connection.php";
+
+
+include("includes/header.php");
+include("includes/navbar.php");
+
 
 
 
@@ -17,13 +22,6 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
-
-
-//  echo $user_id;
-
-
-
-
 
 
 
@@ -66,209 +64,293 @@ if (isset($_GET['id'])) {
       // Handle the case where the company name is not found
     }
 
+
+
+
+
+
+
 ?>
 
-
-    <style>
-      .circle-img {
-        border-radius: 50%;
-        width: 300px;
-        background-color: red;
-        /* Add this line to set the background color */
-      }
-
-      .bbb {
-        margin-top: 100px;
-      }
-    </style>
-
-    <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
-      <div class="jumper">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
-    <!-- ***** Preloader End ***** -->
-
-
-    <?php require "includes/navbar.php"; ?>
-
-
-    <!-- Page Content -->
-    <div class="page-heading about-heading header-text" style="background-image: url('images/des.jpg'); ">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-md-12">
-            <a href="javascript:history.back()">
-              <div class="circle-icon">
-                <i class="fas fa-arrow-left"></i>
-              </div>
-            </a>
-            <div class="text-content">
-              <h2 class="chakra-petch-bold"><?= $rows['job_title']; ?></h2>
-              <a href="company_data?id=<?= $company_id ?>">
-                <h4 class="chakra-petch-bold"><?= $rows['company_name']; ?></h4>
-              </a>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <main class="main">
 
 
 
-    <!-- details  -->
-    <div class="container mt-4 mb-4">
-
-      <div class="row">
-        <div class="col-md-4 order-md-2 mb-4 order-1">
-          <div class="card shadow">
-            <div class="card-center">
-              <!-- <img src="Admin/uploads/<?= $rows["company_logo"]; ?>" alt="" class="img-fluid shadow"
-                style="max-width: 200px; border-radius: 20px;"> -->
-              <a href="company_data.php?id=<?= $company_id ?>"> <img src="Admin/uploads/company_profiles/<?= $company_IMAGE?>" alt="" class="img-fluid shadow" style="max-width: 200px; border-radius: 20px;"></a>
-
-            </div>
-
-            <div class="card-body">
-              <!-- Card body content -->
-              <div class="container">
-                <h4 class="mb-2 chakra-petch-bold"><b><?= $rows['job_title']; ?></b></h4>
-                <a href="company_data.php?id=<?= $company_id ?>">
-                  <h6 class="chakra-petch-bold"><?= $rows['company_name']; ?></h6>
-                </a>
-
-                </h6>
-                <h6 class=" text-muted">
-                  <i class="fas fa-map-marker-alt" style="font-size: 15px;"> &nbsp; &nbsp; <?= $rows['location'] ?></i>
-
-                </h6>
-                <h6 class=" text-muted">
-                  <i class="fas fa-calendar-alt" style="font-size: 15px;"> &nbsp;&nbsp;
-                    <?= $rows['application_deadline'] ?></i>
-                </h6>
-                <h6 class=" text-muted">
-                  <i class="fas fa-briefcase" style="font-size: 15px;"></i>
-                  &nbsp; <?= $rows['employment_type'] ?>
-                </h6>
-              </div>
-              <hr>
+      <!-- page header section  -->
 
 
-              <div class="p-3">
+      <style>
+        #pageHeader h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          color: #25292a;
+          margin: 0px 0px 10px 0px;
+          font-family: 'Overpass', sans-serif;
+          font-weight: 700;
+          letter-spacing: -1px;
+          line-height: 1;
+        }
 
-                <h6><?= $rows['additional_info'] ?></h6>
-              </div>
+        #pageHeader h1 {
+          font-size: 34px;
+        }
 
-              <div class="p-3 ">
-                <table>
-                  <tr class="mb-4">
-                    <td>Education Level</td>
-                    <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
-                    <td><?= $rows['education_level'] ?></td>
-                  </tr>
-                  <tr class="mb-4">
-                    <td>Skills</td>
-                    <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
-                    <td><?php foreach ($skillsArray as $skill) {
-                          echo '<span class="badge bg-secondary">' . strtoupper(trim($skill)) . '</span> ';
-                        } ?></td>
-                  </tr>
-                  <tr class="mb-4">
-                    <td>Experience Level</td>
-                    <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
-                    <td class=""><?= $rows['experience_level'] ?></td>
-                  </tr>
-                </table>
-              </div>
-              <hr>
-              <div class="p-3 text-center">
-                <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-square fa-3x"></i></a>
+        #pageHeader h2 {
+          font-size: 28px;
+          line-height: 38px;
+        }
 
-                <!-- Twitter -->
-                <a href="https://twitter.com/yourpage" target="_blank"><i class="fab fa-twitter-square fa-3x"></i></a>
+        #pageHeader h3 {
+          font-size: 22px;
+          line-height: 32px;
+        }
 
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/yourpage" target="_blank"><i class="fab fa-instagram-square fa-3x"></i></a>
+        #pageHeader h4 {
+          font-size: 20px;
+        }
 
-                <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+        #pageHeader h5 {
+          font-size: 17px;
+        }
 
-                <!-- YouTube -->
-                <a href="https://www.youtube.com/channel/yourchannel" target="_blank"><i class="fab fa-youtube-square fa-3x"></i></a>
-              </div>
+        #pageHeader h6 {
+          font-size: 12px;
+        }
 
+        #pageHeader p {
+          margin: 0 0 20px;
+          line-height: 1.7;
+        }
 
-              <div class="p-3">
-                <div class="row">
-                  <?php
-                  if (isset($_SESSION['user_id'])) {
+        #pageHeader p:last-child {
+          margin: 0px;
+        }
 
-                    $uid = $_SESSION['user_id'];
-                    // User is authorized, show the apply button
+        #pageHeader ul,
+        ol {}
+
+        #pageHeader a {
+          text-decoration: none;
+          color: #8d8f90;
+          -webkit-transition: all 0.3s;
+          -moz-transition: all 0.3s;
+          transition: all 0.3s;
+        }
+
+        #pageHeader a:focus,
+        a:hover {
+          text-decoration: none;
+          color: #f85759;
+        }
 
 
 
-                    $today = date("Y-m-d");
+        #pageHeader .page-header {
+          background: url(https://easetemplate.com/free-website-templates/hike/images/pageheader.jpg)no-repeat;
+          position: relative;
+          background-size: cover;
+        }
 
-                    // $application_deadline;
-                    $deadline_date = new DateTime($application_deadline);
-                    $current_date = new DateTime($today);
+        #pageHeader .page-caption {
+          padding-top: 170px;
+          padding-bottom: 174px;
+        }
 
-                    $interval = $current_date->diff($deadline_date);
-                    $days_remaining = $interval->days;
+        #pageHeader .page-title {
+          font-size: 46px;
+          line-height: 1;
+          color: #fff;
+          font-weight: 600;
+          text-align: center;
+        }
 
+        #pageHeader .card-section {
+          position: relative;
+          bottom: 60px;
+        }
 
-                    if ($current_date < $deadline_date) {
-                      $Check_applied = "SELECT * FROM applicants WHERE jobseeker_id = $uid AND applied_job_id = $jobId";
-                      $Check_applied_run = mysqli_query($conn, $Check_applied);
+        #pageHeader .card-block {
+          padding: 20px;
+        }
 
-                      if (mysqli_num_rows($Check_applied_run) == 1) {
-                        echo '<div class="col-md-12">
-                              <button type="button" class="btn btn-success btn-block p-3 custom-btn">
-                                Already applied
-                              </button>
-                            </div>';
-                      } else {
-                        echo '<div class="col-md-12">
-                              <button type="button" class="btn btn-primary btn-block p-3 custom-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Apply for a job
-                              </button>
-                            </div>';
-                      }
-                    } else {
-                      echo '<div class="col-md-12">
-                              <button type="button" class="btn btn-danger btn-block p-3 custom-btn" >
-                               Application closed
-                              </button>
-                            </div>';
-                    }
-                  } else {
-                    // User is not authorized, show the login button that triggers a modal
-                    echo '<div class="col-md-12">
-                    <button type="button" class="btn btn-primary btn-block p-3 custom-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
-                      Login to apply for a job
-                    </button>
-                  </div>';
-                  }
-                  ?>
+        #pageHeader .section-title {
+          margin-bottom: 60px;
+        }
+      </style>
 
+      <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+      <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!------ Include the above in your HEAD tag ---------->
+
+      <section id="pageHeader" style="margin-top: -25px;">
+        <!-- page-header -->
+        <div class="page-header">
+          <div class="container">
+            <div class="row mt-4">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                <div class="page-caption">
+                  <h1 class="text-center text-white " data-aos="fade-in"><?= $rows['job_title']; ?></h1>
+                  <p class="text-center text-white " data-aos="fade-in"><?= $rows['company_name']; ?></p>
                 </div>
               </div>
-
-
-
-
             </div>
           </div>
         </div>
+        <!-- /.page-header-->
+      </section>
 
-        <div class="col-md-8 order-md-1 order-2 ">
-          <!-- <h3 class="text-muted mb-4"><b><?= $rows['job_title']; ?></b></h3>
+
+
+
+
+      <!-- details  -->
+      <div class="container mt-4 mb-4">
+
+        <div class="row">
+          <div class="col-md-4 order-md-2 mb-4 order-1">
+            <div class="card shadow">
+              <div class="card-center d-flex justify-content-center align-items-center mb-3">
+                <a href="company_data.php?id=<?= $company_id ?>">
+                  <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow" style="max-width: 200px; border-radius: 20px; margin-top: -100px;">
+                </a>
+              </div>
+
+
+              <div class="card-body">
+                <!-- Card body content -->
+                <div class="container">
+                  <h4 class="mb-2 chakra-petch-bold"><b><?= $rows['job_title']; ?></b></h4>
+                  <a href="company_data.php?id=<?= $company_id ?>">
+                    <h6 class="chakra-petch-bold mb-4"><?= $rows['company_name']; ?></h6>
+                  </a>
+
+                  </h6>
+                  <div class="d-flex">
+                    <h6 class=" text-muted">
+                      <i class="fas fa-map-marker-alt" style="font-size: 15px;"> &nbsp; &nbsp; <?= $rows['location'] ?></i>
+
+                    </h6>
+
+                    &nbsp; &nbsp; &nbsp;
+                    <h6 class=" text-muted">
+                      <i class="fas fa-calendar-alt" style="font-size: 15px;"> &nbsp;&nbsp;
+                        <?= $rows['application_deadline'] ?></i>
+                    </h6>
+
+                    &nbsp; &nbsp; &nbsp;
+                    <h6 class=" text-muted">
+                      <i class="fas fa-briefcase" style="font-size: 15px;"></i>
+                      &nbsp; <?= $rows['employment_type'] ?>
+                    </h6>
+                  </div>
+                </div>
+                <hr>
+
+
+                <div class="p-3">
+
+                  <h6><?= $rows['additional_info'] ?></h6>
+                </div>
+
+                <div class="p-3 ">
+                  <table>
+                    <tr class="mb-4">
+                      <td>Education Level</td>
+                      <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
+                      <td><?= $rows['education_level'] ?></td>
+                    </tr>
+                    <tr class="mb-4">
+                      <td>Skills</td>
+                      <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
+                      <td><?php foreach ($skillsArray as $skill) {
+                            echo '<span class="badge bg-secondary">' . strtoupper(trim($skill)) . '</span> ';
+                          } ?></td>
+                    </tr>
+                    <tr class="mb-4">
+                      <td>Experience Level</td>
+                      <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
+                      <td class=""><?= $rows['experience_level'] ?></td>
+                    </tr>
+                  </table>
+                </div>
+                <hr>
+                <div class="p-3 text-center">
+                  <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-square fa-3x"></i></a>
+
+                  <!-- Twitter -->
+                  <a href="https://twitter.com/yourpage" target="_blank"><i class="fab fa-twitter-square fa-3x"></i></a>
+
+                  <!-- Instagram -->
+                  <a href="https://www.instagram.com/yourpage" target="_blank"><i class="fab fa-instagram-square fa-3x"></i></a>
+
+                  <!-- LinkedIn -->
+                  <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+
+                  <!-- YouTube -->
+                  <a href="https://www.youtube.com/channel/yourchannel" target="_blank"><i class="fab fa-youtube-square fa-3x"></i></a>
+                </div>
+
+
+                <div class="p-3">
+                  <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center align-items-center">
+                      <?php
+                      if (isset($_SESSION['user_id'])) {
+
+                        $uid = $_SESSION['user_id'];
+                        // User is authorized, show the apply button
+
+                        $today = date("Y-m-d");
+
+                        // $application_deadline;
+                        $deadline_date = new DateTime($application_deadline);
+                        $current_date = new DateTime($today);
+
+                        $interval = $current_date->diff($deadline_date);
+                        $days_remaining = $interval->days;
+
+                        if ($current_date < $deadline_date) {
+                          $Check_applied = "SELECT * FROM applicants WHERE jobseeker_id = $uid AND applied_job_id = $jobId";
+                          $Check_applied_run = mysqli_query($conn, $Check_applied);
+
+                          if (mysqli_num_rows($Check_applied_run) == 1) {
+                            echo '<button type="button" class="btn btn-success p-3 custom-btn">
+                    Already applied
+                  </button>';
+                          } else {
+                            echo '<button type="button" class="btn btn-primary p-3 custom-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Apply for a job
+                  </button>';
+                          }
+                        } else {
+                          echo '<button type="button" class="btn btn-danger p-3 custom-btn">
+                  Application closed
+                </button>';
+                        }
+                      } else {
+                        // User is not authorized, show the login button that triggers a modal
+                        echo '<button type="button" class="btn btn-primary p-3 custom-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Login to apply for a job
+              </button>';
+                      }
+                      ?>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-8 order-md-1 order-2 ">
+            <!-- <h3 class="text-muted mb-4"><b><?= $rows['job_title']; ?></b></h3>
           <h6 class="text-muted mb-4">Presented by : <b><?= $rows['company_name']; ?></b></h6>
           <p class="text-muted" style="font-size: 17px; line-height: 35px; text-align: justify;">
             <?= $rows['job_description']; ?>
@@ -278,185 +360,170 @@ if (isset($_GET['id'])) {
 
 
 
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <!-- ------------------------------------ ADD MODAL FOR APPLY JOB  -------------------------------------- -->
+
+      <!-- applyModal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body mt-3 mb-3">
+              <h2 class="text-muted mt-3 mb-5">Applicant Information</h2>
+              <hr>
+
+              <form action="" method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                  <?php
+                  // Check if user is logged in before setting the jobseeker_id
+                  $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
+                  ?>
+                  <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="full_name" class="form-label"> Name:</label>
+                  <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['first_name'] ?>" required readonly>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email:</label>
+                  <input type="email" class="form-control" id="email" value="<?= $_SESSION['user_email'] ?>" name="email" required readonly>
+                </div>
+
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone:</label>
+                  <input type="text" class="form-control" id="phone" name="phone">
+                </div>
+
+                <div class="mb-3">
+                  <label for="resume_file" class="form-label">Resume:</label>
+                  <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx">
+                </div>
+
+                <div class="mb-3">
+                  <!-- <label for="applied_job_id" class="form-label">Applied Job ID:</label> -->
+                  <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>" required>
+                </div>
+                <div class="mb-3">
+                  <!-- <label for="applied_job_id" class="form-label">Applied Job ID:</label> -->
+                  <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending" required>
+                </div>
+
+                <button type="submit" name="apply_Job_Btn" class="btn btn-primary">Submit</button>
+
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
         </div>
       </div>
 
-    </div>
+
+      <!-- ------------------------------------ Login  MODAL FOR APPLY JOB  -------------------------------------- -->
+
+      <!-- Login Modal -->
+      <!-- Login Modal -->
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row justify-content-center">
+                <div class="col-md-12">
+                  <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body">
+                      <div class="col-md-12">
+                        <div>
+                          <div class="mb-4 text-center">
+                            <img src="images/LOGO.png" alt="Logo" style="width: 300px; height: auto;">
+                          </div>
+                          <div class="mb-4">
+                            <h4 class="text-gray-900 mb-3"><b>Login</b></h4>
+                            <h6 class="text-muted mb-3">Don't have an account yet? <a href="register">Sign Up</a></h6>
+                            <hr>
+                          </div>
+                          <form class="user" action="" method="post" autocomplete="">
+                            <div class="form-group input-icon">
+                              <h6>Email Address</h6>
+                            </div>
+
+                            <div class="form-group input-icon">
+                              <i class="fas fa-envelope"></i>
+                              <input type="email" class="form-control form-control-user" name="email" placeholder="example@gmail.com" required>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4">
+                              <div class="form-group input-icon mb-2">
+                                <h6>Password</h6>
+                              </div>
+                              <div class="form-group input-icon mb-2">
+                                <a href="reset_password_request">
+                                  <h6>Forgot Password</h6>
+                                </a>
+                              </div>
+                            </div>
 
 
 
+                            <div class="form-group input-icon">
+                              <i class="fas fa-lock"></i>
+                              <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Enter 6 Character or more" required>
+                              <i class="fas fa-eye toggle-password text-right" id="togglePassword"></i>
+                            </div>
 
-
-
-
-
-    <!-- ------------------------------------ ADD MODAL FOR APPLY JOB  -------------------------------------- -->
-
-    <!-- applyModal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body mt-3 mb-3">
-            <h2 class="text-muted mt-3 mb-5">Applicant Information</h2>
-            <hr>
-
-            <form action="" method="POST" enctype="multipart/form-data">
-
-              <div class="mb-3">
-                <?php
-                // Check if user is logged in before setting the jobseeker_id
-                $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
-                ?>
-                <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>" required>
-              </div>
-
-              <div class="mb-3">
-                <label for="full_name" class="form-label"> Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['first_name'] ?>" required readonly>
-              </div>
-
-              <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" value="<?= $_SESSION['user_email'] ?>" name="email" required readonly>
-              </div>
-
-              <div class="mb-3">
-                <label for="phone" class="form-label">Phone:</label>
-                <input type="text" class="form-control" id="phone" name="phone">
-              </div>
-
-              <div class="mb-3">
-                <label for="resume_file" class="form-label">Resume:</label>
-                <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx">
-              </div>
-
-              <div class="mb-3">
-                <!-- <label for="applied_job_id" class="form-label">Applied Job ID:</label> -->
-                <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>" required>
-              </div>
-              <div class="mb-3">
-                <!-- <label for="applied_job_id" class="form-label">Applied Job ID:</label> -->
-                <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending" required>
-              </div>
-
-              <button type="submit" name="apply_Job_Btn" class="btn btn-primary">Submit</button>
-
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- ------------------------------------ Login  MODAL FOR APPLY JOB  -------------------------------------- -->
-
-    <!-- Login Modal -->
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="row justify-content-center">
-              <div class="col-md-12">
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                  <div class="card-body">
-                    <div class="col-md-12">
-                      <div>
-                        <div class="mb-4 text-center">
-                          <img src="images/LOGO.png" alt="Logo" style="width: 300px; height: auto;">
-                        </div>
-                        <div class="mb-4">
-                          <h4 class="text-gray-900 mb-3"><b>Login</b></h4>
-                          <h6 class="text-muted mb-3">Don't have an account yet? <a href="register">Sign Up</a></h6>
+                            <script>
+                              document.getElementById('togglePassword').addEventListener('click', function(e) {
+                                const passwordInput = document.getElementById('password');
+                                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                                passwordInput.setAttribute('type', type);
+                                this.classList.toggle('fa-eye');
+                                this.classList.toggle('fa-eye-slash');
+                              });
+                            </script>
+                            <div class="form-group form-check mt-2 ml-2">
+                              <input type="checkbox" class="form-check-input" id="rememberMe">
+                              <label class="form-check-label" for="rememberMe">Remember Me</label>
+                            </div>
+                            <button type="submit" name="login_modal_btn" class="btn btn-primary btn-user btn-block">Login</button>
+                            <hr>
+                          </form>
                           <hr>
                         </div>
-                        <form class="user" action="" method="post" autocomplete="">
-                          <div class="form-group input-icon">
-                            <h6>Email Address</h6>
-                          </div>
-
-                          <div class="form-group input-icon">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" class="form-control form-control-user" name="email" placeholder="example@gmail.com" required>
-                          </div>
-
-                          <div class="d-flex justify-content-between mt-4">
-                            <div class="form-group input-icon mb-2">
-                              <h6>Password</h6>
-                            </div>
-                            <div class="form-group input-icon mb-2">
-                              <a href="reset_password_request">
-                                <h6>Forgot Password</h6>
-                              </a>
-                            </div>
-                          </div>
-
-
-
-                          <div class="form-group input-icon">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Enter 6 Character or more" required>
-                            <i class="fas fa-eye toggle-password text-right" id="togglePassword"></i>
-                          </div>
-
-                          <script>
-                            document.getElementById('togglePassword').addEventListener('click', function(e) {
-                              const passwordInput = document.getElementById('password');
-                              const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                              passwordInput.setAttribute('type', type);
-                              this.classList.toggle('fa-eye');
-                              this.classList.toggle('fa-eye-slash');
-                            });
-                          </script>
-                          <div class="form-group form-check mt-2 ml-2">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Remember Me</label>
-                          </div>
-                          <button type="submit" name="login_modal_btn" class="btn btn-primary btn-user btn-block">Login</button>
-                          <hr>
-                        </form>
-                        <hr>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
-    </div>
 
 
 
-
-
-<?php
+  <?php
   }
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -616,199 +683,59 @@ if (isset($_POST['login_modal_btn'])) {
 
 
 
-
-
-
-?>
-
-
-
-<?php include("includes/footer.php") ?>
-
-
-<!-- Bootstrap core JavaScript -->
-<script data-cfasync="false" src="https://demo.phpjabbers.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/vendor/jquery/jquery.min.js"></script>
-<script src="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-<!-- Additional Scripts -->
-<script src="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/assets/js/custom.js"></script>
-<script src="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/assets/js/owl.js"></script>
-</body>
-
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
-
-
-<!-- <link rel="stylesheet" href="assets/css/formstyle.css"> -->
-
-
-
-
-<!-- when profile drop down working link  -->
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
-<!-- Mirrored from demo.phpjabbers.com/free-web-templates/job-website-template-138/job-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 May 2024 08:12:56 GMT -->
-
-
-
-<script>
-  <?php
-  // Check if $_SESSION['message'] is set and display it using Alertify.js
-  if (isset($_SESSION['message'])) {
   ?>
-    alertify.set('notifier', 'position', 'bottom-right');
-    alertify.success('<?= $_SESSION['message'] ?>');
-  <?php
-    // Unset $_SESSION['message'] to prevent it from being displayed again on subsequent page loads
-    unset($_SESSION['message']);
-  }
-  ?>
-</script>
+
+    </main>
 
 
 
+    <?php include("includes/footer.php");
+    ?>
 
-<!-- ---------------------------------------------------- CSS styles ---------------------------------------------------- -->
-<style>
-  .card {
-    width: 100%;
-    max-width: 700px;
-    border-radius: 15px;
-  }
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  .card-body {
-    padding: 2rem;
-  }
+    <!-- Preloader -->
+    <div id="preloader"></div>
 
-  .form-group p {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-  .form-control-user {
-    padding: 1.5rem 1rem;
-    border-radius: 10px;
-  }
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
 
-  .btn-user {
-    padding: 0.75rem 1rem;
-    border-radius: 10px;
-    background-color: #033367;
-    /* color: rgb(255, 255, 255); */
-    color: white;
-    font-weight: 700;
-  }
+    </body>
 
-  .btn {
-    font-weight: 700;
-  }
-
-  .btn-primary {
-    /* color: #dc3545; */
-    background-color: #082544;
-    /* border-color: #082544; */
-    padding: 10px;
-    border-radius: 12px;
-    margin-left: 5px;
-  }
-
-  .btn-success {
-    /* color: #dc3545; */
-    background-color: #075c0b;
-    /* border-color: #075c0b; */
-    padding: 10px;
-    border-radius: 12px;
-    margin-left: 5px;
-  }
+    </html>
 
 
-
-  .input-icon {
-    position: relative;
-  }
-
-  .input-icon i {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .form-control {
-    padding-left: 2.5rem;
-  }
-
-  .login-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 15px;
-  }
-
-
-  @media (max-width: 768px) {
-    .row.justify-content-center {
-      flex-direction: column;
-    }
-
-    .col-lg-12 {
-      margin-top: 2rem;
-    }
-
-    .card-body {
-      padding: revert;
-      padding: 15px;
-    }
-  }
+    <!-- -------------------------------- FOoter Section ----------------------------------- -->
+    <!-- -------------------------------- FOoter Section ----------------------------------- -->
+    <!-- -------------------------------- FOoter Section ----------------------------------- -->
 
 
 
 
 
+    <script>
+      <?php
 
+      // messages from corect or not 
 
+      if (isset($_SESSION['message'])) {
+      ?>
+        alertify.set('notifier', 'position', 'bottom-right');
+        alertify.success('Current position : ' + alertify.get('notifier', 'position'));
 
-
-
-
-  form-group.input-icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .form-group.input-icon .fa-lock {
-    position: absolute;
-    left: 15px;
-    cursor: pointer;
-  }
-
-  .form-group.input-icon .fa-eye,
-  .form-group.input-icon .fa-eye-slash {
-    position: absolute;
-    right: 15px;
-    cursor: pointer;
-  }
-
-  .form-control-user {
-    padding-left: 40px;
-    /* Ensure there's enough space for the lock icon */
-    padding-right: 40px;
-    /* Ensure there's enough space for the eye icon */
-    width: 100%;
-    /* Make sure the input takes full width */
-  }
-</style>
-
-
-</html>
+        alertify.success('<?= $_SESSION['message'] ?>');
+      <?php
+        unset($_SESSION['message']);
+      }
+      ?>
+    </script>
