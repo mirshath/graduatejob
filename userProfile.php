@@ -31,8 +31,18 @@ if ($result->num_rows > 0) {
 }
 
 
+
+
 ?>
 
+
+<style>
+    
+    /* mobile view  */
+@media (max-width: 1199px) {
+
+}
+</style>
 <main class="main" style="margin-top: 180px;">
 
 
@@ -93,7 +103,7 @@ if ($result->num_rows > 0) {
 
             </header>
 
-            <section class="profile-info-tabs mt-4">
+            <section class="profile-info-tabs mt-4 d-none d-md-flex">
                 <div class="row">
                     <div class="col-sm-offset-2 col-sm-10">
                         <ul class="user-details">

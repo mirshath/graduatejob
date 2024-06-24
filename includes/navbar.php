@@ -40,7 +40,7 @@ if (isset($_SESSION['user_id'])) {
       <a href="index" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">GRADUATEJOB</h1>
+        <h1 class="sitename ">GRADUATEJOB</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -66,7 +66,7 @@ if (isset($_SESSION['user_id'])) {
           <div class="dropdown">
             <a href="#" class="d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="userDashboards/uploads/profiles/<?php echo $row['profile']; ?>" alt="Profile" class="rounded-circle" style="width: 40px; height: 40px;">
-              <span class="ms-2 text-white"><?php echo $row['firstname']; ?></span>
+              <span class="ms-2 text-white d-none d-md-flex"><?php echo $row['firstname']; ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
               <div class="p-3 text-muted">
