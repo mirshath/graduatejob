@@ -46,4 +46,9 @@
 
 </head>
 
+<style>
+  a{
+    text-decoration: none;
+  }
+</style>
 <body class="index-page">

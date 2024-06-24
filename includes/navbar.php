@@ -46,7 +46,7 @@ if (isset($_SESSION['user_id'])) {
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index" class="nav-link active text-white">Home</a></li>
-          <li><a href="jobs" class="nav-link text-white">Jobs</a></li>
+          <li><a href="jobs" class="nav-link text-white">Job</a></li>
           <!-- <li class="dropdown">
             <a href="#" class="text-white"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
