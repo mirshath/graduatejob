@@ -459,9 +459,9 @@ $JobCounts = $row['total'];
 
                 <br>
 
-                <h5 style="margin-bottom: 15px">Category</h5>
-
+                
                 <div class="dflx">
+                  <h5 style="margin-bottom: 15px">Category</h5>
                   <?php
 
                   if (mysqli_num_rows($resulting) > 0) {
@@ -501,10 +501,10 @@ $JobCounts = $row['total'];
                 <br>
                 <!-- -----------------------------------------------------------------------------------------------  -->
 
-                <h5 style="margin-bottom: 15px">Career levels</h5>
-
+                
                 <div class="dflx">
-
+                  
+                  <h5 style="margin-bottom: 15px">Career levels</h5>
                   <!-- <div>
                     <label>
                       <input type="checkbox" class="filter-checkbox" name="career" value="Entry_Level">
