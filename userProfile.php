@@ -39,7 +39,41 @@ if ($result->num_rows > 0) {
 <style>
     /* mobile view  */
     @media (max-width: 1199px) {}
+
+
+
+
+    /* ----------------- user profile nav ------------------  */
+
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: white;
+    background-color: #040954;
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+    font-weight: 600;
+}
+
+.btn-primarys {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #031d43;
+    --bs-btn-border-color: #610413;
+    --bs-btn-hover-color: red;
+    --bs-btn-hover-bg: #031d43;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0a58ca;
+    --bs-btn-active-border-color: #0a53be;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd;
+}
+
+
 </style>
+
+
+
 <main class="main" style="margin-top: 180px;">
 
 

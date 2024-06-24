@@ -57,7 +57,23 @@
 </head>
 
 <style>
- 
+ .btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #031d43;
+    --bs-btn-border-color: #610413;
+    --bs-btn-hover-color: red;
+    --bs-btn-hover-bg: #031d43;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0a58ca;
+    --bs-btn-active-border-color: #0a53be;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd;
+}
+
 
 </style>
 <body class="index-page">
