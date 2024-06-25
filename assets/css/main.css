@@ -1,18 +1,43 @@
 
-/* :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Playfair Display",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
-} */
+
+/* Dark Red */
+.primary-dark-red { background-color: #8B0000; }
+.dark-red-shade1 { background-color: #660000; }
+
+/* used this color  */
+.dark-red-shade2 { background-color: #990000; }
+.dark-red-shade3 { background-color: #B22222; }
+.dark-red-tint1 { background-color: #A52A2A; }
+.dark-red-tint2 { background-color: #CD5C5C; }
+.dark-red-tint3 { background-color: #E9967A; }
+
+/* Dark Blue */
+.primary-dark-blue { background-color: #00008B; }
+
+/* used this color  */
+.dark-blue-shade1 { background-color: #000066; } 
+
+.dark-blue-shade2 { background-color: #000099; }
+.dark-blue-shade3 { background-color: #0000CD; }
+.dark-blue-tint1 { background-color: #1E90FF; }
+.dark-blue-tint2 { background-color: #4682B4; }
+.dark-blue-tint3 { background-color: #87CEFA; }
+
+/* Neutrals */
+.white { background-color: #FFFFFF; }
+.light-gray { background-color: #D3D3D3; }
+.dark-gray { background-color: #A9A9A9; }
+.black { background-color: #000000; }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
   /* --background-color: #0c0404; Background color for the entire website, including individual sections */
   --background-color: rgb(250, 250, 250); /* Background color for the entire website, including individual sections */
-  --default-color: rgb(0 2 22);/* Default color used for the majority of the text content across the entire website */
-  --heading-color: #051b74; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #042147; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --contrast-color: #151411; /* The contrast color is used for elements when the background color is one of the heading, accent, or default colors. Its purpose is to ensure proper contrast and readability when placed over these more dominant colors */
+  /* --default-color: rgb(0 2 22);Default color used for the majority of the text content across the entire website */
+  --default-color: #000066;/* Default color used for the majority of the text content across the entire website */
+  --heading-color: #990000; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #000066; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --contrast-color: #4682B4; /* The contrast color is used for elements when the background color is one of the heading, accent, or default colors. Its purpose is to ensure proper contrast and readability when placed over these more dominant colors */
 }
 
 
@@ -1834,3 +1859,5 @@ section,
   padding-top: 100px;
   padding-bottom: 100px;
 }
+
+

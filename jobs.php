@@ -234,6 +234,9 @@ $JobCounts = $row['total'];
     }
   </style>
 
+
+
+
   <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
   <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -906,7 +909,7 @@ $JobCounts = $row['total'];
                       // Close the statement
                       $stmt->close();
                     } else {
-                      $badge_color = 'bg-info';
+                      $badge_color = 'dark-red-shade3';
                       $badge_text = $days_remaining . ' days left';
                     }
 
@@ -929,19 +932,19 @@ $JobCounts = $row['total'];
                           <div class="row flex-fill">
                             <div class="col-sm-5">
                               <h4 class="h5"><?= $row['job_title'] ?></h4>
-                              <span class="badge bg-info"><?= $row['location'] ?></span>
-                              <span class="badge bg-secondary"><?= $row['job_category'] ?></span>
-                              <span class="badge bg-info"><?= $row['company_name'] ?></span>
+                              <span class="badge dark-red-shade3"><?= $row['location'] ?></span>
+                              <span class="badge dark-blue-shade1"><?= $row['job_category'] ?></span>
+                              <span class="badge dark-red-shade3"><?= $row['company_name'] ?></span>
                             </div>
                             <div class="col-sm-4 py-2">
                               <?php
                               foreach ($skillsArray as $skill) {
-                                echo '<span class="badge bg-secondary">' . strtoupper(trim($skill)) . '</span> ';
+                                echo '<span class="badge dark-blue-shade1">' . strtoupper(trim($skill)) . '</span> ';
                               }
                               ?>
                             </div>
                             <div class="col-sm-3 text-lg-end">
-                              <span class="badge bg-success"><?= $row['employment_type'] ?></span>
+                              <span class="badge dark-blue-shade1"><?= $row['employment_type'] ?></span>
                               <span class="badge <?= $badge_color ?>"><?= $badge_text ?></span>
                             </div>
                           </div>
@@ -1183,15 +1186,15 @@ $JobCounts = $row['total'];
                                             <div class="row flex-fill">
                                                 <div class="col-sm-5">
                                                     <h4 class="h5">${job.job_title}</h4>
-                                                    <span class="badge bg-info">${job.location}</span>
-                                                    <span class="badge bg-secondary">${job.job_category}</span>
-                                                    <span class="badge bg-info">${job.company_name}</span>
+                                                    <span class="badge dark-red-shade1">${job.location}</span>
+                                                    <span class="badge dark-blue-shade1">${job.job_category}</span>
+                                                    <span class="badge dark-red-shade1">${job.company_name}</span>
                                                 </div>
                                                 <div class="col-sm-4 py-2">
-                                                    ${job.skills_required.split(',').map(skill => `<span class="badge bg-secondary">${skill.trim().toUpperCase()}</span>`).join(' ')}
+                                                    ${job.skills_required.split(',').map(skill => `<span class="badge dark-blue-shade1">${skill.trim().toUpperCase()}</span>`).join(' ')}
                                                 </div>
                                                 <div class="col-sm-3 text-lg-end">
-                                                    <span class="badge bg-success">${job.employment_type}</span>
+                                                    <span class="badge dark-blue-shade1">${job.employment_type}</span>
                                                 </div>
                                             </div>
                                         </div>
