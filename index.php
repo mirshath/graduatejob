@@ -8,6 +8,23 @@ include("includes/header.php");
 include("includes/navbar.php");
 ?>
 
+
+
+<style>
+  .swiper-wrapper{
+    background-color: transparent;
+    border-radius: 15px;
+
+  }
+
+  .card-body {
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: var(--bs-card-color);
+    /* background-color: aqua; */
+    border-radius: 15px;
+}
+</style>
 <main class="main">
 
   <!-- Hero Section -->
