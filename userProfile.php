@@ -367,16 +367,8 @@ if ($result->num_rows > 0) {
                                 <div class="card mt-3">
                                     <div class="card-body">
                                         <div class="container p-3">
-
-
-
-
-                                            <!-- --------------- new trying --------------------------  -->
-                                            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
                                             <div class="container mt-2">
                                                 <div class="row flex-lg-nowrap">
-
-
                                                     <div class="col">
                                                         <div class="row">
                                                             <div class="col mb-3">
@@ -384,78 +376,70 @@ if ($result->num_rows > 0) {
                                                                     <div class="card-body">
                                                                         <div class="e-profile">
                                                                             <form class="form" action="update_jobseeker.php" method="post" enctype="multipart/form-data">
-
                                                                                 <div class="row">
                                                                                     <div class="col-12 col-sm-auto mb-3">
-                                                                                        <div class="mx-auto" style="width: 140px;">
-                                                                                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                                                <?php if (!empty($row["profile"])) : ?>
-                                                                                                    <div class="mb-3">
-                                                                                                        <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" alt="Profile Image" class="img-thumbnail">
-                                                                                                    </div>
-                                                                                                <?php endif; ?>
-                                                                                            </div>
-                                                                                        </div>
+                                                                                    <div class="mx-auto" style="width: 140px;">
+    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239); overflow: hidden;">
+        <?php if (!empty($row["profile"])) : ?>
+            <div class="mb-3">
+                <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" alt="Profile Image" class="img-thumbnail profile-img">
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<style>
+    .profile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
                                                                                     </div>
                                                                                     <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-
-                                                                                        <div class=" text-sm-left mb-2 mb-sm-0">
-
+                                                                                        <div class="text-sm-left mb-2 mb-sm-0">
                                                                                             <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
                                                                                                 <?= $row['firstname'] ?>
                                                                                                 <?= $row['lastname'] ?>
                                                                                             </h4>
-
                                                                                             <p class="mb-0 text-muted mb-4"><?= $row['email'] ?></p>
-
-                                                                                            <!-- <div class="text-muted"><small>Last
-                                                                                                    seen 2 hours ago</small>
-                                                                                            </div> -->
-
                                                                                             <div class="mt-2">
                                                                                                 <label class="btn btn-primary">
-                                                                                                    <input type="file" class="form-control-file fa fa-fw fa-camera" id="editCompanyLogo" name="editCompanyLogo" style="display: none;">
+                                                                                                    <input type="file" class="form-control-file fa fa-fw fa-camera" id="editProfilePhoto" name="editProfilePhoto" style="display: none;">
                                                                                                     <i class="fa fa-fw fa-camera"></i>
                                                                                                     Change Photo
                                                                                                 </label>
                                                                                             </div>
+                                                                                            <!-- Image preview area -->
 
                                                                                         </div>
-
                                                                                         <div class="text-center text-sm-right">
                                                                                             <span class="badge badge-info"><?= $row['usertype'] ?></span>
                                                                                             <div class="text-muted">
-                                                                                                <small>Joined
-                                                                                                    <?= $row['created_at'] ?></small>
+                                                                                                <small>Joined <?= $row['created_at'] ?></small>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <ul class="nav nav-tabs">
-                                                                                    <li class="nav-item"><a href="" class="active nav-link"><b>Update profiles</b></a>
-                                                                                    </li>
+                                                                                    <li class="nav-item"><a href="" class="active nav-link"><b>Update profiles</b></a></li>
                                                                                 </ul>
                                                                                 <div class="tab-content pt-3">
                                                                                     <div class="tab-pane active">
-                                                                                        <!-- <form class="form" action="update_jobseeker.php" method="post" enctype="multipart/form-data"> -->
-
                                                                                         <div class="row">
                                                                                             <div class="col">
                                                                                                 <div class="row">
                                                                                                     <input type="hidden" name="id" value="<?= $row['id'] ?>">
-
                                                                                                     <div class="col">
                                                                                                         <div class="form-group">
-                                                                                                            <label class="mb-2">First
-                                                                                                                Name
-                                                                                                            </label>
+                                                                                                            <label class="mb-2">First Name</label>
                                                                                                             <input class="form-control text-muted mb-3" type="text" id="Fname" name="Fname" value="<?= $row['firstname'] ?>">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="col">
                                                                                                         <div class="form-group">
-                                                                                                            <label class="mb-2">Last
-                                                                                                                Name</label>
+                                                                                                            <label class="mb-2">Last Name</label>
                                                                                                             <input class="form-control text-muted mb-3" type="text" id="Lastname" name="Lastname" value="<?= $row['lastname'] ?>">
                                                                                                         </div>
                                                                                                     </div>
@@ -463,8 +447,7 @@ if ($result->num_rows > 0) {
                                                                                                 <div class="row">
                                                                                                     <div class="col">
                                                                                                         <div class="form-group">
-                                                                                                            <label class="mb-2">Mobile
-                                                                                                            </label>
+                                                                                                            <label class="mb-2">Mobile</label>
                                                                                                             <input class="form-control text-muted mb-3" type="text" id="Contact" name="Contact" value="<?= $row['phone_no'] ?>">
                                                                                                         </div>
                                                                                                     </div>
@@ -487,32 +470,18 @@ if ($result->num_rows > 0) {
                                                                                                     <div class="col mb-3">
                                                                                                         <div class="form-group">
                                                                                                             <label class="mb-2">About</label>
-                                                                                                            <textarea class="form-control text-muted mb-3" rows="5" placeholder="My Bio" value="<?= $row['usertype'] ?>"></textarea></textarea>
+                                                                                                            <textarea class="form-control text-muted mb-3" rows="5" placeholder="My Bio"><?= $row['usertype'] ?></textarea>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-
-
-
-
-
-
                                                                                         <div class="row">
                                                                                             <div class="col d-flex justify-content-end">
-                                                                                                <button class="btn btn-primary " type="submit">Save
-                                                                                                    Changes</button>
+                                                                                                <button class="btn btn-primary" type="submit">Save Changes</button>
                                                                                             </div>
                                                                                         </div>
-
-                                                                                        <div class="col-md-6">
-
-                                                                                        </div>
-
-
-                                                                                        <!-- </form> -->
-
+                                                                                        <div class="col-md-6"></div>
                                                                                     </div>
                                                                                 </div>
                                                                             </form>
@@ -520,45 +489,55 @@ if ($result->num_rows > 0) {
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="col-12 col-md-3 mb-3">
                                                                 <div class="card mb-3">
                                                                     <div class="card-body">
                                                                         <div class="px-xl-3">
-
-                                                                            <!-- logour btn  -->
-
-
-                                                                            <!-- <button type="button" class="btn btn-block btn-secondary">
-                                                                            <i class="fa fa-sign-out"></i>
-                                                                            <span> <a href="logout" style="text-decoration: none
-                                                                            ;">Logout</a> </span>
-                                                                        </button> -->
-
-
-
-                                                                            <div class="form-group input-icon">
-
-
-
-                                                                            </div>
+                                                                            <div class="form-group input-icon"></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- --------------- new trying --------------------------  -->
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+                            <script>
+                                $(document).ready(function() {
+                                    // Check if there's a message in the session
+                                    var message = '<?php echo isset($_SESSION['message']) ? $_SESSION['message'] : ''; ?>';
+                                    if (message) {
+                                        alert(message);
+                                        <?php unset($_SESSION['message']); ?> // Clear the message after displaying
+                                    }
 
+                                    $('#editProfilePhoto').change(function() {
+                                        var formData = new FormData();
+                                        var userId = $('input[name="id"]').val();
+                                        formData.append('editProfilePhoto', this.files[0]);
+                                        formData.append('id', userId);
+
+                                        $.ajax({
+                                            url: 'update_profile_photo.php',
+                                            type: 'POST',
+                                            data: formData,
+                                            contentType: false,
+                                            processData: false,
+                                            success: function(response) {
+                                                if (response.trim() == "success") {
+                                                    location.reload(); // Reload the page to show the updated photo
+                                                } else {
+                                                    alert("Failed to update profile photo.");
+                                                }
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
 
 
 

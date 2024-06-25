@@ -21,18 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $St_address = $_POST["St_address"];
     $updateStCV = $_FILES["updateStCV"]["name"] ? basename($_FILES["updateStCV"]["name"]) : '';
 
-    // Handle file upload for profile image
-    $profile = null;
-    if (isset($_FILES["editCompanyLogo"]) && $_FILES["editCompanyLogo"]["error"] == 0) {
-        $target_dir = "userDashboards/uploads/profiles/";
-        $target_file = $target_dir . basename($_FILES["editCompanyLogo"]["name"]);
-        if (move_uploaded_file($_FILES["editCompanyLogo"]["tmp_name"], $target_file)) {
-            $profile = basename($_FILES["editCompanyLogo"]["name"]);
-        } else {
-            echo "Sorry, there was an error uploading your profile image.";
-            exit();
-        }
-    }
+    
 
     // Handle file upload for CV
     // if (isset($_FILES["updateStCV"]) && $_FILES["updateStCV"]["error"] == 0) {
@@ -53,21 +42,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         St_address = ?";
 
     // Append profile update if a new profile was uploaded
-    if ($profile !== null) {
-        $sql .= ", profile = ?";
-    }
+    // if ($profile !== null) {
+    //     $sql .= ", profile = ?";
+    // }
 
     $sql .= " WHERE id = ?";
 
     $stmt = $conn->prepare($sql);
 
-    if ($profile !== null) {
-        // Bind parameters including the profile
-        $stmt->bind_param("sssssssi", $firstname, $lastname, $email, $phone_no, $updateStCV, $St_address, $profile, $id);
-    } else {
-        // Bind parameters excluding the profile
-        $stmt->bind_param("ssssssi", $firstname, $lastname, $email, $phone_no, $updateStCV, $St_address, $id);
-    }
+    // if ($profile !== null) {
+    //     // Bind parameters including the profile
+    //     $stmt->bind_param("sssssssi", $firstname, $lastname, $email, $phone_no, $updateStCV, $St_address, $profile, $id);
+    // } else {
+    //     // Bind parameters excluding the profile
+    //     $stmt->bind_param("ssssssi", $firstname, $lastname, $email, $phone_no, $updateStCV, $St_address, $id);
+    // }
 
     // Execute SQL query
     if ($stmt->execute() === TRUE) {
