@@ -8,7 +8,7 @@ $re_email = $_SESSION['user_email'];
 $com_name = $_SESSION['company_name'];
 
 if (!isset($_SESSION['user_id'])) {
-  header("location: ../index.php");
+  header("location: recruiterLoginForm");
 }
 
 

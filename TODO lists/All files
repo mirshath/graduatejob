@@ -1,28 +1,21 @@
             TODO lists
 
-
 The d-none d-md-flex classes are used to hide the element on mobile devices and display it on medium to larger screens.
 
-
-
-
-
-
-
-
+color code : #7f012b
 
 ## Common section
 
 <!-- - wanna change the mail function , when the admin approve the post , it wanna send -->
-- wanna Do the limit of everything like image profile 
+
+- wanna Do the limit of everything like image profile
 - validations
 
-
-color code : #7f012b
-
 ## Amin section
+
  <!-- - approve when by editing -->
- - 
+
+-
 
 ## recruiter section
 
@@ -31,53 +24,43 @@ color code : #7f012b
 <!-- - Recuiter/subscribers wanna fetch , who has subscribed -->
 <!-- - delete path wanna set in recruiter (NO NEED TO DELETE HERE) -->
 <!-- - rec /  readonly -->
-<!-- - path changing  -->
--
 
+## <!-- - path changing  -->
 
 ## user section
 
 - wanna do the relationship forienkys userregister and jobs for the getting company images
-<!-- - user dashboards -->
-- index page 
-- password checking 
+  <!-- - user dashboards -->
+  <!-- - index page  -->
+- password checking
+
+                password
 
 
+                <!-- admin / expired job -->
+                <!-- categ dlt / if posted the job , dont delete  -->
 
+---
 
+alertify.success("Successfully unsubscribed ");
+alertify.error("not success");
 
+?>
 
-
-
-
-
-
-
-
-
----------------------------------------------------------------------------------------
-
- alertify.success("Successfully unsubscribed ");
- alertify.error("not success");
-
- ?> 
-                
                <script>
                    alertify.error("No user found with that email address!");
 
-               </script> 
+               </script>
                 <?php
 
 
 
 
 
+                 echo '<script>
 
+                        window.location.href = "job-details.php?id=' . $applied_job_id . '";
 
+                         </script>';
 
-               
-                password 
-
-
-                admin / expired job
-                categ dlt / if posted the job , dont delete 
+---
