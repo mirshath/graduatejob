@@ -4,6 +4,10 @@ The d-none d-md-flex classes are used to hide the element on mobile devices and 
 
 color code : #7f012b
 
+
+------------------------------------------------------------------------------------------------------------------------
+
+
 ## Common section
 
 <!-- - wanna change the mail function , when the admin approve the post , it wanna send -->
@@ -14,6 +18,9 @@ color code : #7f012b
 ## Amin section
 
  <!-- - approve when by editing -->
+ <!-- admin / expired job -->
+ <!-- categ dlt / if posted the job , dont delete  -->
+
 
 -
 
@@ -29,18 +36,21 @@ color code : #7f012b
 
 ## user section
 
-- wanna do the relationship forienkys userregister and jobs for the getting company images
+<!-- - wanna do the relationship forienkys userregister and jobs for the getting company images -->
   <!-- - user dashboards -->
   <!-- - index page  -->
 - password checking
 
-                password
 
 
-                <!-- admin / expired job -->
-                <!-- categ dlt / if posted the job , dont delete  -->
 
----
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
 
 alertify.success("Successfully unsubscribed ");
 alertify.error("not success");
@@ -63,4 +73,5 @@ alertify.error("not success");
 
                          </script>';
 
+------------------------------------------------------------------------------------------------------------------------
 ---
