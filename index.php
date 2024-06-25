@@ -24,6 +24,18 @@ include("includes/navbar.php");
     background-color: #ff000012;
     border-radius: 15px;
 }
+.rounded-pill {
+    border-radius: var(--bs-border-radius-pill) !important;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: rgb(10 50 108) !important;
+}
+
 </style>
 <main class="main">
 

@@ -1,9 +1,9 @@
 
-:root {
+/* :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Playfair Display",  sans-serif;
   --nav-font: "Poppins",  sans-serif;
-}
+} */
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
@@ -11,7 +11,7 @@
   --background-color: rgb(250, 250, 250); /* Background color for the entire website, including individual sections */
   --default-color: rgb(0 2 22);/* Default color used for the majority of the text content across the entire website */
   --heading-color: #051b74; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #ad093a; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #042147; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --contrast-color: #151411; /* The contrast color is used for elements when the background color is one of the heading, accent, or default colors. Its purpose is to ensure proper contrast and readability when placed over these more dominant colors */
 }
 
@@ -36,8 +36,10 @@
 body {
   color: var(--default-color);
   background-color: var(--background-color);
-  font-family: var(--default-font);
+  /* font-family: var(--default-font); */
 }
+
+
 
 a {
   color: var(--accent-color);
@@ -883,7 +885,7 @@ section,
 }
 
 .hero h2 span {
-  color: var(--accent-color);
+  color: #b70202;
 }
 
 .hero p {
