@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_password'])) {
     $updateStmt->bind_param("si", $hashedNewPassword, $userId);
 
     if ($updateStmt->execute()) {
-        $_SESSION['message'] = "Password updated successfully";
+        // $_SESSION['message'] = "Password updated successfully";
         echo '<script>window.location.href = "userProfile";</script>';
 
         // header("Location: " . $_SERVER['PHP_SELF']);

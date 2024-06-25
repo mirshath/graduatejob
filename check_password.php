@@ -40,12 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "success";
         } else {
             // error_log("Password verification failed");
-            $_SESSION['message'] = "Incorrect current password";
+            // $_SESSION['message'] = "Incorrect current password";
             echo "failure";
         }
     } else {
         // error_log("No matching user found or multiple entries");
-        $_SESSION['message'] = "Incorrect current password";
+        // $_SESSION['message'] = "Incorrect current password";
 
         echo "failure";
     }

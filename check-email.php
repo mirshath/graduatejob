@@ -5,7 +5,7 @@ include "Database/connection.php";
 if(isset($_POST['email'])) {
     // Prepare and execute SQL query to check if email exists
     $email = $_POST['email'];
-    $stmt = $conn->prepare("SELECT * FROM userregister WHERE email = ?");
+    $stmt = $conn->prepare("SELECT * FROM userregister WHERE email = ? AND usertype='jobSeeker'");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();

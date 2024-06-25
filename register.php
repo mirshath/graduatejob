@@ -1,4 +1,11 @@
 <?php
+
+session_start(); // Ensure session is started
+// if (isset($_SESSION['message'])) {
+//     echo '<div class="alert alert-danger text-center">' . $_SESSION['message'] . '</div>';
+//     unset($_SESSION['message']); // Clear the message once displayed
+// }
+
 include "Database/connection.php";
 require "includes/header.php";
 
@@ -11,39 +18,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirmPassword = $_POST["confirm_password"];
     $userType = $_POST["userType"];
 
-    // // Validate password strength
-    // if (strlen($password) < 6) {
-    //     echo "Password must be at least 6 characters long.";
-    //     exit();
-    // }
+    // Check if email already exists in the database
+    $sql_check_email = "SELECT * FROM userregister WHERE email = ?";
+    $stmt_check_email = $conn->prepare($sql_check_email);
+    $stmt_check_email->bind_param("s", $email);
+    $stmt_check_email->execute();
+    $result_check_email = $stmt_check_email->get_result();
 
-    // // Check if passwords match
-    // if ($password !== $confirmPassword) {
-    //     echo "Passwords do not match!";
-    //     exit();
-    // }
+    if ($result_check_email->num_rows > 0) {
+        // Email already registered
+        echo '
+        <script>
+            alertify.error("Email already registered. Try a new email.");
+            setTimeout(function() {
+                window.location.href = "register";
+            }, 2000); // Redirect after 2 seconds
+        </script>';
+        exit();
+    }
+
+
+
+    // If email is not already registered, proceed with registration
 
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     // Prepare SQL statement using prepared statements
-    $sql = "INSERT INTO userregister (firstname, lastname, email, password, usertype) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $firstName, $lastName, $email, $hashedPassword, $userType);
+    $sql_insert_user = "INSERT INTO userregister (firstname, lastname, email, password, usertype) VALUES (?, ?, ?, ?, ?)";
+    $stmt_insert_user = $conn->prepare($sql_insert_user);
+    $stmt_insert_user->bind_param("sssss", $firstName, $lastName, $email, $hashedPassword, $userType);
 
     // Execute the statement
-    if ($stmt->execute()) {
+    if ($stmt_insert_user->execute()) {
         $_SESSION['message'] = "Successfully registered";
         echo '<script>window.location.href = "userLoginForm";</script>';
         exit();
     } else {
-        echo "Error: " . $stmt->error;
+        echo "Error: " . $stmt_insert_user->error;
     }
 
-    // Close statement
-    $stmt->close();
+    // Close statements
+    $stmt_check_email->close();
+    $stmt_insert_user->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,6 +78,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+    <!-- Include the AlertifyJS CSS and JS files in your HTML -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
 </head>
 
 
@@ -292,7 +321,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
                 <input type="hidden" name="userType" value="jobSeeker">
-                <button type="submit" class="btn signin p-2 fw-bold">Register</button>
+                <button type="submit" class="btn signin p-2 fw-bold" id="registerBtn">Register</button>
             </form>
         </div>
     </div>
@@ -300,14 +329,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <script>
-    // JavaScript for form validation
-
-    
     $(document).ready(function() {
+        function validateEmail() {
+            var email = $('#email').val();
+            var isValid = true;
+
+            // Reset email error messages and remove invalid classes
+            $('#emailError').text('');
+            $('#email').removeClass('is-invalid');
+            $('#email').removeClass('is-valid');
+
+            // Email validation
+            if (email.trim() === '') {
+                $('#emailError').text('Email is required.');
+                $('#email').addClass('is-invalid');
+                isValid = false;
+            } else {
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    $('#emailError').text('Invalid email format.');
+                    $('#email').addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    // Check email availability asynchronously
+                    $.ajax({
+                        url: 'check-email.php',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            email: email
+                        },
+                        success: function(response) {
+                            if (response.status === 'taken') {
+                                $('#emailError').text('Email is already taken.');
+                                $('#email').addClass('is-invalid');
+                                $('#registerBtn').prop('disabled', true);
+                            } else {
+                                $('#email').addClass('is-valid');
+                                $('#registerBtn').prop('disabled', false);
+                            }
+                        },
+                        error: function() {
+                            $('#emailError').text('Error checking email availability.');
+                            $('#email').addClass('is-invalid');
+                            $('#registerBtn').prop('disabled', true);
+                        }
+                    });
+                }
+            }
+
+            return isValid;
+        }
+
+        $('#email').on('input', function() {
+            validateEmail();
+        });
+
         $('#registrationForm').submit(function(event) {
             var firstname = $('#firstname').val();
             var lastname = $('#lastname').val();
-            var email = $('#email').val();
             var password = $('#password').val();
             var confirmPassword = $('#confirm_password').val();
             var isValid = true;
@@ -337,50 +417,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Email validation
-        if (email.trim() === '') {
-            $('#emailError').text('Email is required.');
-            $('#email').addClass('is-invalid');
-            isValid = false;
-        } else {
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                $('#emailError').text('Invalid email format.');
-                $('#email').addClass('is-invalid');
+            if (!validateEmail()) {
                 isValid = false;
-            } else {
-                // Check email availability asynchronously
-                $.ajax({
-                    url: 'check-email.php',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        email: email
-                    },
-                    success: function(response) {
-                        if (response.status === 'taken') {
-                            $('#emailError').text('Email is already taken.');
-                            $('#email').addClass('is-invalid');
-                            isValid = false;
-                            // Disable the register button
-                            $('#registerBtn').prop('disabled', true);
-                        } else {
-                            $('#email').addClass('is-valid');
-                            // Enable the register button if all other fields are valid
-                            $('#registerBtn').prop('disabled', false);
-                        }
-                    },
-                    error: function() {
-                        $('#emailError').text('Error checking email availability.');
-                        $('#email').addClass('is-invalid');
-                        isValid = false;
-                        // Disable the register button on error
-                        $('#registerBtn').prop('disabled', true);
-                    }
-                });
             }
-        }
-
-
 
             // Password validation
             if (password.trim() === '') {
@@ -388,17 +427,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $('#password').addClass('is-invalid');
                 isValid = false;
             } else if (password.length < 6) {
-                $('#passwordError').text('Password must be at least 6 char');
+                $('#passwordError').text('Password must be at least 6 characters long.');
                 $('#password').addClass('is-invalid');
                 isValid = false;
             } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-                $('#passwordError').text('Password must at least 1 special char');
+                $('#passwordError').text('Password must contain at least 1 special character.');
                 $('#password').addClass('is-invalid');
                 isValid = false;
             } else {
                 $('#password').addClass('is-valid');
             }
-
 
             // Confirm Password validation
             if (confirmPassword.trim() === '') {

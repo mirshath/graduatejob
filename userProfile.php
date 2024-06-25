@@ -573,7 +573,7 @@ if ($result->num_rows > 0) {
                                                                 <i class="fas fa-lock"></i>
                                                                 <label for="current_password">Current password</label>
                                                                 <input type="password" class="form-control form-control-user" id="current_password" placeholder="Enter Your Current Password Here.." name="current_password" required>
-                                                                <span class="error-message" id="error-current-password" style="display:none;">Please fill the current password.</span>
+                                                                <span class="error-message" id="error-current-password" style="display:none; color: red;">* Please fill the current password.</span>
                                                             </div>
                                                             <button type="button" class="btn btn-primary btn-user mt-3 float-right" id="check_password">Check Password</button>
                                                         </div>

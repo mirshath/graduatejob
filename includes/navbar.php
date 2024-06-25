@@ -68,14 +68,16 @@ if (isset($_SESSION['user_id'])) {
               <img src="userDashboards/uploads/profiles/<?php echo $row['profile']; ?>" alt="Profile" class="rounded-circle" style="width: 40px; height: 40px;">
               <span class="ms-2 text-white d-none d-md-flex"><?php echo $row['firstname']; ?></span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown"  style=" font-size: 15px;">
               <div class="p-3 text-muted">
                 <?= $_SESSION['first_name']; ?> <?php echo $row['lastname']; ?>
                 <?= $_SESSION['user_email']; ?>
               </div>
-              <li><a class="dropdown-item" href="userProfile"> <i class="fas fa-tachometer-alt"></i>&nbsp; Dashboard</a></li>
-              <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i>
- &nbsp;              Logout</a></li>
+              <div class="" style="margin-left: 25px; font-size: 15px;">
+              <li><a class="dropdown-item mb-2" href="userProfile"> <i class="fas fa-tachometer-alt"></i>&nbsp; Dashboard</a></li>
+              <li><a class="dropdown-item mb-2" href="logout.php"><i class="fas fa-sign-out-alt"></i>
+                  &nbsp; Logout</a></li>
+              </div>
             </ul>
           </div>
         <?php else : ?>

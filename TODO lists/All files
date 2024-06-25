@@ -73,5 +73,10 @@ alertify.error("not success");
 
                          </script>';
 
-------------------------------------------------------------------------------------------------------------------------
----
+                         <script>
+            alertify.error("Email already registered. Try a new email.");
+            setTimeout(function() {
+                window.location.href = "register";
+            }, 2000); // Redirect after 2 seconds
+        </script>';
+        exit();
