@@ -42,6 +42,10 @@ $JobCounts = $row['total'];
 
 
   <style>
+ 
+
+
+
     #pageHeader h1,
     h2,
     h3,

@@ -21,7 +21,7 @@ include("includes/navbar.php");
     flex: 1 1 auto;
     padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
     color: var(--bs-card-color);
-    /* background-color: aqua; */
+    background-color: #ff000012;
     border-radius: 15px;
 }
 </style>
@@ -113,8 +113,8 @@ include("includes/navbar.php");
           ?>
               <div class="swiper-slide">
                 <div class="testimonial-item">
-                  <div class="card  border-0 bg-light rounded shadow">
-                    <div class="card-body p-4">
+                  <div class="card  border-0 bg-light rounded ">
+                    <div class="card-body p-4 shadow">
                       <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">
                         <i class="fas fa-briefcase" style="font-size: 15px;"></i> &nbsp;&nbsp;
                         <?= $row['employment_type'] ?>
