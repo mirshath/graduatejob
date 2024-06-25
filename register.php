@@ -1,18 +1,15 @@
 <?php
 include "Database/connection.php";
-// require "../headerFiles/header.php";
 require "includes/header.php";
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate and sanitize user input
-    $firstName = htmlspecialchars($_POST["firstName"]);
-    $lastName = htmlspecialchars($_POST["lastName"]);
+    $firstName = htmlspecialchars($_POST["firstname"]);
+    $lastName = htmlspecialchars($_POST["lastname"]);
     $email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
     $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmPassword"];
+    $confirmPassword = $_POST["confirm_password"];
     $userType = $_POST["userType"];
-    $companyName = htmlspecialchars($_POST["companyName"]);
 
     // Validate password strength
     if (strlen($password) < 6) {
@@ -30,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     // Prepare SQL statement using prepared statements
-    $sql = "INSERT INTO userregister (firstname, lastname, email, password, usertype, company_name) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO userregister (firstname, lastname, email, password, usertype) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssss", $firstName, $lastName, $email, $hashedPassword, $userType, $companyName);
+    $stmt->bind_param("sssss", $firstName, $lastName, $email, $hashedPassword, $userType);
 
     // Execute the statement
     if ($stmt->execute()) {
@@ -46,10 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Close statement
     $stmt->close();
 }
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,13 +51,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Registration Form with Validation</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/formstyle.css">
-
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-
 
 
 <style>
@@ -223,113 +218,148 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 0;
         }
     }
+
+    .invalid-feedback {
+        color: red;
+        font-size: 12px;
+        margin-left: 15px;
+    }
 </style>
 
 
-<body class="body_backgorund">
-    <div class="container-fluid form-bg d-flex align-items-center justify-content-center" style="height: 100vh;;">
-        <div class="col-lg-6 col-md-8">
-            <div class="form-container">
-                <div class="form-icon">
-                    <i class="fa fa-user-circle"></i>
-                    <span class="signup"><a href="userLoginForm">Already have an account? Sign in</a></span>
-                </div>
-                <form class="form-horizontal" action="" method="post" autocomplete="">
-                    <h3 class="chakra-petch-bold text-center mb-4 pb-4">Register </h3>
-                    <div class="form-group p-1">
-                        <span class="input-icon"><i class="fa fa-user"></i></span>
-                        <input class="form-control" type="text" name="firstName" placeholder="First Name">
-                    </div>
-                    <div class="form-group p-1">
-                        <span class="input-icon"><i class="fa fa-user"></i></span>
-                        <input class="form-control" type="text" name="lastName" placeholder="Last Name">
-                    </div>
-                    <div class="form-group p-1">
-                        <span class="input-icon"><i class="fa fa-envelope"></i></span>
-                        <input class="form-control" type="email" name="email" placeholder="Email Address">
-                    </div>
-                    <div class="form-group p-1">
-                        <span class="input-icon"><i class="fa fa-lock"></i></span>
-                        <input class="form-control" type="password" name="password" placeholder="Password"
-                            id="password">
-                    </div>
-                    <div class="form-group p-1">
-                        <span class="input-icon"><i class="fa fa-lock"></i></span>
-                        <input class="form-control" type="password" name="confirmPassword" placeholder="Repeat Password"
-                            id="confirmPassword">
-                    </div>
-                    <input type="hidden" name="userType" value="jobSeeker">
-
-                    <!-- <button type="submit" class="btn signin p-2 fw-bold">Register</button> -->
-                    <button type="submit" class="btn signin p-2 fw-bold">Register Account</button>
-                </form>
+<div class="container-fluid form-bg d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <div class="col-lg-6 col-md-8">
+        <div class="form-container">
+            <div class="form-icon">
+                <i class="fa fa-user-circle"></i>
+                <span class="signup"><a href="userLoginForm">Already have an account? Sign in</a></span>
             </div>
+            <form class="form-horizontal" action="" method="post" id="registrationForm">
+                <h3 class="chakra-petch-bold text-center mb-4 pb-4">Register</h3>
+                <div class="form-group p-1">
+                    <span class="input-icon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control " id="firstname" name="firstname" placeholder="First Name">
+                    <div class="invalid-feedback" id="firstnameError"></div>
+                </div>
+                <div class="form-group p-1">
+                    <span class="input-icon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
+                    <div class="invalid-feedback" id="lastnameError"></div>
+                </div>
+                <div class="form-group p-1">
+                    <span class="input-icon"><i class="fa fa-envelope"></i></span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
+                    <div class="invalid-feedback" id="emailError"></div>
+                </div>
+                <div class="form-group p-1">
+                    <span class="input-icon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <div class="invalid-feedback" id="passwordError"></div>
+                </div>
+                <div class="form-group p-1">
+                    <span class="input-icon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+                    <div class="invalid-feedback" id="confirmPasswordError"></div>
+                </div>
+                <input type="hidden" name="userType" value="jobSeeker">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
         </div>
     </div>
+</div>.
 
 
+<script>
+    // JavaScript for form validation
+    $(document).ready(function() {
+        $('#registrationForm').submit(function(event) {
+            var firstname = $('#firstname').val();
+            var lastname = $('#lastname').val();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var confirmPassword = $('#confirm_password').val();
+            var isValid = true;
 
-    <!-- icon for the view and hide for the password  -->
-    <script>
-        document.getElementById('togglePassword').addEventListener('click', function () {
-            const passwordInput = document.querySelector('input[name="password"]');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
+            // Reset all error messages and remove invalid classes
+            $('.invalid-feedback').text('');
+            $('.form-control').removeClass('is-invalid');
+            $('.form-control').removeClass('is-valid');
 
-            // Toggle the eye icon
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
+            // First Name validation
+            if (firstname.trim() === '') {
+                $('#firstnameError').text('First Name is required.');
+                $('#firstname').addClass('is-invalid');
+                $('#firstname').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-times-circle"></i>');
+                isValid = false;
+            } else {
+                $('#firstname').addClass('is-valid');
+                $('#firstname').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-check-circle"></i>');
+            }
+
+            // Last Name validation
+            if (lastname.trim() === '') {
+                $('#lastnameError').text('Last Name is required.');
+                $('#lastname').addClass('is-invalid');
+                $('#lastname').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-times-circle"></i>');
+                isValid = false;
+            } else {
+                $('#lastname').addClass('is-valid');
+                $('#lastname').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-check-circle"></i>');
+            }
+
+            // Email validation
+            if (email.trim() === '') {
+                $('#emailError').text('Email is required.');
+                $('#email').addClass('is-invalid');
+                $('#email').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-times-circle"></i>');
+                isValid = false;
+            } else {
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    $('#emailError').text('Invalid email format.');
+                    $('#email').addClass('is-invalid');
+                    $('#email').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-times-circle"></i>');
+                    isValid = false;
+                } else {
+                    $('#email').addClass('is-valid');
+                    $('#email').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-check-circle"></i>');
+                }
+            }
+
+            // Password validation
+            if (password.trim() === '') {
+                $('#passwordError').text('Password is required.');
+                $('#password').addClass('is-invalid');
+                $('#password').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-times-circle"></i>');
+                isValid = false;
+            } else {
+                $('#password').addClass('is-valid');
+                $('#password').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-check-circle"></i>');
+            }
+
+            // Confirm Password validation
+            if (confirmPassword.trim() === '') {
+                $('#confirmPasswordError').text('Please confirm your password.');
+                $('#confirm_password').addClass('is-invalid');
+                $('#confirm_password').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-times-circle"></i>');
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                $('#confirmPasswordError').text('Passwords do not match.');
+                $('#confirm_password').addClass('is-invalid');
+                $('#confirm_password').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-times-circle"></i>');
+                isValid = false;
+            } else {
+                $('#confirm_password').addClass('is-valid');
+                $('#confirm_password').next('.input-group-append').find('.validation-icon').html('<i class="fas fa-check-circle"></i>');
+            }
+
+            // Prevent form submission if validation fails
+            if (!isValid) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            $('#registrationForm').addClass('was-validated');
         });
-
-        document.getElementById('toggleConfirmPassword').addEventListener('click', function () {
-            const confirmPasswordInput = document.querySelector('input[name="confirmPassword"]');
-            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            confirmPasswordInput.setAttribute('type', type);
-
-            // Toggle the eye icon
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
-        });
-    </script>
-
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Bootstrap JS -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
-
-
-
-
-    <script>
-        // <?php
-
-        // // messages from corect or not 
-        
-        // if (isset($_SESSION['message'])) {
-        // 
-        ?>
-        //     alertify.set('notifier', 'position', 'bottom-right');
-        //     alertify.success('Current position : ' + alertify.get('notifier', 'position'));
-
-        //     alertify.success('<?= $_SESSION['message'] ?>');
-        // <?php
-        //     unset($_SESSION['message']);
-        // }
-        // 
-        ?>
-    </script>
-
-
-
-    <!-- jQu  ery and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script ipt src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    });
+</script>

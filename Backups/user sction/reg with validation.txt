@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form with Validation</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Optional Bootstrap theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-theme.min.css">
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Registration Form
+                    </div>
+                    <div class="card-body">
+                        <form id="registrationForm" method="post" action="">
+                            <div class="form-group">
+                                <label for="firstname">First Name:</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname">
+                                <div class="invalid-feedback" id="firstnameError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">Last Name:</label>
+                                <input type="text" class="form-control" id="lastname" name="lastname">
+                                <div class="invalid-feedback" id="lastnameError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                                <div class="invalid-feedback" id="emailError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                                <div class="invalid-feedback" id="passwordError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm Password:</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                                <div class="invalid-feedback" id="confirmPasswordError"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#registrationForm').submit(function(event) {
+                var firstname = $('#firstname').val();
+                var lastname = $('#lastname').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var confirmPassword = $('#confirm_password').val();
+                var isValid = true;
+
+                // Reset all error messages
+                $('.invalid-feedback').text('');
+                $('.form-control').removeClass('is-invalid'); // Remove Bootstrap's invalid class
+
+                // First Name validation
+                if (firstname.trim() === '') {
+                    $('#firstnameError').text('First Name is required.');
+                    $('#firstname').addClass('is-invalid');
+                    isValid = false;
+                }
+
+                // Last Name validation
+                if (lastname.trim() === '') {
+                    $('#lastnameError').text('Last Name is required.');
+                    $('#lastname').addClass('is-invalid');
+                    isValid = false;
+                }
+
+                // Email validation
+                if (email.trim() === '') {
+                    $('#emailError').text('Email is required.');
+                    $('#email').addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    // Validate email format using a simple regex
+                    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        $('#emailError').text('Invalid email format.');
+                        $('#email').addClass('is-invalid');
+                        isValid = false;
+                    }
+                }
+
+                // Password validation
+                if (password.trim() === '') {
+                    $('#passwordError').text('Password is required.');
+                    $('#password').addClass('is-invalid');
+                    isValid = false;
+                }
+
+                // Confirm Password validation
+                if (confirmPassword.trim() === '') {
+                    $('#confirmPasswordError').text('Please confirm your password.');
+                    $('#confirm_password').addClass('is-invalid');
+                    isValid = false;
+                } else if (password !== confirmPassword) {
+                    $('#confirmPasswordError').text('Passwords do not match.');
+                    $('#confirm_password').addClass('is-invalid');
+                    isValid = false;
+                }
+
+                // Prevent form submission if validation fails
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
