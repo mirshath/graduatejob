@@ -378,23 +378,23 @@ if ($result->num_rows > 0) {
                                                                             <form class="form" action="update_jobseeker.php" method="post" enctype="multipart/form-data">
                                                                                 <div class="row">
                                                                                     <div class="col-12 col-sm-auto mb-3">
-                                                                                    <div class="mx-auto" style="width: 140px;">
-    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239); overflow: hidden;">
-        <?php if (!empty($row["profile"])) : ?>
-            <div class="mb-3">
-                <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" alt="Profile Image" class="img-thumbnail profile-img">
-            </div>
-        <?php endif; ?>
-    </div>
-</div>
+                                                                                        <div class="mx-auto" style="width: 140px;">
+                                                                                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239); overflow: hidden;">
+                                                                                                <?php if (!empty($row["profile"])) : ?>
+                                                                                                    <div class="mb-3">
+                                                                                                        <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" alt="Profile Image" class="img-thumbnail profile-img">
+                                                                                                    </div>
+                                                                                                <?php endif; ?>
+                                                                                            </div>
+                                                                                        </div>
 
-<style>
-    .profile-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-</style>
+                                                                                        <style>
+                                                                                            .profile-img {
+                                                                                                width: 100%;
+                                                                                                height: 100%;
+                                                                                                object-fit: cover;
+                                                                                            }
+                                                                                        </style>
 
                                                                                     </div>
                                                                                     <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
