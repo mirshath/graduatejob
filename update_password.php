@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_password'])) {
     if ($newPassword !== $confirmNewPassword) {
         // echo "New passwords do not match!";
         $_SESSION['message'] = "New passwords do not match!";
-        echo '<script>window.location.href = "profile";</script>';
+        echo '<script>window.location.href = "userProfile";</script>';
         // header("Location: " . $_SERVER['PHP_SELF']);
 
 
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_password'])) {
 
     if ($updateStmt->execute()) {
         $_SESSION['message'] = "Password updated successfully";
-        echo '<script>window.location.href = "profile";</script>';
+        echo '<script>window.location.href = "userProfile";</script>';
 
         // header("Location: " . $_SERVER['PHP_SELF']);
         exit();
@@ -48,13 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_password'])) {
     <?php
 
     // messages from corect or not 
-    
+
     if (isset($_SESSION['message'])) {
-        ?>
-                                        alertify.set('notifier', 'position', 'top-right');
-                                        alertify.success('<?= $_SESSION['message'] ?>');
-                                    <?php
-                                    unset($_SESSION['message']);
+    ?>
+        alertify.set('notifier', 'position', 'top-right');
+        alertify.success('<?= $_SESSION['message'] ?>');
+    <?php
+        unset($_SESSION['message']);
     }
     ?>
-    </script>
+</script>

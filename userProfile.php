@@ -35,6 +35,11 @@ if ($result->num_rows > 0) {
 
 ?>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Bootstrap CSS and JS -->
+<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
 
 <style>
     /* mobile view  */
@@ -45,31 +50,30 @@ if ($result->num_rows > 0) {
 
     /* ----------------- user profile nav ------------------  */
 
-    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-    color: white;
-    background-color: #040954;
-    border-color: var(--bs-nav-tabs-link-active-border-color);
-    font-weight: 600;
-}
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active {
+        color: white;
+        background-color: #040954;
+        border-color: var(--bs-nav-tabs-link-active-border-color);
+        font-weight: 600;
+    }
 
-.btn-primarys {
-    --bs-btn-color: #fff;
-    --bs-btn-bg: #031d43;
-    --bs-btn-border-color: #610413;
-    --bs-btn-hover-color: red;
-    --bs-btn-hover-bg: #031d43;
-    --bs-btn-hover-border-color: #0a58ca;
-    --bs-btn-focus-shadow-rgb: 49, 132, 253;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #0a58ca;
-    --bs-btn-active-border-color: #0a53be;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #fff;
-    --bs-btn-disabled-bg: #0d6efd;
-    --bs-btn-disabled-border-color: #0d6efd;
-}
-
-
+    .btn-primarys {
+        --bs-btn-color: #fff;
+        --bs-btn-bg: #031d43;
+        --bs-btn-border-color: #610413;
+        --bs-btn-hover-color: red;
+        --bs-btn-hover-bg: #031d43;
+        --bs-btn-hover-border-color: #0a58ca;
+        --bs-btn-focus-shadow-rgb: 49, 132, 253;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #0a58ca;
+        --bs-btn-active-border-color: #0a53be;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #0d6efd;
+        --bs-btn-disabled-border-color: #0d6efd;
+    }
 </style>
 
 
@@ -185,6 +189,9 @@ if ($result->num_rows > 0) {
                         </nav>
 
                         <div class="tab-content" id="nav-tabContent">
+
+
+
                             <!-- Home section -->
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <div class=" p-3 text-white">
@@ -441,7 +448,7 @@ if ($result->num_rows > 0) {
                                                                                                         <div class="form-group">
                                                                                                             <label class="mb-2">First
                                                                                                                 Name
-                                                                                                         </label>
+                                                                                                            </label>
                                                                                                             <input class="form-control text-muted mb-3" type="text" id="Fname" name="Fname" value="<?= $row['firstname'] ?>">
                                                                                                         </div>
                                                                                                     </div>
@@ -449,7 +456,7 @@ if ($result->num_rows > 0) {
                                                                                                         <div class="form-group">
                                                                                                             <label class="mb-2">Last
                                                                                                                 Name</label>
-                                                                                                         <input class="form-control text-muted mb-3" type="text" id="Lastname" name="Lastname" value="<?= $row['lastname'] ?>">
+                                                                                                            <input class="form-control text-muted mb-3" type="text" id="Lastname" name="Lastname" value="<?= $row['lastname'] ?>">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
@@ -458,7 +465,7 @@ if ($result->num_rows > 0) {
                                                                                                         <div class="form-group">
                                                                                                             <label class="mb-2">Mobile
                                                                                                             </label>
-                                                                                                         <input class="form-control text-muted mb-3" type="text" id="Contact" name="Contact" value="<?= $row['phone_no'] ?>">
+                                                                                                            <input class="form-control text-muted mb-3" type="text" id="Contact" name="Contact" value="<?= $row['phone_no'] ?>">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="col">
@@ -569,13 +576,12 @@ if ($result->num_rows > 0) {
 
 
 
-
                             <!-- -------------------------------------- Update password section -------------------------------------- -->
                             <!-- Update Password Section -->
                             <div class="tab-pane fade" id="nav-update-password" role="tabpanel" aria-labelledby="nav-update-password-tab">
                                 <div class="container p-3">
                                     <div class="container mt-3 mb-3">
-                                        <div class=" shadow">
+                                        <div class="shadow">
                                             <div class="card-header">
                                                 <h4 class="text-muted p-2">Update Your Password Here</h4>
                                             </div>
@@ -588,14 +594,11 @@ if ($result->num_rows > 0) {
                                                                 <i class="fas fa-lock"></i>
                                                                 <label for="current_password">Current password</label>
                                                                 <input type="password" class="form-control form-control-user" id="current_password" placeholder="Enter Your Current Password Here.." name="current_password" required>
-                                                                <span class="error-message" id="error-current-password" style="display:none;">Please fill the current
-                                                                    password.</span>
+                                                                <span class="error-message" id="error-current-password" style="display:none;">Please fill the current password.</span>
                                                             </div>
                                                             <button type="button" class="btn btn-primary btn-user mt-3 float-right" id="check_password">Check Password</button>
                                                         </div>
                                                     </div>
-
-
 
                                                     <!-- New Password Fields (hidden by default) -->
                                                     <div id="new_password_fields" style="display: none;" class="mt-4 mb-2">
@@ -623,20 +626,14 @@ if ($result->num_rows > 0) {
                                                             </div>
                                                         </div>
                                                     </div>
-
-
                                                 </form>
-
-
-
 
                                                 <!-- Bootstrap Modal -->
                                                 <div class="modal fade" id="newPasswordModal" tabindex="-1" aria-labelledby="newPasswordModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h3 class="modal-title" id="newPasswordModalLabel">Update
-                                                                    Password</h3>
+                                                                <h3 class="modal-title" id="newPasswordModalLabel">Update Password</h3>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
@@ -647,24 +644,21 @@ if ($result->num_rows > 0) {
                                                                             <div class="col-md-12 mb-3">
                                                                                 <div class="input-icon">
                                                                                     <i class="fas fa-lock"></i>
-                                                                                    <label for="password">New
-                                                                                        Password</label>
-                                                                                    <input type="password" class="form-control form-control-user" id="password" placeholder="Enter Your New Password Here.." name="password" required>
+                                                                                    <label for="modal_password">New Password</label>
+                                                                                    <input type="password" class="form-control form-control-user" id="modal_password" placeholder="Enter Your New Password Here.." name="password" required>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-12 mb-3">
                                                                                 <div class="input-icon">
                                                                                     <i class="fas fa-lock"></i>
-                                                                                    <label for="cpassword">Confirm
-                                                                                        Password</label>
-                                                                                    <input type="password" class="form-control form-control-user" id="cpassword" placeholder="Enter Your Password Again.." name="cpassword" required>
+                                                                                    <label for="modal_cpassword">Confirm Password</label>
+                                                                                    <input type="password" class="form-control form-control-user" id="modal_cpassword" placeholder="Enter Your Password Again.." name="cpassword" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-12 text-end mt-3 mb-3">
-                                                                        <button type="submit" class="btn btn-primary btn-user btn-block" name="update_password">Update
-                                                                            Password</button>
+                                                                        <button type="submit" class="btn btn-primary btn-user btn-block" name="update_password">Update Password</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -672,16 +666,11 @@ if ($result->num_rows > 0) {
                                                     </div>
                                                 </div>
 
-
-
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
 
                             <script>
                                 // Update Password button click event handler
@@ -705,8 +694,8 @@ if ($result->num_rows > 0) {
                                         if (xhr.readyState === 4 && xhr.status === 200) {
                                             if (xhr.responseText.trim() === "success") {
                                                 // Populate modal fields with values from the form
-                                                document.getElementById("password").value = currentPassword;
-                                                document.getElementById("cpassword").value = ""; // Clear confirm password field
+                                                document.getElementById("modal_password").value = "";
+                                                document.getElementById("modal_cpassword").value = ""; // Clear confirm password field
                                                 // Show the modal
                                                 $('#newPasswordModal').modal('show');
                                             } else {
