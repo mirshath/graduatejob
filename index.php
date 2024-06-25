@@ -17,7 +17,7 @@ include("includes/navbar.php");
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 d-flex flex-column align-items-center align-items-lg-start">
+        <div class="col-lg-8 d-flex flex-column align-items-center align-items-lg-start mobile_banner">
           <h2 data-aos="fade-up" data-aos-delay="100">Welcome to <span>GRADUATEJOB.LK</span></h2>
           <p data-aos="fade-up" data-aos-delay="200">Find your path and Do best</p>
           <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
@@ -99,7 +99,7 @@ include("includes/navbar.php");
                   <div class="card  border-0 bg-light rounded shadow">
                     <div class="card-body p-4">
                       <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">
-                        <i class="fas fa-briefcase" style="font-size: 15px;"></i>
+                        <i class="fas fa-briefcase" style="font-size: 15px;"></i> &nbsp;&nbsp;
                         <?= $row['employment_type'] ?>
                       </span>
                       <h5><b><?= $row['job_title'] ?></b></h5>
@@ -139,7 +139,7 @@ include("includes/navbar.php");
 
 
   <!-- How its working -->
-  <section id="why-us" class="why-us section howWorkingBackgrounf" style="padding: 60px 0; ">
+  <section id="why-us HowWrk" class="why-us section howWorkingBackgrounf" style="padding: 60px 0; ">
 
     <!-- Section Title -->
     <div class="container section-title mb-4" data-aos="fade-up">

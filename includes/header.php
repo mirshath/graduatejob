@@ -44,7 +44,7 @@
   <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
-  
+
   <!-- ------------------------------- alertify notification ----------------------------------- -->
   <!-- CSS -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
@@ -57,7 +57,30 @@
 </head>
 
 <style>
- .btn-primary {
+  /* mobile view designs commonly */
+  @media (max-width: 1199px) {
+    .mobile_banner {
+      text-align: center;
+    }
+
+    .why-us .card-item {
+      background:
+        color-mix(in srgb, var(--default-color), transparent 92%);
+      padding: 50px 30px;
+      transition: all ease-in-out 0.3s;
+      height: 100%;
+      position: relative;
+    }
+
+    .section-title
+    {
+      text-align: center;
+    }
+
+  }
+
+
+  .btn-primary {
     --bs-btn-color: #fff;
     --bs-btn-bg: #031d43;
     --bs-btn-border-color: #610413;
@@ -72,27 +95,26 @@
     --bs-btn-disabled-color: #fff;
     --bs-btn-disabled-bg: #0d6efd;
     --bs-btn-disabled-border-color: #0d6efd;
-}
-
-
+  }
 </style>
+
 <body class="index-page">
 
 
 
-<script>
-  <?php
+  <script>
+    <?php
 
-  // messages from corect or not 
+    // messages from corect or not 
 
-  if (isset($_SESSION['message'])) {
-  ?>
-    alertify.set('notifier', 'position', 'bottom-right');
-    // alertify.success('Current position : ' + aler  tify.get('notifier', 'position'));
+    if (isset($_SESSION['message'])) {
+    ?>
+      alertify.set('notifier', 'position', 'bottom-right');
+      // alertify.success('Current position : ' + aler  tify.get('notifier', 'position'));
 
-    alertify.success('<?= $_SESSION['message'] ?>');
-  <?php
-    unset($_SESSION['message']);
-  }
-  ?>
-</script>
+      alertify.success('<?= $_SESSION['message'] ?>');
+    <?php
+      unset($_SESSION['message']);
+    }
+    ?>
+  </script>
