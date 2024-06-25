@@ -77,6 +77,10 @@
       text-align: center;
     }
 
+    .hero h2 span {
+    color: #b70202;
+    font-size: 45px;
+}
 
 
 

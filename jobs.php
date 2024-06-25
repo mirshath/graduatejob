@@ -321,8 +321,8 @@ $JobCounts = $row['total'];
                 </style>
 
 
-                <div class="row justify-content-center padding" data-aos="fade-up">
-                  <div class="col-md-8 ftco-animate fadeInUp ftco-animated">
+                <div class="row justify-content-center padding " data-aos="fade-up">
+                  <div class="col-md-8 ftco-animate fadeInUp ftco-animated ">
                     <form action="#" class="domain-form">
                       <div class="form-group d-md-flex">
                         <input type="text" id="search-query" aria-label="Search" aria-describedby="basic-addon2" class="form-control px-4" placeholder="Enter the Job title Here">
