@@ -57,6 +57,7 @@ if (isset($_GET['id'])) {
       $companyRow = mysqli_fetch_array($companyResult);
       $company_id = $companyRow['id'];
       $company_IMAGE = $companyRow['profile'];
+      $company_email = $companyRow['email'];
       // echo $company_id;
 
 
@@ -386,6 +387,7 @@ if (isset($_GET['id'])) {
                   $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
                   ?>
                   <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>" required>
+                  <input type="text" class="form-control" id="company_email" name="company_email" value="<?= $company_email ?>" required>
                 </div>
                 <div class="mb-3">
                   <label for="full_name" class="form-label">Name:</label>
