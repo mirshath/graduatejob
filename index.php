@@ -11,7 +11,7 @@ include("includes/navbar.php");
 
 
 <style>
-  .swiper-wrapper{
+  .swiper-wrapper {
     background-color: transparent;
     border-radius: 15px;
 
@@ -23,21 +23,106 @@ include("includes/navbar.php");
     color: var(--bs-card-color);
     background-color: #ff000012;
     border-radius: 15px;
-}
-.rounded-pill {
+  }
+
+  .rounded-pill {
     border-radius: var(--bs-border-radius-pill) !important;
     padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
-}
+  }
 
-.bg-primary {
+  .bg-primary {
     --bs-bg-opacity: 1;
     background-color: rgb(10 50 108) !important;
-}
-
+  }
 </style>
 <main class="main">
+
+
+
+
+
+  <!-- ------------------------- carosel section here ------------------------  -->
+
+  <link rel="stylesheet" href="carousels/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="carousels/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+  <link rel="stylesheet" href="carousels/css/style.css">
+
+  <section class="mt-4" style="margin-top: 50px;">
+  <div class="home-slider owl-carousel js-fullheight">
+    <div class="slider-item js-fullheight" style="background-image:url(carousels/images/slider-1.jpg);">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>Your Gateway to Success:</h2>
+              <h1 class="mb-3">GRADUATEJOB.LK</h1>
+              <p style="font-size: 28px;">Find Your Ideal Job with Ease and Confidence</p>
+              <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
+              <a href="jobs" class="btn btn-success btn-lg">Discover Opportunities</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item js-fullheight" style="background-image:url(carousels/images/slider-2.jpg);">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>Empowering Graduates:</h2>
+              <h1 class="mb-3">GRADUATEJOB.LK</h1>
+              <p style="font-size: 28px;">Your Path to Success Begins Here</p>
+              <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
+              <a href="jobs" class="btn btn-success btn-lg">Start Your Career Journey</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item js-fullheight" style="background-image:url(carousels/images/slider-3.jpg);">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>Discover Opportunities:</h2>
+              <h1 class="mb-3">GRADUATEJOB.LK</h1>
+              <p style="font-size: 28px;">Where Your Future Awaits</p>
+              <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
+              <a href="jobs" class="btn btn-success btn-lg">Find Your Dream Job</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="carousels/js/jquery.min.js"></script>
+  <script src="carousels/js/popper.js"></script>
+  <script src="carousels/js/bootstrap.min.js"></script>
+  <script src="carousels/js/owl.carousel.min.js"></script>
+  <script src="carousels/js/main.js"></script>
+</section>
+
+
+
+
+
+
+
+
+
+  <!-- -----------------------------------------------------  -->
+
+
+
 
   <!-- Hero Section -->
   <section id="hero" class="hero section" style="padding: 60px 0; ">
@@ -60,7 +145,8 @@ include("includes/navbar.php");
       </div>
     </div>
 
-  </section><!-- /Hero Section -->
+  </section>
+  <!-- /Hero Section -->
 
 
 
@@ -475,8 +561,3 @@ include("includes/navbar.php");
 <!-- -------------------------------- FOoter Section ----------------------------------- -->
 <!-- -------------------------------- FOoter Section ----------------------------------- -->
 <!-- -------------------------------- FOoter Section ----------------------------------- -->
-
-
-
-
-

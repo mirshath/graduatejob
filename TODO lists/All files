@@ -2,7 +2,6 @@
 
 The d-none d-md-flex classes are used to hide the element on mobile devices and display it on medium to larger screens.
 
-color code : #7f012b
 red : ad093a
 blue : 051b74
 
@@ -15,7 +14,7 @@ blue : 051b74
 <!-- - wanna change the mail function , when the admin approve the post , it wanna send -->
 
 - wanna Do the limit of everything like image profile
-- validations
+<!-- - validations -->
 
 ## Amin section
 
@@ -41,7 +40,7 @@ blue : 051b74
 <!-- - wanna do the relationship forienkys userregister and jobs for the getting company images -->
   <!-- - user dashboards -->
   <!-- - index page  -->
-- password checking
+<!-- - password checking -->
 
 
 
@@ -49,8 +48,8 @@ blue : 051b74
 
 ------------------------------------------------------------------------------------------------------------------------
 
-font change
-color
+<!-- font change -->
+<!-- color -->
 
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -83,3 +82,35 @@ alertify.error("not success");
             }, 2000); // Redirect after 2 seconds
         </script>';
         exit();
+
+
+
+
+
+        nav size 
+home jobs about contact
+
+
+job feture color : #0000660a
+
+footer color 
+col-3
+
+category image ad
+
+
+compny logo - jobs
+
+
+company data
+
+CV- profile udt
+
+subcription
+nab top bar
+
+
+
+
+reset password . confirm checking
+

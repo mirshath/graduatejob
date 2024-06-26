@@ -37,7 +37,7 @@
   --default-color: #000066;/* Default color used for the majority of the text content across the entire website */
   --heading-color: #990000; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #000066; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --contrast-color: #4682B4; /* The contrast color is used for elements when the background color is one of the heading, accent, or default colors. Its purpose is to ensure proper contrast and readability when placed over these more dominant colors */
+  --contrast-color: #efeff0; /* The contrast color is used for elements when the background color is one of the heading, accent, or default colors. Its purpose is to ensure proper contrast and readability when placed over these more dominant colors */
 }
 
 
@@ -1108,6 +1108,7 @@ section,
   transition: all ease-in-out 0.3s;
   height: 100%;
   position: relative;
+  border-radius: 20px;
 }
 
 .why-us .card-item span {
