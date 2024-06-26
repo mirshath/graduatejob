@@ -55,7 +55,7 @@ include("includes/navbar.php");
 
   <section class="mt-4" style="margin-top: 50px;">
   <div class="home-slider owl-carousel js-fullheight">
-    <div class="slider-item js-fullheight" style="background-image:url(https://media.istockphoto.com/id/1322320662/photo/phd-graduate-in-black-graduatio-gown-university-degree.jpg?s=612x612&w=0&k=20&c=FV2VtwqzwLHAd_Pk_JJXZJpiUQgoKckJL5bX4B6NU8o=);">
+    <div class="slider-item js-fullheight" style="background-image:url(https://media.13newsnow.com/assets/WVEC/images/34af2191-3ac8-4b97-8631-bbeb6425d04e/34af2191-3ac8-4b97-8631-bbeb6425d04e_1140x641.jpeg)">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">

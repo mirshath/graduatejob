@@ -926,9 +926,12 @@ $JobCounts = $row['total'];
                       <a href="job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
                       <div class="card-body">
                         <div class="d-flex flex-column flex-lg-row">
-                          <span class="avatar avatar-text rounded-2 me-4 mb-2" style="background-color: <?= $random_color ?>;">
-                            <?= substr($row['job_title'], 0, 2) ?>
+                          <span class="avatar avatar-text rounded-2 me-4 mb-2">
+                          <img src="https://cdn-icons-png.freepik.com/512/6073/6073873.png" alt="" class="img-fluid">
                           </span>
+                          <!-- <span class="avatar avatar-text rounded-2 me-4 mb-2" style="background-color: <?= $random_color ?>;">
+                            <?= substr($row['job_title'], 0, 2) ?>
+                          </span> -->
                           <div class="row flex-fill">
                             <div class="col-sm-5">
                               <h4 class="h5"><?= $row['job_title'] ?></h4>

@@ -375,12 +375,12 @@ if (isset($_GET['id'])) {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Applicant Information</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body mt-3 mb-3">
-              <h2 class="text-muted mt-3 mb-5">Applicant Information</h2>
-              <hr>
+            <div class="modal-body  ">
+              <!-- <h2 class="text-muted mt-3 mb-5">Applicant Information</h2> -->
+              <!-- <hr> -->
 
               <form action="" method="POST" enctype="multipart/form-data">
 
@@ -425,10 +425,10 @@ if (isset($_GET['id'])) {
 
               </form>
             </div>
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
           </div>
         </div>
       </div>

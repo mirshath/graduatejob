@@ -78,13 +78,13 @@ if ($result->num_rows > 0) {
 
 
 
-<main class="main" style="margin-top: 180px;">
+<main class="main" style="margin-top: 110px;">
 
 
     <div class="container text-white">
         <div class="profile-env">
             <header class="row" style="background: rgb(2,0,36);
-                background: linear-gradient(90deg, rgba(2,0,36,1) 10%, rgba(9,9,121,1) 100%, rgba(0,212,255,1) 100%);">
+                background: linear-gradient(90deg, rgba(2,0,36,1) 10%, rgba(9,9,121,1) 100%, rgba(0,212,255,1) 100%); ">
                 <div class="col-sm-2">
                     <a href="#" class="profile-picture">
                         <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" class="img-responsive img-circle">
@@ -110,6 +110,8 @@ if ($result->num_rows > 0) {
                                 </span>
                             </div>
                         </li>
+
+
                         <li>
                             <div class="profile-stat">
                                 <h3>643</h3>
@@ -117,21 +119,9 @@ if ($result->num_rows > 0) {
                                     <a href="#">followers</a>
                                 </span>
                             </div>
-                            <div class="profile-stat">
-                                <h3>643</h3>
-                                <span>
-                                    <a href="#">followers</a>
-                                </span>
-                            </div>
+                            
                         </li>
-                        <li>
-                            <div class="profile-stat">
-                                <h3>108</h3>
-                                <span>
-                                    <a href="#">following</a>
-                                </span>
-                            </div>
-                        </li>
+                        
                     </ul>
                 </div>
 
@@ -375,116 +365,116 @@ if ($result->num_rows > 0) {
                                                                 <div class="card">
                                                                     <div class="card-body">
                                                                         <div class="e-profile">
-                                                                        <form class="form" action="update_jobseeker.php" method="post" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-12 col-sm-auto mb-3">
-            <div class="mx-auto" style="width: 140px;">
-                <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239); overflow: hidden;">
-                    <?php if (!empty($row["profile"])) : ?>
-                        <div class="mb-3">
-                            <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" alt="Profile Image" class="img-thumbnail profile-img">
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
+                                                                            <form class="form" action="update_jobseeker.php" method="post" enctype="multipart/form-data">
+                                                                                <div class="row">
+                                                                                    <div class="col-12 col-sm-auto mb-3">
+                                                                                        <div class="mx-auto" style="width: 140px;">
+                                                                                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239); overflow: hidden;">
+                                                                                                <?php if (!empty($row["profile"])) : ?>
+                                                                                                    <div class="mb-3">
+                                                                                                        <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" alt="Profile Image" class="img-thumbnail profile-img">
+                                                                                                    </div>
+                                                                                                <?php endif; ?>
+                                                                                            </div>
+                                                                                        </div>
 
-            <style>
-                .profile-img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            </style>
+                                                                                        <style>
+                                                                                            .profile-img {
+                                                                                                width: 100%;
+                                                                                                height: 100%;
+                                                                                                object-fit: cover;
+                                                                                            }
+                                                                                        </style>
 
-        </div>
-        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-            <div class="text-sm-left mb-2 mb-sm-0">
-                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
-                    <?= $row['firstname'] ?>
-                    <?= $row['lastname'] ?>
-                </h4>
-                <p class="mb-0 text-muted mb-4"><?= $row['email'] ?></p>
-                <div class="mt-2">
-                    <label class="btn btn-primary">
-                        <input type="file" class="form-control-file fa fa-fw fa-camera" id="editProfilePhoto" name="editProfilePhoto" style="display: none;">
-                        <i class="fa fa-fw fa-camera"></i>
-                        Change Photo
-                    </label>
-                </div>
-                <!-- Image preview area -->
+                                                                                    </div>
+                                                                                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                                                                        <div class="text-sm-left mb-2 mb-sm-0">
+                                                                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+                                                                                                <?= $row['firstname'] ?>
+                                                                                                <?= $row['lastname'] ?>
+                                                                                            </h4>
+                                                                                            <p class="mb-0 text-muted mb-4"><?= $row['email'] ?></p>
+                                                                                            <div class="mt-2">
+                                                                                                <label class="btn btn-primary">
+                                                                                                    <input type="file" class="form-control-file fa fa-fw fa-camera" id="editProfilePhoto" name="editProfilePhoto" style="display: none;">
+                                                                                                    <i class="fa fa-fw fa-camera"></i>
+                                                                                                    Change Photo
+                                                                                                </label>
+                                                                                            </div>
+                                                                                            <!-- Image preview area -->
 
-            </div>
-            <div class="text-center text-sm-right">
-                <span class="badge badge-info"><?= $row['usertype'] ?></span>
-                <div class="text-muted">
-                    <small>Joined <?= $row['created_at'] ?></small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <ul class="nav nav-tabs">
-        <li class="nav-item"><a href="" class="active nav-link"><b>Update Profile</b></a></li>
-    </ul>
-    <div class="tab-content pt-3">
-        <div class="tab-pane active">
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                        <div class="col">
-                            <div class="form-group">
-                                <label class="mb-2">First Name</label>
-                                <input class="form-control text-muted mb-3" type="text" id="Fname" name="Fname" value="<?= $row['firstname'] ?>">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label class="mb-2">Last Name</label>
-                                <input class="form-control text-muted mb-3" type="text" id="Lastname" name="Lastname" value="<?= $row['lastname'] ?>">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label class="mb-2">Mobile</label>
-                                <input class="form-control text-muted mb-3" type="text" id="Contact" name="Contact" value="<?= $row['phone_no'] ?>">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label class="mb-2">Address</label>
-                                <input class="form-control text-muted mb-3" type="text" id="St_address" name="St_address" value="<?= $row['St_address'] ?>">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label class="mb-2">Email</label>
-                                <input class="form-control text-muted mb-3" type="email" id="email" name="email" value="<?= $row['email'] ?>">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <div class="form-group">
-                                <label class="mb-2">About</label>
-                                <textarea class="form-control text-muted mb-3" rows="5" placeholder="My Bio"><?= $row['usertype'] ?></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col d-flex justify-content-end">
-                    <button class="btn btn-primary" type="submit">Save Changes</button>
-                </div>
-            </div>
-            <div class="col-md-6"></div>
-        </div>
-    </div>
-</form>
+                                                                                        </div>
+                                                                                        <div class="text-center text-sm-right">
+                                                                                            <span class="badge badge-info"><?= $row['usertype'] ?></span>
+                                                                                            <div class="text-muted">
+                                                                                                <small>Joined <?= $row['created_at'] ?></small>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <ul class="nav nav-tabs">
+                                                                                    <li class="nav-item"><a href="" class="active nav-link"><b>Update Profile</b></a></li>
+                                                                                </ul>
+                                                                                <div class="tab-content pt-3">
+                                                                                    <div class="tab-pane active">
+                                                                                        <div class="row">
+                                                                                            <div class="col">
+                                                                                                <div class="row">
+                                                                                                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                                                                                    <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                            <label class="mb-2">First Name</label>
+                                                                                                            <input class="form-control text-muted mb-3" type="text" id="Fname" name="Fname" value="<?= $row['firstname'] ?>">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                            <label class="mb-2">Last Name</label>
+                                                                                                            <input class="form-control text-muted mb-3" type="text" id="Lastname" name="Lastname" value="<?= $row['lastname'] ?>">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                            <label class="mb-2">Mobile</label>
+                                                                                                            <input class="form-control text-muted mb-3" type="text" id="Contact" name="Contact" value="<?= $row['phone_no'] ?>">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                            <label class="mb-2">Address</label>
+                                                                                                            <input class="form-control text-muted mb-3" type="text" id="St_address" name="St_address" value="<?= $row['St_address'] ?>">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                            <label class="mb-2">Email</label>
+                                                                                                            <input class="form-control text-muted mb-3" type="email" id="email" name="email" value="<?= $row['email'] ?>">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col mb-3">
+                                                                                                        <div class="form-group">
+                                                                                                            <label class="mb-2">About</label>
+                                                                                                            <textarea class="form-control text-muted mb-3" rows="5" placeholder="My Bio"><?= $row['usertype'] ?></textarea>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col d-flex justify-content-end">
+                                                                                                <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-6"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
 
                                                                         </div>
                                                                     </div>
