@@ -372,49 +372,49 @@ if (isset($_GET['id'])) {
 
       <!-- applyModal -->
       <!-- Apply Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Applicant Information</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Applicant Information</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <?php
-                        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
-                        ?>
-                        <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="full_name" class="form-label">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['first_name'] ?>" required readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="email" value="<?= $_SESSION['user_email'] ?>" name="email" required readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Phone:</label>
-                        <input type="text" class="form-control" id="phone" name="phone">
-                    </div>
-                    <div class="mb-3">
-                        <label for="resume_file" class="form-label">Resume:</label>
-                        <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx">
-                    </div>
-                    <div class="mb-3">
-                        <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending" required>
-                    </div>
-                    <button type="submit" name="apply_Job_Btn" class="btn btn-primary">Submit</button>
-                </form>
+              <form action="" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                  <?php
+                  $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
+                  ?>
+                  <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>" required>
+                </div>
+                <div class="mb-3">
+                  <label for="full_name" class="form-label">Name:</label>
+                  <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['first_name'] ?>" required readonly>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email:</label>
+                  <input type="email" class="form-control" id="email" value="<?= $_SESSION['user_email'] ?>" name="email" required readonly>
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone:</label>
+                  <input type="text" class="form-control" id="phone" name="phone">
+                </div>
+                <div class="mb-3">
+                  <label for="resume_file" class="form-label">Resume:</label>
+                  <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx">
+                </div>
+                <div class="mb-3">
+                  <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>" required>
+                </div>
+                <div class="mb-3">
+                  <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending" required>
+                </div>
+                <button type="submit" name="apply_Job_Btn" class="btn btn-primary">Submit</button>
+              </form>
             </div>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
 
       <!-- ------------------------------------ Login  MODAL FOR APPLY JOB  -------------------------------------- -->
 
@@ -527,62 +527,64 @@ if (isset($_POST['apply_Job_Btn'])) {
   $resume_path = "resumes/" . $resume_file;
 
   if (move_uploaded_file($resume_tmp, $resume_path)) {
-      // Insert data into database
-      $sql = "INSERT INTO applicants (jobseeker_id, name, email, phone, resume_file, applied_job_id, applied_at, status)
+    // Insert data into database
+    $sql = "INSERT INTO applicants (jobseeker_id, name, email, phone, resume_file, applied_job_id, applied_at, status)
               VALUES ('$jobseeker_id', '$name', '$email', '$phone', '$resume_file', '$applied_job_id', NOW(), '$AppliedStatus')";
 
-      if ($conn->query($sql) === TRUE) {
-          $_SESSION['message'] = "You have applied for a job";
+    if ($conn->query($sql) === TRUE) {
+      $_SESSION['message'] = "You have applied for a job";
 
-          // Create a new PHPMailer instance
-          $mail = new PHPMailer(true);
-          try {
-            //Server settings
-            $mail->isSMTP();
-            $mail->Host = 'mail.graduatejob.lk';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'noreply@graduatejob.lk';
-            $mail->Password = 'Hasni@2024'; // app password here
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
-        
-            // Enable verbose debug output
-            $mail->SMTPDebug = 2;
-            $mail->Debugoutput = 'html';
-        
-            //Recipients
-            $company_name = "GRADUATEJOB.LK";
-            $mail->setFrom('noreply@graduatejob.lk', $company_name);
-            $mail->addAddress($email, $name);
-            $mail->addCC('mirmirsha123@gmail.com'); // Add CC recipient
-        
-            // Content
-            $mail->isHTML(true);
-            $mail->Subject = 'GRADUATE Job Application Confirmation';
-            $mail->Body = "Hello $name,<br><br> Thank you for sending your CV for the position of XYZ . <br><br> 
+      // Create a new PHPMailer instance
+      $mail = new PHPMailer(true);
+      try {
+        //Server settings
+        $mail->isSMTP();
+        $mail->Host = 'mail.graduatejob.lk';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'noreply@graduatejob.lk';
+        $mail->Password = 'Hasni@2024'; // app password here
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        // Enable verbose debug output
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+
+        //Recipients
+        $company_name = "GRADUATEJOB.LK";
+        $mail->setFrom('noreply@graduatejob.lk', $company_name);
+        $mail->addAddress($email, $name);
+        // $mail->addCC('mirmirsha123@gmail.com'); // Add CC recipient
+        $mail->addBCC('mirmirsha123@gmail.com'); // Add BCC recipient
+
+
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'GRADUATE Job Application Confirmation';
+        $mail->Body = "Hello $name,<br><br> Thank you for sending your CV for the position of XYZ . <br><br> 
             Your application is under review. We will get back to you soon. <br><br> 
             The company will contact you for further details if needed or if you are shortlisted <br><br> 
             Please continue to check the available jobs we have using the following link ....... <br><br> 
             You can view / edit your account details any time by logging in to your account <br><br> 
             If you need help, you can find it here: .............  <br><br> 
             Best regards,<br>$company_name";
-        
-            $mail->AltBody = "Hello $name,\n\n You have successfully applied for the job. Your application is under review. We will get back to you soon.\n\n Best regards,\n $company_name";
-        
-            $mail->send();
-            $_SESSION['message'] = "You have applied for a job. A confirmation email has been sent.";
-        } catch (Exception $e) {
-            $_SESSION['message'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        }
-        
-          // Redirect to the same page to show the message and refresh the page
-          echo '<script>window.location.href = "job-details.php?id=' . $applied_job_id . '";</script>';
-          exit();
-      } else {
-          echo "Error: " . $sql . "<br>" . $conn->error;
+
+        $mail->AltBody = "Hello $name,\n\n You have successfully applied for the job. Your application is under review. We will get back to you soon.\n\n Best regards,\n $company_name";
+
+        $mail->send();
+        $_SESSION['message'] = "You have applied for a job. A confirmation email has been sent.";
+      } catch (Exception $e) {
+        $_SESSION['message'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
       }
+
+      // Redirect to the same page to show the message and refresh the page
+      echo '<script>window.location.href = "job-details.php?id=' . $applied_job_id . '";</script>';
+      exit();
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
   } else {
-      echo "Failed to upload resume.";
+    echo "Failed to upload resume.";
   }
 }
 
