@@ -45,6 +45,39 @@ blue : 051b74
 
 
 
+Todays did section 
+
+
+<!-- nav size  -->
+<!-- home jobs about contact -->
+
+
+<!-- job feture color : #0000660a -->
+
+<!-- footer color  -->
+<!-- col-3 -->
+
+category image ad
+
+
+compny logo - jobs
+
+
+company data
+
+CV- profile udt
+
+subcription
+nab top bar
+
+
+
+
+reset password . confirm checking
+
+
+
+
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -84,33 +117,4 @@ alertify.error("not success");
         exit();
 
 
-
-
-
-        nav size 
-home jobs about contact
-
-
-job feture color : #0000660a
-
-footer color 
-col-3
-
-category image ad
-
-
-compny logo - jobs
-
-
-company data
-
-CV- profile udt
-
-subcription
-nab top bar
-
-
-
-
-reset password . confirm checking
 

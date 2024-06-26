@@ -23,13 +23,13 @@ if (isset($_SESSION['user_id'])) {
   <div class="topbar d-flex align-items-center bg-dark">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:mmm@example.com" class="text-white">graduatejob.com</a></i>
+        <!-- <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:mmm@example.com" class="text-white">graduatejob.com</a></i> -->
         <!-- <i class="bi bi-phone d-flex align-items-center ms-4 text-white"><span>+1 123 456 789</span></i> -->
       </div>
       <div class="languages d-none d-md-flex align-items-center">
         <ul>
           <!-- <li class="text-white">En</li> -->
-          <li><a href="#" class=" bi bi-phone text-white"> &nbsp; +1 123 456 789</a></li>
+          <!-- <li><a href="#" class=" bi bi-phone text-white"> &nbsp; +1 123 456 789</a></li> -->
         </ul>
       </div>
     </div>
@@ -46,7 +46,9 @@ if (isset($_SESSION['user_id'])) {
       <nav id="navmenu" class="navmenu" style="font-weight: bolder;">
         <ul>
           <li><a href="index" class="nav-link active text-white">Home</a></li>
-          <li><a href="jobs" class="nav-link text-white">Job</a></li>
+          <li><a href="jobs" class="nav-link text-white">Jobs</a></li>
+          <li><a href="jobs" class="nav-link text-white">About Us</a></li>
+          <li><a href="jobs" class="nav-link text-white">Contat Us</a></li>
           <!-- <li class="dropdown">
             <a href="#" class="text-white"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
             <ul>

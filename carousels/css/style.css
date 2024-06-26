@@ -2047,6 +2047,9 @@ pre code {
   .table-responsive-lg > .table-bordered {
     border: 0;
   }
+  
+
+
 }
 
 @media (max-width: 1199.98px) {
@@ -10795,11 +10798,14 @@ h5,
 }
 @media (max-width: 991.98px) {
   .owl-carousel.home-slider .slider-item .slider-text h1 {
-    font-size: 50px;
+    font-size: 35px;
   }
+
+
+  
 }
 .owl-carousel.home-slider .slider-item .slider-text h2 {
-  font-size: 34px;
+  font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-family: "Poppins", Arial, sans-serif;

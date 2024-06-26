@@ -72,19 +72,18 @@
       position: relative;
     }
 
-    .section-title
-    {
+    .section-title {
       text-align: center;
     }
 
     .hero h2 span {
-    color: #b70202;
-    font-size: 45px;
-}
+      color: #b70202;
+      font-size: 45px;
+    }
 
 
 
-    
+
   }
 
 

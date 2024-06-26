@@ -11,6 +11,9 @@ include("includes/navbar.php");
 
 
 <style>
+
+
+
   .swiper-wrapper {
     background-color: transparent;
     border-radius: 15px;
@@ -21,7 +24,7 @@ include("includes/navbar.php");
     flex: 1 1 auto;
     padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
     color: var(--bs-card-color);
-    background-color: #ff000012;
+    background-color: #0000660a;
     border-radius: 15px;
   }
 
@@ -52,7 +55,7 @@ include("includes/navbar.php");
 
   <section class="mt-4" style="margin-top: 50px;">
   <div class="home-slider owl-carousel js-fullheight">
-    <div class="slider-item js-fullheight" style="background-image:url(carousels/images/slider-1.jpg);">
+    <div class="slider-item js-fullheight" style="background-image:url(https://media.istockphoto.com/id/1322320662/photo/phd-graduate-in-black-graduatio-gown-university-degree.jpg?s=612x612&w=0&k=20&c=FV2VtwqzwLHAd_Pk_JJXZJpiUQgoKckJL5bX4B6NU8o=);">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
@@ -60,7 +63,7 @@ include("includes/navbar.php");
             <div class="text w-100 text-center">
               <h2>Your Gateway to Success:</h2>
               <h1 class="mb-3">GRADUATEJOB.LK</h1>
-              <p style="font-size: 28px;">Find Your Ideal Job with Ease and Confidence</p>
+              <p style="font-size: 22px;">Find Your Ideal Job with Ease and Confidence</p>
               <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
               <a href="jobs" class="btn btn-success btn-lg">Discover Opportunities</a>
             </div>
@@ -69,7 +72,7 @@ include("includes/navbar.php");
       </div>
     </div>
 
-    <div class="slider-item js-fullheight" style="background-image:url(carousels/images/slider-2.jpg);">
+    <div class="slider-item js-fullheight" style="background-image:url(https://t3.ftcdn.net/jpg/06/06/50/94/360_F_606509451_fSeyxuE8NUX41WNzuKP7FwRVsrKNC7fl.jpg);">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
@@ -77,7 +80,7 @@ include("includes/navbar.php");
             <div class="text w-100 text-center">
               <h2>Empowering Graduates:</h2>
               <h1 class="mb-3">GRADUATEJOB.LK</h1>
-              <p style="font-size: 28px;">Your Path to Success Begins Here</p>
+              <p style="font-size: 22px;">Your Path to Success Begins Here</p>
               <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
               <a href="jobs" class="btn btn-success btn-lg">Start Your Career Journey</a>
             </div>
@@ -86,7 +89,7 @@ include("includes/navbar.php");
       </div>
     </div>
 
-    <div class="slider-item js-fullheight" style="background-image:url(carousels/images/slider-3.jpg);">
+    <div class="slider-item js-fullheight" style="background-image:url(https://t4.ftcdn.net/jpg/03/15/80/09/360_F_315800964_77dsFWNJflY7wvlnE1C5SNpt0DC2h43e.jpg);">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
@@ -94,7 +97,7 @@ include("includes/navbar.php");
             <div class="text w-100 text-center">
               <h2>Discover Opportunities:</h2>
               <h1 class="mb-3">GRADUATEJOB.LK</h1>
-              <p style="font-size: 28px;">Where Your Future Awaits</p>
+              <p style="font-size: 22px;">Where Your Future Awaits</p>
               <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
               <a href="jobs" class="btn btn-success btn-lg">Find Your Dream Job</a>
             </div>
@@ -125,7 +128,7 @@ include("includes/navbar.php");
 
 
   <!-- Hero Section -->
-  <section id="hero" class="hero section" style="padding: 60px 0; ">
+  <!-- <section id="hero" class="hero section" style="padding: 60px 0; ">
 
     <img src="assets/img/bg1.jpg" alt="" data-aos="fade-in">
 
@@ -145,7 +148,7 @@ include("includes/navbar.php");
       </div>
     </div>
 
-  </section>
+  </section> -->
   <!-- /Hero Section -->
 
 

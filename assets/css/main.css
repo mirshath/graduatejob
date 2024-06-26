@@ -176,7 +176,7 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 36px;
+  max-height: 45px;
   margin-right: 8px;
 }
 
@@ -468,8 +468,11 @@ h6 {
 # Global Footer
 --------------------------------------------------------------*/
 .footer {
-  color: var(--default-color);
-  background-color: var(--background-color);
+  /* color: var(--default-color); */
+  color: white;
+  /* background-color: var(--background-color); */
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 35%, rgba(9,9,121,1) 100%);
   font-size: 14px;
   padding-bottom: 50px;
   position: relative;
@@ -512,7 +515,8 @@ h6 {
   border-radius: 50%;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
   font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  /* color: color-mix(in srgb, var(--default-color), transparent 30%); */
+  color: white;
   margin-right: 10px;
   transition: 0.3s;
 }
@@ -556,13 +560,15 @@ h6 {
 }
 
 .footer .footer-links ul a {
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  /* color: color-mix(in srgb, var(--default-color), transparent 30%); */
+  color: white;
   display: inline-block;
   line-height: 1;
 }
 
 .footer .footer-links ul a:hover {
-  color: var(--accent-color);
+  /* color: var(--accent-color); */
+  color: var(--heading-color);
 }
 
 .footer .footer-contact p {
@@ -1861,4 +1867,17 @@ section,
   padding-bottom: 100px;
 }
 
+
+.navmenu a, .navmenu a:focus {
+  color: var(--nav-color);
+  padding: 7px 15px;
+  font-size: 18px;
+  font-family: var(--nav-font);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  transition: 0.3s;
+}
 
