@@ -536,45 +536,45 @@ if (isset($_POST['apply_Job_Btn'])) {
 
           // Create a new PHPMailer instance
           $mail = new PHPMailer(true);
-
           try {
-              //Server settings
-              $mail->isSMTP();
-              $mail->Host = 'mail.graduatejob.lk';
-              $mail->SMTPAuth = true;
-              $mail->Username = 'noreply@graduatejob.lk';
-              $mail->Password = 'Hasni@2024'; // app password here
-              $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-              $mail->Port = 587;
-
-              // Enable verbose debug output
-              $mail->SMTPDebug = 2;
-              $mail->Debugoutput = 'html';
-
-              //Recipients
-              $company_name = "GRADUATE JOB. LK";
-              $mail->setFrom('noreply@graduatejob.lk', $company_name);
-              $mail->addAddress($email, $name);
-
-              // Content
-              $mail->isHTML(true);
-              $mail->Subject = 'GRADUATE Job Application Confirmation';
-              $mail->Body = "Hello $name,<br><br> Thank you for sending your CV for the position of XYZ . <br><br> 
-              Your application is under review. We will get back to you soon. <br><br> 
-              The company will contact you for further details if needed or if you are shortlisted <br><br> 
-              Please continue to check the available jobs we have using the following link ....... <br><br> 
-              You can view / edit your account details any time by logging in to your account <br><br> 
-              If you need help, you can find it here: .............  <br><br> 
-              Best regards,<br>$company_name";
-
-              $mail->AltBody = "Hello $name,\n\n You have successfully applied for the job. Your application is under review. We will get back to you soon.\n\n Best regards,\n $company_name";
-
-              $mail->send();
-              $_SESSION['message'] = "You have applied for a job. A confirmation email has been sent.";
-          } catch (Exception $e) {
-              $_SESSION['message'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-          }
-
+            //Server settings
+            $mail->isSMTP();
+            $mail->Host = 'mail.graduatejob.lk';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'noreply@graduatejob.lk';
+            $mail->Password = 'Hasni@2024'; // app password here
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+        
+            // Enable verbose debug output
+            $mail->SMTPDebug = 2;
+            $mail->Debugoutput = 'html';
+        
+            //Recipients
+            $company_name = "GRADUATEJOB.LK";
+            $mail->setFrom('noreply@graduatejob.lk', $company_name);
+            $mail->addAddress($email, $name);
+            $mail->addCC('mirmirsha123@gmail.com'); // Add CC recipient
+        
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = 'GRADUATE Job Application Confirmation';
+            $mail->Body = "Hello $name,<br><br> Thank you for sending your CV for the position of XYZ . <br><br> 
+            Your application is under review. We will get back to you soon. <br><br> 
+            The company will contact you for further details if needed or if you are shortlisted <br><br> 
+            Please continue to check the available jobs we have using the following link ....... <br><br> 
+            You can view / edit your account details any time by logging in to your account <br><br> 
+            If you need help, you can find it here: .............  <br><br> 
+            Best regards,<br>$company_name";
+        
+            $mail->AltBody = "Hello $name,\n\n You have successfully applied for the job. Your application is under review. We will get back to you soon.\n\n Best regards,\n $company_name";
+        
+            $mail->send();
+            $_SESSION['message'] = "You have applied for a job. A confirmation email has been sent.";
+        } catch (Exception $e) {
+            $_SESSION['message'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+        
           // Redirect to the same page to show the message and refresh the page
           echo '<script>window.location.href = "job-details.php?id=' . $applied_job_id . '";</script>';
           exit();
