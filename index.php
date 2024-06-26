@@ -55,22 +55,7 @@ include("includes/navbar.php");
 
   <section class="mt-4" style="margin-top: 50px;">
   <div class="home-slider owl-carousel js-fullheight">
-    <div class="slider-item js-fullheight" style="background-image:url(https://media.13newsnow.com/assets/WVEC/images/34af2191-3ac8-4b97-8631-bbeb6425d04e/34af2191-3ac8-4b97-8631-bbeb6425d04e_1140x641.jpeg)">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-          <div class="col-md-12 ftco-animate">
-            <div class="text w-100 text-center">
-              <h2>Your Gateway to Success:</h2>
-              <h1 class="mb-3">GRADUATEJOB.LK</h1>
-              <p style="font-size: 22px;">Find Your Ideal Job with Ease and Confidence</p>
-              <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
-              <a href="jobs" class="btn btn-success btn-lg">Discover Opportunities</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
 
     <div class="slider-item js-fullheight" style="background-image:url(https://t3.ftcdn.net/jpg/06/06/50/94/360_F_606509451_fSeyxuE8NUX41WNzuKP7FwRVsrKNC7fl.jpg);">
       <div class="overlay"></div>
@@ -83,6 +68,22 @@ include("includes/navbar.php");
               <p style="font-size: 22px;">Your Path to Success Begins Here</p>
               <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
               <a href="jobs" class="btn btn-success btn-lg">Start Your Career Journey</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-item js-fullheight" style="background-image:url(https://media.13newsnow.com/assets/WVEC/images/34af2191-3ac8-4b97-8631-bbeb6425d04e/34af2191-3ac8-4b97-8631-bbeb6425d04e_1140x641.jpeg)">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate">
+            <div class="text w-100 text-center">
+              <h2>Your Gateway to Success:</h2>
+              <h1 class="mb-3">GRADUATEJOB.LK</h1>
+              <p style="font-size: 22px;">Find Your Ideal Job with Ease and Confidence</p>
+              <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
+              <a href="jobs" class="btn btn-success btn-lg">Discover Opportunities</a>
             </div>
           </div>
         </div>

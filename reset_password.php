@@ -38,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         // echo 'Invalid or expired token.';
         $_SESSION['message'] = "Invalid or expired token.";
-
     }
 } else {
     if (isset($_GET['token'])) {
@@ -55,9 +54,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Password</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/formstyle.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+    <!-- Include the AlertifyJS CSS and JS files in your HTML -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
 
 </head>
 
@@ -75,51 +86,108 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     <body class="body_backgorund">
-        <div class="login-container">
-            <div class="row justify-content-center  ">
-                <div class="col-md-12">
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body">
-                            <div class="col-md-12">
-                                <div class="">
-                                    <div class="mb-4">
-                                        <h2 class=" text-gray-900 text-center">
-                                            <img src="images/LOGO.png" alt="Logo" style="width: 300px; height: auto;">
-                                        </h2>
 
-                                        <div class="mb-4 mt-4">
-                                            <h4 class=" text-gray-900 mb-3"><b>New Password </b></h4>
-                                            <!-- <h6 class="text-muted mb-3">Remember your password ? <a href="userLoginForm">
-                                                Login </a> </h6> -->
-                                            <hr>
+
+
+        <!-- ----------------------- new tying --------------  -->
+
+
+        <div class="container text-center mt-4">
+
+        </div>
+
+        <div class="container">
+            <!-- <div class="img">
+                <img src="images/Graduatejob.lk Logo.jpg" alt="" class="img-fluid">
+            </div> -->
+            <div class="row">
+                <div class="col-lg-7 mx-auto">
+                    <div class="img text-center">
+                        <img src="images/Graduatejob.lk Logo.jpg" alt="" class="img-fluid" style="max-width: 400px; margin: 0 auto;">
+                    </div>
+                    <div class="text-center mt-5">
+                        <h1>Reset Password Form</h1>
+                    </div>
+                    <div class="card mt-2 mx-auto p-4 bg-light">
+                        <div class="card-body bg-light">
+                            <div class="container">
+                                <form class="user" action="reset_password.php" method="POST" autocomplete="off" id="resetForm">
+                                    <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
+
+                                    <div class="controls">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="form_name">Enter New Password *</label>
+                                                    <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Enter New Password...">
+                                                    <div id="passwordError" class="text-danger"></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <form class="user" action="" method="POST" autocomplete="">
-
-                                            <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
-                                            <div class="form-group input-icon">
-                                                <h6>Enter New Password</h6>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="form_email">Confirm Password *</label>
+                                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+                                                    <div id="confirmPasswordError" class="text-danger"></div>
+                                                </div>
                                             </div>
-
-                                            <div class="form-group input-icon">
-                                                <i class="fas fa-lock"></i>
-                                                <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Enter New Password... " required>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-success btn-user btn-block">Update Password</button>
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-user btn-block">Update Password </button>
-                                            <hr>
-                                        </form>
-                                        <hr>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
+                    <!-- /.8 -->
                 </div>
+                <!-- /.row-->
             </div>
         </div>
 
 
 
 
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('resetForm');
+                const passwordInput = document.getElementById('password');
+                const confirmPasswordInput = document.getElementById('confirm_password');
+                const passwordError = document.getElementById('passwordError');
+                const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+                form.addEventListener('submit', function(event) {
+                    let valid = true;
+                    const password = passwordInput.value;
+                    const confirmPassword = confirmPasswordInput.value;
+
+                    // Regular expression for validating password: at least one special character and minimum length of 6 characters
+                    const passwordRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
+
+                    passwordError.textContent = '';
+                    confirmPasswordError.textContent = '';
+
+                    if (!passwordRegex.test(password)) {
+                        passwordError.textContent = 'Password must be at least 6 characters and at least 1 special char';
+                        valid = false;
+                    }
+
+                    if (password !== confirmPassword) {
+                        confirmPasswordError.textContent = 'Passwords do not match. Enter the same password in both fields.';
+                        valid = false;
+                    }
+
+                    if (!valid) {
+                        event.preventDefault(); // Prevent form submission if validation fails
+                    }
+                });
+            });
+        </script>
 
 
 

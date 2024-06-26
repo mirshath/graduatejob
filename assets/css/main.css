@@ -165,7 +165,7 @@ h6 {
 
 .header .branding {
   background-color: var(--background-color);
-  min-height: 60px;
+  min-height: 80px;
   padding: 10px 0;
   transition: 0.3s;
   border-bottom: 1px solid var(--background-color);
