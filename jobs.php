@@ -42,10 +42,6 @@ $JobCounts = $row['total'];
 
 
   <style>
- 
-
-
-
     #pageHeader h1,
     h2,
     h3,
@@ -927,7 +923,7 @@ $JobCounts = $row['total'];
                       <div class="card-body">
                         <div class="d-flex flex-column flex-lg-row">
                           <span class="avatar avatar-text rounded-2 me-4 mb-2">
-                          <img src="https://cdn-icons-png.freepik.com/512/6073/6073873.png" alt="" class="img-fluid">
+                            <img src="https://cdn-icons-png.freepik.com/512/6073/6073873.png" alt="" class="img-fluid">
                           </span>
                           <!-- <span class="avatar avatar-text rounded-2 me-4 mb-2" style="background-color: <?= $random_color ?>;">
                             <?= substr($row['job_title'], 0, 2) ?>
