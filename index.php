@@ -494,7 +494,7 @@ include("includes/navbar.php");
                           <div class="box p-3">
                             <div class="content text-center"> <!-- Added text-center class here -->
                               <div class="mb-3 d-flex justify-content-center align-items-center">
-                                <img src="Admin/uploads/category_images/<?= $row['category_image'] ?>" alt="" class="img-fluid">
+                                <img src="Admin/uploads/category_images/<?= $row['category_image'] ?>" alt="" class="img-fluid rounded-lg">
                               </div>
                               <h6 class="m-5px-tb"><b><?= $row['category_name'] ?></b></h6>
                               <!-- <a href="company_data.php?id=<?= $row['id'] ?>">View</a> -->
