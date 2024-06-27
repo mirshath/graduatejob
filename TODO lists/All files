@@ -5,6 +5,9 @@ mobile none , dsktp vw : d-md-none d-block
 red : ad093a
 blue : 051b74
 
+ckeditor with php
+
+
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -13,7 +16,7 @@ blue : 051b74
 
 <!-- - wanna change the mail function , when the admin approve the post , it wanna send -->
 
-- wanna Do the limit of everything like image profile
+<!-- - wanna Do the limit of everything like image profile -->
 <!-- - validations -->
 
 ## Amin section
@@ -33,21 +36,19 @@ blue : 051b74
 <!-- - delete path wanna set in recruiter (NO NEED TO DELETE HERE) -->
 <!-- - rec /  readonly -->
 
-## <!-- - path changing  -->
+<!-- - path changing  -->
 
 ## user section
 
 <!-- - wanna do the relationship forienkys userregister and jobs for the getting company images -->
-  <!-- - user dashboards -->
-  <!-- - index page  -->
+<!-- - user dashboards -->
+<!-- - index page  -->
 <!-- - password checking -->
 
 
 
 
 Todays did section 
-
-
 <!-- nav size  -->
 <!-- home jobs about contact -->
 <!-- job feture color : #0000660a -->
@@ -55,21 +56,28 @@ Todays did section
 <!-- col-3 -->
 <!-- nab top bar -->
 <!-- CV- profile udt -->
+<!-- company delete if they posted -->
+<!-- reset password . confirm checking -->
+<!-- font change -->
+<!-- color -->
 
 
-<!-- category image ad -->
+
+
+
+category image ad
 compny logo - jobs
 company data
 subcription
-<!-- reset password . confirm checking -->
+
+mobile vew when filtering 
+mobile view the filtering option wanna change 
 
 
 
-ckeditor with php
 
 
 
-company delete if they posted
 
 
 
@@ -78,8 +86,6 @@ company delete if they posted
 
 ------------------------------------------------------------------------------------------------------------------------
 
-<!-- font change -->
-<!-- color -->
 
 
 ------------------------------------------------------------------------------------------------------------------------
