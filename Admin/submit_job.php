@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $filename = $_FILES["companyLogo"]["name"];
     $tempname = $_FILES["companyLogo"]["tmp_name"];
-    $folder = "./uploads/" . $filename;
+    $folder = "./uploads/job_posters/" . $filename;
 
 
     // SQL query to insert data into the database
