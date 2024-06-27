@@ -46,7 +46,7 @@ $categrory_result = mysqli_query($conn, $sql);
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Job Listing Details </h1>
+                    <h1>Job Edit </h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="index">View </a>
@@ -125,7 +125,7 @@ $categrory_result = mysqli_query($conn, $sql);
                                     <div class="col-md-4">
                                         <!-- Company Logo -->
                                         <div class="form-group">
-                                            <label for="editCompanyLogo">Company Logo</label>
+                                            <label for="editCompanyLogo">Poster</label>
                                             <?php if (!empty($row["company_logo"])) : ?>
                                                 <div class="mb-3">
                                                     <img src="../Admin/uploads/<?= $row["company_logo"] ?>" alt="Company Logo" class="img-thumbnail" style="max-width: 150px;">
@@ -139,11 +139,11 @@ $categrory_result = mysqli_query($conn, $sql);
 
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <!-- Job Category -->
                                         <div class="form-group">
                                             <label for="jobCategory">Job Category/Industry</label>
-                                            <select name="category" id="category" class="form-control">
+                                            <select name="category" id="category" class="form-control mb-4">
                                                 <?php
                                                 if (mysqli_num_rows($categrory_result) > 0) {
                                                     while ($categ_row = mysqli_fetch_array($categrory_result)) {
@@ -156,7 +156,7 @@ $categrory_result = mysqli_query($conn, $sql);
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4 mb-4">
                                         <!-- Contact Info -->
                                         <div class="form-group">
                                             <label for="editContactInfo">Contact Email/Phone</label>
@@ -167,15 +167,8 @@ $categrory_result = mysqli_query($conn, $sql);
                                 </div>
 
 
-                                <!-- Job Description -->
-                                <!-- Job Description -->
-                                <div class="form-group">
-                                    <label for="editJobDescription">Job Description</label>
-                                    <textarea class="form-control" id="editJobDescription" name="editJobDescription" rows="4"><?= $row["job_description"] ?></textarea>
-                                </div>
-
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 mb-4">
                                         <!-- Employment Type -->
                                         <div class="form-group">
                                             <label for="editEmploymentType">Employment Type</label>
@@ -189,14 +182,14 @@ $categrory_result = mysqli_query($conn, $sql);
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 mb-4">
                                         <!-- Location -->
                                         <div class="form-group">
                                             <label for="editLocation">Location</label>
                                             <input type="text" class="form-control" id="editLocation" name="editLocation" value="<?= $row["location"] ?>">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 mb-4">
                                         <!-- Salary Range -->
                                         <div class="form-group">
                                             <label for="editSalaryRange">Salary Range</label>
@@ -205,15 +198,8 @@ $categrory_result = mysqli_query($conn, $sql);
                                     </div>
                                 </div>
 
-
-                                <!-- Skills Required -->
-                                <div class="form-group">
-                                    <label for="editSkillsRequired">Skills Required</label>
-                                    <textarea class="form-control" id="editSkillsRequired" name="editSkillsRequired" rows="3"><?= $row["skills_required"] ?></textarea>
-                                </div>
-
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 mb-4">
                                         <!-- Education Level -->
                                         <div class="form-group">
                                             <label for="editEducationLevel">Education Level</label>
@@ -250,12 +236,125 @@ $categrory_result = mysqli_query($conn, $sql);
                                     </div>
                                 </div>
 
+                                 <!-- Skills Required -->
+                                 <div class="form-group mb-4">
+                                    <label for="editSkillsRequired">Skills Required</label>
+                                    <textarea class="form-control" id="editSkillsRequired" name="editSkillsRequired" rows="3"><?= $row["skills_required"] ?></textarea>
+                                </div>
+
+
+                                <!-- Job Description -->
+                                <!-- Job Description -->
+                                <div class="form-group mb-4">
+                                    <label for="editJobDescription">Job Description</label>
+                                    <textarea class="form-control " id="editJobDescription" name="editJobDescription" rows="4"><?= $row["job_description"] ?></textarea>
+                                    <script>
+                                        // Initialize CKEditor on the textarea with custom configuration
+                                        CKEDITOR.replace('editJobDescription', {
+                                            height: 300,
+                                            toolbar: [{
+                                                    name: 'document',
+                                                    items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']
+                                                },
+                                                {
+                                                    name: 'clipboard',
+                                                    items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
+                                                },
+                                                {
+                                                    name: 'editing',
+                                                    items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']
+                                                },
+                                                {
+                                                    name: 'insert',
+                                                    items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
+                                                },
+                                                '/',
+                                                {
+                                                    name: 'basicstyles',
+                                                    items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
+                                                },
+                                                {
+                                                    name: 'paragraph',
+                                                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']
+                                                },
+                                                {
+                                                    name: 'styles',
+                                                    items: ['Styles', 'Format', 'Font', 'FontSize']
+                                                },
+                                                {
+                                                    name: 'colors',
+                                                    items: ['TextColor', 'BGColor']
+                                                },
+                                                {
+                                                    name: 'tools',
+                                                    items: ['Maximize', 'ShowBlocks']
+                                                }
+                                            ],
+                                            // Add additional configuration options here
+
+                                            // You can add more configuration options here
+                                        });
+                                    </script>
+                                </div>
+
+                               
+
+                               
+                               
+
 
 
                                 <!-- Additional Information -->
-                                <div class="form-group">
+                                <div class="form-group mb-4">
                                     <label for="editAdditionalInfo">Additional Information</label>
                                     <textarea class="form-control" id="editAdditionalInfo" name="editAdditionalInfo" rows="3"><?= $row["additional_info"] ?></textarea>
+                                    <script>
+                                        // Initialize CKEditor on the textarea with custom configuration
+                                        CKEDITOR.replace('editAdditionalInfo', {
+                                            height: 200,
+                                            toolbar: [{
+                                                    name: 'document',
+                                                    items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']
+                                                },
+                                                {
+                                                    name: 'clipboard',
+                                                    items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
+                                                },
+                                                {
+                                                    name: 'editing',
+                                                    items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']
+                                                },
+                                                {
+                                                    name: 'insert',
+                                                    items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
+                                                },
+                                                '/',
+                                                {
+                                                    name: 'basicstyles',
+                                                    items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
+                                                },
+                                                {
+                                                    name: 'paragraph',
+                                                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']
+                                                },
+                                                {
+                                                    name: 'styles',
+                                                    items: ['Styles', 'Format', 'Font', 'FontSize']
+                                                },
+                                                {
+                                                    name: 'colors',
+                                                    items: ['TextColor', 'BGColor']
+                                                },
+                                                {
+                                                    name: 'tools',
+                                                    items: ['Maximize', 'ShowBlocks']
+                                                }
+                                            ],
+                                            // Add additional configuration options here
+
+                                            // You can add more configuration options here
+                                        });
+                                    </script>
                                 </div>
 
                                 <!-- Submit Button -->

@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </li>
                     <li><i class="bx bx-chevron-right"></i></li>
                     <li>
-                        <a class="active" href="addjobs">Add</a> 
+                        <a class="active" href="addjobs">Add</a>
                     </li>
                 </ul>
             </div>
@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form action="" method="post" enctype="multipart/form-data">
 
                     <!-- 1st row  -->
-                    <div class="row">
+                    <div class="row mb-4">
                         <input type="hidden" class="form-control" id="recuiter_id" name="recuiter_id" value="<?= $rec_id ?>" required>
 
                         <div class="col-md-3">
@@ -174,12 +174,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="companyName">Company Name</label>
-                                <input type="text" class="form-control" id="companyName" name="companyName" value="<?= $com_name?>" required readonly>
+                                <input type="text" class="form-control" id="companyName" name="companyName" value="<?= $com_name ?>" required readonly>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="companyLogo">Job Logo</label>
+                                <label for="companyLogo"> Poster Image</label>
                                 <input type="file" class="form-control-file" id="companyLogo" name="companyLogo">
                             </div>
                         </div>
@@ -198,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <!-- 2nd row  -->
-                    <div class="row">
+                    <div class="row mb-4">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="jobCategory">Job Category/Industry</label>
@@ -244,7 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <!-- 3rd row  -->
-                    <div class="row">
+                    <div class="row mb-4">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="salaryRange">Salary Range</label>
@@ -264,20 +264,118 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="jobDescription">Job Description</label>
-                        <textarea class="form-control" id="jobDescription" name="jobDescription" rows="4" required></textarea>
-                    </div>
-
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label for="skillsRequired">Skills Required</label>
-                        <textarea class="form-control" id="skillsRequired" name="skillsRequired" rows="3" required></textarea>
+                        <textarea class="form-control" id="skillsRequired" name="skillsRequired"  required></textarea>
+                        
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-4">
+                        <label for="jobDescription">Job Description</label>
+                        <textarea class="form-control" id="jobDescription" name="jobDescription"  required></textarea>
+                        <script>
+                            // Initialize CKEditor on the textarea with custom configuration
+                            CKEDITOR.replace('jobDescription', {
+                                height: 300,
+                                toolbar: [{
+                                        name: 'document',
+                                        items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']
+                                    },
+                                    {
+                                        name: 'clipboard',
+                                        items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
+                                    },
+                                    {
+                                        name: 'editing',
+                                        items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']
+                                    },
+                                    {
+                                        name: 'insert',
+                                        items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
+                                    },
+                                    '/',
+                                    {
+                                        name: 'basicstyles',
+                                        items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
+                                    },
+                                    {
+                                        name: 'paragraph',
+                                        items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']
+                                    },
+                                    {
+                                        name: 'styles',
+                                        items: ['Styles', 'Format', 'Font', 'FontSize']
+                                    },
+                                    {
+                                        name: 'colors',
+                                        items: ['TextColor', 'BGColor']
+                                    },
+                                    {
+                                        name: 'tools',
+                                        items: ['Maximize', 'ShowBlocks']
+                                    }
+                                ],
+                                // Add additional configuration options here
+
+                                // You can add more configuration options here
+                            });
+                        </script>
+                    </div>
+
+
+
+                    
+
+                    <div class="form-group mb-4">
                         <label for="additionalInfo">Additional Information</label>
                         <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="3"></textarea>
+                        <script>
+                            // Initialize CKEditor on the textarea with custom configuration
+                            CKEDITOR.replace('additionalInfo', {
+                                height: 150,
+                                toolbar: [{
+                                        name: 'document',
+                                        items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']
+                                    },
+                                    {
+                                        name: 'clipboard',
+                                        items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
+                                    },
+                                    {
+                                        name: 'editing',
+                                        items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']
+                                    },
+                                    {
+                                        name: 'insert',
+                                        items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
+                                    },
+                                    '/',
+                                    {
+                                        name: 'basicstyles',
+                                        items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
+                                    },
+                                    {
+                                        name: 'paragraph',
+                                        items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']
+                                    },
+                                    {
+                                        name: 'styles',
+                                        items: ['Styles', 'Format', 'Font', 'FontSize']
+                                    },
+                                    {
+                                        name: 'colors',
+                                        items: ['TextColor', 'BGColor']
+                                    },
+                                    {
+                                        name: 'tools',
+                                        items: ['Maximize', 'ShowBlocks']
+                                    }
+                                ],
+                                // Add additional configuration options here
+
+                                // You can add more configuration options here
+                            });
+                        </script>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>

@@ -47,6 +47,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css" rel="stylesheet" />
 
 
+    <!-- script for CKeditor -->
+
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 
 
 
