@@ -1,5 +1,6 @@
 <?php
 include "headerFiles/header.php";
+// include "Database/connection.php";
 include '../Database/connection.php';
 
 // add category PHP code 
@@ -7,14 +8,14 @@ if (isset($_POST['category_adding_btn'])) {
     $category_name = $_POST['category_name'];
 
     // Handle image upload
-    // $target_dir = "uploads/category_images/";
-    // if (!is_dir($target_dir)) {
-    //     mkdir($target_dir, 0777, true);
-    // }
+    $target_dir = "uploads/category_image/";
+    if (!is_dir($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
 
-    $target_file = basename($_FILES["category_image"]["name"]);
+    $image_name = basename($_FILES["category_image"]["name"]);
+    $target_file = $target_dir . $image_name;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
 
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["category_image"]["tmp_name"]);
@@ -25,18 +26,18 @@ if (isset($_POST['category_adding_btn'])) {
     }
 
     // Check if file already exists
-    if (file_exists($target_file)) {
-        $_SESSION['message'] = "Sorry, file already exists.";
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit;
-    }
+    // if (file_exists($target_file)) {
+    //     $_SESSION['message'] = "Sorry, file already exists.";
+    //     header("Location: " . $_SERVER['PHP_SELF']);
+    //     exit;
+    // }
 
     // Check file size (5MB maximum)
-    if ($_FILES["category_image"]["size"] > 5000000) {
-        $_SESSION['message'] = "Sorry, your file is too large.";
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit;
-    }
+    // if ($_FILES["category_image"]["size"] > 5000000) {
+    //     $_SESSION['message'] = "Sorry, your file is too large.";
+    //     header("Location: " . $_SERVER['PHP_SELF']);
+    //     exit;
+    // }
 
     // Allow certain file formats
     $allowed_types = array("jpg", "png", "jpeg", "gif");
@@ -53,7 +54,7 @@ if (isset($_POST['category_adding_btn'])) {
         exit;
     }
 
-    // Insert category and image path into the database
+    // Insert category and image name into the database
     $sql = "INSERT INTO category (category_name, category_image) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
     if ($stmt === false) {
@@ -61,7 +62,7 @@ if (isset($_POST['category_adding_btn'])) {
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
-    $stmt->bind_param("ss", $category_name, $target_file);
+    $stmt->bind_param("ss", $category_name, $image_name);
 
     if ($stmt->execute() === TRUE) {
         $_SESSION['message'] = "Category added successfully";
@@ -96,7 +97,7 @@ if (isset($_POST['category_adding_btn'])) {
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Categories</h1>
 
-                <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addJobModal">Add New Category</button>
+                <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addJobModal">Add New Job</button>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
@@ -125,9 +126,10 @@ if (isset($_POST['category_adding_btn'])) {
                                         while ($row = mysqli_fetch_array($sql_run)) {
                                     ?>
                                             <tr>
-                                                <td><?= htmlspecialchars($row["category_name"]); ?></td>
-                                                <td><?= htmlspecialchars($row["created_at"]); ?></td>
+                                                <td> <?= $row["category_name"]; ?></td>
+                                                <td> <?= $row["created_at"]; ?></td>
                                                 <td>
+                                                    <!-- Edit and View buttons -->
                                                     <a href="delete.php?type=category&id=<?= urlencode($row['category_name']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this category?')">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </a>
@@ -143,8 +145,8 @@ if (isset($_POST['category_adding_btn'])) {
                     </div>
                 </div>
 
-                <!------------------------------------ Add model -------------------------- -->
-                <div class="modal fade " id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="addJobModalLabel" aria-hidden="true">
+                <!-- Add Modal -->
+                <div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="addJobModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -159,12 +161,12 @@ if (isset($_POST['category_adding_btn'])) {
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="catNm">Category Name</label>
+                                                <label for="category_name">Category Name</label>
                                                 <input type="text" class="form-control" id="category_name" name="category_name" required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="catImg">Category Image</label>
+                                                <label for="category_image">Category Image</label>
                                                 <input type="file" class="form-control" id="category_image" name="category_image" required>
                                             </div>
                                         </div>
@@ -175,6 +177,7 @@ if (isset($_POST['category_adding_btn'])) {
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -199,7 +202,6 @@ if (isset($_POST['category_adding_btn'])) {
 
 <script>
     <?php
-    // Display message if set
     if (isset($_SESSION['message'])) {
     ?>
         alertify.set('notifier', 'position', 'top-right');
@@ -209,7 +211,3 @@ if (isset($_POST['category_adding_btn'])) {
     }
     ?>
 </script>
-
-</body>
-
-</html>
