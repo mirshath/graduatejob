@@ -290,7 +290,7 @@ $results = mysqli_query($conn, $sql);
                                                 <input type="text" class="form-control" id="companyId" name="companyId" value="">
                                             </div>
                                         </div>
-                                        
+
                                     </div>
 
 
@@ -298,6 +298,54 @@ $results = mysqli_query($conn, $sql);
                                         <label for="jobDescription">Job Description</label>
                                         <textarea class="form-control" placeholder="Description Here" id="jobDescription" name="jobDescription" rows="4" required></textarea>
                                     </div>
+
+                                    <script>
+                                        // Initialize CKEditor on the textarea with custom configuration
+                                        CKEDITOR.replace('jobDescription', {
+                                            height: 300,
+                                            toolbar: [{
+                                                    name: 'document',
+                                                    items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']
+                                                },
+                                                {
+                                                    name: 'clipboard',
+                                                    items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
+                                                },
+                                                {
+                                                    name: 'editing',
+                                                    items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']
+                                                },
+                                                {
+                                                    name: 'insert',
+                                                    items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
+                                                },
+                                                '/',
+                                                {
+                                                    name: 'basicstyles',
+                                                    items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
+                                                },
+                                                {
+                                                    name: 'paragraph',
+                                                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']
+                                                },
+                                                {
+                                                    name: 'styles',
+                                                    items: ['Styles', 'Format', 'Font', 'FontSize']
+                                                },
+                                                {
+                                                    name: 'colors',
+                                                    items: ['TextColor', 'BGColor']
+                                                },
+                                                {
+                                                    name: 'tools',
+                                                    items: ['Maximize', 'ShowBlocks']
+                                                }
+                                            ],
+                                            // Add additional configuration options here
+
+                                            // You can add more configuration options here
+                                        });
+                                    </script>
 
 
                                     <div class="form-group">
@@ -380,7 +428,60 @@ $results = mysqli_query($conn, $sql);
                                         <label for="additionalInfo">Additional Information</label>
                                         <textarea class="form-control" placeholder="Additional Information " id="additionalInfo" name="additionalInfo" rows="3"></textarea>
                                     </div>
+                                    <!-- <div class="row">
+                                        <div class="col-md-12">
+                                            
+                                            <label for="additionalInfo">Data</label>
 
+                                            <textarea class="form-control" placeholder="data " name="additionalInfo" id="additionalInfo" rows="3"></textarea>
+                                        </div>
+                                    </div> -->
+                                    <script>
+                                        // Initialize CKEditor on the textarea with custom configuration
+                                        CKEDITOR.replace('additionalInfo', {
+                                            height: 300,
+                                            // Add additional configuration options here
+                                            toolbar: [{
+                                                    name: 'document',
+                                                    items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']
+                                                },
+                                                {
+                                                    name: 'clipboard',
+                                                    items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
+                                                },
+                                                {
+                                                    name: 'editing',
+                                                    items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']
+                                                },
+                                                {
+                                                    name: 'insert',
+                                                    items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
+                                                },
+                                                '/',
+                                                {
+                                                    name: 'basicstyles',
+                                                    items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
+                                                },
+                                                {
+                                                    name: 'paragraph',
+                                                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']
+                                                },
+                                                {
+                                                    name: 'styles',
+                                                    items: ['Styles', 'Format', 'Font', 'FontSize']
+                                                },
+                                                {
+                                                    name: 'colors',
+                                                    items: ['TextColor', 'BGColor']
+                                                },
+                                                {
+                                                    name: 'tools',
+                                                    items: ['Maximize', 'ShowBlocks']
+                                                }
+                                            ],
+                                            // You can add more configuration options here
+                                        });
+                                    </script>
 
                                     <div class="form-group">
                                         <!-- <label for="contactInfo">Posted By</label> -->

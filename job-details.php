@@ -4,8 +4,8 @@ session_start();
 require "Database/connection.php";
 
 
-include ("includes/header.php");
-include ("includes/navbar.php");
+include("includes/header.php");
+include("includes/navbar.php");
 
 
 
@@ -71,7 +71,7 @@ if (isset($_GET['id'])) {
 
 
 
-    ?>
+?>
 
     <main class="main">
 
@@ -187,6 +187,9 @@ if (isset($_GET['id'])) {
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <!------ Include the above in your HEAD tag ---------->
 
+      <!-- Move the image div outside and before the pageHeader section -->
+
+
       <section id="pageHeader" style="margin-top: -25px;">
         <!-- page-header -->
         <div class="page-header">
@@ -194,8 +197,8 @@ if (isset($_GET['id'])) {
             <div class="row mt-4">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                 <div class="page-caption">
-                  <h1 class="text-center text-white " data-aos="fade-in"><?= $rows['job_title']; ?></h1>
-                  <p class="text-center text-white " data-aos="fade-in"><?= $rows['company_name']; ?></p>
+                  <h1 class="text-center text-white" data-aos="fade-in"><?= $rows['job_title']; ?></h1>
+                  <p class="text-center text-white" data-aos="fade-in"><?= $rows['company_name']; ?></p>
                 </div>
               </div>
             </div>
@@ -205,23 +208,44 @@ if (isset($_GET['id'])) {
       </section>
 
 
+      <div class="relative-container">
+        <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
+          <a href="company_data.php?id=<?= $company_id ?>">
+            <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow d-md-none d-block mobile-positioned-image" style="max-width: 200px; border-radius: 20px;">
+          </a>
+        </div>
+      </div>
 
+      <!-- CSS for relative container and image positioning -->
+      <style>
+        .relative-container {
+          position: relative;
+        }
+
+        .mobile-positioned-image {
+          margin-top: -100px;
+          z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+          .mobile-positioned-image {
+            margin-top: 0;
+            position: static;
+          }
+        }
+      </style>
 
 
       <!-- details  -->
       <div class="container mt-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-
         <div class="row">
-          <div class="col-md-4 order-md-2 mb-4 order-1">
+          <div class="col-md-4 order-md-1 mb-4 order-2">
             <div class="card shadow">
-              <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up"
-                data-aos-delay="100">
+              <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
                 <a href="company_data.php?id=<?= $company_id ?>">
-                  <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow"
-                    style="max-width: 200px; border-radius: 20px; margin-top: -100px;">
+                  <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow d-none d-md-flex" style="max-width: 200px; border-radius: 20px; margin-top: -100px;">
                 </a>
               </div>
-
 
               <div class="card-body" data-aos="fade-up" data-aos-delay="300">
                 <!-- Card body content -->
@@ -233,19 +257,18 @@ if (isset($_GET['id'])) {
 
                   </h6>
                   <div class="d-flex">
-                    <h6 class=" text-muted">
+                    <h6 class="text-muted">
                       <i class="fas fa-map-marker-alt" style="font-size: 15px;"> &nbsp; &nbsp; <?= $rows['location'] ?></i>
-
                     </h6>
 
                     &nbsp; &nbsp; &nbsp;
-                    <h6 class=" text-muted">
+                    <h6 class="text-muted">
                       <i class="fas fa-calendar-alt" style="font-size: 15px;"> &nbsp;&nbsp;
                         <?= $rows['application_deadline'] ?></i>
                     </h6>
 
                     &nbsp; &nbsp; &nbsp;
-                    <h6 class=" text-muted">
+                    <h6 class="text-muted">
                       <i class="fas fa-briefcase" style="font-size: 15px;"></i>
                       &nbsp; <?= $rows['employment_type'] ?>
                     </h6>
@@ -253,9 +276,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <hr>
 
-
                 <div class="p-3">
-
                   <h6><?= $rows['additional_info'] ?></h6>
                 </div>
 
@@ -270,8 +291,8 @@ if (isset($_GET['id'])) {
                       <td>Skills</td>
                       <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
                       <td><?php foreach ($skillsArray as $skill) {
-                        echo '<span class="badge bg-secondary">' . strtoupper(trim($skill)) . '</span> ';
-                      } ?></td>
+                            echo '<span class="badge bg-secondary">' . strtoupper(trim($skill)) . '</span> ';
+                          } ?></td>
                     </tr>
                     <tr class="mb-4">
                       <td>Experience Level</td>
@@ -282,25 +303,20 @@ if (isset($_GET['id'])) {
                 </div>
                 <hr>
                 <div class="p-3 text-center">
-                  <a href="https://www.facebook.com/yourpage" target="_blank"><i
-                      class="fab fa-facebook-square fa-3x"></i></a>
+                  <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-square fa-3x"></i></a>
 
                   <!-- Twitter -->
                   <a href="https://twitter.com/yourpage" target="_blank"><i class="fab fa-twitter-square fa-3x"></i></a>
 
                   <!-- Instagram -->
-                  <a href="https://www.instagram.com/yourpage" target="_blank"><i
-                      class="fab fa-instagram-square fa-3x"></i></a>
+                  <a href="https://www.instagram.com/yourpage" target="_blank"><i class="fab fa-instagram-square fa-3x"></i></a>
 
                   <!-- LinkedIn -->
-                  <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i
-                      class="fab fa-linkedin fa-3x"></i></a>
+                  <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
 
                   <!-- YouTube -->
-                  <a href="https://www.youtube.com/channel/yourchannel" target="_blank"><i
-                      class="fab fa-youtube-square fa-3x"></i></a>
+                  <a href="https://www.youtube.com/channel/yourchannel" target="_blank"><i class="fab fa-youtube-square fa-3x"></i></a>
                 </div>
-
 
                 <div class="p-3">
                   <div class="row">
@@ -310,7 +326,7 @@ if (isset($_GET['id'])) {
 
                         $uid = $_SESSION['user_id'];
                         // User is authorized, show the apply button
-                  
+
                         $today = date("Y-m-d");
 
                         // $application_deadline;
@@ -326,50 +342,42 @@ if (isset($_GET['id'])) {
 
                           if (mysqli_num_rows($Check_applied_run) == 1) {
                             echo '<button type="button" class="btn btn-success p-3 custom-btn">
-                              Already applied
-                            </button>';
+                        Already applied
+                      </button>';
                           } else {
                             echo '<button type="button" class="btn btn-primary p-3 custom-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                              Apply for a job
-                            </button>';
+                        Apply for a job
+                      </button>';
                           }
                         } else {
                           echo '<button type="button" class="btn btn-danger p-3 custom-btn">
-                            Application closed
-                          </button>';
+                      Application closed
+                    </button>';
                         }
                       } else {
                         // User is not authorized, show the login button that triggers a modal
                         echo '<button type="button" class="btn btn-primary p-3 custom-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
-                          Login to apply for a job
-                        </button>';
+                    Login to apply for a job
+                  </button>';
                       }
                       ?>
                     </div>
                   </div>
                 </div>
-
-
-
-
               </div>
             </div>
           </div>
 
-          <div class="col-md-8 order-md-1 order-2 ">
-            <!-- <h3 class="text-muted mb-4"><b><?= $rows['job_title']; ?></b></h3>
-          <h6 class="text-muted mb-4">Presented by : <b><?= $rows['company_name']; ?></b></h6>
-          <p class="text-muted" style="font-size: 17px; line-height: 35px; text-align: justify;">
-            <?= $rows['job_description']; ?>
-          </p> -->
-
-
-
-
-
+          <div class="col-md-8 order-md-2 order-1 ">
+            <!-- Other content remains here -->
+            <p class="text-muted" style="font-size: 17px; line-height: 35px; text-align: justify;">
+              <?= $rows['job_description']; ?>
+            </p>
+            <div class="img d-flex justify-content-center">
+              <img src="Admin/uploads/<?= $rows['company_logo']; ?>" alt="job dec Img" class="img-fluid" width="800px">
+            </div>
           </div>
         </div>
-
       </div>
 
 
@@ -392,20 +400,16 @@ if (isset($_GET['id'])) {
                   <?php
                   $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
                   ?>
-                  <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>"
-                    required>
-                  <input type="text" class="form-control" id="company_email" name="company_email"
-                    value="<?= $company_email ?>" required>
+                  <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>" required>
+                  <input type="text" class="form-control" id="company_email" name="company_email" value="<?= $company_email ?>" required>
                 </div>
                 <div class="mb-3">
                   <label for="full_name" class="form-label">Name:</label>
-                  <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['first_name'] ?>"
-                    required readonly>
+                  <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['first_name'] ?>" required readonly>
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email:</label>
-                  <input type="email" class="form-control" id="email" value="<?= $_SESSION['user_email'] ?>" name="email"
-                    required readonly>
+                  <input type="email" class="form-control" id="email" value="<?= $_SESSION['user_email'] ?>" name="email" required readonly>
                 </div>
                 <div class="mb-3">
                   <label for="phone" class="form-label">Phone:</label>
@@ -416,12 +420,10 @@ if (isset($_GET['id'])) {
                   <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx">
                 </div>
                 <div class="mb-3">
-                  <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>"
-                    required>
+                  <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>" required>
                 </div>
                 <div class="mb-3">
-                  <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending"
-                    required>
+                  <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending" required>
                 </div>
                 <button type="submit" name="apply_Job_Btn" class="btn btn-primary">Submit</button>
               </form>
@@ -434,8 +436,7 @@ if (isset($_GET['id'])) {
 
       <!-- Login Modal -->
       <!-- Login Modal -->
-      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-        aria-hidden="true">
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -465,8 +466,7 @@ if (isset($_GET['id'])) {
 
                             <div class="form-group input-icon">
                               <i class="fas fa-envelope"></i>
-                              <input type="email" class="form-control form-control-user" name="email"
-                                placeholder="example@gmail.com" required>
+                              <input type="email" class="form-control form-control-user" name="email" placeholder="example@gmail.com" required>
                             </div>
 
                             <div class="d-flex justify-content-between mt-4">
@@ -484,13 +484,12 @@ if (isset($_GET['id'])) {
 
                             <div class="form-group input-icon">
                               <i class="fas fa-lock"></i>
-                              <input type="password" class="form-control form-control-user" name="password" id="password"
-                                placeholder="Enter 6 Character or more" required>
+                              <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Enter 6 Character or more" required>
                               <i class="fas fa-eye toggle-password text-right" id="togglePassword"></i>
                             </div>
 
                             <script>
-                              document.getElementById('togglePassword').addEventListener('click', function (e) {
+                              document.getElementById('togglePassword').addEventListener('click', function(e) {
                                 const passwordInput = document.getElementById('password');
                                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                                 passwordInput.setAttribute('type', type);
@@ -502,8 +501,7 @@ if (isset($_GET['id'])) {
                               <input type="checkbox" class="form-check-input" id="rememberMe">
                               <label class="form-check-label" for="rememberMe">Remember Me</label>
                             </div>
-                            <button type="submit" name="login_modal_btn"
-                              class="btn btn-primary btn-user btn-block">Login</button>
+                            <button type="submit" name="login_modal_btn" class="btn btn-primary btn-user btn-block">Login</button>
                             <hr>
                           </form>
                           <hr>
@@ -521,7 +519,7 @@ if (isset($_GET['id'])) {
 
 
 
-      <?php
+  <?php
   }
 }
 
@@ -675,59 +673,58 @@ if (isset($_POST['login_modal_btn'])) {
 
 
 
-?>
-
-</main>
-
-
-
-<?php include ("includes/footer.php");
-?>
-
-<!-- Scroll Top -->
-<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-    class="bi bi-arrow-up-short"></i></a>
-
-<!-- Preloader -->
-<div id="preloader"></div>
-
-<!-- Vendor JS Files -->
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-<script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-<!-- Main JS File -->
-<script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
-
-
-<!-- -------------------------------- FOoter Section ----------------------------------- -->
-<!-- -------------------------------- FOoter Section ----------------------------------- -->
-<!-- -------------------------------- FOoter Section ----------------------------------- -->
-
-
-
-
-<script>
-  <?php
-
-  // messages from corect or not 
-  
-  if (isset($_SESSION['message'])) {
-    ?>
-    alertify.set('notifier', 'position', 'bottom-right');
-    // alertify.success('Current position : ' + aler  tify.get('notifier', 'position'));
-
-    alertify.success('<?= $_SESSION['message'] ?>');
-    <?php
-    unset($_SESSION['message']);
-  }
   ?>
-</script>
+
+    </main>
+
+
+
+    <?php include("includes/footer.php");
+    ?>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    </body>
+
+    </html>
+
+
+    <!-- -------------------------------- FOoter Section ----------------------------------- -->
+    <!-- -------------------------------- FOoter Section ----------------------------------- -->
+    <!-- -------------------------------- FOoter Section ----------------------------------- -->
+
+
+
+
+    <script>
+      <?php
+
+      // messages from corect or not 
+
+      if (isset($_SESSION['message'])) {
+      ?>
+        alertify.set('notifier', 'position', 'bottom-right');
+        // alertify.success('Current position : ' + aler  tify.get('notifier', 'position'));
+
+        alertify.success('<?= $_SESSION['message'] ?>');
+      <?php
+        unset($_SESSION['message']);
+      }
+      ?>
+    </script>

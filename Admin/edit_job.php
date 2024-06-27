@@ -147,6 +147,18 @@ $category_result = mysqli_query($conn, $sql);
                                     <label for="editJobDescription">Job Description</label>
                                     <textarea class="form-control" id="editJobDescription" name="editJobDescription" rows="4"><?= $row["job_description"] ?></textarea>
                                 </div>
+                                <script>
+                                        // Initialize CKEditor on the textarea with custom configuration
+                                        CKEDITOR.replace('editJobDescription', {
+                                            height: 300,
+                                            // Add additional configuration options here
+                                            
+                                            // You can add more configuration options here
+                                        });
+                                    </script>
+
+
+
 
                                 <div class="row">
                                     <div class="col-md-4">
@@ -229,6 +241,17 @@ $category_result = mysqli_query($conn, $sql);
                                     <label for="editAdditionalInfo">Additional Information</label>
                                     <textarea class="form-control" id="editAdditionalInfo" name="editAdditionalInfo" rows="3"><?= $row["additional_info"] ?></textarea>
                                 </div>
+
+                                <script>
+                                        // Initialize CKEditor on the textarea with custom configuration
+                                        CKEDITOR.replace('editAdditionalInfo', {
+                                            height: 300,
+                                            // Add additional configuration options here
+                                            
+                                            // You can add more configuration options here
+                                        });
+                                    </script>
+
 
                                 <!-- Submit Button -->
                                 <button type="submit" class="btn btn-primary"> <i class="fas fa-save"></i> &nbsp; Update</button>
