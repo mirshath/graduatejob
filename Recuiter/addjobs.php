@@ -179,8 +179,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="companyLogo"> Poster Image</label>
-                                <input type="file" class="form-control-file" id="companyLogo" name="companyLogo">
+                                <label for="companyLogo"> Poster Image</label> 
+                                <input type="file" class="form-control-file" id="companyLogo" name="companyLogo"> <span style="color: red; font-weight: bolder;">* use the size 1080 x 1350</span>
                             </div>
                         </div>
                         <div class="col-md-3">
