@@ -131,6 +131,24 @@ include '../Database/connection.php';
                                                             <input type="text" class="form-control" id="phone_no" name="phone_no" value="<?= $user['phone_no'] ?>" required>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="email">Education Qualification</label>
+                                                            <input type="text" class="form-control" readonly id="" name="" value="<?= $user['education_qualification'] ?>" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">Interested Field</label>
+                                                            <input type="text" class="form-control" readonly id="" name="" value="<?= $user['interested_field'] ?>" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">Professional Qualification</label>
+                                                            <input type="text" class="form-control" readonly id="" name="" value="<?= $user['professional_qualification'] ?>" required>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="col-md-7 d-flex justify-content-end align-items-center p-4">
                                                         <button type="submit" class="btn btn-primary">Update Profiles</button>
