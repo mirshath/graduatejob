@@ -10,6 +10,8 @@ include "Database/connection.php";
 require "includes/header.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
     // Validate and sanitize user input
     $firstName = htmlspecialchars($_POST["firstname"]);
     $lastName = htmlspecialchars($_POST["lastname"]);
@@ -17,6 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirm_password"];
     $userType = $_POST["userType"];
+    $educationQualification = $_POST["education_qualification"];
+    $interestedField = $_POST["interested_field"];
+    $professionalQualification = $_POST["professional_qualification"];
+
+
 
     // Check if email already exists in the database
     $sql_check_email = "SELECT * FROM userregister WHERE email = ?";
@@ -24,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_check_email->bind_param("s", $email);
     $stmt_check_email->execute();
     $result_check_email = $stmt_check_email->get_result();
+
 
     if ($result_check_email->num_rows > 0) {
         // Email already registered
@@ -45,16 +53,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     // Prepare SQL statement using prepared statements
-    $sql_insert_user = "INSERT INTO userregister (firstname, lastname, email, password, usertype) VALUES (?, ?, ?, ?, ?)";
+    $sql_insert_user = "INSERT INTO userregister (firstname, lastname, email, password, usertype, education_qualification, interested_field, professional_qualification) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt_insert_user = $conn->prepare($sql_insert_user);
-    $stmt_insert_user->bind_param("sssss", $firstName, $lastName, $email, $hashedPassword, $userType);
+    $stmt_insert_user->bind_param("ssssssss", $firstName, $lastName, $email, $hashedPassword, $userType, $educationQualification, $interestedField, $professionalQualification);
 
     // Execute the statement
     if ($stmt_insert_user->execute()) {
+        // Registration successful
+        session_start();
         $_SESSION['message'] = "Successfully registered";
-        echo '<script>window.location.href = "userLoginForm";</script>';
+        header("Location: userLoginForm.php"); // Redirect to login form
         exit();
     } else {
+        // Registration failed
         echo "Error: " . $stmt_insert_user->error;
     }
 
@@ -320,6 +331,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <i class="fas fa-check-circle"></i>
                     </div>
                 </div>
+
+                <div class="form-group p-1" style="margin-bottom: 30px;">
+                    <span class="input-icon"><i class="fa fa-graduation-cap"></i></span>
+                    <select class="form-control" id="education_qualification" name="education_qualification" required>
+                        <option value="">Select Education Qualification</option>
+                        <option value="high_school">High School</option>
+                        <option value="college">College</option>
+                        <option value="undergraduate">Undergraduate</option>
+                        <option value="postgraduate">Postgraduate</option>
+                    </select>
+                    <div class="invalid-feedback" id="educationQualificationError"></div>
+                    <div class="valid-feedback">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+
+                <div class="form-group p-1" style="margin-bottom: 30px;">
+                    <span class="input-icon"><i class="fa fa-bullseye"></i></span>
+                    <select class="form-control" id="interested_field" name="interested_field" required>
+                        <option value="">Select Interested Field</option>
+                        <option value="information_technology">Information Technology</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="finance">Finance</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="human_resources">Human Resources</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <div class="invalid-feedback" id="interestedFieldError"></div>
+                    <div class="valid-feedback">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+
+                <div class="form-group p-1" style="margin-bottom: 30px;">
+                    <span class="input-icon"><i class="fa fa-certificate"></i></span>
+                    <select class="form-control" id="professional_qualification" name="professional_qualification" required>
+                        <option value="">Select Professional Qualification</option>
+                        <option value="certified_public_accountant">Certified Public Accountant (CPA)</option>
+                        <option value="project_management_professional">Project Management Professional (PMP)</option>
+                        <option value="chartered_financial_analyst">Chartered Financial Analyst (CFA)</option>
+                        <option value="certified_information_systems_security_professional">Certified Information Systems Security Professional (CISSP)</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <div class="invalid-feedback" id="professionalQualificationError"></div>
+                    <div class="valid-feedback">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+
+
+
                 <input type="hidden" name="userType" value="jobSeeker">
                 <button type="submit" class="btn signin p-2 fw-bold" id="registerBtn">Register</button>
             </form>
