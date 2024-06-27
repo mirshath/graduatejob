@@ -62,14 +62,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (
             $email == "" || $password == "" || $confirmPassword == "" || $companyName == ""
         ) {
-             $_SESSION["message"] = "All fields are required ";
-             ?>
+            $_SESSION["message"] = "All fields are required ";
+            ?>
 
-                 <script>
-                     alertify.error("All fields are required  !!");
-                 </script>
- <?php
-            echo '<script>window.location.href = "recruiterLoginForm";</script>';
+                <script>
+                    alertify.error("All fields are required  !!");
+                </script>
+                <?php
+                echo '<script>window.location.href = "recruiterLoginForm";</script>';
         } else {
             // Validate email
             // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -88,15 +88,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Check if passwords match
             if ($password !== $confirmPassword) {
                 // $_SESSION["message"] = "Passwords do not match!";
-?>
+                ?>
 
-                <script>
-                    alertify.error("Passwords do not match !!");
-                </script>
-<?php
-                echo '<script>window.location.href = "recruiterLoginForm";</script>';
+                    <script>
+                        alertify.error("Passwords do not match !!");
+                    </script>
+                    <?php
+                    echo '<script>window.location.href = "recruiterLoginForm";</script>';
 
-                exit();
+                    exit();
             }
 
             // Hash the password
@@ -143,10 +143,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/themes/default.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/themes/default.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
 
 
 
@@ -520,17 +520,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <h4 class="mb-4 pb-4 ">Recruiter Log In</h4>
 
                                                 <div class="form-group">
-                                                    <input type="email" class="form-style" name="login_email" placeholder="example@gmail.com">
+                                                    <input type="email" class="form-style" name="login_email"
+                                                        placeholder="example@gmail.com">
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="password" class="form-style" name="login_password" id="login_password" placeholder="Enter password">
+                                                    <input type="password" class="form-style" name="login_password"
+                                                        id="login_password" placeholder="Enter password">
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <!-- <a href="#" class="btn mt-4">submit</a> -->
                                                 <button type="submit" name="login_btn" class="btn mt-4">Login</button>
 
-                                                <p class="mb-0 mt-4 text-center"><a href="../reset_password_request" class="link">Forgot your password?</a></p>
+                                                <p class="mb-0 mt-4 text-center"><a href="../reset_password_request"
+                                                        class="link">Forgot your password?</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -542,23 +545,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <div class="section text-center">
                                                 <h4 class="mb-4 mt-4 pb-3">Sign Up</h4>
                                                 <div class="form-group">
-                                                    <input type="text" name="companyName" class="form-style" placeholder="Company Name" id="companyName" autocomplete="off">
+                                                    <input type="text" name="companyName" class="form-style"
+                                                        placeholder="Company Name" id="companyName" autocomplete="off">
                                                     <i class="input-icon uil uil-user"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="email" name="email" class="form-style" placeholder="Your Email" id="email" autocomplete="off">
+                                                    <input type="email" name="email" class="form-style"
+                                                        placeholder="Your Email" id="email" autocomplete="off">
                                                     <i class="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="password" name="password" class="form-style" placeholder="Your Password" id="password" autocomplete="off">
+                                                    <input type="password" name="password" class="form-style"
+                                                        placeholder="Your Password" id="password" autocomplete="off">
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="password" name="confirmPassword" class="form-style" placeholder="Your confirm Passwords" id="confirmPassword" autocomplete="off">
+                                                    <input type="password" name="confirmPassword" class="form-style"
+                                                        placeholder="Your confirm Passwords" id="confirmPassword"
+                                                        autocomplete="off">
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <!-- <a href="#" name="register_btn" class="btn mt-4">submit</a> -->
-                                                <input type="hidden" class="form-control form-control-user" name="usertype" value="recruiter" placeholder="Repeat Password">
+                                                <input type="hidden" class="form-control form-control-user"
+                                                    name="usertype" value="recruiter" placeholder="Repeat Password">
 
                                                 <button type="submit" name="register_btn" class="btn mt-4 mb-4">Register
                                                     Account</button>

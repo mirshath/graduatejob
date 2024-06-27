@@ -197,7 +197,7 @@ include("includes/navbar.php");
                       <a href="job-details?id=<?= $row['job_id']; ?>">
 
                         <div class="d-none d-md-flex align-items-center mb-3">
-                          <img src="Admin/uploads/<?= $row['profile'] ?>" class="img-fluid shadow me-3" alt="Profile Image" style="width: 70px; height: 70px; object-fit: cover; border-radius: 20px;">
+                          <img src="Admin/uploads/company_profiles/<?= $row['profile'] ?>" class="img-fluid shadow me-3" alt="Profile Image" style="width: 70px; height: 70px; object-fit: cover; border-radius: 20px;">
                           <div>
                             <h5 class="mb-1"><b><?= $row['job_title'] ?></b></h5>
                             <div class="d-flex align-items-center mb-1">
