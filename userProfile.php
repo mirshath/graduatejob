@@ -78,7 +78,7 @@ if ($result->num_rows > 0) {
 
 
 
-<main class="main" style="margin-top: 110px;">
+<main class="main" style="margin-top: 130px;">
 
 
     <div class="container text-white">
