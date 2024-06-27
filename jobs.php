@@ -26,8 +26,13 @@ $deadline = mysqli_fetch_array($sql_deadline_run);
 // counting , how much jobs are posted 
 $sql = "SELECT COUNT(*) AS total FROM jobs WHERE admin_status = 'Approved'   AND application_status = 'active' ";
 $result = mysqli_query($conn, $sql);
+$result_ = mysqli_query($conn, $sql);
+
+
 $row = mysqli_fetch_assoc($result);
 $JobCounts = $row['total'];
+
+
 
 
 
@@ -735,17 +740,7 @@ $JobCounts = $row['total'];
                       </div> -->
 
 
-                      <!-- class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" -->
-                      <!-- <form id="search-form">
-                        <div class="input-group">
-                          <input type="text" id="search-query" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                          <div class="input-group-append">
-                            <button class="btn btn-primary" id="search-button" type="button">
-                              <i class="fas fa-search fa-sm"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </form> -->
+
 
 
 
