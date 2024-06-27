@@ -8,10 +8,9 @@ if (isset($_GET['type'], $_GET['id'])) {
 
     // Check if there are associated records
     if ($type === 'category') {
-        $check_jobs_sql = "SELECT COUNT(*) as job_count FROM jobs WHERE job_category = ?";
+        // Check if there are jobs in this category
+        $check_jobs_sql = "SELECT COUNT(*) as category_count FROM jobs WHERE job_category = ?";
         $stmt_check = $conn->prepare($check_jobs_sql);
-
-
 
         if ($stmt_check) {
             $stmt_check->bind_param("s", $id); // Assuming category_name is a string
@@ -20,13 +19,43 @@ if (isset($_GET['type'], $_GET['id'])) {
             $row = $result->fetch_assoc();
             $stmt_check->close();
 
-            if ($row['job_count'] > 0) {
-                $_SESSION['error'] = "Cannot delete category: Jobs exist in this category.";
+            if ($row['category_count'] > 0) {
+                $_SESSION['message'] = "Cannot delete category: Jobs exist in this category.";
+                // header("Location: " . $_SERVER['HTTP_REFERER']);
+                echo '<script>window.location.href = "' . $_SERVER['HTTP_REFERER'] . '";</script>';
 
-                header("Location: " . $_SERVER['HTTP_REFERER']);
                 exit();
             }
-        } else {    
+        } else {
+            $_SESSION['message'] = "Error preparing statement: " . $conn->error;
+            header("Location: " . $_SERVER['HTTP_REFERER']);
+            exit();
+        }
+    }
+
+
+
+    // Check if there are associated records
+    if ($type === 'company') {
+        // Check if the user has posted any jobs
+        $check_jobs_sql = "SELECT COUNT(*) as job_count FROM jobs WHERE company_name = ?";
+        $stmt_check = $conn->prepare($check_jobs_sql);
+
+        if ($stmt_check) {
+            $stmt_check->bind_param("s", $id); // Assuming company_name is a string
+            $stmt_check->execute();
+            $result = $stmt_check->get_result();
+            $row = $result->fetch_assoc();
+            $stmt_check->close();
+
+            if ($row['job_count'] > 0) {
+                $_SESSION['message'] = "Cannot delete company: Jobs are posted under this company.";
+                // header("Location: " . $_SERVER['HTTP_REFERER']);
+
+                // Redirect back to referring page using JavaScript
+                echo '<script>window.location.href = "' . $_SERVER['HTTP_REFERER'] . '";</script>';
+            }
+        } else {
             $_SESSION['error'] = "Error preparing statement: " . $conn->error;
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
@@ -35,11 +64,13 @@ if (isset($_GET['type'], $_GET['id'])) {
 
 
 
-
     // Perform deletion based on type
     switch ($type) {
         case 'user':
             $sql = "DELETE FROM userregister WHERE id = ?";
+            break;
+        case 'company':
+            $sql = "DELETE FROM userregister WHERE company_name = ?";
             break;
         case 'job':
             $sql = "DELETE FROM jobs WHERE id = ?";
@@ -66,7 +97,7 @@ if (isset($_GET['type'], $_GET['id'])) {
         if ($stmt->execute()) {
             $_SESSION['message'] = "Record deleted successfully";
         } else {
-            $_SESSION['error'] = "Error deleting record: "; 
+            $_SESSION['error'] = "Error deleting record: ";
         }
         $stmt->close();
     } else {

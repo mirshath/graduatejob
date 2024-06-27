@@ -90,7 +90,9 @@ $getUsers_run = mysqli_query($conn, $getUsers);
                           <a href='company_view_details.php?id=<?php echo $row["id"]; ?>' class='btn btn-primary btn-sm'><i class="fas fa-eye"></i></a>
 
                           <!-- <a href='delete.php?id=<?php echo $row["id"]; ?>' class='btn btn-danger btn-sm' onclick="return confirm('Are you sure you want to delete this job?')">Delete</a> -->
-                          <a href="delete.php?type=user&id=<?= $row["id"] ?>" class='btn btn-danger btn-sm' onclick="return confirm('Are you sure you want to delete this user?')"> <i class="fas fa-trash-alt"></i></a>
+                          <a href="delete.php?type=company&id=<?= $row["company_name"] ?>" class='btn btn-danger btn-sm' onclick="return confirm('Are you sure you want to delete this user?')">
+                            <i class="fas fa-trash-alt"></i>
+                          </a>
 
                         </td>
                       </tr>
