@@ -950,9 +950,9 @@ $JobCounts = $row['total'];
                         <a href="job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-4 d-flex justify-content-center align-items-center">
-                              <img src="https://cdn-icons-png.freDesignsepik.com/512/6073/6073873.png" alt="" class="img-fluid">
-                            </div>
+                          <div class="col-4 d-flex justify-content-center align-items-center">
+    <img src="https://cdn-icons-png.freepik.com/512/6073/6073873.png" alt="" class="img-fluid">
+</div>
 
                             <div class="col-8">
                               <h4 class="mb-3"><?= $row['job_title'] ?></h4>
