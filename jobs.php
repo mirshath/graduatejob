@@ -914,37 +914,68 @@ $JobCounts = $row['total'];
 
                 ?>
                     <div class="card mb-3">
-                      <a href="job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
-                      <div class="card-body">
-                        <div class="d-flex flex-column flex-lg-row">
-                          <span class="avatar avatar-text rounded-2 me-4 mb-2">
-                            <img src="https://cdn-icons-png.freepik.com/512/6073/6073873.png" alt="" class="img-fluid">
-                          </span>
-                          <!-- <span class="avatar avatar-text rounded-2 me-4 mb-2" style="background-color: <?= $random_color ?>;">
-                            <?= substr($row['job_title'], 0, 2) ?>
-                          </span> -->
-                          <div class="row flex-fill">
-                            <div class="col-sm-5">
+                      <!-- Desktop View -->
+                      <div class="d-none d-md-block">
+                        <a href="job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
+                        <div class="card-body">
+                          <div class="d-flex flex-column flex-lg-row">
+                            <span class="avatar avatar-text rounded-2 me-4 mb-2">
+                              <img src="https://cdn-icons-png.freepik.com/512/6073/6073873.png" alt="" class="img-fluid">
+                            </span>
+                            <div class="row flex-fill">
+                              <div class="col-sm-5">
+                                <h4 class="h5"><?= $row['job_title'] ?></h4>
+                                <span class="badge dark-red-shade3"><?= $row['location'] ?></span>
+                                <span class="badge dark-blue-shade1"><?= $row['job_category'] ?></span>
+                                <span class="badge dark-red-shade3"><?= $row['company_name'] ?></span>
+                              </div>
+                              <div class="col-sm-4 py-2">
+                                <?php
+                                foreach ($skillsArray as $skill) {
+                                  echo '<span class="badge dark-blue-shade1">' . strtoupper(trim($skill)) . '</span> ';
+                                }
+                                ?>
+                              </div>
+                              <div class="col-sm-3 text-lg-end">
+                                <span class="badge dark-blue-shade1"><?= $row['employment_type'] ?></span>
+                                <span class="badge <?= $badge_color ?>"><?= $badge_text ?></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Mobile View -->
+                      <div class="d-md-none">
+                        <a href="job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-4">
+                              <img src="https://cdn-icons-png.freepik.com/512/6073/6073873.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-8">
                               <h4 class="h5"><?= $row['job_title'] ?></h4>
                               <span class="badge dark-red-shade3"><?= $row['location'] ?></span>
                               <span class="badge dark-blue-shade1"><?= $row['job_category'] ?></span>
                               <span class="badge dark-red-shade3"><?= $row['company_name'] ?></span>
-                            </div>
-                            <div class="col-sm-4 py-2">
-                              <?php
-                              foreach ($skillsArray as $skill) {
-                                echo '<span class="badge dark-blue-shade1">' . strtoupper(trim($skill)) . '</span> ';
-                              }
-                              ?>
-                            </div>
-                            <div class="col-sm-3 text-lg-end">
-                              <span class="badge dark-blue-shade1"><?= $row['employment_type'] ?></span>
-                              <span class="badge <?= $badge_color ?>"><?= $badge_text ?></span>
+                              <div class="py-2">
+                                <?php
+                                foreach ($skillsArray as $skill) {
+                                  echo '<span class="badge dark-blue-shade1">' . strtoupper(trim($skill)) . '</span> ';
+                                }
+                                ?>
+                              </div>
+                              <div class="">
+                                <span class="badge dark-blue-shade1"><?= $row['employment_type'] ?></span>
+                                <span class="badge <?= $badge_color ?>"><?= $badge_text ?></span>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+
+
                 <?php
                   }
                 }
