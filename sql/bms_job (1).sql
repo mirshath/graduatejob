@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2024 at 01:08 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jun 27, 2024 at 04:40 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `username` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
@@ -53,20 +53,20 @@ CREATE TABLE `applicants` (
   `jobseeker_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `company_email` varchar(50) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `resume_file` varchar(255) DEFAULT NULL,
   `applied_job_id` int(11) DEFAULT NULL,
   `applied_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `applicants`
 --
 
-INSERT INTO `applicants` (`id`, `jobseeker_id`, `name`, `email`, `phone`, `resume_file`, `applied_job_id`, `applied_at`, `status`) VALUES
-(116, 147, 'Mirshath', 'mirshath.mmm@gmail.com', '0254904455', 'CV.pdf', 101, '2024-06-26 10:13:09', 'Pending'),
-(122, 194, 'Mohamed', 'info@hazz.lk', '0254904455', 'CV2.pdf', 92, '2024-06-26 10:52:51', 'Pending');
+INSERT INTO `applicants` (`id`, `jobseeker_id`, `name`, `email`, `company_email`, `phone`, `resume_file`, `applied_job_id`, `applied_at`, `status`) VALUES
+(127, 147, 'Mirshath', 'mirshath.mmm@gmail.com', 'rec@gmail.com', '0766158014', 'My NiC for TIN Mirshath.pdf', 101, '2024-06-26 16:50:36', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category`
@@ -118,7 +118,7 @@ CREATE TABLE `jobs` (
   `postedBy` varchar(255) DEFAULT NULL,
   `admin_status` varchar(255) DEFAULT NULL,
   `application_status` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `jobs`
@@ -141,7 +141,7 @@ CREATE TABLE `jobseeker_company_subscriptions` (
   `id` int(11) NOT NULL,
   `jobseeker_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `jobseeker_company_subscriptions`
@@ -163,7 +163,7 @@ CREATE TABLE `password_resets` (
   `email` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -185,7 +185,7 @@ CREATE TABLE `userregister` (
   `company_name` varchar(255) DEFAULT NULL,
   `studentCV` varchar(255) DEFAULT NULL,
   `St_address` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `userregister`
@@ -267,7 +267,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT for table `category`
