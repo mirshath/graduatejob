@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2024 at 04:40 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jun 27, 2024 at 01:10 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `username` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
@@ -59,14 +59,7 @@ CREATE TABLE `applicants` (
   `applied_job_id` int(11) DEFAULT NULL,
   `applied_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `applicants`
---
-
-INSERT INTO `applicants` (`id`, `jobseeker_id`, `name`, `email`, `company_email`, `phone`, `resume_file`, `applied_job_id`, `applied_at`, `status`) VALUES
-(127, 147, 'Mirshath', 'mirshath.mmm@gmail.com', 'rec@gmail.com', '0766158014', 'My NiC for TIN Mirshath.pdf', 101, '2024-06-26 16:50:36', 'Pending');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -77,17 +70,17 @@ INSERT INTO `applicants` (`id`, `jobseeker_id`, `name`, `email`, `company_email`
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
+  `category_image` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `category_name`, `created_at`) VALUES
-(9, 'It', '2024-05-26 03:34:48'),
-(18, 'Bussiness', '2024-06-23 09:40:56'),
-(19, 'Acc', '2024-06-23 09:41:01');
+INSERT INTO `category` (`id`, `category_name`, `category_image`, `created_at`) VALUES
+(9, 'It', NULL, '2024-05-26 03:34:48'),
+(35, 'Accounts', 'dc2ec5a571974417a5551420a4fb0587.jpg', '2024-06-27 11:06:57');
 
 -- --------------------------------------------------------
 
@@ -118,18 +111,7 @@ CREATE TABLE `jobs` (
   `postedBy` varchar(255) DEFAULT NULL,
   `admin_status` varchar(255) DEFAULT NULL,
   `application_status` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `jobs`
---
-
-INSERT INTO `jobs` (`id`, `job_title`, `company_name`, `company_logo`, `job_category`, `categoryId`, `categoryName`, `job_description`, `employment_type`, `location`, `salary_range`, `skills_required`, `education_level`, `experience_level`, `application_deadline`, `contact_info`, `additional_info`, `created_at`, `recuiter_id`, `postedBy`, `admin_status`, `application_status`) VALUES
-(92, 'Network Interns', 'ESOFT', 'job2.jpg', '', NULL, NULL, 'Network Intern', 'Part-time', 'Kandy', '2500', 'c++, react, js', 'HighSchool', 'Entry_Level', '2024-06-27', '0254904455', 'Network Intern', '2024-06-09 17:37:20', 140, ' Admin', 'Approved', 'active'),
-(93, 'Graphics Q', 'BMS', 'job 1.jpg', '', NULL, NULL, 'qqqq', 'Part-time', 'Colobo', '5445', 'multimedia, pptx', 'PhD', 'Mid_Level', '2024-06-26', '025490455', 'sad', '2024-06-09 18:52:31', 11, ' Admin', 'Pending', 'closed'),
-(95, 'PHP-Interns', 'BMS', 'php intern.jpg', 'it', NULL, NULL, 'sdassasasas', 'Internship', 'Anuradhapura', '6500', 'QQQ', 'HighSchool', 'Entry_Level', '2024-06-26', '0254904455', 'fdasf', '2024-06-10 05:23:16', 11, 'BMS', 'Approved', 'closed'),
-(101, 'Communications', 'ESOFT', 'download.png', 'It', NULL, NULL, 'asAS', 'Full-time', 'hf', '22222222', 'Sas', 'HighSchool', 'Entry_Level', '2024-06-29', '22222', 'sAS', '2024-06-22 07:09:38', 140, ' Admin', 'Approved', 'active'),
-(103, 'Supervisor', 'CGS Company', 'php intern.jpg', 'It', NULL, NULL, 'sasa', 'Full-time', 'Colombo', '2500', 'c++, Java', 'HighSchool', 'Entry_Level', '2024-06-28', '025490455', 'Additional', '2024-06-26 10:40:50', 193, 'CGS Company', 'Approved', 'active');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -141,7 +123,7 @@ CREATE TABLE `jobseeker_company_subscriptions` (
   `id` int(11) NOT NULL,
   `jobseeker_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jobseeker_company_subscriptions`
@@ -163,7 +145,7 @@ CREATE TABLE `password_resets` (
   `email` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -184,22 +166,20 @@ CREATE TABLE `userregister` (
   `profile` varchar(255) DEFAULT NULL,
   `company_name` varchar(255) DEFAULT NULL,
   `studentCV` varchar(255) DEFAULT NULL,
-  `St_address` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `St_address` varchar(255) DEFAULT NULL,
+  `education_qualification` varchar(255) DEFAULT NULL,
+  `interested_field` varchar(255) DEFAULT NULL,
+  `professional_qualification` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `userregister`
 --
 
-INSERT INTO `userregister` (`id`, `firstname`, `lastname`, `email`, `password`, `created_at`, `usertype`, `phone_no`, `websites`, `profile`, `company_name`, `studentCV`, `St_address`) VALUES
-(11, 'Mirshath ', 'Mohamed', 'mmm@gmail.com', '$2y$10$FITQAH8/tOxb7d4Ww2YrG.STA5c3xi9sORYZQxdWIeGfBk4I.EJSK', '2024-05-16 16:14:11', 'recruiter', 2549044, 'bms.ac.lk', 'images.png', 'BMS', NULL, NULL),
-(140, 'rec', 'rec', 'rec@gmail.com', '$2y$10$GZNv5WhzlwGL89jt7/v3QudRuWgKJZbEKaF/TotzWixlpF9HhZNEq', '2024-05-29 15:40:50', 'recruiter', 254904455, 'rec.ac.lk', 'images (1).png', 'ESOFT', NULL, NULL),
-(147, 'Mirshath', 'Mohamed', 'mirshath.mmm@gmail.com', '$2y$10$KguObmKDNGGjeC0Jme.q6uHu35tmI8kK.V2MZIPlmNQ9JJBfc1pPm', '2024-06-03 10:42:16', 'jobSeeker', 254904455, '', '667a90d65e40f.jpg', '', '', 'Anuradha Pura'),
-(190, 'Hasni', 'Nihar', 'webmaster@bms.ac.lk', '$2y$10$aGk4On2nlPrNLwOGqao3N.eWliwNIRwM2SqhcG3WvvdapOFAnFO.K', '2024-06-26 15:23:13', 'jobSeeker', NULL, NULL, NULL, NULL, NULL, NULL),
-(191, 'Jawfar', 'Sadiq', 'hrm@bms.ac.lk', '$2y$10$aN6Lyj91BTh4ofvFvTT2ve9GrO0H7SDS1rjhq0GI8fbmqA7isZ0b.', '2024-06-26 15:26:29', 'jobSeeker', NULL, NULL, NULL, NULL, NULL, NULL),
-(192, 'Mirshath', 'Mohamed', 'mirshath.m@cgs.lk', '$2y$10$9g7no7Vehc1Gr7yUOxMn/OY91E8uUaVfLAZzOItIZd9amAWQdBCFO', '2024-06-26 15:28:19', 'jobSeeker', NULL, NULL, NULL, NULL, NULL, NULL),
-(193, NULL, NULL, 'mirmirsha123@gmail.com', '$2y$10$BVa9gcq1JzYIrIBtOdqoDeTPyTXS6n9sa2c7sH/Ugg3ZTlVvIfS5S', '2024-06-26 16:08:26', 'recruiter', 254904455, 'www@sss.com', 'bms-logo-RAW-1-1024x724.png', 'CGS Company', NULL, NULL),
-(194, 'Mohamed', 'Hasni', 'info@hazz.lk', '$2y$10$6.b.VKZAZgc.G/5V/GOjBO9/dcPJafVG2h4hVwmuqvthKcTNoNdna', '2024-06-26 16:19:33', 'jobSeeker', NULL, NULL, '667bf26ca8f7d.jpg', NULL, NULL, NULL);
+INSERT INTO `userregister` (`id`, `firstname`, `lastname`, `email`, `password`, `created_at`, `usertype`, `phone_no`, `websites`, `profile`, `company_name`, `studentCV`, `St_address`, `education_qualification`, `interested_field`, `professional_qualification`) VALUES
+(11, 'Mirshath ', 'Mohamed', 'mmm@gmail.com', '$2y$10$FITQAH8/tOxb7d4Ww2YrG.STA5c3xi9sORYZQxdWIeGfBk4I.EJSK', '2024-05-16 16:14:11', 'recruiter', 2549044, 'bms.ac.lk', 'images.png', 'BMS', NULL, NULL, NULL, NULL, NULL),
+(140, 'rec', 'rec', 'rec@gmail.com', '$2y$10$GZNv5WhzlwGL89jt7/v3QudRuWgKJZbEKaF/TotzWixlpF9HhZNEq', '2024-05-29 15:40:50', 'recruiter', 254904455, 'rec.ac.lk', 'images (1).png', 'ESOFT', NULL, NULL, NULL, NULL, NULL),
+(147, 'Mirshath', 'Mohamed', 'mirshath.mmm@gmail.com', '$2y$10$KguObmKDNGGjeC0Jme.q6uHu35tmI8kK.V2MZIPlmNQ9JJBfc1pPm', '2024-06-03 10:42:16', 'jobSeeker', 254904455, '', '667a90d65e40f.jpg', '', '', 'Anuradha Pura', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -273,13 +253,13 @@ ALTER TABLE `applicants`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `jobseeker_company_subscriptions`
@@ -297,7 +277,7 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT for table `userregister`
 --
 ALTER TABLE `userregister`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
 
 --
 -- Constraints for dumped tables
