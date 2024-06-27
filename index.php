@@ -6,14 +6,13 @@ require "Database/connection.php";
 
 include("includes/header.php");
 include("includes/navbar.php");
+
+
 ?>
 
 
 
 <style>
-
-
-
   .swiper-wrapper {
     background-color: transparent;
     border-radius: 15px;
@@ -40,6 +39,9 @@ include("includes/navbar.php");
     background-color: rgb(10 50 108) !important;
   }
 </style>
+
+
+
 <main class="main">
 
 
@@ -54,105 +56,68 @@ include("includes/navbar.php");
   <link rel="stylesheet" href="carousels/css/style.css">
 
   <section class="mt-4" style="margin-top: 50px;">
-  <div class="home-slider owl-carousel js-fullheight">
-   
+    <div class="home-slider owl-carousel js-fullheight">
 
-    <div class="slider-item js-fullheight" style="background-image:url(https://t3.ftcdn.net/jpg/06/06/50/94/360_F_606509451_fSeyxuE8NUX41WNzuKP7FwRVsrKNC7fl.jpg);">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-          <div class="col-md-12 ftco-animate">
-            <div class="text w-100 text-center">
-              <h2>Empowering Graduates:</h2>
-              <h1 class="mb-3">GRADUATEJOB.LK</h1>
-              <p style="font-size: 22px;">Your Path to Success Begins Here</p>
-              <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
-              <a href="jobs" class="btn btn-success btn-lg">Start Your Career Journey</a>
+
+      <div class="slider-item js-fullheight" style="background-image:url(https://t3.ftcdn.net/jpg/06/06/50/94/360_F_606509451_fSeyxuE8NUX41WNzuKP7FwRVsrKNC7fl.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-12 ftco-animate">
+              <div class="text w-100 text-center">
+                <h2>Empowering Graduates:</h2>
+                <h1 class="mb-3">GRADUATEJOB.LK</h1>
+                <p style="font-size: 22px;">Your Path to Success Begins Here</p>
+                <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
+                <a href="jobs" class="btn btn-success btn-lg">Start Your Career Journey</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-item js-fullheight" style="background-image:url(https://media.13newsnow.com/assets/WVEC/images/34af2191-3ac8-4b97-8631-bbeb6425d04e/34af2191-3ac8-4b97-8631-bbeb6425d04e_1140x641.jpeg)">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-12 ftco-animate">
+              <div class="text w-100 text-center">
+                <h2>Your Gateway to Success:</h2>
+                <h1 class="mb-3">GRADUATEJOB.LK</h1>
+                <p style="font-size: 22px;">Find Your Ideal Job with Ease and Confidence</p>
+                <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
+                <a href="jobs" class="btn btn-success btn-lg">Discover Opportunities</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-item js-fullheight" style="background-image:url(https://t4.ftcdn.net/jpg/03/15/80/09/360_F_315800964_77dsFWNJflY7wvlnE1C5SNpt0DC2h43e.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-12 ftco-animate">
+              <div class="text w-100 text-center">
+                <h2>Discover Opportunities:</h2>
+                <h1 class="mb-3">GRADUATEJOB.LK</h1>
+                <p style="font-size: 22px;">Where Your Future Awaits</p>
+                <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
+                <a href="jobs" class="btn btn-success btn-lg">Find Your Dream Job</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="slider-item js-fullheight" style="background-image:url(https://media.13newsnow.com/assets/WVEC/images/34af2191-3ac8-4b97-8631-bbeb6425d04e/34af2191-3ac8-4b97-8631-bbeb6425d04e_1140x641.jpeg)">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-          <div class="col-md-12 ftco-animate">
-            <div class="text w-100 text-center">
-              <h2>Your Gateway to Success:</h2>
-              <h1 class="mb-3">GRADUATEJOB.LK</h1>
-              <p style="font-size: 22px;">Find Your Ideal Job with Ease and Confidence</p>
-              <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
-              <a href="jobs" class="btn btn-success btn-lg">Discover Opportunities</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="slider-item js-fullheight" style="background-image:url(https://t4.ftcdn.net/jpg/03/15/80/09/360_F_315800964_77dsFWNJflY7wvlnE1C5SNpt0DC2h43e.jpg);">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-          <div class="col-md-12 ftco-animate">
-            <div class="text w-100 text-center">
-              <h2>Discover Opportunities:</h2>
-              <h1 class="mb-3">GRADUATEJOB.LK</h1>
-              <p style="font-size: 22px;">Where Your Future Awaits</p>
-              <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
-              <a href="jobs" class="btn btn-success btn-lg">Find Your Dream Job</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="carousels/js/jquery.min.js"></script>
-  <script src="carousels/js/popper.js"></script>
-  <script src="carousels/js/bootstrap.min.js"></script>
-  <script src="carousels/js/owl.carousel.min.js"></script>
-  <script src="carousels/js/main.js"></script>
-</section>
-
-
-
-
-
-
-
-
+    <script src="carousels/js/jquery.min.js"></script>
+    <script src="carousels/js/popper.js"></script>
+    <script src="carousels/js/bootstrap.min.js"></script>
+    <script src="carousels/js/owl.carousel.min.js"></script>
+    <script src="carousels/js/main.js"></script>
+  </section>
 
   <!-- -----------------------------------------------------  -->
-
-
-
-
-  <!-- Hero Section -->
-  <!-- <section id="hero" class="hero section" style="padding: 60px 0; ">
-
-    <img src="assets/img/bg1.jpg" alt="" data-aos="fade-in">
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 d-flex flex-column align-items-center align-items-lg-start mobile_banner">
-          <h2 data-aos="fade-up" data-aos-delay="100">Welcome to <span>GRADUATEJOB.LK</span></h2>
-          <p data-aos="fade-up" data-aos-delay="200">Find your path and Do best</p>
-          <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-            <a href="aboutus" class="cta-btn">About US</a>
-            <a href="jobs" class="cta-btn">Find a Job</a>
-          </div>
-        </div>
-        <div class="col-lg-4 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
-          <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-        </div>
-      </div>
-    </div>
-
-  </section> -->
-  <!-- /Hero Section -->
-
-
 
 
 
@@ -205,37 +170,79 @@ include("includes/navbar.php");
 
           <?php
 
-          $sql = "SELECT * FROM jobs WHERE admin_status='Approved' AND application_status='active' ORDER BY id DESC LIMIT 6";
-          $sql_run = mysqli_query($conn, $sql);
+          // $sql = "SELECT * FROM jobs WHERE admin_status='Approved' AND application_status='active' ORDER BY id DESC LIMIT 6";
+          // $sql_run = mysqli_query($conn, $sql);
 
 
+          $sql = "
+          SELECT jobs.*, jobs.id AS job_id, userregister.*
+          FROM jobs
+          JOIN userregister ON jobs.company_name = userregister.company_name
+          WHERE jobs.admin_status = 'Approved' AND jobs.application_status = 'active'
+          ORDER BY jobs.id DESC
+          LIMIT 6";
+      
+      $sql_run = mysqli_query($conn, $sql);
+      
 
           if ($sql_run->num_rows > 0) {
             while ($row = mysqli_fetch_array($sql_run)) {
           ?>
               <div class="swiper-slide">
                 <div class="testimonial-item">
-                  <div class="card  border-0 bg-light rounded ">
+                  <div class="card border-0 bg-light rounded">
                     <div class="card-body p-4 shadow">
-                      <span class="badge rounded-pill bg-primary float-md-end mb-3 mb-sm-0">
-                        <i class="fas fa-briefcase" style="font-size: 15px;"></i> &nbsp;&nbsp;
-                        <?= $row['employment_type'] ?>
-                      </span>
-                      <h5><b><?= $row['job_title'] ?></b></h5>
-                      <div class="mt-3">
-                        <span class="text-muted d-block"><i class="fas fa-briefcase" style="font-size: 15px;">&nbsp;
-                            <?= $row['job_category'] ?></i></span>
-                        <span class="text-muted d-block"><i class="fas fa-map-marker-alt" style="font-size: 15px;">&nbsp;
-                            <?= $row['location'] ?></i></span>
-                      </div>
-                      <div class="mt-3">
-                        <a href="job-details?id=<?= $row['id']; ?>" class="btn btn-primary">View Details</a>
-                      </div>
+
+                      <!-- Desktop View: Image and data side by side -->
+                      <a href="job-details?id=<?= $row['job_id']; ?>">
+
+                        <div class="d-none d-md-flex align-items-center mb-3">
+                          <img src="Admin/uploads/<?= $row['profile'] ?>" class="img-fluid shadow me-3" alt="Profile Image" style="width: 70px; height: 70px; object-fit: cover; border-radius: 20px;">
+                          <div>
+                            <h5 class="mb-1"><b><?= $row['job_title'] ?></b></h5>
+                            <div class="d-flex align-items-center mb-1">
+                              <span class="badge rounded-pill bg-primary">
+                                <i class="fas fa-briefcase" style="font-size: 15px;"></i> &nbsp;&nbsp; <?= $row['employment_type'] ?>
+                              </span>
+                            </div>
+                            <div class="text-muted">
+                              <span><i class="fas fa-briefcase" style="font-size: 12px;"></i>&nbsp; <?= $row['job_category'] ?></span><br>
+                              <span><i class="fas fa-map-marker-alt" style="font-size: 12px;"></i>&nbsp; <?= $row['location'] ?></span>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+
+
+                      <!-- Mobile View: Image on left, data on right -->
+                      <a href="job-details?id=<?= $row['job_id']; ?>">
+
+                         <div class="d-md-none">
+                           <div class="row">
+                             <div class="col-4 d-flex justify-content-center align-items-center">
+                               <img src="Admin/uploads/<?= $row['profile'] ?>" class="img-fluid mb-3 shadow" alt="Profile Image" style="object-fit: cover; border-radius: 20px;">
+                             </div>
+                             <div class="col-8">
+                               <h5 class="mb-1"><b><?= $row['job_title'] ?></b></h5>
+                               <span class="badge rounded-pill bg-primary mb-2">
+                                 <i class="fas fa-briefcase" style="font-size: 15px;"></i> &nbsp;&nbsp; <?= $row['employment_type'] ?>
+                               </span>
+                               <div>
+                                 <span class="text-muted"><i class="fas fa-briefcase" style="font-size: 12px;"></i>&nbsp; <?= $row['job_category'] ?></span><br>
+                                 <span class="text-muted"><i class="fas fa-map-marker-alt" style="font-size: 12px;"></i>&nbsp; <?= $row['location'] ?></span>
+                               </div>
+                               
+                             </div>
+                           </div>
+                         </div>
+                       </a>
+
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- End testimonial item -->
+              <!-- End swiper-slide -->
+
 
           <?php
             }
@@ -520,6 +527,18 @@ include("includes/navbar.php");
 
   </section>
   <!-- /Testimonials Section for the companies -->
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
