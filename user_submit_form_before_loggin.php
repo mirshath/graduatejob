@@ -40,12 +40,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <style>
-    body { font-family: 'Lato', sans-serif; }
-    h1 { margin-bottom: 40px; }
-    label { color: #333; }
-    .btn-send { font-weight: 300; text-transform: uppercase; letter-spacing: 0.2em; width: 80%; margin-left: 3px; }
-    .help-block.with-errors { color: #ff5050; margin-top: 5px; }
-    .card { margin-left: 10px; margin-right: 10px; }
+    body {
+        font-family: 'Lato', sans-serif;
+    }
+
+    h1 {
+        margin-bottom: 40px;
+    }
+
+    label {
+        color: #333;
+    }
+
+    .btn-send {
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        width: 80%;
+        margin-left: 3px;
+    }
+
+    .help-block.with-errors {
+        color: #ff5050;
+        margin-top: 5px;
+    }
+
+    .card {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 </style>
 
 <div class="container">
@@ -63,19 +86,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="st_address">Street Address *</label>
-                                            <input id="st_address" type="text" name="st_address" class="form-control" placeholder="Street Address *" required="required" data-error="Street address is required.">
+                                            <input id="st_address" type="text" name="st_address" class="form-control"
+                                                placeholder="Street Address *" required="required"
+                                                data-error="Street address is required.">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="education_qualification">Education Qualification *</label>
-                                            <input id="education_qualification" type="text" name="education_qualification" class="form-control" placeholder="Education Qualification *" required="required" data-error="Education qualification is required.">
+                                            <input id="education_qualification" type="text"
+                                                name="education_qualification" class="form-control"
+                                                placeholder="Education Qualification *" required="required"
+                                                data-error="Education qualification is required.">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-md-12">
-                                        <input type="submit" class="btn btn-success btn-send pt-2 btn-block" value="Update Details">
+                                        <input type="submit" class="btn btn-success btn-send pt-2 btn-block"
+                                            value="Update Details">
                                     </div>
                                 </div>
                             </div>

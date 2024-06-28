@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($user['user_active'] == '0') {
                 // User is inactive
-?>
+                ?>
                 <script>
                     alertify.error("Please submit your document and login.");
                 </script>
@@ -44,11 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } else {
                     // Password is incorrect
-                ?>
+                    ?>
                     <script>
                         alertify.error("Please check your credentials.");
                     </script>
-            <?php
+                    <?php
                 }
             }
         } else {
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <script>
                 alertify.error("No user found with that email address!");
             </script>
-        <?php
+            <?php
         }
 
         $stmt->close();
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <script>
             alertify.error("An error occurred. Please try again later.");
         </script>
-<?php
+        <?php
     }
 }
 ?>
@@ -329,7 +329,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="form-group p-1">
                         <span class="input-icon"><i class="fa fa-lock"></i></span>
-                        <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                        <input class="form-control" type="password" name="password" id="password"
+                            placeholder="Password">
                     </div>
                     <!-- <button class="btn signin">Login</button> -->
                     <button type="submit" class="btn signin p-2 p-2 fw-bold">Login</button>

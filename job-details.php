@@ -616,54 +616,70 @@ if (isset($_SESSION['message'])) {
 // ---------------------------------------------- WHEN LOGIN THROUGHT THE FINDING JOBS PHP CODE  ----------------------------------------------
 
 // Check if the form is submitted
-if (isset($_POST['login_modal_btn'])) {
-  // Get email and password from the form submission
-  $email = $_POST["email"];
+if (isset($_POST['login_modal_btn'])) { $email = $_POST["email"];
   $password = $_POST["password"];
 
   // SQL query to check if the user exists
   $sql = "SELECT * FROM userregister WHERE email = ?";
   $stmt = $conn->prepare($sql);
-  if ($stmt === false) {
-    die("Failed to prepare SQL statement: " . $conn->error);
-  }
+  if ($stmt) {
+      $stmt->bind_param("s", $email);
+      $stmt->execute();
+      $result = $stmt->get_result();
 
-  $stmt->bind_param("s", $email);
-  $stmt->execute();
-  $result = $stmt->get_result();
+      if ($result->num_rows > 0) {
+          // Fetch the user's data
+          $user = $result->fetch_assoc();
 
-  if ($result->num_rows > 0) {
-    // Fetch the user's data
-    $user = $result->fetch_assoc();
+          if ($user['user_active'] == '0') {
+              // User is inactive
+              ?>
+              <script>
+                  alertify.error("Please submit your document and login.");
+              </script>
+              <?php
+          } else {
+              // Verify the password
+              if (password_verify($password, $user['password'])) {
+                  // Set session variables
+                  $_SESSION['user_id'] = $user['id'];
+                  $_SESSION['user_email'] = $user['email'];
+                  $_SESSION['first_name'] = $user['firstname'];
+                  $_SESSION['user_type'] = $user['usertype'];
 
-    // Verify the password
-    if (password_verify($password, $user['password'])) {
-      // Set session variables
-      $_SESSION['user_id'] = $user['id'];
-      $_SESSION['user_email'] = $user['email'];
-      $_SESSION['first_name'] = $user['firstname'];
-      $_SESSION['user_type'] = $user['usertype'];
-      $_SESSION['message'] = "Successfully logged in";
-
-      // Redirect based on user type
-      if ($user['usertype'] == 'jobSeeker') {
-        // header("Location: job-details?id=" . $_GET['jobId']);
-        echo '<script>window.location.href = "job-details?id=' . $jobId . '";</script>';
-        exit();
-      } else if ($user['usertype'] == 'recruiter') {
-        header("Location: Recuiter/recruiterIndex");
-        exit();
+                  // Redirect based on user type
+                  if ($user['usertype'] == 'jobSeeker') {
+                      $_SESSION['message'] = "Successfully logged in";
+                      echo '<script>window.location.href = "index";</script>';
+                      exit();
+                  }
+              } else {
+                  // Password is incorrect
+                  ?>
+                  <script>
+                      alertify.error("Please check your credentials.");
+                  </script>
+                  <?php
+              }
+          }
+      } else {
+          // No user found with that email address
+          ?>
+          <script>
+              alertify.error("No user found with that email address!");
+          </script>
+          <?php
       }
-    } else {
-      // Password did not match
-      $_SESSION['message'] = "Please check your credentials.";
-    }
-  } else {
-    // No user found with that email address
-    $_SESSION['message'] = "No user found with that email address!";
-  }
 
-  $stmt->close();
+      $stmt->close();
+  } else {
+      // Handle SQL preparation error
+      ?>
+      <script>
+          alertify.error("An error occurred. Please try again later.");
+      </script>
+      <?php
+  }
 }
 
 
