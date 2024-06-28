@@ -69,15 +69,7 @@ include "../Database/connection.php";
 
                   </tr>
                 </thead>
-                <!-- <tfoot>
-                                        <tr>
-                                          <th>First Name</th>
-                                              <th>Last Name</th>
-                                              <th>Email</th>
-                                              <th>profile</th>
-                                              <th>Action</th>
-                                        </tr>
-                                    </tfoot> -->
+                
                 <tbody>
 
 
@@ -95,7 +87,7 @@ include "../Database/connection.php";
                         <td style="text-align: center; vertical-align: middle;"><?= $row["email"] ?></td>
                         <td style="text-align: center; vertical-align: middle;">
                           <?php if (!empty($row["profile"])) : ?>
-                            <img src="../userDashboards/uploads/profiles/<?= htmlspecialchars($row["profile"]); ?>" alt="profile pic" style="max-width: 50px; max-height: 50px; border-radius: 25px;">
+                            <img src="uploads/company_profiles/<?= htmlspecialchars($row["profile"]); ?>" alt="profile pic" style="max-width: 50px; max-height: 50px; border-radius: 25px;">
                           <?php else : ?>
                             <img src="https://cdn-icons-png.freepik.com/512/3135/3135715.png" alt="default profile pic" style="max-width: 50px; max-height: 50px; border-radius: 25px;">
                           <?php endif; ?>

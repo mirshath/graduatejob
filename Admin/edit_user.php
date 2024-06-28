@@ -87,7 +87,7 @@ include '../Database/connection.php';
                                         <div class="row mt-4 mb-4">
                                             <div class="col-md-5 d-flex justify-content-center align-items-center">
                                                 <?php if (!empty($user["profile"])) : ?>
-                                                    <img src="../userDashboards/uploads/profiles/<?= htmlspecialchars($user["profile"]); ?>" alt="profile pic" style="max-width: 250px;  border-radius: 25px;">
+                                                    <img src="uploads/company_profiles/<?= htmlspecialchars($user["profile"]); ?>" alt="profile pic" style="max-width: 250px;  border-radius: 25px;">
                                                 <?php else : ?>
                                                     <img src="https://cdn-icons-png.freepik.com/512/3135/3135715.png" alt="default profile pic" class="img-fluid circle-img shadow" style="max-width: 50px; max-height: 50px; border-radius: 25px;">
                                                 <?php endif; ?>

@@ -257,6 +257,9 @@ $JobCounts = $row['total'];
       </div>
     </div>
     <!-- /.page-header-->
+
+
+
     <!-- news -->
     <div class="card-section">
       <div class="container">
@@ -265,17 +268,7 @@ $JobCounts = $row['total'];
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
               <!-- section-title -->
               <div class="section-title mb-0">
-                <!-- <h2>All about Hike. We share our knowledge on blog</h2> -->
-                <!-- <form id="search-form">
-                  <div class="input-group">
-                    <input type="text" id="search-query" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" id="search-button" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form> -->
+
 
                 <style>
                   .domain-form .form-group {
@@ -562,100 +555,21 @@ $JobCounts = $row['total'];
 
     <!-- ---------------------------------------------------------------- for mobile nav  Filter optpons -->
 
+
+
+
     <!-- mobile responsive filter options -->
 
-
-
     <!-- Offcanvas Sidebar for Mobile View -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFilter" aria-labelledby="offcanvasFilterLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasFilterLabel">Filter</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <!-- All Filter Options -->
-        <div class="contact-form">
-          <form id="filter-form">
-            <h5 style="margin-bottom: 15px">Type</h5>
-            <div class="dflx">
-              <div class="wrap-check-62 d-flex align-items-center mb-2">
-                <div class="switch">
-                  <input id="one-621" class="input filter-checkbox" type="checkbox" name="type" value="Part-time" />
-                  <label for="one-621" class="slider"></label>
-                </div>
-                <span class="ms-2">Part-time</span>
-              </div>
-              <div class="wrap-check-62 d-flex align-items-center mb-2">
-                <div class="switch">
-                  <input id="two-621" class="input filter-checkbox" type="checkbox" name="type" value="Full-time" />
-                  <label for="two-621" class="slider"></label>
-                </div>
-                <span class="ms-2">Full-time</span>
-              </div>
-              <div class="wrap-check-62 d-flex align-items-center mb-2">
-                <div class="switch">
-                  <input id="three-621" class="input filter-checkbox" type="checkbox" name="type" value="Contract" />
-                  <label for="three-621" class="slider"></label>
-                </div>
-                <span class="ms-2">Contract</span>
-              </div>
-              <div class="wrap-check-62 d-flex align-items-center mb-2">
-                <div class="switch">
-                  <input id="four-621" class="input filter-checkbox" type="checkbox" name="type" value="Internship" />
-                  <label for="four-621" class="slider"></label>
-                </div>
-                <span class="ms-2">Internship</span>
-              </div>
-            </div>
-            <br>
-            <div class="dflx">
-              <h5 style="margin-bottom: 15px">Category</h5>
-              <?php
-              if (mysqli_num_rows($resulting) > 0) {
-                $counter = 1;
-                while ($row = mysqli_fetch_assoc($resulting)) {
-              ?>
-                  <div class="wrap-check-62 d-flex align-items-center mb-2">
-                    <div class="switch">
-                      <input id="check-<?= $counter ?>-62" class="input filter-checkbox" type="checkbox" name="category" value="<?= $row['category_name'] ?>" />
-                      <label for="check-<?= $counter ?>-62" class="slider"></label>
-                    </div>
-                    <span class="ms-2"><?= $row['category_name'] ?></span>
-                  </div>
-              <?php
-                  $counter++;
-                }
-              }
-              ?>
-            </div>
-            <br>
-            <div class="dflx">
-              <h5 style="margin-bottom: 15px">Career levels</h5>
-              <div class="wrap-check-62 d-flex align-items-center mb-2">
-                <div class="switch">
-                  <input id="five-62" class="input filter-checkbox" type="checkbox" name="career" value="Entry_Level" />
-                  <label for="five-62" class="slider"></label>
-                </div>
-                <span class="ms-2">Entry Level</span>
-              </div>
-              <div class="wrap-check-62 d-flex align-items-center mb-2">
-                <div class="switch">
-                  <input id="six-62" class="input filter-checkbox" type="checkbox" name="career" value="Mid_Level" />
-                  <label for="six-62" class="slider"></label>
-                </div>
-                <span class="ms-2">Mid Level</span>
-              </div>
-            </div>
-            <br>
-          </form>
-        </div>
-      </div>
-    </div>
-
+   
 
 
 
     <!-- ---------------------------------------------------------------- END for mobile nav Filter optpons  -->
+
+
+
+
     <div class="products">
       <div class="container">
         <div class="row" style="color: #000;">
@@ -1039,6 +953,7 @@ $JobCounts = $row['total'];
         </div>
       </div>
     </div>
+
 
   </section>
 
