@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     // SQL query to check if the user exists
-    $sql = "SELECT * FROM userregister WHERE email = ?";
+    $sql = "SELECT * FROM userregister WHERE email = ? AND user_active='1'";
     $stmt = $conn->prepare($sql);
     if ($stmt) {
         $stmt->bind_param("s", $email);
@@ -20,54 +20,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Fetch the user's data
             $user = $result->fetch_assoc();
 
-            if ($user['user_active'] == '0') {
-                // User is inactive
-?>
-                <script>
-                    alertify.error("Please submit your document and login.");
-                </script>
-                <?php
-            } else {
-                // Verify the password
-                if (password_verify($password, $user['password'])) {
-                    // Set session variables
-                    $_SESSION['user_id'] = $user['id'];
-                    $_SESSION['user_email'] = $user['email'];
-                    $_SESSION['first_name'] = $user['firstname'];
-                    $_SESSION['user_type'] = $user['usertype'];
+            // Verify the password
+            if (password_verify($password, $user['password'])) {
+                // Set session variables
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_email'] = $user['email'];
+                $_SESSION['first_name'] = $user['firstname'];
+                $_SESSION['user_type'] = $user['usertype'];
 
-                    // Redirect based on user type
-                    if ($user['usertype'] == 'jobSeeker') {
-                        $_SESSION['message'] = "Successfully logged in";
-                        echo '<script>window.location.href = "index";</script>';
-                        exit();
-                    }
-                } else {
-                    // Password is incorrect
-                ?>
-                    <script>
-                        alertify.error("Please check your credentials.");
-                    </script>
-            <?php
+                // Explicitly close session write
+                // session_write_close();
+
+                // Redirect based on user type
+                if ($user['usertype'] == 'jobSeeker') {
+                    $_SESSION['message'] = "Successfully logged in ";
+                    echo '<script>window.location.href = "index";</script>';
+                    exit();
                 }
+            } else {
+                // $_SESSION['message'] = "Please check your credentials.";
+                ?> 
+                
+               <script>
+                   alertify.error("Please check your credentials.");
+
+               </script> 
+                <?php
             }
         } else {
-            // No user found with that email address
-            ?>
-            <script>
-                alertify.error("No user found with that email address!");
-            </script>
-        <?php
+            // $_SESSION['message'] = "No user found with that email address!";
+            ?> 
+                
+               <script>
+                   alertify.error("No user found with that email address!");
+
+               </script> 
+                <?php
         }
 
         $stmt->close();
     } else {
         // Handle SQL preparation error
-        ?>
-        <script>
-            alertify.error("An error occurred. Please try again later.");
-        </script>
-<?php
+        // $_SESSION['message'] = "An error occurred. Please try again later.";
+        ?> 
+                
+               <script>
+                   alertify.error("An error occurred. Please try again later.");
+
+               </script> 
+                <?php
+        
     }
 }
 ?>
@@ -86,79 +88,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <style>
-    body {
-        background: linear-gradient(312deg, #040343, #760000, #150250);
-        background-size: 600% 600%;
 
-        -webkit-animation: backgroundAnimation 7s ease infinite;
-        -moz-animation: backgroundAnimation 7s ease infinite;
-        -o-animation: backgroundAnimation 7s ease infinite;
-        animation: backgroundAnimation 7s ease infinite;
-    }
+ body{
+    background: linear-gradient(312deg, #040343, #760000, #150250);
+    background-size: 600% 600%;
 
-    @-webkit-keyframes backgroundAnimation {
-        0% {
-            background-position: 0% 26%
-        }
+    -webkit-animation: backgroundAnimation 7s ease infinite;
+    -moz-animation: backgroundAnimation 7s ease infinite;
+    -o-animation: backgroundAnimation 7s ease infinite;
+    animation: backgroundAnimation 7s ease infinite;
+}
 
-        50% {
-            background-position: 100% 75%
-        }
-
-        100% {
-            background-position: 0% 26%
-        }
-    }
-
-    @-moz-keyframes backgroundAnimation {
-        0% {
-            background-position: 0% 26%
-        }
-
-        50% {
-            background-position: 100% 75%
-        }
-
-        100% {
-            background-position: 0% 26%
-        }
-    }
-
-    @-o-keyframes backgroundAnimation {
-        0% {
-            background-position: 0% 26%
-        }
-
-        50% {
-            background-position: 100% 75%
-        }
-
-        100% {
-            background-position: 0% 26%
-        }
-    }
-
-    @keyframes backgroundAnimation {
-        0% {
-            background-position: 0% 26%
-        }
-
-        50% {
-            background-position: 100% 75%
-        }
-
-        100% {
-            background-position: 0% 26%
-        }
-    }
+@-webkit-keyframes backgroundAnimation {
+    0%{background-position:0% 26%}
+    50%{background-position:100% 75%}
+    100%{background-position:0% 26%}
+}
+@-moz-keyframes backgroundAnimation {
+    0%{background-position:0% 26%}
+    50%{background-position:100% 75%}
+    100%{background-position:0% 26%}
+}
+@-o-keyframes backgroundAnimation {
+    0%{background-position:0% 26%}
+    50%{background-position:100% 75%}
+    100%{background-position:0% 26%}
+}
+@keyframes backgroundAnimation {
+    0%{background-position:0% 26%}
+    50%{background-position:100% 75%}
+    100%{background-position:0% 26%}
+}
 
 
-    /* ---------------------------  */
-    .form-container {
+/* ---------------------------  */
+   .form-container {
         /* background: linear-gradient(#080d76, #7f012b); */
-        background: rgb(9, 9, 121);
-        background: radial-gradient(circle, rgba(9, 9, 121, 1) 10%, rgba(2, 2, 61, 1) 100%);
-
+        background: rgb(9,9,121);
+        background: radial-gradient(circle, rgba(9,9,121,1) 10%, rgba(2,2,61,1) 100%);
+        
         font-family: 'Roboto', sans-serif;
         font-size: 0;
         padding: 0 15px;
@@ -166,7 +134,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         border-radius: 15px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
-
     .form-container .form-icon {
         color: #fff;
         font-size: 13px;
@@ -313,7 +280,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 
-<body class="">
+<body class="" >
     <div class="container-fluid form-bg d-flex align-items-center justify-content-center" style="height: 90vh;">
         <div class="col-lg-6 col-md-8">
             <div class="form-container">
@@ -329,7 +296,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="form-group p-1">
                         <span class="input-icon"><i class="fa fa-lock"></i></span>
-                        <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                        <input class="form-control" type="password" name="password" id="password"  placeholder="Password">
                     </div>
                     <!-- <button class="btn signin">Login</button> -->
                     <button type="submit" class="btn signin p-2 p-2 fw-bold">Login</button>
@@ -339,8 +306,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-
-
+    
+    
 
     <!-- jQuery -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->

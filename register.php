@@ -1,16 +1,18 @@
 <?php
 
 session_start(); // Ensure session is started
-// if (isset($_SESSION['message'])) {
-//     echo '<div class="alert alert-danger text-center">' . $_SESSION['message'] . '</div>';
-//     unset($_SESSION['message']); // Clear the message once displayed
-// }
 
 include "Database/connection.php";
 require "includes/header.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Include PHPMailer classes
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
+require 'vendor/autoload.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate and sanitize user input
     $firstName = htmlspecialchars($_POST["firstname"]);
@@ -19,11 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirm_password"];
     $userType = $_POST["userType"];
-    $educationQualification = $_POST["education_qualification"];
-    $interestedField = $_POST["interested_field"];
-    $professionalQualification = $_POST["professional_qualification"];
-
-
 
     // Check if email already exists in the database
     $sql_check_email = "SELECT * FROM userregister WHERE email = ?";
@@ -31,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_check_email->bind_param("s", $email);
     $stmt_check_email->execute();
     $result_check_email = $stmt_check_email->get_result();
-
 
     if ($result_check_email->num_rows > 0) {
         // Email already registered
@@ -45,25 +41,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-
-
     // If email is not already registered, proceed with registration
 
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     // Prepare SQL statement using prepared statements
-    $sql_insert_user = "INSERT INTO userregister (firstname, lastname, email, password, usertype, education_qualification, interested_field, professional_qualification) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql_insert_user = "INSERT INTO userregister (firstname, lastname, email, password, usertype) VALUES (?, ?, ?, ?, ?)";
     $stmt_insert_user = $conn->prepare($sql_insert_user);
-    $stmt_insert_user->bind_param("ssssssss", $firstName, $lastName, $email, $hashedPassword, $userType, $educationQualification, $interestedField, $professionalQualification);
+    $stmt_insert_user->bind_param("sssss", $firstName, $lastName, $email, $hashedPassword, $userType);
 
     // Execute the statement
     if ($stmt_insert_user->execute()) {
         // Registration successful
-        session_start();
-        $_SESSION['message'] = "Successfully registered";
-        header("Location: userLoginForm.php"); // Redirect to login form
-        exit();
+
+        
+        
+      // Create a new PHPMailer instance
+      $mail = new PHPMailer(true);
+      try {
+        //Server settings
+        $mail->isSMTP();
+        $mail->Host = 'mail.graduatejob.lk';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'noreply@graduatejob.lk';
+        $mail->Password = 'Hasni@2024'; // app password here
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+    
+        //Recipients
+        $company_name = "GRADUATEJOB.LK";
+        $mail->setFrom('noreply@graduatejob.lk', $company_name);
+        $mail->addAddress($email, $firstName);
+        // $mail->addCC('mirmirsha123@gmail.com'); // Add CC recipient
+
+
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'GRADUATE Job Application Confirmation';
+        $mail->Body = "Hello $firstName,<br><br> Thank you for sending your CV for the position of XYZ . <br><br> 
+            Your application is under review. We will get back to you soon. <br><br> 
+            The company will contact you for further details if needed or if you are shortlisted <br><br> 
+            Please continue to check the available jobs we have using the following link ....... <br><br> 
+            You can view / edit your account details any time by logging in to your account <br><br> 
+            If you need help, you can find it here: .............  <br><br> 
+            Best regards,<br>$company_name";
+
+        $mail->AltBody = "Hello $firstName,\n\n You have successfully applied for the job. Your application is under review. We will get back to you soon.\n\n Best regards,\n $company_name";
+
+        $mail->send();
+        $_SESSION['message'] = "You have applied for a job. A confirmation email has been sent.";
+      } catch (Exception $e) {
+        $_SESSION['message'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+      }
+
+      // Redirect to the same page to show the message and refresh the page
+    //   echo '<script>window.location.href = "job-details.php?id=' . $applied_job_id . '";</script>';
+      echo '<script>window.location.href = "userLoginForm";</script>';
+      exit();
     } else {
         // Registration failed
         echo "Error: " . $stmt_insert_user->error;
@@ -74,7 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_insert_user->close();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -332,7 +367,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
 
-                <div class="form-group p-1" style="margin-bottom: 30px;">
+                <!-- <div class="form-group p-1" style="margin-bottom: 30px;">
                     <span class="input-icon"><i class="fa fa-graduation-cap"></i></span>
                     <select class="form-control" id="education_qualification" name="education_qualification" required>
                         <option value="">Select Education Qualification</option>
@@ -345,9 +380,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="valid-feedback">
                         <i class="fas fa-check-circle"></i>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="form-group p-1" style="margin-bottom: 30px;">
+                <!-- <div class="form-group p-1" style="margin-bottom: 30px;">
                     <span class="input-icon"><i class="fa fa-bullseye"></i></span>
                     <select class="form-control" id="interested_field" name="interested_field" required>
                         <option value="">Select Interested Field</option>
@@ -356,15 +391,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="finance">Finance</option>
                         <option value="marketing">Marketing</option>
                         <option value="human_resources">Human Resources</option>
-                        <!-- Add more options as needed -->
                     </select>
                     <div class="invalid-feedback" id="interestedFieldError"></div>
                     <div class="valid-feedback">
                         <i class="fas fa-check-circle"></i>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="form-group p-1" style="margin-bottom: 30px;">
+                <!-- <div class="form-group p-1" style="margin-bottom: 30px;">
                     <span class="input-icon"><i class="fa fa-certificate"></i></span>
                     <select class="form-control" id="professional_qualification" name="professional_qualification" required>
                         <option value="">Select Professional Qualification</option>
@@ -372,13 +406,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="project_management_professional">Project Management Professional (PMP)</option>
                         <option value="chartered_financial_analyst">Chartered Financial Analyst (CFA)</option>
                         <option value="certified_information_systems_security_professional">Certified Information Systems Security Professional (CISSP)</option>
-                        <!-- Add more options as needed -->
                     </select>
                     <div class="invalid-feedback" id="professionalQualificationError"></div>
                     <div class="valid-feedback">
                         <i class="fas fa-check-circle"></i>
                     </div>
-                </div>
+                </div> -->
 
 
 
