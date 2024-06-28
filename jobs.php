@@ -840,6 +840,16 @@ $JobCounts = $row['total'];
               background: rgb(236, 236, 236);
               background: radial-gradient(circle, rgba(236, 236, 236, 1) 3%, rgba(234, 234, 249, 1) 100%);
             }
+
+
+            /* -------------------side filter nav-------------------  */
+            .offcanvas.offcanvas-end {
+              top: 0;
+              right: -113px;
+              width: var(--bs-offcanvas-width);
+              border-left: var(--bs-offcanvas-border-width) solid var(--bs-offcanvas-border-color);
+              transform: translateX(100%);
+            }
           </style>
 
           <div id="long_card_job_listing" class="col-md-9" data-aos="fade-up" data-aos-delay="200">
@@ -972,8 +982,8 @@ $JobCounts = $row['total'];
                       </div>
 
                       <!-- Mobile View -->
-                      <div class="d-md-none card_backround"  style="border-radius: 10px;>
-                        <a href="job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
+                      <div class="d-md-none card_backround" style="border-radius: 10px;>
+                        <a href=" job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
                         <div class="card-body">
                           <div class="row">
                             <div class="col-4 d-flex justify-content-center align-items-center">
