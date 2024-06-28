@@ -580,29 +580,29 @@ $JobCounts = $row['total'];
             <div class="dflx">
               <div class="wrap-check-62 d-flex align-items-center mb-2">
                 <div class="switch">
-                  <input id="one-62" class="input filter-checkbox" type="checkbox" name="type" value="Part-time" />
-                  <label for="one-62" class="slider"></label>
+                  <input id="one-621" class="input filter-checkbox" type="checkbox" name="type" value="Part-time" />
+                  <label for="one-621" class="slider"></label>
                 </div>
                 <span class="ms-2">Part-time</span>
               </div>
               <div class="wrap-check-62 d-flex align-items-center mb-2">
                 <div class="switch">
-                  <input id="two-62" class="input filter-checkbox" type="checkbox" name="type" value="Full-time" />
-                  <label for="two-62" class="slider"></label>
+                  <input id="two-621" class="input filter-checkbox" type="checkbox" name="type" value="Full-time" />
+                  <label for="two-621" class="slider"></label>
                 </div>
                 <span class="ms-2">Full-time</span>
               </div>
               <div class="wrap-check-62 d-flex align-items-center mb-2">
                 <div class="switch">
-                  <input id="three-62" class="input filter-checkbox" type="checkbox" name="type" value="Contract" />
-                  <label for="three-62" class="slider"></label>
+                  <input id="three-621" class="input filter-checkbox" type="checkbox" name="type" value="Contract" />
+                  <label for="three-621" class="slider"></label>
                 </div>
                 <span class="ms-2">Contract</span>
               </div>
               <div class="wrap-check-62 d-flex align-items-center mb-2">
                 <div class="switch">
-                  <input id="four-62" class="input filter-checkbox" type="checkbox" name="type" value="Internship" />
-                  <label for="four-62" class="slider"></label>
+                  <input id="four-621" class="input filter-checkbox" type="checkbox" name="type" value="Internship" />
+                  <label for="four-621" class="slider"></label>
                 </div>
                 <span class="ms-2">Internship</span>
               </div>
