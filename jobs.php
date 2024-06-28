@@ -396,12 +396,270 @@ $JobCounts = $row['total'];
 
   <!-- fiter section  -->
 
+
+
+  <style>
+    .search-bar input,
+    .search-btn,
+    .search-btn:before,
+    .search-btn:after {
+      transition: all 0.25s ease-out;
+    }
+
+    .search-bar input,
+    .search-btn {
+      width: 3em;
+      height: 3em;
+    }
+
+    .search-bar input:invalid:not(:focus),
+    .search-btn {
+      cursor: pointer;
+    }
+
+    .search-bar,
+    .search-bar input:focus,
+    .search-bar input:valid {
+      width: 100%;
+    }
+
+    .search-bar input:focus,
+    .search-bar input:not(:focus)+.search-btn:focus {
+      outline: transparent;
+    }
+
+    .search-bar {
+      margin: auto;
+      padding: 1.5em;
+      justify-content: center;
+      max-width: 30em;
+    }
+
+    .search-bar input {
+      background: transparent;
+      border-radius: 1.5em;
+      box-shadow: 0 0 0 0.4em #171717 inset;
+      padding: 0.75em;
+      transform: translate(0.5em, 0.5em) scale(0.5);
+      transform-origin: 100% 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .search-bar input::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+
+    .search-bar input:focus,
+    .search-bar input:valid {
+      background: #fff;
+      border-radius: 0.375em 0 0 0.375em;
+      box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+      transform: scale(1);
+    }
+
+    .search-btn {
+      background: #171717;
+      border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+      padding: 0.75em;
+      position: relative;
+      transform: translate(0.25em, 0.25em) rotate(45deg) scale(0.25, 0.125);
+      transform-origin: 0 50%;
+    }
+
+    .search-btn:before,
+    .search-btn:after {
+      content: "";
+      display: block;
+      opacity: 0;
+      position: absolute;
+    }
+
+    .search-btn:before {
+      border-radius: 50%;
+      box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+      top: 0.75em;
+      left: 0.75em;
+      width: 1.2em;
+      height: 1.2em;
+    }
+
+    .search-btn:after {
+      background: #f1f1f1;
+      border-radius: 0 0.25em 0.25em 0;
+      top: 51%;
+      left: 51%;
+      width: 0.75em;
+      height: 0.25em;
+      transform: translate(0.2em, 0) rotate(45deg);
+      transform-origin: 0 50%;
+    }
+
+    .search-btn span {
+      display: inline-block;
+      overflow: hidden;
+      width: 1px;
+      height: 1px;
+    }
+
+    /* Active state */
+    .search-bar input:focus+.search-btn,
+    .search-bar input:valid+.search-btn {
+      background: #2762f3;
+      border-radius: 0 0.375em 0.375em 0;
+      transform: scale(1);
+    }
+
+    .search-bar input:focus+.search-btn:before,
+    .search-bar input:focus+.search-btn:after,
+    .search-bar input:valid+.search-btn:before,
+    .search-bar input:valid+.search-btn:after {
+      opacity: 1;
+    }
+
+    .search-bar input:focus+.search-btn:hover,
+    .search-bar input:valid+.search-btn:hover,
+    .search-bar input:valid:not(:focus)+.search-btn:focus {
+      background: #0c48db;
+    }
+
+    .search-bar input:focus+.search-btn:active,
+    .search-bar input:valid+.search-btn:active {
+      transform: translateY(1px);
+    }
+
+    @media screen and (prefers-color-scheme: dark) {
+
+      body,
+      input {
+        color: #f1f1f1;
+      }
+
+      body {
+        background: #171717;
+      }
+
+      .search-bar input {
+        box-shadow: 0 0 0 0.4em #f1f1f1 inset;
+      }
+
+      .search-bar input:focus,
+      .search-bar input:valid {
+        background: #3d3d3d;
+        box-shadow: 0 0 0 0.1em #3d3d3d inset;
+      }
+
+      .search-btn {
+        background: #f1f1f1;
+      }
+    }
+  </style>
+
   <section id="contents">
 
+
+
+    <!-- ---------------------------------------------------------------- for mobile nav  Filter optpons -->
+
+    <!-- mobile responsive filter options -->
+
+
+
+    <!-- Offcanvas Sidebar for Mobile View -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFilter" aria-labelledby="offcanvasFilterLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasFilterLabel">Filter</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <!-- All Filter Options -->
+        <div class="contact-form">
+          <form id="filter-form">
+            <h5 style="margin-bottom: 15px">Type</h5>
+            <div class="dflx">
+              <div class="wrap-check-62 d-flex align-items-center mb-2">
+                <div class="switch">
+                  <input id="one-62" class="input filter-checkbox" type="checkbox" name="type" value="Part-time" />
+                  <label for="one-62" class="slider"></label>
+                </div>
+                <span class="ms-2">Part-time</span>
+              </div>
+              <div class="wrap-check-62 d-flex align-items-center mb-2">
+                <div class="switch">
+                  <input id="two-62" class="input filter-checkbox" type="checkbox" name="type" value="Full-time" />
+                  <label for="two-62" class="slider"></label>
+                </div>
+                <span class="ms-2">Full-time</span>
+              </div>
+              <div class="wrap-check-62 d-flex align-items-center mb-2">
+                <div class="switch">
+                  <input id="three-62" class="input filter-checkbox" type="checkbox" name="type" value="Contract" />
+                  <label for="three-62" class="slider"></label>
+                </div>
+                <span class="ms-2">Contract</span>
+              </div>
+              <div class="wrap-check-62 d-flex align-items-center mb-2">
+                <div class="switch">
+                  <input id="four-62" class="input filter-checkbox" type="checkbox" name="type" value="Internship" />
+                  <label for="four-62" class="slider"></label>
+                </div>
+                <span class="ms-2">Internship</span>
+              </div>
+            </div>
+            <br>
+            <div class="dflx">
+              <h5 style="margin-bottom: 15px">Category</h5>
+              <?php
+              if (mysqli_num_rows($resulting) > 0) {
+                $counter = 1;
+                while ($row = mysqli_fetch_assoc($resulting)) {
+              ?>
+                  <div class="wrap-check-62 d-flex align-items-center mb-2">
+                    <div class="switch">
+                      <input id="check-<?= $counter ?>-62" class="input filter-checkbox" type="checkbox" name="category" value="<?= $row['category_name'] ?>" />
+                      <label for="check-<?= $counter ?>-62" class="slider"></label>
+                    </div>
+                    <span class="ms-2"><?= $row['category_name'] ?></span>
+                  </div>
+              <?php
+                  $counter++;
+                }
+              }
+              ?>
+            </div>
+            <br>
+            <div class="dflx">
+              <h5 style="margin-bottom: 15px">Career levels</h5>
+              <div class="wrap-check-62 d-flex align-items-center mb-2">
+                <div class="switch">
+                  <input id="five-62" class="input filter-checkbox" type="checkbox" name="career" value="Entry_Level" />
+                  <label for="five-62" class="slider"></label>
+                </div>
+                <span class="ms-2">Entry Level</span>
+              </div>
+              <div class="wrap-check-62 d-flex align-items-center mb-2">
+                <div class="switch">
+                  <input id="six-62" class="input filter-checkbox" type="checkbox" name="career" value="Mid_Level" />
+                  <label for="six-62" class="slider"></label>
+                </div>
+                <span class="ms-2">Mid Level</span>
+              </div>
+            </div>
+            <br>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- ---------------------------------------------------------------- END for mobile nav Filter optpons  -->
     <div class="products">
       <div class="container">
         <div class="row" style="color: #000;">
-          <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-md-3 d-none d-md-block" data-aos="fade-up" data-aos-delay="200" id="All_Filter_options">
             <div class="contact-form">
 
               <form id="filter-form">
@@ -569,261 +827,29 @@ $JobCounts = $row['total'];
           </div>
 
 
-
           <style>
-            .search-bar input,
-            .search-btn,
-            .search-btn:before,
-            .search-btn:after {
-              transition: all 0.25s ease-out;
+            .filter_bg {
+              background-color: #0000660a;
+              padding-top: 10px;
+              padding-bottom: 5px;
+              font-weight: bolder;
+              margin-bottom: 15px;
             }
 
-            .search-bar input,
-            .search-btn {
-              width: 3em;
-              height: 3em;
-            }
-
-            .search-bar input:invalid:not(:focus),
-            .search-btn {
-              cursor: pointer;
-            }
-
-            .search-bar,
-            .search-bar input:focus,
-            .search-bar input:valid {
-              width: 100%;
-            }
-
-            .search-bar input:focus,
-            .search-bar input:not(:focus)+.search-btn:focus {
-              outline: transparent;
-            }
-
-            .search-bar {
-              margin: auto;
-              padding: 1.5em;
-              justify-content: center;
-              max-width: 30em;
-            }
-
-            .search-bar input {
-              background: transparent;
-              border-radius: 1.5em;
-              box-shadow: 0 0 0 0.4em #171717 inset;
-              padding: 0.75em;
-              transform: translate(0.5em, 0.5em) scale(0.5);
-              transform-origin: 100% 0;
-              -webkit-appearance: none;
-              -moz-appearance: none;
-              appearance: none;
-            }
-
-            .search-bar input::-webkit-search-decoration {
-              -webkit-appearance: none;
-            }
-
-            .search-bar input:focus,
-            .search-bar input:valid {
-              background: #fff;
-              border-radius: 0.375em 0 0 0.375em;
-              box-shadow: 0 0 0 0.1em #d9d9d9 inset;
-              transform: scale(1);
-            }
-
-            .search-btn {
-              background: #171717;
-              border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
-              padding: 0.75em;
-              position: relative;
-              transform: translate(0.25em, 0.25em) rotate(45deg) scale(0.25, 0.125);
-              transform-origin: 0 50%;
-            }
-
-            .search-btn:before,
-            .search-btn:after {
-              content: "";
-              display: block;
-              opacity: 0;
-              position: absolute;
-            }
-
-            .search-btn:before {
-              border-radius: 50%;
-              box-shadow: 0 0 0 0.2em #f1f1f1 inset;
-              top: 0.75em;
-              left: 0.75em;
-              width: 1.2em;
-              height: 1.2em;
-            }
-
-            .search-btn:after {
-              background: #f1f1f1;
-              border-radius: 0 0.25em 0.25em 0;
-              top: 51%;
-              left: 51%;
-              width: 0.75em;
-              height: 0.25em;
-              transform: translate(0.2em, 0) rotate(45deg);
-              transform-origin: 0 50%;
-            }
-
-            .search-btn span {
-              display: inline-block;
-              overflow: hidden;
-              width: 1px;
-              height: 1px;
-            }
-
-            /* Active state */
-            .search-bar input:focus+.search-btn,
-            .search-bar input:valid+.search-btn {
-              background: #2762f3;
-              border-radius: 0 0.375em 0.375em 0;
-              transform: scale(1);
-            }
-
-            .search-bar input:focus+.search-btn:before,
-            .search-bar input:focus+.search-btn:after,
-            .search-bar input:valid+.search-btn:before,
-            .search-bar input:valid+.search-btn:after {
-              opacity: 1;
-            }
-
-            .search-bar input:focus+.search-btn:hover,
-            .search-bar input:valid+.search-btn:hover,
-            .search-bar input:valid:not(:focus)+.search-btn:focus {
-              background: #0c48db;
-            }
-
-            .search-bar input:focus+.search-btn:active,
-            .search-bar input:valid+.search-btn:active {
-              transform: translateY(1px);
-            }
-
-            @media screen and (prefers-color-scheme: dark) {
-
-              body,
-              input {
-                color: #f1f1f1;
-              }
-
-              body {
-                background: #171717;
-              }
-
-              .search-bar input {
-                box-shadow: 0 0 0 0.4em #f1f1f1 inset;
-              }
-
-              .search-bar input:focus,
-              .search-bar input:valid {
-                background: #3d3d3d;
-                box-shadow: 0 0 0 0.1em #3d3d3d inset;
-              }
-
-              .search-btn {
-                background: #f1f1f1;
-              }
+            .card_backround {
+              background: rgb(236, 236, 236);
+              background: radial-gradient(circle, rgba(236, 236, 236, 1) 3%, rgba(234, 234, 249, 1) 100%);
             }
           </style>
 
-
           <div id="long_card_job_listing" class="col-md-9" data-aos="fade-up" data-aos-delay="200">
             <div class="container">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="d-flex flex-column flex-lg-row">
-                    <div class="row flex-fill">
-                      <!-- <div class="col-sm-5">
-                        <h4 class="h5 text-center text-muted"><?= $JobCounts ?> Total Jobs are Found</h4>
-                      </div> -->
 
-
-
-
-
-
-                      <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                      <script>
-                      $(document).ready(function() {
-                      $('#search-button').on('click', function() {
-                        performSearch();
-                      });
-
-                      $('#search-query').on('keypress', function(e) {
-                        if (e.which === 13) {
-                          performSearch();
-                        }
-                      });
-
-                      function performSearch() {
-                        let query = $('#search-query').val();
-
-                        $.ajax({
-                          url: 'search.php',
-                          method: 'GET',
-                          data: {
-                            query: query
-                          },
-                          success: function(response) {
-                            $('#search-results').empty();
-                            let jobs = JSON.parse(response);
-
-                            if (jobs.length === 0) {
-                              $('#search-results').append('<p>No jobs found</p>');
-                              return;
-                            }
-
-                            jobs.forEach(function(job) {
-                              let randomColor = getRandomColor();
-                              let jobHtml = `
-                                  <div class="col-md-12 mb-4 hoverEffect">
-                                    <a href="job-details?id=${job.id}" style="text-decoration: none; color: inherit;">
-                                      <div class="card shadow">
-                                        <div class="card-body">
-                                          <div class="d-flex flex-column flex-lg-row">
-                                            <span class="avatar avatar-text rounded-3 me-4 mb-2" style="background-color: ${randomColor};">
-                                              ${job.job_title.substr(0, 2)}
-                                            </span>
-                                            <div class="row flex-fill">
-                                              <div class="col-sm-5">
-                                                <h4 class="h5">${job.job_title}</h4>
-                                                <span class="badge bg-secondary">${job.location}</span>
-                                                <span class="badge bg-secondary">${job.job_category}</span>
-                                              </div>
-                                              <div class="col-sm-4 py-2">
-                                                ${job.skills_required.split(',').map(skill => `<span class="badge bg-secondary">${skill.trim().toUpperCase()}</span>`).join(' ')}
-                                              </div>
-                                              <div class="col-sm-3 text-lg-end">
-                                                <span class="badge bg-success">${job.employment_type}</span>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </a>
-                                  </div>`;
-                              $('#search-results').append(jobHtml);
-                            });
-                          }
-                        });
-                      }
-
-                      // Function to generate a random color
-                      function getRandomColor() {
-                        return '#' + Math.floor(Math.random() * 16777215).toString(16);
-                      }
-                    });
-                  </script> -->
-
-
-
-                    </div>
-                  </div>
-                </div>
+              <div class="d-md-none text-end filter_bg  ">
+                <p class="px-3 bordered" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasFilter">
+                  <i class="fas fa-filter"></i> Filters
+                </p>
               </div>
-
               <!-- Job Listings -->
               <div id="search-results">
                 <!-- Job results will be displayed here -->
@@ -913,11 +939,11 @@ $JobCounts = $row['total'];
 
 
                 ?>
-                    <div class="card mb-3">
+                    <div class="card mb-3" style="border-radius: 10px;">
                       <!-- Desktop View -->
-                      <div class="d-none d-md-block">
+                      <div class="d-none d-md-block " style="border-radius: 10px;">
                         <a href="job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
-                        <div class="card-body">
+                        <div class="card-body  ">
                           <div class="d-flex flex-column flex-lg-row">
                             <span class="avatar avatar-text rounded-2 me-4 mb-2">
                               <img src="https://cdn-icons-png.freepik.com/512/6073/6073873.png" alt="" class="img-fluid">
@@ -946,15 +972,15 @@ $JobCounts = $row['total'];
                       </div>
 
                       <!-- Mobile View -->
-                      <div class="d-md-none">
+                      <div class="d-md-none card_backround"  style="border-radius: 10px;>
                         <a href="job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
                         <div class="card-body">
                           <div class="row">
-                          <div class="col-4 d-flex justify-content-center align-items-center">
-    <img src="https://cdn-icons-png.freepik.com/512/6073/6073873.png" alt="" class="img-fluid">
-</div>
+                            <div class="col-4 d-flex justify-content-center align-items-center">
+                              <img src="https://cdn-icons-png.freepik.com/512/6073/6073873.png" alt="" class="img-fluid">
+                            </div>
 
-                            <div class="col-8">
+                            <div class="col-8" style="font-size: 12px;">
                               <h4 class="mb-3"><?= $row['job_title'] ?></h4>
                               <span class="badge dark-red-shade3"><?= $row['location'] ?></span>
                               <span class="badge dark-blue-shade1"><?= $row['job_category'] ?></span>
@@ -966,7 +992,7 @@ $JobCounts = $row['total'];
                                 }
                                 ?>
                               </div>
-                              <div class="">
+                              <div class="" style="font-size: 12px;">
                                 <span class="badge dark-blue-shade1"><?= $row['employment_type'] ?></span>
                                 <span class="badge <?= $badge_color ?>"><?= $badge_text ?></span>
                               </div>
@@ -1000,77 +1026,6 @@ $JobCounts = $row['total'];
             </div>
           </div>
 
-
-          <style>
-            #long_card_job_listing .card {
-              box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
-            }
-
-            #long_card_job_listing .card {
-              position: relative;
-              display: flex;
-              flex-direction: column;
-              min-width: 0;
-              word-wrap: break-word;
-              background-color: #fff;
-              background-clip: border-box;
-              border: 0 solid rgba(0, 0, 0, .125);
-              border-radius: 1rem;
-            }
-
-            #long_card_job_listing .card-body {
-              -webkit-box-flex: 1;
-              -ms-flex: 1 1 auto;
-              flex: 1 1 auto;
-              padding: 1.5rem 1.5rem;
-            }
-
-            #long_card_job_listing .avatar-text {
-              display: -webkit-box;
-              display: -ms-flexbox;
-              display: flex;
-              -webkit-box-pack: center;
-              -ms-flex-pack: center;
-              justify-content: center;
-              -webkit-box-align: center;
-              -ms-flex-align: center;
-              align-items: center;
-              background: #000;
-              color: #fff;
-              font-weight: 700;
-            }
-
-            #long_card_job_listing .avatar {
-
-              width: 3rem;
-              height: 3rem;
-            }
-
-            #long_card_job_listing .rounded-3 {
-              border-radius: 0.5rem !important;
-            }
-
-            #long_card_job_listing .mb-2 {
-              margin-bottom: 0.5rem !important;
-            }
-
-            #long_card_job_listing .me-4 {
-              margin-right: 1.5rem !important;
-            }
-
-            .stretched-link::after {
-              position: absolute;
-              top: 0;
-              right: 0;
-              bottom: 0;
-              left: 0;
-              z-index: 1;
-              content: "";
-            }
-          </style>
-
-
-
         </div>
       </div>
     </div>
@@ -1078,6 +1033,75 @@ $JobCounts = $row['total'];
   </section>
 
 
+  <style>
+    #long_card_job_listing .card {
+      box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    }
+
+    #long_card_job_listing .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 0 solid rgba(0, 0, 0, .125);
+      border-radius: 1rem;
+    }
+
+    #long_card_job_listing .card-body {
+      -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 1.5rem 1.5rem;
+    }
+
+    #long_card_job_listing .avatar-text {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      background: #000;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    #long_card_job_listing .avatar {
+
+      width: 3rem;
+      height: 3rem;
+    }
+
+    #long_card_job_listing .rounded-3 {
+      border-radius: 0.5rem !important;
+    }
+
+    #long_card_job_listing .mb-2 {
+      margin-bottom: 0.5rem !important;
+    }
+
+    #long_card_job_listing .me-4 {
+      margin-right: 1.5rem !important;
+    }
+
+    .stretched-link::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      content: "";
+    }
+  </style>
+
+  <!-- ---------------------------------------  -->
 
 
 

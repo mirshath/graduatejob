@@ -220,7 +220,7 @@ include("includes/navbar.php");
                          <div class="d-md-none">
                            <div class="row">
                              <div class="col-4 d-flex justify-content-center align-items-center">
-                               <img src="Admin/uploads/<?= $row['profile'] ?>" class="img-fluid mb-3 shadow" alt="Profile Image" style="object-fit: cover; border-radius: 20px;">
+                               <img src="Admin/uploads/company_profiles/<?= $row['profile'] ?>" class="img-fluid mb-3 shadow" alt="Profile Image" style="object-fit: cover; border-radius: 20px;">
                              </div>
                              <div class="col-8">
                                <h5 class="mb-1"><b><?= $row['job_title'] ?></b></h5>
@@ -494,7 +494,7 @@ include("includes/navbar.php");
                           <div class="box p-3">
                             <div class="content text-center"> <!-- Added text-center class here -->
                               <div class="mb-3 d-flex justify-content-center align-items-center">
-                                <img src="Admin/uploads/category_images/<?= $row['category_image'] ?>" alt="" class="img-fluid ">
+                                <img src="Admin/uploads/category_image/<?= $row['category_image'] ?>" alt="" class="img-fluid ">
                               </div>
                               <h6 class="m-5px-tb"><b><?= $row['category_name'] ?></b></h6>
                               <!-- <a href="company_data.php?id=<?= $row['id'] ?>">View</a> -->
