@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Content
         $mail->isHTML(true);
-        $mail->Subject = 'GRADUATE Job Application Confirmation';
+        $mail->Subject = 'Please Verify the Details';
         $mail->Body = "Hello $firstName,<br><br> Thank you for sending your CV for the position of XYZ . <br><br> 
             Your application is under review. We will get back to you soon. <br><br> 
             The company will contact you for further details if needed or if you are shortlisted <br><br> 
