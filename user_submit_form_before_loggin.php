@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 
     if ($result->num_rows == 1) {
         // Update user data and activate account
-        $update_sql = "UPDATE userregister SET phone_no = ?, St_address = ?, education_qualification = ?, interested_field = ?, professional_qualification = ?, token='', studied_at = ? , user_active= 1 WHERE token = ?";
+        $update_sql = "UPDATE userregister SET phone_no = ?, St_address = ?, education_qualification = ?, interested_field = ?, professional_qualification = ?, studied_at = ?, token='', user_active=1 WHERE token = ?";
         
         // Determine the studied_at value based on dropdown selection
         if ($studied_at === 'other' && !empty($other_studied_at)) {
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
         }
 
         $update_stmt = $conn->prepare($update_sql);
-        $update_stmt->bind_param("ssssss", $phone, $address, $education_qualification, $interested_field, $professional_qualification,  $token, $studied_at_value);
+        $update_stmt->bind_param("sssssss", $phone, $address, $education_qualification, $interested_field, $professional_qualification, $studied_at_value, $token);
 
         if ($update_stmt->execute()) {
             echo "Details updated successfully!";
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Form</title>
+    <title>Update Form</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
@@ -155,8 +155,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                             </select>
                         </div>
 
-
-
                     </div>
 
                     <div class="form-row">
@@ -209,8 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 
                     </div>
                     <div class="text-right">
-                    <input type="submit" class="btn btn-success btn-send pt-2 btn-block"
-                    value="Update Details">
+                        <button type="submit" class="btn btn-success btn-send pt-2 btn-block">Update Details</button>
                     </div>
 
                 </form>
