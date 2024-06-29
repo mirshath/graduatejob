@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 
     if ($result->num_rows == 1) {
         // Update user data and activate account
-        $update_sql = "UPDATE userregister SET phone = ?, address = ?, education_qualification = ?, interested_field = ?, professional_qualification = ?, studied_at = ? WHERE token = ?";
+        $update_sql = "UPDATE userregister SET phone_no = ?, St_address = ?, education_qualification = ?, interested_field = ?, professional_qualification = ?, token='', studied_at = ? , user_active= 1 WHERE token = ?";
         
         // Determine the studied_at value based on dropdown selection
         if ($studied_at === 'other' && !empty($other_studied_at)) {
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
         }
 
         $update_stmt = $conn->prepare($update_sql);
-        $update_stmt->bind_param("sssssss", $phone, $address, $education_qualification, $interested_field, $professional_qualification, $studied_at_value, $token);
+        $update_stmt->bind_param("ssssss", $phone, $address, $education_qualification, $interested_field, $professional_qualification,  $token, $studied_at_value);
 
         if ($update_stmt->execute()) {
             echo "Details updated successfully!";
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 
                         <div class="form-group col-md-4">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number">
                         </div>
 
                         <div class="form-group  col-md-4">
@@ -129,11 +129,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 
                         <div class="form-group col-md-4">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="educationQualification">Education Qualification</label>
-                            <select class="form-control" id="educationQualification">
+                            <select class="form-control" id="educationQualification" name="educationQualification">
                                 <option value="">Select Education Qualification</option>
                                 <option value="High_School">High School</option>
                                 <option value="Bachelor's_Degree">Bachelor's Degree</option>
@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 
                         <div class="form-group col-md-4">
                             <label for="interestedField">Interested Field</label>
-                            <select class="form-control" id="interestedField">
+                            <select class="form-control" id="interestedField" name="interestedField">
                                 <option value="">Select Interested Field</option>
                                 <option value="IT">IT</option>
                                 <option value="Engineering">Engineering</option>
@@ -163,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 
                         <div class="form-group col-md-4">
                             <label for="professionalQualification">Professional Qualification</label>
-                            <select class="form-control" id="professionalQualification">
+                            <select class="form-control" id="professionalQualification" name="professionalQualification">
                                 <option value="">Select Professional Qualification</option>
                                 <option value="Certification">Certification</option>
                                 <option value="Diploma">Diploma</option>
@@ -178,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                         <!-- Dropdown for Studied At with other option -->
                         <div class="form-group col-md-4">
                             <label for="studiedAt">Studied At</label>
-                            <select class="form-control" id="studiedAt" onchange="toggleOtherInput()">
+                            <select class="form-control" id="studiedAt" name="studiedAt" onchange="toggleOtherInput()">
                                 <option value="">Select University/Institute</option>
                                 <option value="esoft">ESoft</option>
                                 <option value="BMS">BMS College</option>
@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                         <!-- Input field for Other option -->
                         <div class="form-group col-md-4" id="otherStudiedAt" style="display: none;">
                             <label for="otherStudiedAtInput">Other University/Institute</label>
-                            <input type="text" class="form-control" id="otherStudiedAtInput" placeholder="Enter University/Institute">
+                            <input type="text" class="form-control" id="otherStudiedAtInput" name="otherStudiedAtInput" placeholder="Enter University/Institute">
                         </div>
 
 
