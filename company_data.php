@@ -4,8 +4,8 @@ session_start();
 require "Database/connection.php";
 
 
-include("includes/header.php");
-include("includes/navbar.php");
+include ("includes/header.php");
+include ("includes/navbar.php");
 
 
 $user_id = isset($_SESSION['user_id']);
@@ -54,7 +54,7 @@ if (isset($_GET['id'])) {
 
 
 
-?>
+    ?>
 
 
     <main class="main">
@@ -201,13 +201,13 @@ if (isset($_GET['id'])) {
 
 
         <!-- ***** Preloader Start ***** -->
-        <div id="preloader">
+        <!-- <div id="preloader">
             <div class="jumper">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
-        </div>
+        </div> -->
         <!-- ***** Preloader End ***** -->
 
 
@@ -222,13 +222,13 @@ if (isset($_GET['id'])) {
             $result = $stmt->get_result();
             $is_subscribed = ($result->num_rows > 0) ? true : false;
             $stmt->close();
-        ?>
+            ?>
 
             <!-- if the auther is authenticated like logged in  -->
 
-        <?php
+            <?php
         } else {
-        ?>
+            ?>
             <!-- open modal section without user login  -->
             <!-- <div class="d-flex justify-content-center align-items-center mt-4">
             <h6 class="text-muted mb-4">Subscribe Company</h6>
@@ -240,7 +240,7 @@ if (isset($_GET['id'])) {
             </div>
         </div> -->
 
-        <?php
+            <?php
         }
 
 
@@ -274,7 +274,8 @@ if (isset($_GET['id'])) {
 
                     <div>
                         <a title="" href="#" class="twPc-avatarLink">
-                            <img alt="Company Logo" src="Admin/uploads/company_profiles/<?= $get_com_data['profile'] ?>" class="twPc-avatarImg" style="width: 120px; height: 120px;">
+                            <img alt="Company Logo" src="Admin/uploads/company_profiles/<?= $get_com_data['profile'] ?>"
+                                class="twPc-avatarImg" style="width: 120px; height: 120px;">
                         </a>
 
                         <div class="twPc-divUser">
@@ -305,16 +306,18 @@ if (isset($_GET['id'])) {
                                     <div class="d-flex justify-content-end align-items-center ">
                                         <?php
                                         if (isset($_SESSION['user_id'])) {
-                                        ?>
+                                            ?>
                                             <div class="wrap-check-41 ml-3">
-                                                <input class="tgl tgl-flip" id="cb5" type="checkbox" value="<?= $com_id ?>" <?= $is_subscribed ? 'checked' : '' ?> onchange="toggleSubscription(this)" />
+                                                <input class="tgl tgl-flip" id="cb5" type="checkbox" value="<?= $com_id ?>"
+                                                    <?= $is_subscribed ? 'checked' : '' ?> onchange="toggleSubscription(this)" />
                                                 <label class="tgl-btn" data-tg-off="follow" data-tg-on="following !" for="cb5">
-                                                    <i class="float-right fa fa-bell<?= $is_subscribed ? '' : '-slash' ?>" style="margin-top: 6px; margin-right: 10px;"></i>
+                                                    <i class="float-right fa fa-bell<?= $is_subscribed ? '' : '-slash' ?>"
+                                                        style="margin-top: 6px; margin-right: 10px;"></i>
                                                 </label>
                                             </div>
-                                        <?php
+                                            <?php
                                         } else {
-                                        ?>
+                                            ?>
                                             <!-- <div class="wrap-check-41 ml-3">
                                                 <input class="tgl tgl-flip" id="cb5" type="checkbox" value="<?= $com_id ?>" <?= $is_subscribed ? 'checked' : '' ?> onchange="toggleSubscription(this)" />
                                                 <label class="tgl-btn" data-tg-off="follow" data-tg-on="following !" for="cb5">
@@ -322,7 +325,7 @@ if (isset($_GET['id'])) {
                                                 </label>
                                             </div> -->
                                             <!-- <h6 class=" badge badge-danger p-3">please login to follow</h6> -->
-                                        <?php
+                                            <?php
                                             echo '<button type="button" class="btn btn-danger p-2 custom-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
                                          Login to Follow
                                        </button>';
@@ -360,12 +363,13 @@ if (isset($_GET['id'])) {
                                 // Split the skills into an array
                                 $skillsArray = explode(',', $skills);
 
-                        ?>
+                                ?>
                                 <div class="card mb-3">
                                     <a href="job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
                                     <div class="card-body">
                                         <div class="d-flex flex-column flex-lg-row">
-                                            <span class="avatar avatar-text rounded-3 me-4 mb-2" style="background-color: <?= $random_color ?>;">
+                                            <span class="avatar avatar-text rounded-3 me-4 mb-2"
+                                                style="background-color: <?= $random_color ?>;">
                                                 <?= substr($row['job_title'], 0, 2) ?>
                                             </span>
                                             <div class="row flex-fill">
@@ -391,7 +395,7 @@ if (isset($_GET['id'])) {
                                         </div>
                                     </div>
                                 </div>
-                        <?php
+                                <?php
                             }
                         }
                         ?>
@@ -630,7 +634,7 @@ if (isset($_GET['id'])) {
             function subscribeCompany(company_id) {
                 // Send AJAX request to update subscription status
                 var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
+                xhr.onreadystatechange = function () {
                     if (xhr.readyState == XMLHttpRequest.DONE) {
                         if (xhr.status == 200) {
                             // Subscription status updated successfully
@@ -652,7 +656,7 @@ if (isset($_GET['id'])) {
             function unsubscribeCompany(company_id) {
                 // Send AJAX request to unsubscribe from the company
                 var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
+                xhr.onreadystatechange = function () {
                     if (xhr.readyState == XMLHttpRequest.DONE) {
                         if (xhr.status == 200) {
                             // Unsubscription successful
@@ -673,14 +677,14 @@ if (isset($_GET['id'])) {
 
 
 
-    <?php
+        <?php
 }
 
 
 
 
 
-    ?>
+?>
 
 
 
@@ -704,7 +708,8 @@ if (isset($_GET['id'])) {
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/vendor/jquery/jquery.min.js"></script>
+    <script
+        src="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/vendor/jquery/jquery.min.js"></script>
 
 
     <!-- Additional Scripts -->
@@ -740,7 +745,8 @@ if (isset($_GET['id'])) {
 
     <!-- Login Modal -->
     <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -756,11 +762,13 @@ if (isset($_GET['id'])) {
                                     <div class="col-md-12">
                                         <div>
                                             <div class="mb-4 text-center">
-                                                <img src="images/LOGO.png" alt="Logo" style="width: 300px; height: auto;">
+                                                <img src="images/LOGO.png" alt="Logo"
+                                                    style="width: 300px; height: auto;">
                                             </div>
                                             <div class="mb-4">
                                                 <h4 class="text-gray-900 mb-3"><b>Login</b></h4>
-                                                <h6 class="text-muted mb-3">Don't have an account yet? <a href="register">Sign Up</a></h6>
+                                                <h6 class="text-muted mb-3">Don't have an account yet? <a
+                                                        href="register">Sign Up</a></h6>
                                                 <hr>
                                             </div>
                                             <form class="user" action="" method="post" autocomplete="">
@@ -770,7 +778,8 @@ if (isset($_GET['id'])) {
 
                                                 <div class="form-group input-icon">
                                                     <i class="fas fa-envelope"></i>
-                                                    <input type="email" class="form-control form-control-user" name="email" placeholder="example@gmail.com" required>
+                                                    <input type="email" class="form-control form-control-user"
+                                                        name="email" placeholder="example@gmail.com" required>
                                                 </div>
 
                                                 <div class="d-flex justify-content-between mt-4">
@@ -788,12 +797,15 @@ if (isset($_GET['id'])) {
 
                                                 <div class="form-group input-icon">
                                                     <i class="fas fa-lock"></i>
-                                                    <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Enter 6 Character or more" required>
-                                                    <i class="fas fa-eye toggle-password text-right" id="togglePassword"></i>
+                                                    <input type="password" class="form-control form-control-user"
+                                                        name="password" id="password"
+                                                        placeholder="Enter 6 Character or more" required>
+                                                    <i class="fas fa-eye toggle-password text-right"
+                                                        id="togglePassword"></i>
                                                 </div>
 
                                                 <script>
-                                                    document.getElementById('togglePassword').addEventListener('click', function(e) {
+                                                    document.getElementById('togglePassword').addEventListener('click', function (e) {
                                                         const passwordInput = document.getElementById('password');
                                                         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                                                         passwordInput.setAttribute('type', type);
@@ -805,7 +817,8 @@ if (isset($_GET['id'])) {
                                                     <input type="checkbox" class="form-check-input" id="rememberMe">
                                                     <label class="form-check-label" for="rememberMe">Remember Me</label>
                                                 </div>
-                                                <button type="submit" name="login_modal_btn" class="btn btn-primary btn-user btn-block">Login</button>
+                                                <button type="submit" name="login_modal_btn"
+                                                    class="btn btn-primary btn-user btn-block">Login</button>
                                                 <hr>
                                             </form>
                                             <hr>
@@ -865,14 +878,14 @@ if (isset($_GET['id'])) {
             } else {
                 // Password did not match
                 // $_SESSION['message'] = "Please check your credentials.";
-    ?>
+                ?>
 
                 <script>
                     alertify.error("Please check your credentials.");
                 </script>
 
 
-    <?php
+                <?php
                 echo '<script>
                     window.location.href = "company_data?id=' . $com_id . '";
                 </script>';
@@ -898,109 +911,110 @@ if (isset($_GET['id'])) {
 
 
 
-    </main>
+</main>
 
-    <?php include("includes/footer.php");
-    ?>
+<?php include ("includes/footer.php");
+?>
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
+<!-- Preloader -->
+<div id="preloader"></div>
 
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-    <!-- Main JS File -->
-    <script src="assets/js/main.js"></script>
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
 
-    </body>
+</body>
 
-    </html>
-
-
-    <!-- -------------------------------- FOoter Section ----------------------------------- -->
-    <!-- -------------------------------- FOoter Section ----------------------------------- -->
-    <!-- -------------------------------- FOoter Section ----------------------------------- -->
+</html>
 
 
-
+<!-- -------------------------------- FOoter Section ----------------------------------- -->
+<!-- -------------------------------- FOoter Section ----------------------------------- -->
+<!-- -------------------------------- FOoter Section ----------------------------------- -->
 
 
 
 
 
 
-    <?php
+
+
+
+<?php
 
 
 
 
 
-    // ---------------------------------------------- WHEN LOGIN THROUGHT THE FINDING JOBS PHP CODE  ----------------------------------------------
+// ---------------------------------------------- WHEN LOGIN THROUGHT THE FINDING JOBS PHP CODE  ----------------------------------------------
 
-    // Check if the form is submitted
-    if (isset($_POST['login_modal_btn'])) {
-        // Get email and password from the form submission
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+// Check if the form is submitted
+if (isset($_POST['login_modal_btn'])) {
+    // Get email and password from the form submission
+    $email = $_POST["email"];
+    $password = $_POST["password"];
 
-        // SQL query to check if the user exists
-        $sql = "SELECT * FROM userregister WHERE email = ?";
-        $stmt = $conn->prepare($sql);
-        if ($stmt === false) {
-            die("Failed to prepare SQL statement: " . $conn->error);
-        }
-
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            // Fetch the user's data
-            $user = $result->fetch_assoc();
-
-            // Verify the password
-            if (password_verify($password, $user['password'])) {
-                // Set session variables
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_email'] = $user['email'];
-                $_SESSION['first_name'] = $user['firstname'];
-                $_SESSION['user_type'] = $user['usertype'];
-                $_SESSION['message'] = "Successfully logged in";
-
-                // Redirect based on user type
-                if ($user['usertype'] == 'jobSeeker') {
-                    // header("Location: job-details?id=" . $_GET['jobId']);
-                    echo '<script>window.location.href = "company_data?id=' . $com_id . '";</script>';
-                    exit();
-                } else if ($user['usertype'] == 'recruiter') {
-                    header("Location: Recuiter/recruiterIndex");
-                    exit();
-                }
-            } else {
-                // Password did not match
-                $_SESSION['message'] = "Please check your credentials.";
-            }
-        } else {
-            // No user found with that email address
-            $_SESSION['message'] = "No user found with that email address!";
-        }
-
-        $stmt->close();
+    // SQL query to check if the user exists
+    $sql = "SELECT * FROM userregister WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    if ($stmt === false) {
+        die("Failed to prepare SQL statement: " . $conn->error);
     }
 
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Fetch the user's data
+        $user = $result->fetch_assoc();
+
+        // Verify the password
+        if (password_verify($password, $user['password'])) {
+            // Set session variables
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_email'] = $user['email'];
+            $_SESSION['first_name'] = $user['firstname'];
+            $_SESSION['user_type'] = $user['usertype'];
+            $_SESSION['message'] = "Successfully logged in";
+
+            // Redirect based on user type
+            if ($user['usertype'] == 'jobSeeker') {
+                // header("Location: job-details?id=" . $_GET['jobId']);
+                echo '<script>window.location.href = "company_data?id=' . $com_id . '";</script>';
+                exit();
+            } else if ($user['usertype'] == 'recruiter') {
+                header("Location: Recuiter/recruiterIndex");
+                exit();
+            }
+        } else {
+            // Password did not match
+            $_SESSION['message'] = "Please check your credentials.";
+        }
+    } else {
+        // No user found with that email address
+        $_SESSION['message'] = "No user found with that email address!";
+    }
+
+    $stmt->close();
+}
 
 
 
 
 
 
-    ?>
+
+?>

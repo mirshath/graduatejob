@@ -1,73 +1,81 @@
 <?php
-include '../Database/connection.php';
+session_start(); // Start session if not already started
+require '../Database/connection.php'; // Include database connection file
 
-// Use PHPMailer for sending emails
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../vendor/autoload.php';
+require '../vendor/autoload.php'; // Include PHPMailer autoload
 
 // Function to send email notifications
 function sendEmailNotification($to, $subject, $message)
 {
-    $mail = new PHPMailer(true);
+    $mail = new PHPMailer(true); // Passing `true` enables exceptions
+
     try {
         // Server settings
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'yournumplz@gmail.com';
-        $mail->Password = 'uzsihqeugnntzwke';
+        $mail->Username = 'yournumplz@gmail.com'; // Your Gmail email address
+        $mail->Password = 'uzsihqeugnntzwke'; // Your Gmail password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        // Recipients
-        $mail->setFrom('yournumplz@gmail.com', 'Job Alert');
-        $mail->addAddress($to);
+        // Sender and recipient
+        $mail->setFrom('yournumplz@gmail.com', 'Job Alert'); // Sender's email and name
+        $mail->addAddress($to); // Recipient's email
 
-        include '../Database/connection.php';
-
-        $stmt = $conn->prepare("SELECT email FROM userregister WHERE usertype = 'jobSeeker' AND studied_at = 'BMS' ");
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        while ($row = $result->fetch_assoc()) {
-            $mail->addAddress($row['email']); // Add each subscribed BMS student's email
-        }
-        
         // Content
-        $mail->isHTML(false);
+        $mail->isHTML(false); // Set email format to plain text
         $mail->Subject = $subject;
         $mail->Body = $message;
 
-        // $mail->send();
-        // echo "Email notification sent to: $to";
-         // Send email
-
-         if ($mail->send()) {
-            echo 'Email sent successfully!';
+        // Send email
+        if ($mail->send()) {
+            echo 'Email sent successfully to ' . $to . '!<br>';
         } else {
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
+            echo 'Mailer Error: ' . $mail->ErrorInfo . '<br>';
         }
     } catch (Exception $e) {
-        echo "Failed to send email notification to: $to. Error: {$mail->ErrorInfo}";
+        echo "Failed to send email notification to: $to. Error: {$mail->ErrorInfo}<br>";
     }
 }
 
-// Check if the form is submitted and required data is set
+// Function to fetch BMS students and send them email notifications
+function sendBMSStudentNotifications($conn) {
+    $stmt = $conn->prepare("SELECT email FROM userregister WHERE studied_at = 'BMS'");
+    if (!$stmt) {
+        echo "Prepare failed: (" . $conn->errno . ") " . $conn->error . "<br>";
+        return;
+    }
+    
+    $stmt->execute();
+    $results = $stmt->get_result();
+    $num_rows = $results->num_rows;
+    echo "Number of BMS students found: " . $num_rows . "<br>";
+    
+
+    while ($row = $results->fetch_assoc()) {
+        $bms_student_email = $row['email'];
+        $subject = "BMS Student Notification";
+        $message = "You are receiving this notification because you studied at BMS.";
+        sendEmailNotification($bms_student_email, $subject, $message);
+    }
+}
+
+// Main script
+// Check if the form is submitted and required data is set for job status update
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id']) && isset($_POST['status'])) {
     $postId = $_POST['post_id'];
     $status = $_POST['status'];
     $cname = $_POST['cname'];
 
-
-    // Prepare and execute the SQL query to update the status
     $updateStatusSql = "UPDATE jobs SET admin_status ='$status' WHERE id=$postId";
     if ($conn->query($updateStatusSql) === TRUE) {
-        // Set a success message
         $_SESSION['message'] = "Successfully updated the status.";
 
-        // Find subscribed job seekers for the company
+        // Send notifications to subscribed job seekers
         $sql_sel = "SELECT js.id, js.email
                     FROM jobseeker_company_subscriptions jcs
                     JOIN userregister js ON jcs.jobseeker_id = js.id
@@ -76,24 +84,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id']) && isset($
         $result_select_mail = $conn->query($sql_sel);
 
         if ($result_select_mail->num_rows > 0) {
-            // Send notification email to each subscribed job seeker
             while ($row = $result_select_mail->fetch_assoc()) {
                 $jobseeker_email = $row['email'];
-
-                // Send email notification
                 $subject = "New Job Alert";
                 $message = "A new job has been posted by a company you are subscribed to.\n Job Title: \n Company: $cname";
                 sendEmailNotification($jobseeker_email, $subject, $message);
             }
         } else {
-            echo "No subscribed job seekers found for the company.";
+            echo "No subscribed job seekers found for the company.<br>";
         }
 
-        // Redirect back to the previous page
+        // Send notifications to BMS students
+        sendBMSStudentNotifications($conn);
+
         header("Location: pendingjobs.php");
         exit();
     } else {
-        // If there's an error, display it
-        echo "Error updating status: " . $conn->error;
+        echo "Error updating status: " . $conn->error . "<br>";
     }
 }
