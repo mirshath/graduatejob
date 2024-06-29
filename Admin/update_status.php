@@ -58,7 +58,9 @@ function sendBMSStudentNotifications($conn, $jobId)
     
     $jobLink = "http://localhost/graduatejob/job-details.php?id=$jobId";
     $subject = "BMS Student Notification";
-    $message = "A new job has been posted. <a href='$jobLink'>View it here</a>.";
+    // $message = "A new job has been posted. <a href='$jobLink'>View it here</a>.";
+    $message = "A new job has been posted. <a href='$jobLink' style='display: inline-block; background-color: #00008B; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>View it here</a>.";
+
 
     while ($row = $results->fetch_assoc()) {
         $bms_student_email = $row['email'];
@@ -87,7 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id']) && isset($
 
         $jobLink = "http://localhost/graduatejob/job-details.php?id=$postId";
         $subject = "New Job Alert";
-        $message = "A new job has been posted by $cname. <a href='$jobLink'>View it here</a>.";
+        // $message = "A new job has been posted by $cname. <a href='$jobLink'>View it here</a>.";
+        $message = "A new job has been posted by $cname. <a href='$jobLink' style='display: inline-block; background-color: #00008B; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>View it here</a>.";
+
 
         if ($result_select_mail->num_rows > 0) {
             while ($row = $result_select_mail->fetch_assoc()) {
