@@ -27,7 +27,7 @@ function sendEmailNotification($to, $subject, $message)
         $mail->addAddress($to); // Recipient's email
 
         // Content
-        $mail->isHTML(false); // Set email format to plain text
+        $mail->isHTML(true); // Set email format to HTML
         $mail->Subject = $subject;
         $mail->Body = $message;
 
@@ -43,7 +43,8 @@ function sendEmailNotification($to, $subject, $message)
 }
 
 // Function to fetch BMS students and send them email notifications
-function sendBMSStudentNotifications($conn) {
+function sendBMSStudentNotifications($conn, $jobId)
+{
     $stmt = $conn->prepare("SELECT email FROM userregister WHERE studied_at = 'BMS'");
     if (!$stmt) {
         echo "Prepare failed: (" . $conn->errno . ") " . $conn->error . "<br>";
@@ -55,11 +56,12 @@ function sendBMSStudentNotifications($conn) {
     $num_rows = $results->num_rows;
     echo "Number of BMS students found: " . $num_rows . "<br>";
     
+    $jobLink = "http://localhost/graduatejob/job-details.php?id=$jobId";
+    $subject = "BMS Student Notification";
+    $message = "A new job has been posted. <a href='$jobLink'>View it here</a>.";
 
     while ($row = $results->fetch_assoc()) {
         $bms_student_email = $row['email'];
-        $subject = "BMS Student Notification";
-        $message = "You are receiving this notification because you studied at BMS.";
         sendEmailNotification($bms_student_email, $subject, $message);
     }
 }
@@ -80,14 +82,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id']) && isset($
                     FROM jobseeker_company_subscriptions jcs
                     JOIN userregister js ON jcs.jobseeker_id = js.id
                     WHERE jcs.company_id = (SELECT id FROM userregister WHERE company_name = '$cname' LIMIT 1)";
-
+        
         $result_select_mail = $conn->query($sql_sel);
+
+        $jobLink = "http://localhost/graduatejob/job-details.php?id=$postId";
+        $subject = "New Job Alert";
+        $message = "A new job has been posted by $cname. <a href='$jobLink'>View it here</a>.";
 
         if ($result_select_mail->num_rows > 0) {
             while ($row = $result_select_mail->fetch_assoc()) {
                 $jobseeker_email = $row['email'];
-                $subject = "New Job Alert";
-                $message = "A new job has been posted by a company you are subscribed to.\n Job Title: \n Company: $cname";
                 sendEmailNotification($jobseeker_email, $subject, $message);
             }
         } else {
@@ -95,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id']) && isset($
         }
 
         // Send notifications to BMS students
-        sendBMSStudentNotifications($conn);
+        sendBMSStudentNotifications($conn, $postId);
 
         header("Location: pendingjobs.php");
         exit();
@@ -103,3 +107,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id']) && isset($
         echo "Error updating status: " . $conn->error . "<br>";
     }
 }
+?>
