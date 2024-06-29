@@ -18,7 +18,7 @@
   <title>Job Portal</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
 
   <!-- Additional CSS Files -->
   <!-- <link rel="stylesheet" href="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/assets/css/fontawesome.css">
