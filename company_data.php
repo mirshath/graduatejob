@@ -708,12 +708,12 @@ if (isset($_GET['id'])) {
 
 
     <!-- Bootstrap core JavaScript -->
-    <script
-        src="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/vendor/jquery/jquery.min.js"></script>
+    <!-- <script
+        src="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/vendor/jquery/jquery.min.js"></script> -->
 
 
     <!-- Additional Scripts -->
-    <script src="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/assets/js/custom.js"></script>
+    <!-- <script src="https://demo.phpjabbers.com/free-web-templates/job-website-template-138/assets/js/custom.js"></script> -->
     </body>
 
 
