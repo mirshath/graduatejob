@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->AltBody = "Hello $firstName,\n\n Please click the link below to verify your email:\n http://localhost/graduatejob/user_submit_form_before_loggin.php?token=$token \n\n Best regards,\n Your Company Name";
 
             $mail->send();
-            $_SESSION['message'] = "You have applied for a job. A confirmation email has been sent.";
+            $_SESSION['message'] = "Verify Your Email Please.";
         } catch (Exception $e) {
             $_SESSION['message'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
