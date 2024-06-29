@@ -7,6 +7,19 @@ $first_name = '';
 $last_name = '';
 $email = '';
 
+
+$categories = []; // Array to store fetched categories
+
+// Fetch categories from database
+$sql_categories = "SELECT * FROM category";
+$result_categories = $conn->query($sql_categories);
+
+if ($result_categories->num_rows > 0) {
+    while ($row = $result_categories->fetch_assoc()) {
+        $categories[] = $row;
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
     $token = $_GET['token'];
     $phone = $_POST['phone'];
@@ -27,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
     if ($result->num_rows == 1) {
         // Update user data and activate account
         $update_sql = "UPDATE userregister SET phone_no = ?, St_address = ?, education_qualification = ?, interested_field = ?, professional_qualification = ?, studied_at = ?, token='', user_active=1 WHERE token = ?";
-        
+
         // Determine the studied_at value based on dropdown selection
         if ($studied_at === 'other' && !empty($other_studied_at)) {
             $studied_at_value = $other_studied_at;
@@ -143,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                             </select>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <!-- <div class="form-group col-md-4">
                             <label for="interestedField">Interested Field</label>
                             <select class="form-control" id="interestedField" name="interestedField">
                                 <option value="">Select Interested Field</option>
@@ -151,10 +164,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                                 <option value="Engineering">Engineering</option>
                                 <option value="Marketing">Marketing</option>
                                 <option value="Finance">Finance</option>
-                                <!-- Add more options as needed -->
+                            </select>
+                        </div> -->
+
+
+                        <div class="form-group col-md-4">
+                            <label for="interestedField">Interested Field</label>
+                            <select class="form-control" id="interestedField" name="interestedField">
+                                <option value="">Select Interested Field</option>
+                                <?php foreach ($categories as $category) : ?>
+                                    <option value="<?= $category['category_name']; ?>"><?= $category['category_name']; ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
-
                     </div>
 
                     <div class="form-row">
@@ -165,9 +187,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                                 <option value="">Select Professional Qualification</option>
                                 <option value="Certification">Certification</option>
                                 <option value="Diploma">Diploma</option>
-                                <option value="Associate Degree">Associate Degree</option>
-                                <option value="Bachelor's Degree">Bachelor's Degree</option>
-                                <option value="Master's Degree">Master's Degree</option>
+                                <option value="Associate_Degree">Associate Degree</option>
+                                <option value="Bachelor's_Degree">Bachelor's Degree</option>
+                                <option value="Master's_Degree">Master's Degree</option>
                                 <option value="PhD">PhD</option>
                                 <!-- Add more options as needed -->
                             </select>

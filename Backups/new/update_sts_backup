@@ -25,30 +25,13 @@ function sendEmailNotification($to, $subject, $message)
         $mail->setFrom('yournumplz@gmail.com', 'Job Alert');
         $mail->addAddress($to);
 
-        include '../Database/connection.php';
-
-        $stmt = $conn->prepare("SELECT email FROM userregister WHERE usertype = 'jobSeeker' AND studied_at = 'BMS' ");
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        while ($row = $result->fetch_assoc()) {
-            $mail->addAddress($row['email']); // Add each subscribed BMS student's email
-        }
-        
         // Content
         $mail->isHTML(false);
         $mail->Subject = $subject;
         $mail->Body = $message;
 
-        // $mail->send();
-        // echo "Email notification sent to: $to";
-         // Send email
-
-         if ($mail->send()) {
-            echo 'Email sent successfully!';
-        } else {
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        }
+        $mail->send();
+        echo "Email notification sent to: $to";
     } catch (Exception $e) {
         echo "Failed to send email notification to: $to. Error: {$mail->ErrorInfo}";
     }
@@ -82,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id']) && isset($
 
                 // Send email notification
                 $subject = "New Job Alert";
-                $message = "A new job has been posted by a company you are subscribed to.\n Job Title: \n Company: $cname";
+                $message = "A new job has been posted by a company you are subscribed to.\nJob Title: \n Company: $cname";
                 sendEmailNotification($jobseeker_email, $subject, $message);
             }
         } else {
