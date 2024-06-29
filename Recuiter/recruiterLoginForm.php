@@ -3,20 +3,15 @@ session_start();
 include "../Database/connection.php";
 include "include/header.php";
 
-
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['login_btn'])) {
+        // Login logic
         $login_email = $_POST["login_email"];
         $login_password = $_POST["login_password"];
 
-        if ($login_email == "" || $login_password == "") {
+        if (empty($login_email) || empty($login_password)) {
             $_SESSION['message'] = "All fields are required";
-            echo '<script>window.location.href = "recruiterLoginForm";</script>';
-
-            exit();
         } else {
-            // SQL query to check if the user exists
             $sql = "SELECT * FROM userregister WHERE email = ? AND usertype='recruiter'";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("s", $login_email);
@@ -24,107 +19,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                // Fetch the user's data
                 $user = $result->fetch_assoc();
-
-                // Verify the password
                 if (password_verify($login_password, $user['password'])) {
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['user_email'] = $user['email'];
                     $_SESSION['company_name'] = $user['company_name'];
                     $_SESSION['user_type'] = $user['usertype'];
-
-                    $_SESSION['message'] = "Successfully logged in ";
-
-                    if ($user['usertype'] == 'recruiter') {
-
-                        echo '<script>window.location.href = "index";</script>';
-                        exit();
-                    }
+                    $_SESSION['message'] = "Successfully logged in";
+                    header("Location: index");
+                    exit();
                 } else {
                     $_SESSION['message'] = "Please check your credentials.";
                 }
             } else {
                 $_SESSION['message'] = "No user found with that email address!";
             }
-
-            $stmt->close();
         }
-    } else if (isset($_POST['register_btn'])) {
-
-        // Validate and sanitize user input
+    } elseif (isset($_POST['register_btn'])) {
+        // Registration logic
         $email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
         $password = $_POST["password"];
         $confirmPassword = $_POST["confirmPassword"];
-        $userType = htmlspecialchars($_POST["usertype"]);
+        $userType = "recruiter"; // Assuming recruiter registration
         $companyName = htmlspecialchars($_POST["companyName"]);
 
-        if (
-            $email == "" || $password == "" || $confirmPassword == "" || $companyName == ""
-        ) {
-            $_SESSION["message"] = "All fields are required ";
-            ?>
-
-                <script>
-                    alertify.error("All fields are required  !!");
-                </script>
-                <?php
-                echo '<script>window.location.href = "recruiterLoginForm";</script>';
+        if (empty($email) || empty($password) || empty($confirmPassword) || empty($companyName)) {
+            $_SESSION["message"] = "All fields are required";
+        } elseif ($password !== $confirmPassword) {
+            $_SESSION["message"] = "Passwords do not match!";
         } else {
-            // Validate email
-            // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            //     $_SESSION["message"] = "Invalid email format.";
-            //     echo '<script>window.location.href = "recruiterLoginForm";</script>';
-            //     exit();
-            // }
-
-            // Validate password strength
-            if (strlen($password) < 6) {
-                // $_SESSION["message"] = "Password must be at least 6 characters long.";
-                // echo '<script>window.location.href = "recruiterLoginForm";</script>';
-                // exit();
-            }
-
-            // Check if passwords match
-            if ($password !== $confirmPassword) {
-                // $_SESSION["message"] = "Passwords do not match!";
-                ?>
-
-                    <script>
-                        alertify.error("Passwords do not match !!");
-                    </script>
-                    <?php
-                    echo '<script>window.location.href = "recruiterLoginForm";</script>';
-
-                    exit();
-            }
-
             // Hash the password
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-            // Prepare SQL statement using prepared statements
+            // Insert into database
             $sql = "INSERT INTO userregister (company_name, email, password, usertype) VALUES (?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssss", $companyName, $email, $hashedPassword, $userType);
 
-            if ($stmt) {
-                $stmt->bind_param("ssss", $companyName, $email, $hashedPassword, $userType);
-
-                // Execute the statement
-                if ($stmt->execute()) {
-                    $_SESSION['message'] = "Successfully registered";
-                    echo '<script>window.location.href = "recruiterLoginForm";</script>';
-                    exit();
-                } else {
-                    echo "Error: " . $stmt->error;
-                }
-
-                // Close statement
-                $stmt->close();
+            if ($stmt->execute()) {
+                $_SESSION['message'] = "Successfully registered";
+                header("Location: recruiterLoginForm");
+                exit();
             } else {
-                echo "Error preparing statement: " . $conn->error;
+                $_SESSION['message'] = "Error registering user";
             }
         }
     }
+
+    // Redirect after form processing
+    header("Location: recruiterLoginForm");
+    exit();
 }
 ?>
 

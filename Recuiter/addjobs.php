@@ -8,9 +8,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Use PHPMailer for sending emails
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 
 require '../vendor/autoload.php';
@@ -19,7 +16,7 @@ require '../vendor/autoload.php';
 include("include/sidenav.php");
 
 $rec_id = $_SESSION['user_id'];
-$re_email = $_SESSION['user_email'];
+// $re_email = $_SESSION['user_email'];
 $com_name = $_SESSION['company_name'];
 
 
@@ -66,27 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<h3> Failed to upload image!</h3>";
         }
 
-        // Find subscribed job seekers for the company
-        // $sql_sel = "SELECT js.id, js.email
-        //     FROM jobseeker_company_subscriptions jcs
-        //     JOIN userregister js ON jcs.jobseeker_id = js.id
-        //     WHERE jcs.company_id = (SELECT id FROM userregister WHERE company_name = '$companyName' LIMIT 1)";
-
-        // $result_select_mail = $conn->query($sql_sel);
-
-        // if ($result_select_mail->num_rows > 0) {
-        //     // Send notification email to each subscribed job seeker
-        //     while ($row = $result_select_mail->fetch_assoc()) {
-        //         $jobseeker_email = $row['email'];
-
-        //         // Send email notification
-        //         $subject = "New Job Alert";
-        //         $message = "A new job has been posted by a company you are subscribed to.\nJob Title: $jobTitle\nCompany: $companyName";
-        //         sendEmailNotification($jobseeker_email, $subject, $message);
-        //     }
-        // } else {
-        //     echo "No subscribed job seekers found for the company.";
-        // }
+       
 
         echo '<script>window.location.href = "addjobs.php";</script>';
     } else {
@@ -97,33 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-// function sendEmailNotification($to, $subject, $message) {
-//     $mail = new PHPMailer(true);
-//     try {
-//         // Server settings
-//         $mail->isSMTP();
-//         $mail->Host = 'smtp.gmail.com';
-//         $mail->SMTPAuth = true;
-//         $mail->Username = 'yournumplz@gmail.com';
-//         $mail->Password = 'uzsihqeugnntzwke';
-//         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-//         $mail->Port = 587;
-
-//         // Recipients
-//         $mail->setFrom('yournumplz@gmail.com', 'Job Alert');
-//         $mail->addAddress($to);
-
-//         // Content
-//         $mail->isHTML(false);
-//         $mail->Subject = $subject;
-//         $mail->Body = $message;
-
-//         $mail->send();
-//         echo "Email notification sent to: $to";
-//     } catch (Exception $e) {
-//         echo "Failed to send email notification to: $to. Error: {$mail->ErrorInfo}";
-//     }
-// }
 ?>
 
 
@@ -277,47 +227,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Initialize CKEditor on the textarea with custom configuration
                             CKEDITOR.replace('jobDescription', {
                                 height: 300,
-                                toolbar: [{
-                                        name: 'document',
-                                        items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']
-                                    },
-                                    {
-                                        name: 'clipboard',
-                                        items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
-                                    },
-                                    {
-                                        name: 'editing',
-                                        items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']
-                                    },
-                                    {
-                                        name: 'insert',
-                                        items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
-                                    },
-                                    '/',
-                                    {
-                                        name: 'basicstyles',
-                                        items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
-                                    },
-                                    {
-                                        name: 'paragraph',
-                                        items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']
-                                    },
-                                    {
-                                        name: 'styles',
-                                        items: ['Styles', 'Format', 'Font', 'FontSize']
-                                    },
-                                    {
-                                        name: 'colors',
-                                        items: ['TextColor', 'BGColor']
-                                    },
-                                    {
-                                        name: 'tools',
-                                        items: ['Maximize', 'ShowBlocks']
-                                    }
-                                ],
-                                // Add additional configuration options here
-
-                                // You can add more configuration options here
+                                
+                               
                             });
                         </script>
                     </div>
@@ -333,47 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Initialize CKEditor on the textarea with custom configuration
                             CKEDITOR.replace('additionalInfo', {
                                 height: 150,
-                                toolbar: [{
-                                        name: 'document',
-                                        items: ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']
-                                    },
-                                    {
-                                        name: 'clipboard',
-                                        items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']
-                                    },
-                                    {
-                                        name: 'editing',
-                                        items: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']
-                                    },
-                                    {
-                                        name: 'insert',
-                                        items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
-                                    },
-                                    '/',
-                                    {
-                                        name: 'basicstyles',
-                                        items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
-                                    },
-                                    {
-                                        name: 'paragraph',
-                                        items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']
-                                    },
-                                    {
-                                        name: 'styles',
-                                        items: ['Styles', 'Format', 'Font', 'FontSize']
-                                    },
-                                    {
-                                        name: 'colors',
-                                        items: ['TextColor', 'BGColor']
-                                    },
-                                    {
-                                        name: 'tools',
-                                        items: ['Maximize', 'ShowBlocks']
-                                    }
-                                ],
-                                // Add additional configuration options here
-
-                                // You can add more configuration options here
+                                
                             });
                         </script>
                     </div>
