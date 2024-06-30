@@ -84,11 +84,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id']) && isset($
     if ($conn->query($updateStatusSql) === TRUE) {
         $_SESSION['message'] = "Successfully updated the status.";
 
-        // Send notifications to subscribed job seekers
+        // Send notifications to subscribed job seekers with matching interested fields
         $sql_sel = "SELECT js.id, js.email
                     FROM jobseeker_company_subscriptions jcs
                     JOIN userregister js ON jcs.jobseeker_id = js.id
-                    WHERE jcs.company_id = (SELECT id FROM userregister WHERE company_name = '$cname' LIMIT 1)";
+                    WHERE jcs.company_id = (SELECT id FROM userregister WHERE company_name = '$cname' LIMIT 1)
+                    AND js.interested_field = '$jobCategory'";
         
         $result_select_mail = $conn->query($sql_sel);
 
