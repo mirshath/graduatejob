@@ -113,6 +113,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<title>Job Seeker Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
 	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
 	<!--===============================================================================================-->
@@ -148,13 +157,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					</span>
 
 
-					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate="Valid Name is Required">
 						<input class="input100" type="text" id="firstname" name="firstname">
 						<span class="focus-input100"></span>
 						<span class="label-input100">First Name</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate="Valid Name is Required">
 						<input class="input100" type="text" id="lastname" name="lastname">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Last Name</span>
