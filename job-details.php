@@ -4,8 +4,8 @@ session_start();
 require "Database/connection.php";
 
 
-include("includes/header.php");
-include("includes/navbar.php");
+include ("includes/header.php");
+include ("includes/navbar.php");
 
 
 
@@ -71,11 +71,471 @@ if (isset($_GET['id'])) {
 
 
 
-?>
+    ?>
 
     <main class="main">
 
 
+
+
+      <style>
+        /*//////////////////////////////////////////////////////////////////
+    [ FONT ]*/
+
+        
+
+        /*//////////////////////////////////////////////////////////////////
+    [ RESTYLE TAG ]*/
+
+        * {
+          margin: 0px;
+          padding: 0px;
+          box-sizing: border-box;
+        }
+
+        body,
+        html {
+          height: 100%;
+          font-family: Poppins-Regular, sans-serif;
+        }
+
+        /*---------------------------------------------*/
+        a {
+          font-family: Poppins-Regular;
+          font-size: 14px;
+          line-height: 1.7;
+          color: #666666;
+          margin: 0px;
+          transition: all 0.4s;
+          -webkit-transition: all 0.4s;
+          -o-transition: all 0.4s;
+          -moz-transition: all 0.4s;
+        }
+
+        a:focus {
+          outline: none !important;
+        }
+
+        a:hover {
+          text-decoration: none;
+          color: #6675df;
+        }
+
+        /*---------------------------------------------*/
+       
+
+        p {
+          /* font-family: Poppins-Regular; */
+          font-size: 14px;
+          line-height: 2;
+          color: #666666;
+          margin: 0px;
+        }
+
+        
+
+
+        /*---------------------------------------------*/
+        input {
+          outline: none;
+          border: none;
+        }
+
+        textarea {
+          outline: none;
+          border: none;
+        }
+
+        textarea:focus,
+        input:focus {
+          border-color: transparent !important;
+        }
+
+        input:focus::-webkit-input-placeholder {
+          color: transparent;
+        }
+
+        input:focus:-moz-placeholder {
+          color: transparent;
+        }
+
+        input:focus::-moz-placeholder {
+          color: transparent;
+        }
+
+        input:focus:-ms-input-placeholder {
+          color: transparent;
+        }
+
+        textarea:focus::-webkit-input-placeholder {
+          color: transparent;
+        }
+
+        textarea:focus:-moz-placeholder {
+          color: transparent;
+        }
+
+        textarea:focus::-moz-placeholder {
+          color: transparent;
+        }
+
+        textarea:focus:-ms-input-placeholder {
+          color: transparent;
+        }
+
+        input::-webkit-input-placeholder {
+          color: #999999;
+        }
+
+        input:-moz-placeholder {
+          color: #999999;
+        }
+
+        input::-moz-placeholder {
+          color: #999999;
+        }
+
+        input:-ms-input-placeholder {
+          color: #999999;
+        }
+
+        textarea::-webkit-input-placeholder {
+          color: #999999;
+        }
+
+        textarea:-moz-placeholder {
+          color: #999999;
+        }
+
+        textarea::-moz-placeholder {
+          color: #999999;
+        }
+
+        textarea:-ms-input-placeholder {
+          color: #999999;
+        }
+
+
+        label {
+          display: block;
+          margin: 0;
+        }
+
+        /*---------------------------------------------*/
+        button {
+          outline: none !important;
+          border: none;
+          background: transparent;
+        }
+
+        button:hover {
+          cursor: pointer;
+        }
+
+        iframe {
+          border: none !important;
+        }
+
+        /*//////////////////////////////////////////////////////////////////
+    [ utility ]*/
+
+        /*==================================================================
+    [ Text ]*/
+        .txt1 {
+          font-family: Montserrat-Regular;
+          font-size: 13px;
+          line-height: 1.4;
+          color: #555555;
+        }
+
+        .txt2 {
+          font-family: Montserrat-Regular;
+          font-size: 13px;
+          line-height: 1.4;
+          color: #999999;
+        }
+
+
+
+
+        /*------------------------------------------------------------------
+    [ Input ]*/
+
+        .wrap-input100 {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-end;
+          width: 100%;
+          height: 60px;
+          position: relative;
+          border: 1px solid #e6e6e6;
+          border-radius: 10px;
+          margin-bottom: 10px;
+        }
+
+        .label-input100 {
+          font-family: Montserrat-Regular;
+          font-size: 18px;
+          color: #999999;
+          line-height: 1.2;
+
+          display: block;
+          position: absolute;
+          pointer-events: none;
+          width: 100%;
+          padding-left: 24px;
+          left: 0;
+          top: 7px;
+
+          -webkit-transition: all 0.4s;
+          -o-transition: all 0.4s;
+          -moz-transition: all 0.4s;
+          transition: all 0.4s;
+        }
+
+        .input100 {
+          display: block;
+          width: 100%;
+          background: transparent;
+          font-family: Montserrat-Regular;
+          font-size: 18px;
+          color: #555555;
+          line-height: 1.2;
+          padding: 0 26px;
+        }
+
+        input.input100 {
+          height: 100%;
+          -webkit-transition: all 0.4s;
+          -o-transition: all 0.4s;
+          -moz-transition: all 0.4s;
+          transition: all 0.4s;
+        }
+
+        /*---------------------------------------------*/
+
+        .focus-input100 {
+          position: absolute;
+          display: block;
+          width: calc(100% + 2px);
+          height: calc(100% + 2px);
+          top: -1px;
+          left: -1px;
+          pointer-events: none;
+          border: 1px solid #6675df;
+          border-radius: 10px;
+
+          visibility: hidden;
+          opacity: 0;
+
+          -webkit-transition: all 0.4s;
+          -o-transition: all 0.4s;
+          -moz-transition: all 0.4s;
+          transition: all 0.4s;
+
+          -webkit-transform: scaleX(1.1) scaleY(1.3);
+          -moz-transform: scaleX(1.1) scaleY(1.3);
+          -ms-transform: scaleX(1.1) scaleY(1.3);
+          -o-transform: scaleX(1.1) scaleY(1.3);
+          transform: scaleX(1.1) scaleY(1.3);
+        }
+
+        .input100:focus+.focus-input100 {
+          visibility: visible;
+          opacity: 1;
+
+          -webkit-transform: scale(1);
+          -moz-transform: scale(1);
+          -ms-transform: scale(1);
+          -o-transform: scale(1);
+          transform: scale(1);
+        }
+
+        .eff-focus-selection {
+          visibility: visible;
+          opacity: 1;
+
+          -webkit-transform: scale(1);
+          -moz-transform: scale(1);
+          -ms-transform: scale(1);
+          -o-transform: scale(1);
+          transform: scale(1);
+        }
+
+        .input100:focus {
+          height: 48px;
+        }
+
+        .input100:focus+.focus-input100+.label-input100 {
+          top: 14px;
+          font-size: 13px;
+        }
+
+        .has-val {
+          height: 48px !important;
+        }
+
+        .has-val+.focus-input100+.label-input100 {
+          top: 14px;
+          font-size: 13px;
+        }
+
+        /*==================================================================
+
+
+    /*------------------------------------------------------------------
+    [ Button ]*/
+        .container-login100-form-btn {
+          width: 100%;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .login100-form-btn {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 20px;
+          width: 100%;
+          height: 50px;
+          border-radius: 10px;
+          background: #6675df;
+
+          font-family: Montserrat-Bold;
+          font-size: 12px;
+          color: #fff;
+          line-height: 1.2;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+
+          -webkit-transition: all 0.4s;
+          -o-transition: all 0.4s;
+          -moz-transition: all 0.4s;
+          transition: all 0.4s;
+        }
+
+        .login100-form-btn:hover {
+          background: #333333;
+        }
+
+
+
+        /*------------------------------------------------------------------
+    [ Responsive ]*/
+
+        @media (max-width: 992px) {
+          .login100-form {
+            width: 50%;
+            padding-left: 30px;
+            padding-right: 30px;
+          }
+
+          .login100-more {
+            width: 50%;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .login100-form {
+            width: 100%;
+          }
+
+          .login100-more {
+            display: none;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .login100-form {
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 70px;
+          }
+        }
+
+
+        /*------------------------------------------------------------------
+    [ Alert validate ]*/
+
+        .validate-input {
+          position: relative;
+        }
+
+        .alert-validate::before {
+          content: attr(data-validate);
+          position: absolute;
+          z-index: 100;
+          max-width: 70%;
+          background-color: #fff;
+          border: 1px solid #c80000;
+          border-radius: 2px;
+          padding: 4px 25px 4px 10px;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+          transform: translateY(-50%);
+          right: 12px;
+          pointer-events: none;
+
+          font-family: Poppins-Regular;
+          color: #c80000;
+          font-size: 13px;
+          line-height: 1.4;
+          text-align: left;
+
+          visibility: hidden;
+          opacity: 0;
+
+          -webkit-transition: opacity 0.4s;
+          -o-transition: opacity 0.4s;
+          -moz-transition: opacity 0.4s;
+          transition: opacity 0.4s;
+        }
+
+        .alert-validate::after {
+          content: "\f12a";
+          font-family: FontAwesome;
+          display: block;
+          position: absolute;
+          z-index: 110;
+          color: #c80000;
+          font-size: 16px;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+          transform: translateY(-50%);
+          right: 18px;
+        }
+
+        .alert-validate:hover:before {
+          visibility: visible;
+          opacity: 1;
+        }
+
+        @media (max-width: 992px) {
+          .alert-validate::before {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+      </style>
 
       <!-- page header section  -->
 
@@ -209,9 +669,12 @@ if (isset($_GET['id'])) {
 
 
       <div class="relative-container">
-        <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up"
+          data-aos-delay="100">
           <a href="company_data.php?id=<?= $company_id ?>">
-            <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow d-md-none d-block mobile-positioned-image" style="max-width: 200px; border-radius: 20px;">
+            <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt=""
+              class="img-fluid shadow d-md-none d-block mobile-positioned-image"
+              style="max-width: 200px; border-radius: 20px;">
           </a>
         </div>
       </div>
@@ -241,9 +704,12 @@ if (isset($_GET['id'])) {
         <div class="row">
           <div class="col-md-4 order-md-1 mb-4 order-2">
             <div class="card shadow">
-              <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up"
+                data-aos-delay="100">
                 <a href="company_data.php?id=<?= $company_id ?>">
-                  <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow d-none d-md-flex" style="max-width: 200px; border-radius: 20px; margin-top: -100px;">
+                  <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt=""
+                    class="img-fluid shadow d-none d-md-flex"
+                    style="max-width: 200px; border-radius: 20px; margin-top: -100px;">
                 </a>
               </div>
 
@@ -291,8 +757,8 @@ if (isset($_GET['id'])) {
                       <td>Skills</td>
                       <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
                       <td><?php foreach ($skillsArray as $skill) {
-                            echo '<span class="badge bg-secondary">' . strtoupper(trim($skill)) . '</span> ';
-                          } ?></td>
+                        echo '<span class="badge bg-secondary">' . strtoupper(trim($skill)) . '</span> ';
+                      } ?></td>
                     </tr>
                     <tr class="mb-4">
                       <td>Experience Level</td>
@@ -303,19 +769,23 @@ if (isset($_GET['id'])) {
                 </div>
                 <hr>
                 <div class="p-3 text-center">
-                  <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-square fa-3x"></i></a>
+                  <a href="https://www.facebook.com/yourpage" target="_blank"><i
+                      class="fab fa-facebook-square fa-3x"></i></a>
 
                   <!-- Twitter -->
                   <a href="https://twitter.com/yourpage" target="_blank"><i class="fab fa-twitter-square fa-3x"></i></a>
 
                   <!-- Instagram -->
-                  <a href="https://www.instagram.com/yourpage" target="_blank"><i class="fab fa-instagram-square fa-3x"></i></a>
+                  <a href="https://www.instagram.com/yourpage" target="_blank"><i
+                      class="fab fa-instagram-square fa-3x"></i></a>
 
                   <!-- LinkedIn -->
-                  <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+                  <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i
+                      class="fab fa-linkedin fa-3x"></i></a>
 
                   <!-- YouTube -->
-                  <a href="https://www.youtube.com/channel/yourchannel" target="_blank"><i class="fab fa-youtube-square fa-3x"></i></a>
+                  <a href="https://www.youtube.com/channel/yourchannel" target="_blank"><i
+                      class="fab fa-youtube-square fa-3x"></i></a>
                 </div>
 
                 <div class="p-3">
@@ -326,7 +796,7 @@ if (isset($_GET['id'])) {
 
                         $uid = $_SESSION['user_id'];
                         // User is authorized, show the apply button
-
+                  
                         $today = date("Y-m-d");
 
                         // $application_deadline;
@@ -341,11 +811,11 @@ if (isset($_GET['id'])) {
                           $Check_applied_run = mysqli_query($conn, $Check_applied);
 
                           if (mysqli_num_rows($Check_applied_run) == 1) {
-                            echo '<button type="button" class="btn btn-success p-3 custom-btn">
+                            echo '<button type="button" class="login100-form-btn p-3 custom-btn">
                         Already applied
                       </button>';
                           } else {
-                            echo '<button type="button" class="btn btn-primary p-3 custom-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            echo '<button type="button" class="login100-form-btn p-3 custom-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Apply for a job
                       </button>';
                           }
@@ -356,7 +826,7 @@ if (isset($_GET['id'])) {
                         }
                       } else {
                         // User is not authorized, show the login button that triggers a modal
-                        echo '<button type="button" class="btn btn-primary p-3 custom-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        echo '<button type="button" class="login100-form-btn p-3 custom-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
                     Login to apply for a job
                   </button>';
                       }
@@ -395,21 +865,25 @@ if (isset($_GET['id'])) {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form action="" method="POST" enctype="multipart/form-data">
+              <!-- <form action="" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                   <?php
                   $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
                   ?>
-                  <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>" required>
-                  <input type="hidden" class="form-control" id="company_email" name="company_email" value="<?= $company_email ?>" required>
+                  <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>"
+                    required>
+                  <input type="hidden" class="form-control" id="company_email" name="company_email"
+                    value="<?= $company_email ?>" required>
                 </div>
                 <div class="mb-3">
                   <label for="full_name" class="form-label">Name:</label>
-                  <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['first_name'] ?>" required readonly>
+                  <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['first_name'] ?>"
+                    required readonly>
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email:</label>
-                  <input type="email" class="form-control" id="email" value="<?= $_SESSION['user_email'] ?>" name="email" required readonly>
+                  <input type="email" class="form-control" id="email" value="<?= $_SESSION['user_email'] ?>" name="email"
+                    required readonly>
                 </div>
                 <div class="mb-3">
                   <label for="phone" class="form-label">Phone:</label>
@@ -420,13 +894,113 @@ if (isset($_GET['id'])) {
                   <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx">
                 </div>
                 <div class="mb-3">
-                  <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>" required>
+                  <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>"
+                    required>
                 </div>
                 <div class="mb-3">
-                  <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending" required>
+                  <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending"
+                    required>
                 </div>
                 <button type="submit" name="apply_Job_Btn" class="btn btn-primary">Submit</button>
+              </form> -->
+
+
+              <form action="" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                  <?php
+                  $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
+                  ?>
+                  <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>"
+                    required>
+                  <input type="hidden" class="form-control" id="company_email" name="company_email"
+                    value="<?= $company_email ?>" required>
+                </div>
+
+
+                <!-- -------------  -->
+
+
+                <div class="mb-3">
+                  <label for="full_name" class="form-label">Name:</label>
+                  <!-- <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['first_name'] ?>"
+                    required readonly> -->
+                </div>
+
+                <!-- ***************  -->
+
+
+                <div class="wrap-input100 validate-input  mb-3 " data-validate="Valid Name is Required">
+                  <input readonly class="input100" placeholder="Name *" type="text" id="name" name="name"
+                    value="<?= $_SESSION['first_name'] ?>" required>
+                  <span class="focus-input100"></span>
+                  <!-- <span class="label-input100">First Name</span> -->
+                  <!-- <div class="invalid-feedback" id="firstnameError"></div> -->
+                </div>
+
+
+
+                <!-- ----------------- -->
+
+
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email:</label>
+                  <!-- <input type="email" class="form-control" id="email" value="<?= $_SESSION['user_email'] ?>" name="email"
+                    required readonly> -->
+                </div>
+                <!-- ********************  -->
+                <div class="wrap-input100 validate-input  mb-3 " data-validate="Valid Name is Required">
+                  <input readonly class="input100" placeholder="Name *" type="email" id="email"
+                    value="<?= $_SESSION['user_email'] ?>" name="email" required>
+                  <span class="focus-input100"></span>
+                  <!-- <span class="label-input100">First Name</span> -->
+                  <!-- <div class="invalid-feedback" id="firstnameError"></div> -->
+                </div>
+
+
+
+                <!-- ----------------------------------------------------------- -->
+
+
+
+
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone:</label>
+                  <!-- <input type="text" class="form-control" id="phone" name="phone"> -->
+                </div>
+
+                <!-- ***************  -->
+
+
+
+                <div class="wrap-input100 validate-input  mb-3 " data-validate="Valid Name is Required">
+                  <input  class="input100" placeholder="Phone No *" type="text" id="phone" name="phone" required>
+                  <span class="focus-input100"></span>
+                  <!-- <span class="label-input100">First Name</span> -->
+                  <!-- <div class="invalid-feedback" id="firstnameError"></div> -->
+                </div>
+
+
+
+                <!-- --------------------------------------------------- -->
+                <div class="mb-3">
+                  <label for="resume_file" class="form-label">Resume:</label>
+                  <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx">
+                  <span class="focus-input100"></span>
+
+                </div>
+                <div class="mb-3">
+                  <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>"
+                    required>
+                </div>
+                <div class="mb-3">
+                  <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending"
+                    required>
+                </div>
+                <button type="submit" name="apply_Job_Btn" class="login100-form-btn">Submit</button>
               </form>
+
+
             </div>
           </div>
         </div>
@@ -436,7 +1010,8 @@ if (isset($_GET['id'])) {
 
       <!-- Login Modal -->
       <!-- Login Modal -->
-      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -466,7 +1041,8 @@ if (isset($_GET['id'])) {
 
                             <div class="form-group input-icon">
                               <i class="fas fa-envelope"></i>
-                              <input type="email" class="form-control form-control-user" name="email" placeholder="example@gmail.com" required>
+                              <input type="email" class="form-control form-control-user" name="email"
+                                placeholder="example@gmail.com" required>
                             </div>
 
                             <div class="d-flex justify-content-between mt-4">
@@ -484,12 +1060,13 @@ if (isset($_GET['id'])) {
 
                             <div class="form-group input-icon">
                               <i class="fas fa-lock"></i>
-                              <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Enter 6 Character or more" required>
+                              <input type="password" class="form-control form-control-user" name="password" id="password"
+                                placeholder="Enter 6 Character or more" required>
                               <i class="fas fa-eye toggle-password text-right" id="togglePassword"></i>
                             </div>
 
                             <script>
-                              document.getElementById('togglePassword').addEventListener('click', function(e) {
+                              document.getElementById('togglePassword').addEventListener('click', function (e) {
                                 const passwordInput = document.getElementById('password');
                                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                                 passwordInput.setAttribute('type', type);
@@ -501,7 +1078,8 @@ if (isset($_GET['id'])) {
                               <input type="checkbox" class="form-check-input" id="rememberMe">
                               <label class="form-check-label" for="rememberMe">Remember Me</label>
                             </div>
-                            <button type="submit" name="login_modal_btn" class="btn btn-primary btn-user btn-block">Login</button>
+                            <button type="submit" name="login_modal_btn"
+                              class="btn btn-primary btn-user btn-block">Login</button>
                             <hr>
                           </form>
                           <hr>
@@ -519,7 +1097,7 @@ if (isset($_GET['id'])) {
 
 
 
-  <?php
+      <?php
   }
 }
 
@@ -616,67 +1194,68 @@ if (isset($_SESSION['message'])) {
 // ---------------------------------------------- WHEN LOGIN THROUGHT THE FINDING JOBS PHP CODE  ----------------------------------------------
 
 // Check if the form is submitted
-if (isset($_POST['login_modal_btn'])) { $email = $_POST["email"];
+if (isset($_POST['login_modal_btn'])) {
+  $email = $_POST["email"];
   $password = $_POST["password"];
 
   // SQL query to check if the user exists
   $sql = "SELECT * FROM userregister WHERE email = ?";
   $stmt = $conn->prepare($sql);
   if ($stmt) {
-      $stmt->bind_param("s", $email);
-      $stmt->execute();
-      $result = $stmt->get_result();
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-      if ($result->num_rows > 0) {
-          // Fetch the user's data
-          $user = $result->fetch_assoc();
+    if ($result->num_rows > 0) {
+      // Fetch the user's data
+      $user = $result->fetch_assoc();
 
-          if ($user['user_active'] == '0') {
-              // User is inactive
-              ?>
-              <script>
-                  alertify.error("Please submit your document and login.");
-              </script>
-              <?php
-          } else {
-              // Verify the password
-              if (password_verify($password, $user['password'])) {
-                  // Set session variables
-                  $_SESSION['user_id'] = $user['id'];
-                  $_SESSION['user_email'] = $user['email'];
-                  $_SESSION['first_name'] = $user['firstname'];
-                  $_SESSION['user_type'] = $user['usertype'];
-
-                  // Redirect based on user type
-                  if ($user['usertype'] == 'jobSeeker') {
-                      $_SESSION['message'] = "Successfully logged in";
-                      echo '<script>window.location.href = "index";</script>';
-                      exit();
-                  }
-              } else {
-                  // Password is incorrect
-                  ?>
-                  <script>
-                      alertify.error("Please check your credentials.");
-                  </script>
-                  <?php
-              }
-          }
-      } else {
-          // No user found with that email address
-          ?>
+      if ($user['user_active'] == '0') {
+        // User is inactive
+        ?>
           <script>
-              alertify.error("No user found with that email address!");
+            alertify.error("Please submit your document and login.");
           </script>
           <?php
-      }
+      } else {
+        // Verify the password
+        if (password_verify($password, $user['password'])) {
+          // Set session variables
+          $_SESSION['user_id'] = $user['id'];
+          $_SESSION['user_email'] = $user['email'];
+          $_SESSION['first_name'] = $user['firstname'];
+          $_SESSION['user_type'] = $user['usertype'];
 
-      $stmt->close();
-  } else {
-      // Handle SQL preparation error
+          // Redirect based on user type
+          if ($user['usertype'] == 'jobSeeker') {
+            $_SESSION['message'] = "Successfully logged in";
+            echo '<script>window.location.href = "index";</script>';
+            exit();
+          }
+        } else {
+          // Password is incorrect
+          ?>
+            <script>
+              alertify.error("Please check your credentials.");
+            </script>
+            <?php
+        }
+      }
+    } else {
+      // No user found with that email address
       ?>
+        <script>
+          alertify.error("No user found with that email address!");
+        </script>
+        <?php
+    }
+
+    $stmt->close();
+  } else {
+    // Handle SQL preparation error
+    ?>
       <script>
-          alertify.error("An error occurred. Please try again later.");
+        alertify.error("An error occurred. Please try again later.");
       </script>
       <?php
   }
@@ -689,58 +1268,59 @@ if (isset($_POST['login_modal_btn'])) { $email = $_POST["email"];
 
 
 
-  ?>
+?>
 
-    </main>
+</main>
 
 
 
-    <?php include("includes/footer.php");
+<?php include ("includes/footer.php");
+?>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+    class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
+
+
+<!-- -------------------------------- FOoter Section ----------------------------------- -->
+<!-- -------------------------------- FOoter Section ----------------------------------- -->
+<!-- -------------------------------- FOoter Section ----------------------------------- -->
+
+
+
+
+<s cript>
+  <?php
+
+  // messages from corect or not 
+  
+  if (isset($_SESSION['message'])) {
     ?>
+    alertify.set('notifier', 'position', 'bottom-right');
+    // alertify.success('Current position : ' + aler tify.get('notifier', 'position'));
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Main JS File -->
-    <script src="assets/js/main.js"></script>
-
-    </body>
-
-    </html>
-
-
-    <!-- -------------------------------- FOoter Section ----------------------------------- -->
-    <!-- -------------------------------- FOoter Section ----------------------------------- -->
-    <!-- -------------------------------- FOoter Section ----------------------------------- -->
-
-
-
-
-    <script>
-      <?php
-
-      // messages from corect or not 
-
-      if (isset($_SESSION['message'])) {
-      ?>
-        alertify.set('notifier', 'position', 'bottom-right');
-        // alertify.success('Current position : ' + aler  tify.get('notifier', 'position'));
-
-        alertify.success('<?= $_SESSION['message'] ?>');
-      <?php
-        unset($_SESSION['message']);
-      }
-      ?>
-    </script>
+    alertify.success('<?= $_SESSION['message'] ?>');
+    <?php
+    unset($_SESSION['message']);
+  }
+  ?>
+  </script>
