@@ -1,0 +1,37 @@
+<?php 
+
+
+// define('BASE_URL', 	   'http://localhost/Jobprocess/');
+
+$conn = new mysqli("localhost","root", "", "bms_job");
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+}
+
+?>
+
+
+
+
+
+<!-- new PDO db Conn  -->
+ 
+<?php
+// connection.php
+
+$host = 'localhost';
+$dbname = 'bms_job';
+$username = 'root';
+$password = '';
+
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    // Set PDO to throw exceptions on errors
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+    die();
+}
+?>

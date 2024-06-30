@@ -57,14 +57,14 @@ function sendBMSStudentNotifications($conn, $jobId, $jobCategory)
     $num_rows = $results->num_rows;
     echo "Number of relevant BMS students found: " . $num_rows . "<br>";
 
-    $jobLink = "http://localhost/graduatejob/job-details.php?id=$jobId";
-    $subject = "BMS Student Notification";
-    $message = "A new job has been posted. <a href='$jobLink' style='display: inline-block; background-color: #00008B; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>View it here</a>.";
+    $bms_emails = []; // Array to collect BMS student emails
 
     while ($row = $results->fetch_assoc()) {
         $bms_student_email = $row['email'];
-        sendEmailNotification($bms_student_email, $subject, $message);
+        $bms_emails[] = $bms_student_email;
     }
+
+    return $bms_emails;
 }
 
 // Main script
@@ -84,6 +84,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id']) && isset($
     if ($conn->query($updateStatusSql) === TRUE) {
         $_SESSION['message'] = "Successfully updated the status.";
 
+        // Collect all unique emails to send notifications
+        $emails_to_send = [];
+
         // Send notifications to subscribed job seekers with matching interested fields
         $sql_sel = "SELECT js.id, js.email
                     FROM jobseeker_company_subscriptions jcs
@@ -100,14 +103,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id']) && isset($
         if ($result_select_mail->num_rows > 0) {
             while ($row = $result_select_mail->fetch_assoc()) {
                 $jobseeker_email = $row['email'];
-                sendEmailNotification($jobseeker_email, $subject, $message);
+                $emails_to_send[$jobseeker_email] = $message; // Use email as key to avoid duplicates
             }
         } else {
             echo "No subscribed job seekers found for the company.<br>";
         }
 
         // Send notifications to relevant BMS students
-        sendBMSStudentNotifications($conn, $postId, $jobCategory);
+        $bms_emails = sendBMSStudentNotifications($conn, $postId, $jobCategory);
+
+        // Add BMS student emails to emails_to_send array
+        foreach ($bms_emails as $bms_email) {
+            $emails_to_send[$bms_email] = $message;
+        }
+
+        // Send emails
+        foreach ($emails_to_send as $email => $message) {
+            sendEmailNotification($email, $subject, $message);
+        }
 
         header("Location: pendingjobs.php");
         exit();
