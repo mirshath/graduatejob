@@ -84,7 +84,8 @@ if (isset($_SESSION['user_id'])) {
           </div>
         <?php else : ?>
           <!-- Login Button -->
-          <a href="userLoginForm" class="btn btn-outline-danger btn-user btn-block"><i class="fa fa-user"></i></a>
+          <!-- <a href="userLoginForm" class="btn btn-outline-danger btn-user btn-block"><i class="fa fa-user"></i></a> -->
+          <a href="userLoginThemes/login.php" class="btn btn-outline-danger btn-user btn-block"><i class="fa fa-user"></i></a>
           <!-- <a href="Recuiter/recruiterLoginForm" class="btn btn-primary btn-user btn-block">Rec Login</a> -->
         <?php endif; ?>
       </div>
