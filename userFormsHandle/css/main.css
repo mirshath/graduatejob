@@ -260,7 +260,7 @@ iframe {
   min-height: 100vh;
   display: block;
   background-color: #f7f7f7;
-  padding: 173px 55px 55px 55px;
+  padding: 32px 39px 32px 54px;
 }
 
 .login100-form-title {
@@ -287,7 +287,7 @@ iframe {
   flex-wrap: wrap;
   align-items: flex-end;
   width: 100%;
-  height: 80px;
+  height: 60px;
   position: relative;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
@@ -618,3 +618,6 @@ input.input100 {
   background: #333333;
   color: #fff;
 }
+
+
+

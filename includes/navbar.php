@@ -64,28 +64,32 @@ if (isset($_SESSION['user_id'])) {
       </nav><!-- .navmenu -->
 
       <div class="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
-        <?php if (isset($_SESSION['user_id'])) : ?>
+        <?php if (isset($_SESSION['user_id'])): ?>
           <div class="dropdown">
-            <a href="#" class="d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="userDashboards/uploads/profiles/<?php echo $row['profile']; ?>" alt="Profile" class="rounded-circle" style="width: 40px; height: 40px;">
+            <a href="#" class="d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="userDashboards/uploads/profiles/<?php echo $row['profile']; ?>" alt="Profile"
+                class="rounded-circle" style="width: 40px; height: 40px;">
               <span class="ms-2 text-white d-none d-md-flex"><?php echo $row['firstname']; ?></span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown"  style=" font-size: 15px;">
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" style=" font-size: 15px;">
               <div class="p-3 text-muted">
-                <?= $_SESSION['first_name']; ?> <?php echo $row['lastname']; ?>
+                <?= $_SESSION['first_name']; ?>   <?php echo $row['lastname']; ?>
                 <?= $_SESSION['user_email']; ?>
               </div>
               <div class="" style="margin-left: 25px; font-size: 15px;">
-              <li><a class="dropdown-item mb-2" href="userProfile"> <i class="fas fa-tachometer-alt"></i>&nbsp; Dashboard</a></li>
-              <li><a class="dropdown-item mb-2" href="logout.php"><i class="fas fa-sign-out-alt"></i>
-                  &nbsp; Logout</a></li>
+                <li><a class="dropdown-item mb-2" href="userProfile"> <i class="fas fa-tachometer-alt"></i>&nbsp;
+                    Dashboard</a></li>
+                <li><a class="dropdown-item mb-2" href="logout.php"><i class="fas fa-sign-out-alt"></i>
+                    &nbsp; Logout</a></li>
               </div>
             </ul>
           </div>
-        <?php else : ?>
+        <?php else: ?>
           <!-- Login Button -->
           <!-- <a href="userLoginForm" class="btn btn-outline-danger btn-user btn-block"><i class="fa fa-user"></i></a> -->
-          <a href="userLoginThemes/login.php" class="btn btn-outline-danger btn-user btn-block"><i class="fa fa-user"></i></a>
+          <a href="userFormsHandle/login.php" class="btn btn-outline-danger btn-user btn-block"><i
+              class="fa fa-user"></i></a>
           <!-- <a href="Recuiter/recruiterLoginForm" class="btn btn-primary btn-user btn-block">Rec Login</a> -->
         <?php endif; ?>
       </div>

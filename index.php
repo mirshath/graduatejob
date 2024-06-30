@@ -99,7 +99,7 @@ include("includes/navbar.php");
             <div class="col-md-12 ftco-animate">
               <div class="text w-100 text-center">
                 <h2>Discover Opportunities:</h2>
-                <h1 class="mb-3">GRADUATEJOB.LK</h1>
+                <h1 class="mb-3">JOB.LK</h1>
                 <p style="font-size: 22px;">Where Your Future Awaits</p>
                 <a href="aboutus" class="btn btn-primary btn-lg">About Us</a>
                 <a href="jobs" class="btn btn-success btn-lg">Find Your Dream Job</a>

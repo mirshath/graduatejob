@@ -64,7 +64,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $mail->send();
             // echo 'Password reset link has been sent to your email.';
-            $_SESSION['message'] = "Password reset link has been sent to your email.";
+           // Set session message
+    $_SESSION['message'] = "Password reset link has been sent to your email.";
+
+    // Redirect to reset password request page after displaying message
+    echo '<script>
+            alert("' . $_SESSION['message'] . '");
+            window.location.href = "reset_password_request.php";
+          </script>';
+    exit();
         } catch (Exception $e) {
             // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
@@ -74,6 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
