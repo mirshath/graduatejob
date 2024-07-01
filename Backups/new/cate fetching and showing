@@ -1,0 +1,14 @@
+<div class="col">
+    <div class="form-group">
+        <label for="interestedField">Interested Field</label>
+        <select class="form-control" id="interestedField" name="interestedField">
+            <option value="">Select Interested Field</option>
+            <?php foreach ($categories as $category) : ?>
+                <option value="<?= $category['category_name']; ?>" <?php if ($category['category_name'] == $row['interested_field']) echo 'selected'; ?>>
+                    <?= $category['category_name']; ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+</div>

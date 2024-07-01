@@ -19,6 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $phone_no = $_POST["Contact"];
     $St_address = $_POST["St_address"];
+    $education_qualification = $_POST["educationQualification"];
+    $interested_field = $_POST["interestedField"];
+    $professional_qualification = $_POST["professionalQualification"];
+    $studied_at = $_POST["studied_at"];
+    $bio = $_POST["bio"]; // Assuming there's a textarea input for bio in your form
 
     // SQL query to update data in the database using prepared statements
     $sql = "UPDATE userregister SET 
@@ -26,11 +31,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         lastname = ?, 
         email = ?, 
         phone_no = ?,  
-        St_address = ?
+        St_address = ?,
+        education_qualification = ?,
+        interested_field = ?,
+        professional_qualification = ?,
+        studied_at = ?
         WHERE id = ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssi", $firstname, $lastname, $email, $phone_no, $St_address, $id);
+    $stmt->bind_param("sssssssssi", $firstname, $lastname, $email, $phone_no, $St_address, $education_qualification, $interested_field, $professional_qualification, $studied_at, $id);
 
     if ($stmt->execute()) {
         $_SESSION['message'] = "Profile updated successfully";

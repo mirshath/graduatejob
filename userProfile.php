@@ -31,6 +31,22 @@ if ($result->num_rows > 0) {
 }
 
 
+// ----------------- cetegory fetching datas ---------------
+
+
+$categories = []; // Array to store fetched categories
+
+// Fetch categories from database
+$sql_categories = "SELECT * FROM category";
+$result_categories = $conn->query($sql_categories);
+
+if ($result_categories->num_rows > 0) {
+    while ($rows = $result_categories->fetch_assoc()) {
+        $categories[] = $rows;
+    }
+}
+// ----------------- cetegory fetching datas ---------------
+
 
 
 ?>
@@ -119,9 +135,9 @@ if ($result->num_rows > 0) {
                                     <a href="#">followers</a>
                                 </span>
                             </div>
-                            
+
                         </li>
-                        
+
                     </ul>
                 </div>
 
@@ -452,15 +468,94 @@ if ($result->num_rows > 0) {
                                                                                                     <div class="col">
                                                                                                         <div class="form-group">
                                                                                                             <label class="mb-2">Email</label>
-                                                                                                            <input class="form-control text-muted mb-3" type="email" id="email" name="email" value="<?= $row['email'] ?>">
+                                                                                                            <input class="form-control text-muted mb-3" type="text" id="email" name="email" value="<?= $row['email'] ?>">
                                                                                                         </div>
                                                                                                     </div>
+                                                                                                    <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="educationQualification">Education Qualification</label>
+                                                                                                            <select class="form-control" id="educationQualification" name="educationQualification">
+                                                                                                                <option value="">Select Education Qualification</option>
+                                                                                                                <?php
+                                                                                                                $qualifications = [
+                                                                                                                    'High_School',
+                                                                                                                    "Bachelor's_Degree",
+                                                                                                                    "Master's_Degree",
+                                                                                                                    'PhD'
+                                                                                                                    // Add more options as needed
+                                                                                                                ];
+                                                                                                                foreach ($qualifications as $qualification) :
+                                                                                                                ?>
+                                                                                                                    <option value="<?= $qualification; ?>" <?php if ($qualification == $row['education_qualification']) echo 'selected'; ?>>
+                                                                                                                        <?= $qualification; ?>
+                                                                                                                    </option>
+                                                                                                                <?php endforeach; ?>
+                                                                                                            </select>
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="row">
+                                                                                                    <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="interestedField">Interested Field</label>
+                                                                                                            <select class="form-control" id="interestedField" name="interestedField">
+                                                                                                                <option value="">Select Interested Field</option>
+                                                                                                                <?php foreach ($categories as $category) : ?>
+                                                                                                                    <option value="<?= $category['category_name']; ?>" <?php if ($category['category_name'] == $row['interested_field']) echo 'selected'; ?>>
+                                                                                                                        <?= $category['category_name']; ?>
+                                                                                                                    </option>
+                                                                                                                <?php endforeach; ?>
+                                                                                                            </select>
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                    <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="professionalQualification">Professional Qualification</label>
+                                                                                                            <select class="form-control" id="professionalQualification" name="professionalQualification">
+                                                                                                                <option value="">Select Professional Qualification</option>
+                                                                                                                <?php
+                                                                                                                $qualifications = ['Certification', 'Diploma', 'Associate_Degree', "Bachelor's_Degree", "Master's_Degree", 'PhD'];
+                                                                                                                foreach ($qualifications as $qualification) :
+                                                                                                                ?>
+                                                                                                                    <option value="<?= $qualification; ?>" <?php if ($qualification == $row['professional_qualification']) echo 'selected'; ?>>
+                                                                                                                        <?= $qualification; ?>
+                                                                                                                    </option>
+                                                                                                                <?php endforeach; ?>
+                                                                                                            </select>
+                                                                                                        </div>
+
+                                                                                                        <!-- <div class="form-group">
+                                                                                                            <label for="professionalQualification">Professional Qualification</label>
+                                                                                                            <select class="form-control" id="professionalQualification" name="professionalQualification">
+                                                                                                                <option value="">Select Professional Qualification</option>
+                                                                                                                <option value="Certification">Certification</option>
+                                                                                                                <option value="Diploma">Diploma</option>
+                                                                                                                <option value="Associate_Degree">Associate Degree</option>
+                                                                                                                <option value="Bachelor's_Degree">Bachelor's Degree</option>
+                                                                                                                <option value="Master's_Degree">Master's Degree</option>
+                                                                                                                <option value="PhD">PhD</option>
+                                                                                                            </select>
+                                                                                                        </div> -->
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="row">
+                                                                                                    <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                            <label class="mb-2">Studied At</label>
+                                                                                                            <input class="form-control text-muted mb-3" type="text" id="studied_at" name="studied_at" value="<?= $row['studied_at'] ?>">
+                                                                                                        </div>
+                                                                                                    </div>
+
                                                                                                 </div>
                                                                                                 <div class="row">
                                                                                                     <div class="col mb-3">
                                                                                                         <div class="form-group">
                                                                                                             <label class="mb-2">About</label>
-                                                                                                            <textarea class="form-control text-muted mb-3" rows="5" placeholder="My Bio"><?= $row['usertype'] ?></textarea>
+                                                                                                            <textarea class="form-control text-muted mb-3" rows="5" name="bio" id="bio" placeholder="My Bio"><?= $row['usertype'] ?></textarea>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
@@ -497,6 +592,7 @@ if ($result->num_rows > 0) {
                                     </div>
                                 </div>
                             </div>
+
                             <script>
                                 $(document).ready(function() {
                                     // Check if there's a message in the session
@@ -687,6 +783,9 @@ if ($result->num_rows > 0) {
                                     MMM content
                                 </div>
                             </div>
+
+
+
                         </div>
 
                     </div>
