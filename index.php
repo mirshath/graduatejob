@@ -313,102 +313,106 @@ include("includes/navbar.php");
 
 
 
-<!-- Testimonials Section for the companies -->
-<section id="testimonials" class="testimonials section" style="padding: 60px 0; ">
+  <!-- Testimonials Section for the companies -->
+  <section id="testimonials" class="testimonials section" style="padding: 60px 0; ">
 
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2 class="mb-4">Companies</h2>
-    <p></p>
-  </div><!-- End Section Title -->
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2 class="mb-4">Companies</h2>
+      <a href="#">
+        <p>Top Companies</p>
+      </a>
 
-  <div class="container " data-aos="fade-up" data-aos-delay="100" id="design_Card">
 
-    <div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
-      <script type="application/json" class="swiper-config">
-        {
-          "loop": true,
-          "speed": 600,
-          "autoplay": {
-            "delay": 5000
-          },
-          "slidesPerView": 3,
-          "spaceBetween": 20,
-          "pagination": {
-            "el": ".swiper-pagination",
-            "type": "bullets",
-            "clickable": true
-          },
-          "breakpoints": {
-            "320": {
-              "slidesPerView": 2,
-              "spaceBetween": 10
+    </div><!-- End Section Title -->
+
+    <div class="container " data-aos="fade-up" data-aos-delay="100" id="design_Card">
+
+      <div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
+        <script type="application/json" class="swiper-config">
+          {
+            "loop": true,
+            "speed": 600,
+            "autoplay": {
+              "delay": 5000
             },
-            "768": {
-              "slidesPerView": 3,
-              "spaceBetween": 20
+            "slidesPerView": 3,
+            "spaceBetween": 20,
+            "pagination": {
+              "el": ".swiper-pagination",
+              "type": "bullets",
+              "clickable": true
             },
-            "1200": {
-              "slidesPerView": 3,
-              "spaceBetween": 30
+            "breakpoints": {
+              "320": {
+                "slidesPerView": 2,
+                "spaceBetween": 10
+              },
+              "768": {
+                "slidesPerView": 3,
+                "spaceBetween": 20
+              },
+              "1200": {
+                "slidesPerView": 3,
+                "spaceBetween": 30
+              }
             }
           }
-        }
-      </script>
-      <div class="swiper-wrapper mt-3">
+        </script>
+        <div class="swiper-wrapper mt-3">
 
-        <?php
+          <?php
 
-        $sql = "SELECT * FROM userregister WHERE usertype ='recruiter' LIMIT 6";
-        $sql_run = mysqli_query($conn, $sql);
+          $sql = "SELECT * FROM userregister WHERE usertype ='recruiter' LIMIT 6";
+          $sql_run = mysqli_query($conn, $sql);
 
-        if ($sql_run->num_rows > 0) {
-          while ($row = mysqli_fetch_array($sql_run)) {
-        ?>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="">
-                  <div class="container">
-                    <a href="company_data.php?id=<?= $row['id'] ?>">
-                      <div class="card">
-                        <div class="box p-3">
-                          <div class="content text-center"> <!-- Added text-center class here -->
-                            <div class="mb-3 d-flex justify-content-center align-items-center">
-                              <?php
-                              $imagePath = "Admin/uploads/company_profiles/" . $row["profile"]; // Path to the image
-                              if (file_exists($imagePath)) {
-                                // If the image file exists, display it
-                                echo '<img src="' . $imagePath . '" alt="Image" class="img-fluid" style="width:140px; border-radius: 20px;">';
-                              } else {
-                                // If the image file doesn't exist, display a placeholder or alternative image
-                                echo '<img src="https://cdn-icons-png.freepik.com/512/3135/3135715.png" alt="Placeholder" class="img-fluid" style="width:60px; border-radius: 20px;">';
-                              }
-                              ?>
+          if ($sql_run->num_rows > 0) {
+            while ($row = mysqli_fetch_array($sql_run)) {
+          ?>
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="">
+                    <div class="container">
+                      <a href="company_data.php?id=<?= $row['id'] ?>">
+                        <div class="card">
+                          <div class="box p-3">
+                            <div class="content text-center"> <!-- Added text-center class here -->
+                              <div class="mb-3 d-flex justify-content-center align-items-center">
+                                <?php
+                                $imagePath = "Admin/uploads/company_profiles/" . $row["profile"]; // Path to the image
+                                if (file_exists($imagePath)) {
+                                  // If the image file exists, display it
+                                  echo '<img src="' . $imagePath . '" alt="Image" class="img-fluid" style="width:140px; border-radius: 20px;">';
+                                } else {
+                                  // If the image file doesn't exist, display a placeholder or alternative image
+                                  echo '<img src="https://cdn-icons-png.freepik.com/512/3135/3135715.png" alt="Placeholder" class="img-fluid" style="width:60px; border-radius: 20px;">';
+                                }
+                                ?>
+                              </div>
+                              <!-- <h3 class="text-bg-danger"><b><?= $row['company_name'] ?></b></h3> -->
+                              <!-- <a href="company_data.php?id=<?= $row['id'] ?>">View</a> -->
                             </div>
-                            <!-- <h3 class="text-bg-danger"><b><?= $row['company_name'] ?></b></h3> -->
-                            <!-- <a href="company_data.php?id=<?= $row['id'] ?>">View</a> -->
                           </div>
                         </div>
-                      </div>
-                    </a>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-        <?php
+          <?php
+            }
           }
-        }
 
-        ?>
+          ?>
+        </div>
+        <div class="swiper-pagination"></div>
       </div>
-      <div class="swiper-pagination"></div>
+
     </div>
 
-  </div>
-
-</section>
-<!-- /Testimonials Section for the companies -->
+  </section>
+  <!-- /Testimonials Section for the companies -->
 
 
 
@@ -421,7 +425,7 @@ include("includes/navbar.php");
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
       <h2 class="mb-4">Categories</h2>
-      <p></p>
+      <p>Top Categories</p>
     </div><!-- End Section Title -->
 
     <div class="container" data-aos="fade-up" data-aos-delay="100" id="design_Card">
