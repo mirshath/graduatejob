@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    
+
 </head>
 <style>
     /* .invalid-feedback {
@@ -136,25 +136,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } */
 
     .invalid-feedback {
-    display: none;
-    width: 100%;
-    margin-top: -1.75rem;
-    font-size: 80%;
-    color: #dc3545;
-    margin-left: 25px;
-}
-.imgbox{
-		display: flex;
-		justify-content: center;
-		margin-top: 10px;
-		margin-bottom: 20px;
-	}
-.LogReg-title{
-		color: #999966 !important;
-		font-weight: bold;
-		font-size:20px;
-		
-	}
+        display: none;
+        width: 100%;
+        margin-top: -1.75rem;
+        font-size: 80%;
+        color: #dc3545;
+        margin-left: 25px;
+    }
+
+    .imgbox {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .LogReg-title {
+        color: #999966 !important;
+        font-weight: bold;
+        font-size: 20px;
+
+    }
 </style>
 
 <body style="background-color: #666666;">
@@ -163,75 +165,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container-login100">
             <div class="wrap-login100">
                 <form class="login100-form validate-form" action="" method="post" id="registrationForm">
-                <div class="d-flex justify-content-center">
-						<span class="imgbox">
-							<img src="../images/Graduatejob.lk Logo.png" alt="" width="350px">
-						</span>
-					</div>
+                    <div class="d-flex justify-content-center">
+                        <span class="imgbox">
+                            <img src="../images/Graduatejob.lk Logo.png" alt="" width="350px">
+                        </span>
+                    </div>
 
-					<span class="login100-form-title p-b-43 LogReg-title">
-						Job Seeker Register
-					</span>
+                    <span class="login100-form-title p-b-43 LogReg-title">
+                        Job Seeker Register
+                    </span>
                     <div class="">
-                    <input type="hidden" name="userType" value="jobSeeker">
+                        <input type="hidden" name="userType" value="jobSeeker">
 
 
                         <div class="wrap-input100 validate-input  mb-3 " data-validate="Valid Name is Required">
-                            <input class="input100" placeholder="First Name *" type="text" id="firstname" name="firstname"
-                                required>
+                            <input class="input100" placeholder="First Name *" type="text" id="firstname" name="firstname" required>
                             <span class="focus-input100"></span>
                             <!-- <span class="label-input100">First Name</span> -->
                             <div class="invalid-feedback" id="firstnameError"></div>
                         </div>
-    
+
                         <div class="wrap-input100 validate-input  mb-3" data-validate="Valid Name is Required">
-                            <input class="input100" type="text" placeholder="Last Name *" id="lastname" name="lastname"
-                                required>
+                            <input class="input100" type="text" placeholder="Last Name *" id="lastname" name="lastname" required>
                             <span class="focus-input100"></span>
                             <!-- <span class="label-input100">Last Name</span> -->
                             <div class="invalid-feedback" id="lastnameError"></div>
                         </div>
-    
-                        <div class="wrap-input100 validate-input  mb-3 "
-                            data-validate="Valid email is required: ex@abc.xyz">
+
+                        <div class="wrap-input100 validate-input  mb-3 " data-validate="Valid email is required: ex@abc.xyz">
                             <input class="input100" type="email" placeholder="Email *" id="email" name="email" required>
                             <span class="focus-input100"></span>
                             <!-- <span class="label-input100">Email</span> -->
                             <div class="invalid-feedback" id="emailError"></div>
                         </div>
-    
+
                         <div class="wrap-input100 validate-input  mb-3" data-validate="Password is required">
-                            <input class="input100" type="password" placeholder="Password *" id="password" name="password"
-                                required>
+                            <input class="input100" type="password" placeholder="Password *" id="password" name="password" required>
                             <span class="focus-input100"></span>
                             <!-- <span class="label-input100">Password</span> -->
                             <div class="invalid-feedback" id="passwordError"></div>
                         </div>
-    
+
                         <div class="wrap-input100 validate-input  mb-3" data-validate="Password is required">
-                            <input class="input100" type="password" placeholder="Confirm Password *" id="confirm_password"
-                                name="confirm_password" required>
+                            <input class="input100" type="password" placeholder="Confirm Password *" id="confirm_password" name="confirm_password" required>
                             <span class="focus-input100"></span>
                             <!-- <span class="label-input100">Confirm Password</span> -->
                             <div class="invalid-feedback" id="confirmPasswordError"></div>
                         </div>
-    
+
                         <div class="container-login100-form-btn">
                             <button class="login100-form-btn" type="submit">Register</button>
                         </div>
-    
+
                         <!-- <div class="text-center p-t-46 p-b-20">
                             <span class="txt2">or sign up using</span>
                         </div> -->
-    
+
                         <div class="login100-form-social flex-c-m">
                             <div class="login100-form-social flex-c-m p-t-46 p-b-20">
                                 <span class="txt2">Have you an Account ? </span><a href="login.php">
                                     <!-- <i class="fa fa-user" aria-hidden="true"></i> -->
                                     &nbsp; Sign In
-    
+
                                 </a>
-    
+
                             </div>
                             <!-- <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
                                 <i class="fa fa-twitter" aria-hidden="true"></i>
@@ -254,10 +251,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <script>
-
-
-    $(document).ready(function () {
-        $('#confirm_password').on('input', function () {
+    $(document).ready(function() {
+        $('#confirm_password').on('input', function() {
             var password = $('#password').val();
             var confirmPassword = $(this).val();
 
@@ -277,7 +272,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         function validateEmail() {
             var email = $('#email').val();
             var isValid = true;
@@ -304,8 +299,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         url: '../check-email.php',
                         type: 'POST',
                         dataType: 'json',
-                        data: { email: email },
-                        success: function (response) {
+                        data: {
+                            email: email
+                        },
+                        success: function(response) {
                             if (response.status === 'taken') {
                                 $('#emailError').text('Email is already taken.');
                                 $('#email').addClass('is-invalid');
@@ -315,7 +312,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $('#registrationForm button[type="submit"]').prop('disabled', false);
                             }
                         },
-                        error: function () {
+                        error: function() {
                             $('#emailError').text('Error checking email availability.');
                             $('#email').addClass('is-invalid');
                             $('#registrationForm button[type="submit"]').prop('disabled', true);
@@ -327,10 +324,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             return isValid;
         }
 
-        $('#email').on('input', function () {
+        $('#email').on('input', function() {
             validateEmail();
         });
-        $('#registrationForm').submit(function (event) {
+        $('#registrationForm').submit(function(event) {
             var firstname = $('#firstname').val();
             var lastname = $('#lastname').val();
             var password = $('#password').val();
@@ -404,5 +401,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $('#registrationForm').addClass('was-validated');
         });
     });
-
 </script>
