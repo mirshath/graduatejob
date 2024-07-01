@@ -4,8 +4,8 @@ session_start();
 require "Database/connection.php";
 
 
-include("includes/header.php");
-include("includes/navbar.php");
+include ("includes/header.php");
+include ("includes/navbar.php");
 
 
 
@@ -71,7 +71,7 @@ if (isset($_GET['id'])) {
 
 
 
-?>
+    ?>
 
     <main class="main">
 
@@ -211,9 +211,12 @@ if (isset($_GET['id'])) {
 
 
       <div class="relative-container">
-        <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up"
+          data-aos-delay="100">
           <a href="company_data.php?id=<?= $company_id ?>">
-            <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow d-md-none d-block mobile-positioned-image" style="max-width: 200px; border-radius: 20px;">
+            <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt=""
+              class="img-fluid shadow d-md-none d-block mobile-positioned-image"
+              style="max-width: 200px; border-radius: 20px;">
           </a>
         </div>
 
@@ -246,9 +249,12 @@ if (isset($_GET['id'])) {
 
           <div class="col-md-4 order-md-1 mb-4 order-2">
             <div class="card shadow">
-              <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
+              <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up"
+                data-aos-delay="100">
                 <a href="company_data.php?id=<?= $company_id ?>">
-                  <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow d-none d-md-flex" style="max-width: 200px; border-radius: 20px; margin-top: -100px;">
+                  <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt=""
+                    class="img-fluid shadow d-none d-md-flex"
+                    style="max-width: 200px; border-radius: 20px; margin-top: -100px;">
                 </a>
               </div>
 
@@ -296,8 +302,8 @@ if (isset($_GET['id'])) {
                       <td>Skills</td>
                       <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
                       <td><?php foreach ($skillsArray as $skill) {
-                            echo '<span class="badge bg-secondary">' . strtoupper(trim($skill)) . '</span> ';
-                          } ?></td>
+                        echo '<span class="badge bg-secondary">' . strtoupper(trim($skill)) . '</span> ';
+                      } ?></td>
                     </tr>
                     <tr class="mb-4">
                       <td>Experience Level</td>
@@ -308,19 +314,23 @@ if (isset($_GET['id'])) {
                 </div>
                 <hr>
                 <div class="p-3 text-center">
-                  <a href="https://www.facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-square fa-3x"></i></a>
+                  <a href="https://www.facebook.com/yourpage" target="_blank"><i
+                      class="fab fa-facebook-square fa-3x"></i></a>
 
                   <!-- Twitter -->
                   <a href="https://twitter.com/yourpage" target="_blank"><i class="fab fa-twitter-square fa-3x"></i></a>
 
                   <!-- Instagram -->
-                  <a href="https://www.instagram.com/yourpage" target="_blank"><i class="fab fa-instagram-square fa-3x"></i></a>
+                  <a href="https://www.instagram.com/yourpage" target="_blank"><i
+                      class="fab fa-instagram-square fa-3x"></i></a>
 
                   <!-- LinkedIn -->
-                  <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+                  <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i
+                      class="fab fa-linkedin fa-3x"></i></a>
 
                   <!-- YouTube -->
-                  <a href="https://www.youtube.com/channel/yourchannel" target="_blank"><i class="fab fa-youtube-square fa-3x"></i></a>
+                  <a href="https://www.youtube.com/channel/yourchannel" target="_blank"><i
+                      class="fab fa-youtube-square fa-3x"></i></a>
                 </div>
 
                 <div class="p-3">
@@ -331,7 +341,7 @@ if (isset($_GET['id'])) {
 
                         $uid = $_SESSION['user_id'];
                         // User is authorized, show the apply button
-
+                  
                         $today = date("Y-m-d");
 
                         // $application_deadline;
@@ -379,7 +389,8 @@ if (isset($_GET['id'])) {
               <?= $rows['job_description']; ?>
             </p>
             <div class="img d-flex justify-content-center">
-              <img src="Admin/uploads/job_posters/<?= $rows['company_logo']; ?>" alt="job dec Img" class="img-fluid" width="800px">
+              <img src="Admin/uploads/job_posters/<?= $rows['company_logo']; ?>" alt="job dec Img" class="img-fluid"
+                width="800px">
             </div>
           </div>
         </div>
@@ -445,8 +456,10 @@ if (isset($_GET['id'])) {
                   <?php
                   $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
                   ?>
-                  <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>" required>
-                  <input type="hidden" class="form-control" id="company_email" name="company_email" value="<?= $company_email ?>" required>
+                  <input type="hidden" class="form-control" id="jobseeker_id" name="jobseeker_id" value="<?= $user_id ?>"
+                    required>
+                  <input type="hidden" class="form-control" id="company_email" name="company_email"
+                    value="<?= $company_email ?>" required>
                 </div>
 
 
@@ -463,7 +476,8 @@ if (isset($_GET['id'])) {
 
 
                 <div class="wrap-input100 validate-input  mb-3 " data-validate="Valid Name is Required">
-                  <input readonly class="input100" placeholder="Name *" type="text" id="name" name="name" value="<?= $_SESSION['first_name'] ?>" required>
+                  <input readonly class="input100" placeholder="Name *" type="text" id="name" name="name"
+                    value="<?= $_SESSION['first_name'] ?>" required>
                   <span class="focus-input100"></span>
                   <!-- <span class="label-input100">First Name</span> -->
                   <!-- <div class="invalid-feedback" id="firstnameError"></div> -->
@@ -482,7 +496,8 @@ if (isset($_GET['id'])) {
                 </div>
                 <!-- ********************  -->
                 <div class="wrap-input100 validate-input  mb-3 " data-validate="Valid Name is Required">
-                  <input readonly class="input100" placeholder="Name *" type="email" id="email" value="<?= $_SESSION['user_email'] ?>" name="email" required>
+                  <input readonly class="input100" placeholder="Name *" type="email" id="email"
+                    value="<?= $_SESSION['user_email'] ?>" name="email" required>
                   <span class="focus-input100"></span>
                   <!-- <span class="label-input100">First Name</span> -->
                   <!-- <div class="invalid-feedback" id="firstnameError"></div> -->
@@ -521,10 +536,12 @@ if (isset($_GET['id'])) {
 
                 </div>
                 <div class="mb-3">
-                  <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>" required>
+                  <input type="hidden" class="form-control" id="applied_job_id" name="applied_job_id" value="<?= $jobId ?>"
+                    required>
                 </div>
                 <div class="mb-3">
-                  <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending" required>
+                  <input type="hidden" class="form-control" id="AppliedStatus" name="AppliedStatus" value="Pending"
+                    required>
                 </div>
                 <button type="submit" name="apply_Job_Btn" class="login100-form-btn">Submit</button>
               </form>
@@ -539,7 +556,8 @@ if (isset($_GET['id'])) {
 
       <!-- Login Modal -->
       <!-- Login Modal -->
-      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -555,29 +573,44 @@ if (isset($_GET['id'])) {
                       <div class="col-md-12">
                         <div>
                           <div class="mb-4 text-center">
-                            <img src="images/LOGO.png" alt="Logo" style="width: 300px; height: auto;">
+                            <img src="images/Graduatejob.lk Logo.png" alt="Logo" style="width: 300px; height: auto;">
                           </div>
                           <div class="mb-4">
                             <h4 class="text-gray-900 mb-3"><b>Login</b></h4>
-                            <h6 class="text-muted mb-3">Don't have an account yet? <a href="register">Sign Up</a></h6>
-                            <hr>
+                            <h6 class="text-muted mb-3">Don't have an account yet? <a href="userFormsHandle/register">Sign
+                                Up</a></h6>
+                            <!-- <hr> -->
                           </div>
                           <form class="user" action="" method="post" autocomplete="">
-                            <div class="form-group input-icon">
+
+                            <!-- ---------------------------------------------------------------  -->
+                            <!-- <div class="form-group input-icon">
                               <h6>Email Address</h6>
-                            </div>
+                            </div> -->
 
-                            <div class="form-group input-icon">
+                            <!-- <div class="form-group input-icon">
                               <i class="fas fa-envelope"></i>
-                              <input type="email" class="form-control form-control-user" name="email" placeholder="example@gmail.com" required>
+                              <input type="email" class="form-control form-control-user" name="email"
+                                placeholder="example@gmail.com" required>
+                            </div> -->
+
+                            <div class="wrap-input100 validate-input  mb-3 " data-validate="Valid Name is Required">
+                              <input class="input100" placeholder="Email *" type="email" id="email" name="email" required>
+                              <span class="focus-input100"></span>
                             </div>
 
-                            <div class="d-flex justify-content-between mt-4">
+
+                            <div class="wrap-input100 validate-input  mb-3 " data-validate="Valid Name is Required">
+                              <input class="input100" placeholder="Password *" type="password" name="password" id="password"
+                                required>
+                              <span class="focus-input100"></span>
+                            </div>
+
+                            <!-- ---------------------------------------------------------------  -->
+                            <div class="d-flex justify-content-end mt-4">
+                              <!-- -------------------------------------------------------------------  -->
                               <div class="form-group input-icon mb-2">
-                                <h6>Password</h6>
-                              </div>
-                              <div class="form-group input-icon mb-2">
-                                <a href="reset_password_request">
+                                <a href="userFormsHandle/reset_password_request">
                                   <h6>Forgot Password</h6>
                                 </a>
                               </div>
@@ -585,29 +618,15 @@ if (isset($_GET['id'])) {
 
 
 
-                            <div class="form-group input-icon">
-                              <i class="fas fa-lock"></i>
-                              <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Enter 6 Character or more" required>
-                              <i class="fas fa-eye toggle-password text-right" id="togglePassword"></i>
-                            </div>
 
-                            <script>
-                              document.getElementById('togglePassword').addEventListener('click', function(e) {
-                                const passwordInput = document.getElementById('password');
-                                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                                passwordInput.setAttribute('type', type);
-                                this.classList.toggle('fa-eye');
-                                this.classList.toggle('fa-eye-slash');
-                              });
-                            </script>
-                            <div class="form-group form-check mt-2 ml-2">
-                              <input type="checkbox" class="form-check-input" id="rememberMe">
-                              <label class="form-check-label" for="rememberMe">Remember Me</label>
-                            </div>
-                            <button type="submit" name="login_modal_btn" class="btn btn-primary btn-user btn-block">Login</button>
-                            <hr>
+                            <!-- ---------------------------------------------------------------  -->
+
+                            <button type="submit" name="login_modal_btn" class="login100-form-btn">Login</button>
+
+
+                            <!-- ---------------------------------------------------------------  -->
+                            <!-- <hr> -->
                           </form>
-                          <hr>
                         </div>
                       </div>
                     </div>
@@ -623,65 +642,65 @@ if (isset($_GET['id'])) {
 
 
       <?php
-    }
   }
+}
 
 
 
 
 
-  // ---------------------------------------------- Process form data  PHP CODE  submit applications  ------------------------------------------------------------------
+// ---------------------------------------------- Process form data  PHP CODE  submit applications  ------------------------------------------------------------------
 
-  if (isset($_POST['apply_Job_Btn'])) {
-    $jobseeker_id = $_POST['jobseeker_id'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $company_email = $_POST['company_email'];
-    $phone = $_POST['phone'];
-    $applied_job_id = $_POST['applied_job_id'];
-    $AppliedStatus = $_POST['AppliedStatus'];
+if (isset($_POST['apply_Job_Btn'])) {
+  $jobseeker_id = $_POST['jobseeker_id'];
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $company_email = $_POST['company_email'];
+  $phone = $_POST['phone'];
+  $applied_job_id = $_POST['applied_job_id'];
+  $AppliedStatus = $_POST['AppliedStatus'];
 
-    // Handle file upload
-    $resume_file = $_FILES['resume']['name'];
-    $resume_tmp = $_FILES['resume']['tmp_name'];
-    $resume_path = "resumes/" . $resume_file;
+  // Handle file upload
+  $resume_file = $_FILES['resume']['name'];
+  $resume_tmp = $_FILES['resume']['tmp_name'];
+  $resume_path = "resumes/" . $resume_file;
 
-    if (move_uploaded_file($resume_tmp, $resume_path)) {
-      // Insert data into database
-      $sql = "INSERT INTO applicants (jobseeker_id, name, email, company_email, phone, resume_file, applied_job_id, applied_at, status)
+  if (move_uploaded_file($resume_tmp, $resume_path)) {
+    // Insert data into database
+    $sql = "INSERT INTO applicants (jobseeker_id, name, email, company_email, phone, resume_file, applied_job_id, applied_at, status)
               VALUES ('$jobseeker_id', '$name', '$email', '$company_email', '$phone', '$resume_file', '$applied_job_id', NOW(), '$AppliedStatus')";
 
-      if ($conn->query($sql) === TRUE) {
-        $_SESSION['message'] = "You have applied for a job";
+    if ($conn->query($sql) === TRUE) {
+      $_SESSION['message'] = "You have applied for a job";
 
-        // Create a new PHPMailer instance
-        $mail = new PHPMailer(true);
-        try {
-          //Server settings
-          $mail->isSMTP();
-          $mail->Host = 'mail.graduatejob.lk';
-          $mail->SMTPAuth = true;
-          $mail->Username = 'noreply@graduatejob.lk';
-          $mail->Password = 'Hasni@2024'; // app password here
-          $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-          $mail->Port = 587;
+      // Create a new PHPMailer instance
+      $mail = new PHPMailer(true);
+      try {
+        //Server settings
+        $mail->isSMTP();
+        $mail->Host = 'mail.graduatejob.lk';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'noreply@graduatejob.lk';
+        $mail->Password = 'Hasni@2024'; // app password here
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
 
-          // Enable verbose debug output
-          $mail->SMTPDebug = 2;
-          $mail->Debugoutput = 'html';
+        // Enable verbose debug output
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
 
-          //Recipients
-          $company_name = "GRADUATEJOB.LK";
-          $mail->setFrom('noreply@graduatejob.lk', $company_name);
-          $mail->addAddress($email, $name);
-          // $mail->addCC('mirmirsha123@gmail.com'); // Add CC recipient
-          $mail->addBCC($company_email); // Add BCC recipient
+        //Recipients
+        $company_name = "GRADUATEJOB.LK";
+        $mail->setFrom('noreply@graduatejob.lk', $company_name);
+        $mail->addAddress($email, $name);
+        // $mail->addCC('mirmirsha123@gmail.com'); // Add CC recipient
+        $mail->addBCC($company_email); // Add BCC recipient
 
 
-          // Content
-          $mail->isHTML(true);
-          $mail->Subject = 'GRADUATE Job Application Confirmation';
-          $mail->Body = "Hello $name,<br><br> Thank you for sending your CV for the position of XYZ . <br><br> 
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = 'GRADUATE Job Application Confirmation';
+        $mail->Body = "Hello $name,<br><br> Thank you for sending your CV for the position of XYZ . <br><br> 
             Your application is under review. We will get back to you soon. <br><br> 
             The company will contact you for further details if needed or if you are shortlisted <br><br> 
             Please continue to check the available jobs we have using the following link ....... <br><br> 
@@ -689,102 +708,106 @@ if (isset($_GET['id'])) {
             If you need help, you can find it here: .............  <br><br> 
             Best regards,<br>$company_name";
 
-          $mail->AltBody = "Hello $name,\n\n You have successfully applied for the job. Your application is under review. We will get back to you soon.\n\n Best regards,\n $company_name";
+        $mail->AltBody = "Hello $name,\n\n You have successfully applied for the job. Your application is under review. We will get back to you soon.\n\n Best regards,\n $company_name";
 
-          $mail->send();
-          $_SESSION['message'] = "You have applied for a job. A confirmation email has been sent.";
-        } catch (Exception $e) {
-          $_SESSION['message'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        }
-
-        // Redirect to the same page to show the message and refresh the page
-        echo '<script>window.location.href = "job-details.php?id=' . $applied_job_id . '";</script>';
-        exit();
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $mail->send();
+        $_SESSION['message'] = "You have applied for a job. A confirmation email has been sent.";
+      } catch (Exception $e) {
+        $_SESSION['message'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
       }
+
+      // Redirect to the same page to show the message and refresh the page
+      echo '<script>window.location.href = "job-details.php?id=' . $applied_job_id . '";</script>';
+      exit();
     } else {
-      echo "Failed to upload resume.";
+      echo "Error: " . $sql . "<br>" . $conn->error;
     }
+  } else {
+    echo "Failed to upload resume.";
   }
+}
 
-  // Display the session message if available
-  if (isset($_SESSION['message'])) {
-    echo '<div class="alert alert-success" role="alert">' . $_SESSION['message'] . '</div>';
-    unset($_SESSION['message']);
-  }
+// Display the session message if available
+if (isset($_SESSION['message'])) {
+  echo '<div class="alert alert-success" role="alert">' . $_SESSION['message'] . '</div>';
+  unset($_SESSION['message']);
+}
 
 
 
-  // ---------------------------------------------- WHEN LOGIN THROUGHT THE FINDING JOBS PHP CODE  ----------------------------------------------
+// ---------------------------------------------- WHEN LOGIN THROUGHT THE FINDING JOBS PHP CODE  ----------------------------------------------
 
-  // Check if the form is submitted
-  if (isset($_POST['login_modal_btn'])) {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+// Check if the form is submitted
+if (isset($_POST['login_modal_btn'])) {
+  $email = $_POST["email"];
+  $password = $_POST["password"];
 
-    // SQL query to check if the user exists
-    $sql = "SELECT * FROM userregister WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    if ($stmt) {
-      $stmt->bind_param("s", $email);
-      $stmt->execute();
-      $result = $stmt->get_result();
+  // SQL query to check if the user exists
+  $sql = "SELECT * FROM userregister WHERE email = ?";
+  $stmt = $conn->prepare($sql);
+  if ($stmt) {
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-      if ($result->num_rows > 0) {
-        // Fetch the user's data
-        $user = $result->fetch_assoc();
+    if ($result->num_rows > 0) {
+      // Fetch the user's data
+      $user = $result->fetch_assoc();
 
-        if ($user['user_active'] == '0') {
-          // User is inactive
-      ?>
+      if ($user['user_active'] == '0') {
+        // User is inactive
+        ?>
           <script>
-            alertify.error("Please submit your document and login.");
+            alertify.error("Please Verify Your Email Please");
           </script>
           <?php
-        } else {
-          // Verify the password
-          if (password_verify($password, $user['password'])) {
-            // Set session variables
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_email'] = $user['email'];
-            $_SESSION['first_name'] = $user['firstname'];
-            $_SESSION['user_type'] = $user['usertype'];
+      } else {
+        // Verify the password
+        if (password_verify($password, $user['password'])) {
+          // Set session variables
+          $_SESSION['user_id'] = $user['id'];
+          $_SESSION['user_email'] = $user['email'];
+          $_SESSION['first_name'] = $user['firstname'];
+          $_SESSION['user_type'] = $user['usertype'];
 
-            // Redirect based on user type
-            if ($user['usertype'] == 'jobSeeker') {
-              $_SESSION['message'] = "Successfully logged in";
-              echo '<script>window.location.href = "index";</script>';
-              exit();
-            }
-          } else {
-            // Password is incorrect
+          // Redirect based on user type
+          if ($user['usertype'] == 'jobSeeker') {
+            $_SESSION['message'] = "Successfully logged in";
+            echo '<script>
+
+            window.location.href = "job-details.php?id=' . $jobId . '";
+
+             </script>';
+            exit();
+          }
+        } else {
+          // Password is incorrect
           ?>
             <script>
               alertify.error("Please check your credentials.");
             </script>
-        <?php
-          }
+            <?php
         }
-      } else {
-        // No user found with that email address
-        ?>
+      }
+    } else {
+      // No user found with that email address
+      ?>
         <script>
           alertify.error("No user found with that email address!");
         </script>
-      <?php
-      }
+        <?php
+    }
 
-      $stmt->close();
-    } else {
-      // Handle SQL preparation error
-      ?>
+    $stmt->close();
+  } else {
+    // Handle SQL preparation error
+    ?>
       <script>
         alertify.error("An error occurred. Please try again later.");
       </script>
-  <?php
-    }
+      <?php
   }
+}
 
 
 
@@ -793,58 +816,59 @@ if (isset($_GET['id'])) {
 
 
 
-  ?>
+?>
 
-    </main>
+</main>
 
 
 
-    <?php include("includes/footer.php");
+<?php include ("includes/footer.php");
+?>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+    class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
+
+
+<!-- -------------------------------- FOoter Section ----------------------------------- -->
+<!-- -------------------------------- FOoter Section ----------------------------------- -->
+<!-- -------------------------------- FOoter Section ----------------------------------- -->
+
+
+
+
+<s cript>
+  <?php
+
+  // messages from corect or not 
+  
+  if (isset($_SESSION['message'])) {
     ?>
+    alertify.set('notifier', 'position', 'bottom-right');
+    // alertify.success('Current position : ' + aler tify.get('notifier', 'position'));
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Main JS File -->
-    <script src="assets/js/main.js"></script>
-
-    </body>
-
-    </html>
-
-
-    <!-- -------------------------------- FOoter Section ----------------------------------- -->
-    <!-- -------------------------------- FOoter Section ----------------------------------- -->
-    <!-- -------------------------------- FOoter Section ----------------------------------- -->
-
-
-
-
-    <s cript>
-      <?php
-
-      // messages from corect or not 
-
-      if (isset($_SESSION['message'])) {
-      ?>
-        alertify.set('notifier', 'position', 'bottom-right');
-        // alertify.success('Current position : ' + aler tify.get('notifier', 'position'));
-
-        alertify.success('<?= $_SESSION['message'] ?>');
-      <?php
-        unset($_SESSION['message']);
-      }
-      ?>
-      </script>
+    alertify.success('<?= $_SESSION['message'] ?>');
+    <?php
+    unset($_SESSION['message']);
+  }
+  ?>
+  </script>
