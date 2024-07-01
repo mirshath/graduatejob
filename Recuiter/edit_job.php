@@ -159,8 +159,8 @@ if ($result_categories->num_rows > 0) {
                                         <!-- Job Category -->
                                         <div class="form-group">
                                             <label for="jobCategory">Job Category/Industry</label>
-                                            <select class="form-control" id="interestedField" name="interestedField">
-                                                <option value="">Job Category</option>
+                                            <select class="form-control" id="editJobCategory" name="editJobCategory">
+                                                <option value="">Select Job Category</option>
                                                 <?php foreach ($categories as $category) : ?>
                                                     <option value="<?= $category['category_name']; ?>" <?php if ($category['category_name'] == $row['job_category']) echo 'selected'; ?>>
                                                         <?= $category['category_name']; ?>

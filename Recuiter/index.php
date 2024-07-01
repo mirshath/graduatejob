@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "include/header.php";
-include ("../Database/connection.php");
+include("../Database/connection.php");
 
 
 $re_email = $_SESSION['user_email'];
@@ -63,7 +63,7 @@ if ($job_result) {
 
 
   <!-- SIDEBAR -->
-  <?php include ("include/sidenav.php"); ?>
+  <?php include("include/sidenav.php"); ?>
   <!-- SIDEBAR -->
 
 
@@ -74,7 +74,7 @@ if ($job_result) {
   <!-- CONTENT -->
   <section id="content">
     <!-- NAVBAR -->
-    <?php include ("include/nav.php"); ?>
+    <?php include("include/nav.php"); ?>
     <!-- NAVBAR -->
 
     <!-- MAIN -->
@@ -160,10 +160,10 @@ if ($job_result) {
 
 
 
-                  ?>
+              ?>
                   <tr>
                     <td>
-                      <img src="../Admin/uploads/<?= $job_getting_data['company_logo'] ?> " />
+                      <img src="../Admin/uploads/job_posters/<?= $job_getting_data['company_logo'] ?> " />
                       <p><?= $job_title ?></p>
                     </td>
                     <td><?= $job_posted_date ?></td>
@@ -171,7 +171,7 @@ if ($job_result) {
                     <td><?= $admin_status ?></td>
                   </tr>
 
-                  <?php
+                <?php
                 }
               } else {
 
@@ -182,7 +182,7 @@ if ($job_result) {
                     No data found
                   </td>
                 </tr>
-                <?php
+              <?php
               }
               ?>
 
