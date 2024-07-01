@@ -353,8 +353,8 @@ include("includes/navbar.php");
                 "spaceBetween": 20
               },
               "1200": {
-                "slidesPerView": 3,
-                "spaceBetween": 30
+                "slidesPerView": 4,
+                "spaceBetween":20
               }
             }
           }
