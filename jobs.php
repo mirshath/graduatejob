@@ -4,8 +4,8 @@ session_start();
 require "Database/connection.php";
 
 
-include ("includes/header.php");
-include ("includes/navbar.php");
+include("includes/header.php");
+include("includes/navbar.php");
 
 
 
@@ -322,8 +322,7 @@ $JobCounts = $row['total'];
                   <div class="col-md-8 ftco-animate fadeInUp ftco-animated ">
                     <form action="#" class="domain-form">
                       <div class="form-group d-md-flex">
-                        <input type="text" id="search-query" aria-label="Search" aria-describedby="basic-addon2"
-                          class="form-control px-4" placeholder="Enter the Job title Here">
+                        <input type="text" id="search-query" aria-label="Search" aria-describedby="basic-addon2" class="form-control px-4" placeholder="Enter the Job title Here">
                         <input type="submit" class="search-domain  px-5" value="Search Job">
                         <span class="focus-input100"></span>
 
@@ -626,8 +625,7 @@ $JobCounts = $row['total'];
 
                   <div class="wrap-check-62 d-flex align-items-center mb-2">
                     <div class="switch">
-                      <input id="four-62" class="input filter-checkbox" type="checkbox" name="type"
-                        value="Internship" />
+                      <input id="four-62" class="input filter-checkbox" type="checkbox" name="type" value="Internship" />
                       <label for="four-62" class="slider"></label>
                     </div>
                     <span class="ms-2">Internship</span>
@@ -657,23 +655,22 @@ $JobCounts = $row['total'];
                     // echo '<small>' . $row['category_name'] . ' Jobs</small>';
                     // echo '</label>';
                     // echo '<br>';
-                  
+
 
                     // Initialize a counter for generating unique IDs
                     $counter = 1;
 
                     // Loop through each category and create a checkbox for each
                     while ($row = mysqli_fetch_assoc($resulting)) {
-                      ?>
+                  ?>
                       <div class="wrap-check-62 d-flex align-items-center mb-2">
                         <div class="switch">
-                          <input id="check-<?= $counter ?>-62" class="input filter-checkbox" type="checkbox" name="category"
-                            value="<?= $row['category_name'] ?>" />
+                          <input id="check-<?= $counter ?>-62" class="input filter-checkbox" type="checkbox" name="category" value="<?= $row['category_name'] ?>" />
                           <label for="check-<?= $counter ?>-62" class="slider"></label>
                         </div>
                         <span class="ms-2"><?= $row['category_name'] ?></span>
                       </div>
-                      <?php
+                  <?php
                       // Increment the counter for the next checkbox
                       $counter++;
                     }
@@ -699,16 +696,14 @@ $JobCounts = $row['total'];
 
                   <div class="wrap-check-62 d-flex align-items-center mb-2">
                     <div class="switch">
-                      <input id="five-62" class="input filter-checkbox" type="checkbox" name="career"
-                        value="Entry_Level" />
+                      <input id="five-62" class="input filter-checkbox" type="checkbox" name="career" value="Entry_Level" />
                       <label for="five-62" class="slider"></label>
                     </div>
                     <span class="ms-2">Entry Level</span>
                   </div>
                   <div class="wrap-check-62 d-flex align-items-center mb-2">
                     <div class="switch">
-                      <input id="six-62" class="input filter-checkbox" type="checkbox" name="career"
-                        value="Mid_Level" />
+                      <input id="six-62" class="input filter-checkbox" type="checkbox" name="career" value="Mid_Level" />
                       <label for="six-62" class="slider"></label>
                     </div>
                     <span class="ms-2">Mid Level</span>
@@ -777,8 +772,7 @@ $JobCounts = $row['total'];
             <div class="container">
 
               <div class="d-md-none text-end filter_bg  ">
-                <p class="px-3 bordered" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter"
-                  aria-controls="offcanvasFilter">
+                <p class="px-3 bordered" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasFilter">
                   <i class="fas fa-filter"></i> Filters
                 </p>
               </div>
@@ -870,7 +864,7 @@ $JobCounts = $row['total'];
 
 
 
-                    ?>
+                ?>
                     <div class="card mb-3" style="border-radius: 10px;">
                       <!-- Desktop View -->
                       <div class="d-none d-md-block " style="border-radius: 10px;">
@@ -904,8 +898,8 @@ $JobCounts = $row['total'];
                       </div>
 
                       <!-- Mobile View -->
-                      <div class="d-md-none card_backround" style="border-radius: 10px;>
-                        <a href=" job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
+                      <div class="d-md-none card_backround" style="border-radius: 10px;">
+                         <a href="job-details?id=<?= $row['id']; ?>" class="stretched-link"></a>
                         <div class="card-body">
                           <div class="row">
                             <div class="col-4 d-flex justify-content-center align-items-center">
@@ -935,7 +929,7 @@ $JobCounts = $row['total'];
                     </div>
 
 
-                    <?php
+                <?php
                   }
                 }
 
@@ -1065,12 +1059,11 @@ $JobCounts = $row['total'];
 
 </main>
 
-<?php include ("includes/footer.php");
+<?php include("includes/footer.php");
 ?>
 
 <!-- Scroll Top -->
-<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-    class="bi bi-arrow-up-short"></i></a>
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Preloader -->
 <div id="preloader"></div>
@@ -1101,16 +1094,16 @@ $JobCounts = $row['total'];
 
 
 <script>
-  $(document).ready(function () {
-    $('#search-button').on('click', function () {
+  $(document).ready(function() {
+    $('#search-button').on('click', function() {
       performSearch();
     });
 
-    $('#search-query').on('input', function () {
+    $('#search-query').on('input', function() {
       performSearch();
     });
 
-    $('.filter-checkbox').on('change', function () {
+    $('.filter-checkbox').on('change', function() {
       performSearch();
     });
 
@@ -1121,19 +1114,19 @@ $JobCounts = $row['total'];
       let careers = [];
       let educations = [];
 
-      $('input[name="type"]:checked').each(function () {
+      $('input[name="type"]:checked').each(function() {
         types.push($(this).val());
       });
 
-      $('input[name="category"]:checked').each(function () {
+      $('input[name="category"]:checked').each(function() {
         categories.push($(this).val());
       });
 
-      $('input[name="career"]:checked').each(function () {
+      $('input[name="career"]:checked').each(function() {
         careers.push($(this).val());
       });
 
-      $('input[name="education"]:checked').each(function () {
+      $('input[name="education"]:checked').each(function() {
         educations.push($(this).val());
       });
 
@@ -1147,7 +1140,7 @@ $JobCounts = $row['total'];
           career: careers,
           education: educations
         },
-        success: function (response) {
+        success: function(response) {
           $('#search-results').empty();
           let jobs = JSON.parse(response);
 
@@ -1156,7 +1149,7 @@ $JobCounts = $row['total'];
             return;
           }
 
-          jobs.forEach(function (job) {
+          jobs.forEach(function(job) {
             let randomColor = getRandomColor();
             let jobHtml = `
                         <div class="col-md-12 mb-4 hoverEffect">
