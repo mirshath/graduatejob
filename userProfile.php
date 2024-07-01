@@ -106,7 +106,13 @@ if ($result_categories->num_rows > 0) {
                 background: linear-gradient(90deg, rgba(2,0,36,1) 10%, rgba(9,9,121,1) 100%, rgba(0,212,255,1) 100%); ">
                 <div class="col-sm-2">
                     <a href="#" class="profile-picture">
-                        <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" class="img-responsive img-circle">
+                        <!-- <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" class="img-responsive img-circle"> -->
+
+                        <?php if (!empty($row["profile"])) : ?>
+                            <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" alt="Profile Image" class="img-responsive img-circle">
+                        <?php else : ?>
+                            <img src="https://freesvg.org/img/abstract-user-flat-4.png" alt="default profile pic" style=" border-radius: 25px;">
+                        <?php endif; ?>
                     </a>
                 </div>
                 <div class="col-sm-7">
@@ -236,7 +242,7 @@ if ($result_categories->num_rows > 0) {
                                         // Fetch the records for the current page
                                         $select_jobs_from_tables = "
                                             SELECT 
-                                                applicants.*,  -- Select all columns from the applicants table
+                                                applicants.*, 
                                                 jobs.id AS job_id,
                                                 jobs.job_title,
                                                 jobs.company_name,
@@ -262,7 +268,9 @@ if ($result_categories->num_rows > 0) {
                                                                 <div class="d-none d-md-flex flex-row align-items-center justify-content-between">
                                                                     <!-- Image -->
                                                                     <div class="d-flex align-items-center justify-content-center mb-3 mb-md-0">
-                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-QCKIyHiPkoouLv349z1C4-vuEvaY8pX95A&s" alt="Image" class="img-fluid" style="max-width: 100px; border-radius: 20px;">
+                                                                        <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-QCKIyHiPkoouLv349z1C4-vuEvaY8pX95A&s" alt="Image" class="img-fluid" style="max-width: 100px; border-radius: 20px;"> -->
+                                                                        <img src="Admin/uploads/<?= $rows['company_logo'] ?>" alt="Image" class="img-fluid" style="max-width: 100px; border-radius: 20px;">
+
                                                                     </div>
 
                                                                     <!-- Name and company -->
@@ -310,7 +318,7 @@ if ($result_categories->num_rows > 0) {
                                                                     <div class="row">
                                                                         <!-- Image -->
                                                                         <div class="col-4 d-flex align-items-center justify-content-center">
-                                                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-QCKIyHiPkoouLv349z1C4-vuEvaY8pX95A&s" alt="Image" class="img-fluid" style="max-width: 100px; border-radius: 20px;">
+                                                                            <img src="/Admin/uploads/<?= $rows['company_logo'] ?>" alt="Image" class="img-fluid" style="max-width: 100px; border-radius: 20px;">
                                                                         </div>
 
                                                                         <!-- Name and company -->
@@ -444,10 +452,17 @@ if ($result_categories->num_rows > 0) {
                                                                                     <div class="col-12 col-sm-auto mb-3">
                                                                                         <div class="mx-auto" style="width: 140px;">
                                                                                             <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239); overflow: hidden;">
-                                                                                                <?php if (!empty($row["profile"])) : ?>
+                                                                                                <!-- <?php if (!empty($row["profile"])) : ?>
                                                                                                     <div class="mb-3">
                                                                                                         <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" alt="Profile Image" class="img-thumbnail profile-img">
                                                                                                     </div>
+                                                                                                <?php endif; ?> -->
+
+
+                                                                                                <?php if (!empty($row["profile"])) : ?>
+                                                                                                    <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" alt="Profile Image" class="img-thumbnail profile-img">
+                                                                                                <?php else : ?>
+                                                                                                    <img src="https://freesvg.org/img/abstract-user-flat-4.png" alt="default profile pic" style="max-width: 100px; max-height: 100px; border-radius: 25px;">
                                                                                                 <?php endif; ?>
                                                                                             </div>
                                                                                         </div>

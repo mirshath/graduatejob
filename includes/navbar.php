@@ -64,17 +64,25 @@ if (isset($_SESSION['user_id'])) {
       </nav><!-- .navmenu -->
 
       <div class="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
-        <?php if (isset($_SESSION['user_id'])): ?>
+        <?php if (isset($_SESSION['user_id'])) : ?>
           <div class="dropdown">
-            <a href="#" class="d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <img src="userDashboards/uploads/profiles/<?php echo $row['profile']; ?>" alt="Profile"
-                class="rounded-circle" style="width: 40px; height: 40px;">
+            <a href="#" class="d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+
+
+              <!-- <img src="userDashboards/uploads/profiles/<?php echo $row['profile']; ?>" alt="Profile" class="rounded-circle" style="width: 40px; height: 40px;"> -->
+
+              <?php if (!empty($row["profile"])) : ?>
+                <img src="userDashboards/uploads/profiles/<?= $row["profile"] ?>" alt="Profile Image" class="img-thumbnail profile-img"  style="max-width: 50px; max-height: 50px; border-radius: 25px;">
+              <?php else : ?>
+                <img src="https://freesvg.org/img/abstract-user-flat-4.png" alt="default profile pic" style="max-width: 50px; max-height: 50px; border-radius: 25px;">
+              <?php endif; ?>
+
+
               <span class="ms-2 text-white d-none d-md-flex"><?php echo $row['firstname']; ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" style=" font-size: 15px;">
               <div class="p-3 text-muted">
-                <?= $_SESSION['first_name']; ?>   <?php echo $row['lastname']; ?>
+                <?= $_SESSION['first_name']; ?> <?php echo $row['lastname']; ?>
                 <?= $_SESSION['user_email']; ?>
               </div>
               <div class="" style="margin-left: 25px; font-size: 15px;">
@@ -85,11 +93,10 @@ if (isset($_SESSION['user_id'])) {
               </div>
             </ul>
           </div>
-        <?php else: ?>
+        <?php else : ?>
           <!-- Login Button -->
           <!-- <a href="userLoginForm" class="btn btn-outline-danger btn-user btn-block"><i class="fa fa-user"></i></a> -->
-          <a href="userFormsHandle/login.php" class="btn btn-outline-danger btn-user btn-block"><i
-              class="fa fa-user"></i></a>
+          <a href="userFormsHandle/login.php" class="btn btn-outline-danger btn-user btn-block"><i class="fa fa-user"></i></a>
           <!-- <a href="Recuiter/recruiterLoginForm" class="btn btn-primary btn-user btn-block">Rec Login</a> -->
         <?php endif; ?>
       </div>

@@ -87,9 +87,9 @@ include '../Database/connection.php';
                                         <div class="row mt-4 mb-4">
                                             <div class="col-md-5 d-flex justify-content-center align-items-center">
                                                 <?php if (!empty($user["profile"])) : ?>
-                                                    <img src="uploads/company_profiles/<?= htmlspecialchars($user["profile"]); ?>" alt="profile pic" style="max-width: 250px;  border-radius: 25px;">
+                                                    <img src="../userDashboards/uploads/profiles/<?= htmlspecialchars($user["profile"]); ?>" alt="profile pic" style="max-width: 250px;  border-radius: 25px;">
                                                 <?php else : ?>
-                                                    <img src="https://cdn-icons-png.freepik.com/512/3135/3135715.png" alt="default profile pic" class="img-fluid circle-img shadow" style="max-width: 50px; max-height: 50px; border-radius: 25px;">
+                                                    <img src="https://st3.depositphotos.com/15648834/17930/v/450/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="default profile pic" class="img-fluid circle-img shadow" style="max-width: 50px; max-height: 50px; border-radius: 25px;">
                                                 <?php endif; ?>
                                                 <div class="d-flex flex-column align-items-center mt-4">
                                                     <input type="file" class="form-control-file mb-4" id="editCompanyLogo" name="editCompanyLogo">

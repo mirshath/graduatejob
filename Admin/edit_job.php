@@ -6,8 +6,26 @@ include '../Database/connection.php';
 
 
 
-$sql = "SELECT * FROM category";
-$category_result = mysqli_query($conn, $sql);
+// $sql = "SELECT * FROM category";
+// $category_result = mysqli_query($conn, $sql);
+
+
+// ----------------- cetegory fetching datas ---------------
+
+
+$categories = []; // Array to store fetched categories
+
+// Fetch categories from database
+$sql_categories = "SELECT * FROM category";
+$result_categories = $conn->query($sql_categories);
+
+if ($result_categories->num_rows > 0) {
+    while ($rows = $result_categories->fetch_assoc()) {
+        $categories[] = $rows;
+    }
+}
+// ----------------- cetegory fetching datas ---------------
+
 
 ?>
 
@@ -102,7 +120,7 @@ $category_result = mysqli_query($conn, $sql);
                                             <label for="editCompanyLogo">Company Logo</label>
                                             <?php if (!empty($row["company_logo"])) : ?>
                                                 <div class="mb-3">
-                                                    <img src="uploads/<?= $row["company_logo"] ?>" alt="Company Logo" class="img-thumbnail" style="max-width: 150px;">
+                                                    <img src="uploads/job_posters/<?= $row["company_logo"] ?>" alt="Company Logo" class="img-thumbnail" style="max-width: 150px;">
                                                 </div>
                                             <?php endif; ?>
                                             <input type="file" class="form-control-file" id="editCompanyLogo" name="editCompanyLogo">
@@ -116,17 +134,14 @@ $category_result = mysqli_query($conn, $sql);
                                     <div class="col-md-6">
                                         <!-- Job Category -->
                                         <div class="form-group">
-                                            <label for="jobCategory">Job Category/Industry</label>
-                                            <select name="category" id="category" class="form-control">
-                                                <?php
-                                                if (mysqli_num_rows($category_result) > 0) {
-                                                    while ($category_row = mysqli_fetch_assoc($category_result)) {
-                                                        $categoryName = $category_row['category_name'];
-                                                        $selected = ($categoryName == $selectedCategory) ? 'selected' : '';
-                                                        echo "<option value='" . $categoryName . "' " . $selected . ">" . $categoryName . "</option>";
-                                                    }
-                                                }
-                                                ?>
+                                            <label for="jobCategory">Job Category</label>
+                                            <select class="form-control" id="interestedField" name="interestedField">
+                                                <option value="">Job Category</option>
+                                                <?php foreach ($categories as $category) : ?>
+                                                    <option value="<?= $category['category_name']; ?>" <?php if ($category['category_name'] == $row['job_category']) echo 'selected'; ?>>
+                                                        <?= $category['category_name']; ?>
+                                                    </option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>
@@ -148,14 +163,14 @@ $category_result = mysqli_query($conn, $sql);
                                     <textarea class="form-control" id="editJobDescription" name="editJobDescription" rows="4"><?= $row["job_description"] ?></textarea>
                                 </div>
                                 <script>
-                                        // Initialize CKEditor on the textarea with custom configuration
-                                        CKEDITOR.replace('editJobDescription', {
-                                            height: 300,
-                                            // Add additional configuration options here
-                                            
-                                            // You can add more configuration options here
-                                        });
-                                    </script>
+                                    // Initialize CKEditor on the textarea with custom configuration
+                                    CKEDITOR.replace('editJobDescription', {
+                                        height: 300,
+                                        // Add additional configuration options here
+
+                                        // You can add more configuration options here
+                                    });
+                                </script>
 
 
 
@@ -243,14 +258,14 @@ $category_result = mysqli_query($conn, $sql);
                                 </div>
 
                                 <script>
-                                        // Initialize CKEditor on the textarea with custom configuration
-                                        CKEDITOR.replace('editAdditionalInfo', {
-                                            height: 300,
-                                            // Add additional configuration options here
-                                            
-                                            // You can add more configuration options here
-                                        });
-                                    </script>
+                                    // Initialize CKEditor on the textarea with custom configuration
+                                    CKEDITOR.replace('editAdditionalInfo', {
+                                        height: 300,
+                                        // Add additional configuration options here
+
+                                        // You can add more configuration options here
+                                    });
+                                </script>
 
 
                                 <!-- Submit Button -->

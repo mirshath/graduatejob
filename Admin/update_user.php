@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Handle profile image upload
         if (isset($_FILES["editCompanyLogo"]) && $_FILES["editCompanyLogo"]["error"] == 0) {
-            $target_dir = "uploads/user_profiles/";
+            $target_dir = "../userDashboards/uploads/profiles/";
             $target_file = $target_dir . basename($_FILES["editCompanyLogo"]["name"]);
             if (move_uploaded_file($_FILES["editCompanyLogo"]["tmp_name"], $target_file)) {
                 $profileImage = basename($_FILES["editCompanyLogo"]["name"]);
