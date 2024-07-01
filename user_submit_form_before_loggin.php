@@ -201,9 +201,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                         </div>
                     </div>
                     <div class="form-row">
+                        
                         <div class="form-group col-md-4">
                             <label for="professionalQualification">Professional Qualification</label>
-                            <input type="text" class="form-control" id="professionalQualification" name="professionalQualification" placeholder="Professional Qualification">
+                            <select class="form-control" id="professionalQualification" name="professionalQualification">
+                                <option value="">Select Professional Qualification</option>
+                                <option value="Certification">Certification</option>
+                                <option value="Diploma">Diploma</option>
+                                <option value="Associate_Degree">Associate Degree</option>
+                                <option value="Bachelor's_Degree">Bachelor's Degree</option>
+                                <option value="Master's_Degree">Master's Degree</option>
+                                <option value="PhD">PhD</option>
+                                <!-- Add more options as needed -->
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="studiedAt">Studied At</label>
