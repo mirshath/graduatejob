@@ -181,9 +181,9 @@ include("includes/navbar.php");
           WHERE jobs.admin_status = 'Approved' AND jobs.application_status = 'active'
           ORDER BY jobs.id DESC
           LIMIT 6";
-      
-      $sql_run = mysqli_query($conn, $sql);
-      
+
+          $sql_run = mysqli_query($conn, $sql);
+
 
           if ($sql_run->num_rows > 0) {
             while ($row = mysqli_fetch_array($sql_run)) {
@@ -217,25 +217,25 @@ include("includes/navbar.php");
                       <!-- Mobile View: Image on left, data on right -->
                       <a href="job-details?id=<?= $row['job_id']; ?>">
 
-                         <div class="d-md-none">
-                           <div class="row">
-                             <div class="col-4 d-flex justify-content-center align-items-center">
-                               <img src="Admin/uploads/company_profiles/<?= $row['profile'] ?>" class="img-fluid mb-3 shadow" alt="Profile Image" style="object-fit: cover; border-radius: 20px;">
-                             </div>
-                             <div class="col-8">
-                               <h5 class="mb-1"><b><?= $row['job_title'] ?></b></h5>
-                               <span class="badge rounded-pill bg-primary mb-2">
-                                 <i class="fas fa-briefcase" style="font-size: 15px;"></i> &nbsp;&nbsp; <?= $row['employment_type'] ?>
-                               </span>
-                               <div>
-                                 <span class="text-muted"><i class="fas fa-briefcase" style="font-size: 12px;"></i>&nbsp; <?= $row['job_category'] ?></span><br>
-                                 <span class="text-muted"><i class="fas fa-map-marker-alt" style="font-size: 12px;"></i>&nbsp; <?= $row['location'] ?></span>
-                               </div>
-                               
-                             </div>
-                           </div>
-                         </div>
-                       </a>
+                        <div class="d-md-none">
+                          <div class="row">
+                            <div class="col-4 d-flex justify-content-center align-items-center">
+                              <img src="Admin/uploads/company_profiles/<?= $row['profile'] ?>" class="img-fluid mb-3 shadow" alt="Profile Image" style="object-fit: cover; border-radius: 20px;">
+                            </div>
+                            <div class="col-8">
+                              <h5 class="mb-1"><b><?= $row['job_title'] ?></b></h5>
+                              <span class="badge rounded-pill bg-primary mb-2">
+                                <i class="fas fa-briefcase" style="font-size: 15px;"></i> &nbsp;&nbsp; <?= $row['employment_type'] ?>
+                              </span>
+                              <div>
+                                <span class="text-muted"><i class="fas fa-briefcase" style="font-size: 12px;"></i>&nbsp; <?= $row['job_category'] ?></span><br>
+                                <span class="text-muted"><i class="fas fa-map-marker-alt" style="font-size: 12px;"></i>&nbsp; <?= $row['location'] ?></span>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </a>
 
                     </div>
                   </div>
@@ -281,7 +281,7 @@ include("includes/navbar.php");
           <div class="card-item text-center"> <!-- Added text-center class for centering the icon -->
             <i class="fas fa-search fa-2x mb-2"></i> <!-- Added icon -->
             <span>1. Search a job</span>
-            <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+            <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat.</p>
           </div>
         </div><!-- Card Item -->
 
@@ -289,7 +289,7 @@ include("includes/navbar.php");
           <div class="card-item text-center"> <!-- Added text-center class for centering the icon -->
             <i class="fas fa-file-alt fa-2x mb-2"></i> <!-- Added icon -->
             <span>2. Apply for job</span>
-            <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest
+            <p>Dolorem est fugiat occaecati voluptate velit esse. 
             </p>
           </div>
         </div><!-- Card Item -->
@@ -298,7 +298,7 @@ include("includes/navbar.php");
           <div class="card-item text-center"> <!-- Added text-center class for centering the icon -->
             <i class="fas fa-briefcase fa-2x mb-2"></i> <!-- Added icon -->
             <span>3. Get your job</span>
-            <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+            <p>Molestiae officiis omnis illo asperiores. Aut doloribus </p>
           </div>
         </div><!-- Card Item -->
 
@@ -343,11 +343,11 @@ include("includes/navbar.php");
             },
             "breakpoints": {
               "320": {
-                "slidesPerView": 3,
+                "slidesPerView": 2,
                 "spaceBetween": 0
               },
               "1200": {
-                "slidesPerView": 5,
+                "slidesPerView": 4,
                 "spaceBetween": 15
               }
             }
@@ -373,28 +373,23 @@ include("includes/navbar.php");
                   <div class="">
                     <div class="container">
                       <a href="company_data.php?id=<?= $row['id'] ?>">
-                        <div class="shadow">
+                        <div class="card">
                           <div class="box p-3">
-                            <div class="content d-flex align-items-center justify-content-center">
-                              <!-- Added justify-content-center class here -->
-                              <div class="me-3 d-flex justify-content-center align-items-center">
-                                <!-- Updated this div for image centering -->
+                            <div class="content text-center"> <!-- Added text-center class here -->
+                              <div class="mb-3 d-flex justify-content-center align-items-center">
                                 <?php
                                 $imagePath = "Admin/uploads/company_profiles/" . $row["profile"]; // Path to the image
                                 if (file_exists($imagePath)) {
                                   // If the image file exists, display it
-                                  echo '<img src="' . $imagePath . '" alt="Image" class="img-fluid" style="width:60px; border-radius: 20px;">';
+                                  echo '<img src="' . $imagePath . '" alt="Image" class="img-fluid" style="width:140px; border-radius: 20px;">';
                                 } else {
                                   // If the image file doesn't exist, display a placeholder or alternative image
                                   echo '<img src="https://cdn-icons-png.freepik.com/512/3135/3135715.png" alt="Placeholder" class="img-fluid" style="width:60px; border-radius: 20px;">';
                                 }
                                 ?>
                               </div>
-                              <div class="text-start d-none d-md-block">
-                                <!-- d-none d-md-block hides on mobile and shows on desktop -->
-                                <h3 class="chakra-petch-bold"><b><?= $row['company_name'] ?></b></h3>
-                                <!-- <a href="company_data.php?id=<?= $row['id'] ?>">View</a> -->
-                              </div>
+                              <h3 class="text-bg-danger"><b><?= $row['company_name'] ?></b></h3>
+                              <!-- <a href="company_data.php?id=<?= $row['id'] ?>">View</a> -->
                             </div>
                           </div>
                         </div>
@@ -496,7 +491,7 @@ include("includes/navbar.php");
                               <div class="mb-3 d-flex justify-content-center align-items-center">
                                 <img src="Admin/uploads/category_image/<?= $row['category_image'] ?>" alt="" class="img-fluid ">
                               </div>
-                              <h6 class="m-5px-tb"><b><?= $row['category_name'] ?></b></h6>
+                              <h6 class="text-bg-danger"><b><?= $row['category_name'] ?></b></h6>
                               <!-- <a href="company_data.php?id=<?= $row['id'] ?>">View</a> -->
                             </div>
                           </div>
