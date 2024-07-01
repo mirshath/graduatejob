@@ -150,7 +150,7 @@ if ($result_categories->num_rows > 0) {
             <section class="profile-info-tabs mt-4 d-none d-md-flex">
                 <div class="row">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <ul class="user-details">
+                        <!-- <ul class="user-details">
                             <li>
                                 <a href="#">
                                     <i class="entypo-location"></i>
@@ -170,7 +170,7 @@ if ($result_categories->num_rows > 0) {
                                     16 October
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
 
 
 
@@ -549,7 +549,7 @@ if ($result_categories->num_rows > 0) {
                                                                                                 <div class="row">
                                                                                                     <div class="col">
                                                                                                         <div class="form-group">
-                                                                                                            <label class="mb-2">Studied At</label>
+                                                                                                            <label class="mb-2 mt-3">Studied At</label>
                                                                                                             <input class="form-control text-muted mb-3" type="text" id="studied_at" name="studied_at" value="<?= $row['studied_at'] ?>">
                                                                                                         </div>
                                                                                                     </div>
