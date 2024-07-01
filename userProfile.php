@@ -221,10 +221,10 @@ if ($result_categories->num_rows > 0) {
 
                                         // Count the total number of records
                                         $count_query = "
-                                SELECT COUNT(*) AS total 
-                                FROM applicants 
-                                INNER JOIN jobs ON applicants.applied_job_id = jobs.id 
-                                WHERE applicants.jobseeker_id = $user_id";
+                                            SELECT COUNT(*) AS total 
+                                            FROM applicants 
+                                            INNER JOIN jobs ON applicants.applied_job_id = jobs.id 
+                                            WHERE applicants.jobseeker_id = $user_id";
 
                                         $count_result = mysqli_query($conn, $count_query);
                                         $count_row = mysqli_fetch_assoc($count_result);
@@ -235,19 +235,19 @@ if ($result_categories->num_rows > 0) {
 
                                         // Fetch the records for the current page
                                         $select_jobs_from_tables = "
-                                SELECT 
-                                    applicants.*,  -- Select all columns from the applicants table
-                                    jobs.id AS job_id,
-                                    jobs.job_title,
-                                    jobs.company_name,
-                                    jobs.job_description
-                                FROM 
-                                    applicants
-                                INNER JOIN 
-                                    jobs ON applicants.applied_job_id = jobs.id
-                                WHERE 
-                                    applicants.jobseeker_id = $user_id
-                                LIMIT $offset, $records_per_page";
+                                            SELECT 
+                                                applicants.*,  -- Select all columns from the applicants table
+                                                jobs.id AS job_id,
+                                                jobs.job_title,
+                                                jobs.company_name,
+                                                jobs.job_description
+                                            FROM 
+                                                applicants
+                                            INNER JOIN 
+                                                jobs ON applicants.applied_job_id = jobs.id
+                                            WHERE 
+                                                applicants.jobseeker_id = $user_id
+                                            LIMIT $offset, $records_per_page";
 
                                         $select_jobs_from_tables_run = mysqli_query($conn, $select_jobs_from_tables);
 
@@ -258,7 +258,8 @@ if ($result_categories->num_rows > 0) {
                                                     <a href="user_job_views.php?id=<?= $rows['job_id']; ?>">
                                                         <div class="card shadow">
                                                             <div class="card-body">
-                                                                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                                                                <!-- Desktop and Tablet View -->
+                                                                <div class="d-none d-md-flex flex-row align-items-center justify-content-between">
                                                                     <!-- Image -->
                                                                     <div class="d-flex align-items-center justify-content-center mb-3 mb-md-0">
                                                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-QCKIyHiPkoouLv349z1C4-vuEvaY8pX95A&s" alt="Image" class="img-fluid" style="max-width: 100px; border-radius: 20px;">
@@ -303,11 +304,58 @@ if ($result_categories->num_rows > 0) {
                                                                         </p>
                                                                     </div>
                                                                 </div>
-                                                            </div>
 
+                                                                <!-- Mobile View -->
+                                                                <div class="d-md-none">
+                                                                    <div class="row">
+                                                                        <!-- Image -->
+                                                                        <div class="col-4 d-flex align-items-center justify-content-center">
+                                                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-QCKIyHiPkoouLv349z1C4-vuEvaY8pX95A&s" alt="Image" class="img-fluid" style="max-width: 100px; border-radius: 20px;">
+                                                                        </div>
+
+                                                                        <!-- Name and company -->
+                                                                        <div class="col-8">
+                                                                            <h4 class="chakra-petch-bold mb-2" style="font-size: 16px;"><?= $rows['job_title'] ?></h4>
+                                                                            <p style="font-size: 12px;"><?= $rows['company_name'] ?></p>
+                                                                            <?php
+                                                                            $status = $rows['status'];
+                                                                            $badge_class = '';
+
+                                                                            switch ($status) {
+                                                                                case 'Pending':
+                                                                                    $badge_class = 'badge badge-info';
+                                                                                    break;
+                                                                                case 'Shortlisted':
+                                                                                    $badge_class = 'badge badge-success';
+                                                                                    break;
+                                                                                case 'Rejected':
+                                                                                    $badge_class = 'badge badge-danger';
+                                                                                    break;
+                                                                                default:
+                                                                                    $badge_class = 'badge badge-info'; // Default class if status is unknown
+                                                                                    break;
+                                                                            }
+                                                                            ?>
+                                                                            <span style="color: #931616; margin-left: -7px;" class="badge <?= $badge_class ?> px-2 py-1" style="font-size: 10px;"><?= $status ?></span>
+
+                                                                            <!-- Application Date -->
+                                                                            <p style="font-size: 12px; margin-top: 10px;">
+                                                                                <i class="fas fa-calendar-alt" style="font-size: 12px;"></i>
+                                                                                &nbsp; &nbsp;
+                                                                                <?php
+                                                                                // Extract and format the date from applied_at
+                                                                                $applied_at_date = date('F j, Y', strtotime($rows['applied_at']));
+                                                                                echo $applied_at_date;
+                                                                                ?>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </a>
                                                 </div>
+
                                             <?php
                                             }
                                         } else {
