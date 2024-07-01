@@ -1,126 +1,309 @@
 <?php
+
 session_start();
-require "includes/header.php";
-require "userDashboards/includes/head.php";
 require "Database/connection.php";
 
-// Redirect to index.php if user is not logged in
-if (!isset($_SESSION['user_id'])) {
-    // header("location: index.php");
-    echo '<script>window.location.href = "index";</script>';
-    exit();
-}
 
-require "includes/navbar.php";
+include("includes/header.php");
+include("includes/navbar.php");
 
 
-// $user_id = $_SESSION['user_id'];
+
+
+
+// Check if the user is logged in
+// $is_logged_in = isset($_SESSION['user_id']);
+$user_id = isset($_SESSION['user_id']);
+$user_id = $user_id ? $_SESSION['user_id'] : null;
+
+// Include PHPMailer classes
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
 
 
 if (isset($_GET['id'])) {
 
-    $jb_id = $_GET['id'];
+    $jobId = $_GET['id'];
 
+    // print_r($jobId);
 
-    // Fetch user data
-    $sql = "SELECT * FROM jobs WHERE id = $jb_id";
+    $sql = "SELECT * FROM jobs WHERE id = $jobId";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        $row = mysqli_fetch_array($result);
+
+        $rows = mysqli_fetch_array($result);
+
+        $skills = $rows['skills_required'];
+
+        // Split the skills into an array
+        $skillsArray = explode(',', $skills);
+
+
+
+        $education_level = $rows['education_level'];
+        $application_deadline = $rows['application_deadline'];
+        $company_name = $rows['company_name'];
+
+        // Now, let's retrieve the ID of the company based on its name
+        $companySql = "SELECT * FROM userregister WHERE company_name = '$company_name'";
+        $companyResult = $conn->query($companySql);
+
+        if ($companyResult->num_rows > 0) {
+            $companyRow = mysqli_fetch_array($companyResult);
+            $company_id = $companyRow['id'];
+            $company_IMAGE = $companyRow['profile'];
+            $company_email = $companyRow['email'];
+            // echo $company_id;
+
+
+        } else {
+            // Handle the case where the company name is not found
+        }
+
+
+
+
+
+
 
 ?>
 
-        <!DOCTYPE html>
-        <html lang="en">
-
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Login Page</title>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-            <link rel="stylesheet" href="assets/css/formstyle.css">
+        <main class="main">
 
 
-        <body class="body_backgorund ">
 
-            <!-- Page Content -->
-            <div class="page-heading about-heading header-text" style="background-image: url('images/des.jpg'); ">
-                <div class="container">
-                    <div class="row">
 
-                        <div class="col-md-12">
-                            <a href="javascript:history.back()">
-                                <div class="circle-icon">
-                                    <i class="fas fa-arrow-left"></i>
+
+            <!-- page header section  -->
+
+
+            <style>
+                #pageHeader h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                    color: #25292a;
+                    margin: 0px 0px 10px 0px;
+                    font-family: 'Overpass', sans-serif;
+                    font-weight: 700;
+                    letter-spacing: -1px;
+                    line-height: 1;
+                }
+
+                #pageHeader h1 {
+                    font-size: 34px;
+                }
+
+                #pageHeader h2 {
+                    font-size: 28px;
+                    line-height: 38px;
+                }
+
+                #pageHeader h3 {
+                    font-size: 22px;
+                    line-height: 32px;
+                }
+
+                #pageHeader h4 {
+                    font-size: 20px;
+                }
+
+                #pageHeader h5 {
+                    font-size: 17px;
+                }
+
+                #pageHeader h6 {
+                    font-size: 12px;
+                }
+
+                #pageHeader p {
+                    margin: 0 0 20px;
+                    line-height: 1.7;
+                }
+
+                #pageHeader p:last-child {
+                    margin: 0px;
+                }
+
+                #pageHeader ul,
+                ol {}
+
+                #pageHeader a {
+                    text-decoration: none;
+                    color: #8d8f90;
+                    -webkit-transition: all 0.3s;
+                    -moz-transition: all 0.3s;
+                    transition: all 0.3s;
+                }
+
+                #pageHeader a:focus,
+                a:hover {
+                    text-decoration: none;
+                    color: #f85759;
+                }
+
+
+
+                #pageHeader .page-header {
+                    background: url(https://easetemplate.com/free-website-templates/hike/images/pageheader.jpg)no-repeat;
+                    position: relative;
+                    background-size: cover;
+                }
+
+                #pageHeader .page-caption {
+                    padding-top: 170px;
+                    padding-bottom: 174px;
+                }
+
+                #pageHeader .page-title {
+                    font-size: 46px;
+                    line-height: 1;
+                    color: #fff;
+                    font-weight: 600;
+                    text-align: center;
+                }
+
+                #pageHeader .card-section {
+                    position: relative;
+                    bottom: 60px;
+                }
+
+                #pageHeader .card-block {
+                    padding: 20px;
+                }
+
+                #pageHeader .section-title {
+                    margin-bottom: 60px;
+                }
+            </style>
+
+            <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+            <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <!------ Include the above in your HEAD tag ---------->
+
+            <!-- Move the image div outside and before the pageHeader section -->
+
+
+            <section id="pageHeader" style="margin-top: -25px;">
+                <!-- page-header -->
+                <div class="page-header">
+                    <div class="container">
+                        <div class="row mt-4">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                <div class="page-caption">
+                                    <h1 class="text-center text-white" data-aos="fade-in"><?= $rows['job_title']; ?></h1>
+                                    <p class="text-center text-white" data-aos="fade-in"><?= $rows['company_name']; ?></p>
                                 </div>
-                            </a>
-                            <div class="text-content">
-                                <h2 class="chakra-petch-bold"><?= $row['job_title']; ?></h2>
-                                <h4 class="chakra-petch-bold"><?= $row['company_name']; ?></h4>
-                                <h4 class="chakra-petch-bold"><?= $row['location']; ?></h4>
-
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- /.page-header-->
+            </section>
+
+
+            <div class="relative-container">
+                <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
+                    <a href="company_data.php?id=<?= $company_id ?>">
+                        <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow d-md-none d-block mobile-positioned-image" style="max-width: 200px; border-radius: 20px;">
+                    </a>
+                </div>
+
             </div>
 
+            <!-- CSS for relative container and image positioning -->
+            <style>
+                .relative-container {
+                    position: relative;
+                }
 
+                .mobile-positioned-image {
+                    margin-top: -100px;
+                    z-index: 1;
+                }
 
+                @media (min-width: 768px) {
+                    .mobile-positioned-image {
+                        margin-top: 0;
+                        position: static;
+                    }
+                }
+            </style>
 
 
             <!-- details  -->
-            <div class="container mt-4 mb-4">
+            <div class="container mt-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="row">
-                    <div class="col-md-4 order-md-2 mb-4 order-1">
+                    <div class="col-md-4 order-md-1 mb-4 order-2">
                         <div class="card shadow">
-                            <div class="card-center">
-                                <img src="Admin/uploads/<?= $row["company_logo"]; ?>" alt="" class="img-fluid shadow" style="max-width: 200px; border-radius: 20px;">
+                            <div class="card-center d-flex justify-content-center align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
+                                <a href="company_data.php?id=<?= $company_id ?>">
+                                    <img src="Admin/uploads/company_profiles/<?= $company_IMAGE ?>" alt="" class="img-fluid shadow d-none d-md-flex" style="max-width: 200px; border-radius: 20px; margin-top: -100px;">
+                                </a>
                             </div>
 
-                            <div class="card-body">
+                            <div class="card-body" data-aos="fade-up" data-aos-delay="300">
                                 <!-- Card body content -->
-                                
-                                <h4 class="text-muted mb-2 text-center chakra-petch-bold"><b><?= $row['job_title']; ?></b></h4>
-                                <h6 class="text-muted mb-2 text-center">Presented by : <b><?= $row['company_name']; ?></b></h6>
-                                <h6 class="text-center text-muted">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 15px;"> &nbsp; &nbsp; <?= $row['location'] ?></i>
+                                <div class="container">
+                                    <h4 class="mb-2 chakra-petch-bold"><b><?= $rows['job_title']; ?></b></h4>
+                                    <a href="company_data.php?id=<?= $company_id ?>">
+                                        <h6 class="chakra-petch-bold mb-4"><?= $rows['company_name']; ?></h6>
+                                    </a>
 
-                                </h6>
-                                <h6 class="text-center text-muted">
-                                    <i class="fas fa-calendar-alt" style="font-size: 15px;"></i>&nbsp;<?= $row['application_deadline'] ?>
-                                </h6>
-                                <h6 class="text-center text-muted">
-                                    <i class="fas fa-briefcase" style="font-size: 15px;"></i>
-                                    &nbsp; &nbsp; <?= $row['employment_type'] ?>
-                                </h6>
+                                    </h6>
+
+
+                                    <div class="d-flex">
+                                        <h6 class="text-muted">
+                                            <i class="fas fa-map-marker-alt" style="font-size: 15px;"> &nbsp; &nbsp; <?= $rows['location'] ?></i>
+                                        </h6>
+
+                                        &nbsp; &nbsp; &nbsp;
+                                        <h6 class="text-muted">
+                                            <i class="fas fa-calendar-alt" style="font-size: 15px;"> &nbsp;&nbsp;
+                                                <?= $rows['application_deadline'] ?></i>
+                                        </h6>
+
+                                        &nbsp; &nbsp; &nbsp;
+                                        <h6 class="text-muted">
+                                            <i class="fas fa-briefcase" style="font-size: 15px;"></i>
+                                            &nbsp; <?= $rows['employment_type'] ?>
+                                        </h6>
+                                    </div>
+                                </div>
                                 <hr>
 
-
                                 <div class="p-3">
-                                <span class="badge badge-success text-center"> You have applied  </span>
 
-                                    <h6><?= $row['additional_info'] ?></h6>
+                                    <h6><?= $rows['additional_info'] ?></h6>
                                 </div>
 
                                 <div class="p-3 ">
                                     <table>
-                                        <tr>
+                                        <tr class="mb-4">
                                             <td>Education Level</td>
                                             <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
-                                            <td><?= $row['education_level'] ?></td>
+                                            <td><?= $rows['education_level'] ?></td>
                                         </tr>
-                                        <tr>
+                                        <tr class="mb-4">
                                             <td>Skills</td>
                                             <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
-                                            <td><?= $row['skills_required'] ?></td>
+                                            <td><?php foreach ($skillsArray as $skill) {
+                                                    echo '<span class="badge bg-secondary">' . strtoupper(trim($skill)) . '</span> ';
+                                                } ?></td>
                                         </tr>
-                                        <tr>
+                                        <tr class="mb-4">
                                             <td>Experience Level</td>
                                             <td> &nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;</td>
-                                            <td><?= $row['experience_level'] ?></td>
+                                            <td class=""><?= $rows['experience_level'] ?></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -142,29 +325,28 @@ if (isset($_GET['id'])) {
                                 </div>
 
 
-
-
-
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-8 order-md-1 order-2 ">
-                        <h3 class="text-muted mb-4"><b><?= $row['job_title']; ?></b></h3>
-                        <h6 class="text-muted mb-4">Presented by : <b><?= $row['company_name']; ?></b></h6>
+                    <div class="col-md-8 order-md-2 order-1 ">
+                        <!-- Other content remains here -->
                         <p class="text-muted" style="font-size: 17px; line-height: 35px; text-align: justify;">
-                            <?= $row['job_description']; ?>
+                            <?= $rows['job_description']; ?>
                         </p>
+                        <div class="img d-flex justify-content-center">
+                            <img src="Admin/uploads/<?= $rows['company_logo']; ?>" alt="job dec Img" class="img-fluid" width="800px">
+                        </div>
                     </div>
                 </div>
-
             </div>
 
 
+
+
+
+
     <?php
-    } else {
-        echo "No user found ";
-        exit();
     }
 }
 
@@ -177,23 +359,58 @@ if (isset($_GET['id'])) {
 
 
 
-
-
-
-
     ?>
 
+        </main>
+
+
+
+        <?php include("includes/footer.php");
+        ?>
+
+        <!-- Scroll Top -->
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Preloader -->
+        <div id="preloader"></div>
+
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script src="assets/vendor/aos/aos.js"></script>
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+        <!-- Main JS File -->
+        <script src="assets/js/main.js"></script>
+
+        </body>
+
+        </html>
+
+
+        <!-- -------------------------------- FOoter Section ----------------------------------- -->
+        <!-- -------------------------------- FOoter Section ----------------------------------- -->
+        <!-- -------------------------------- FOoter Section ----------------------------------- -->
 
 
 
 
+        <s cript>
+            <?php
 
-    <!-- jQuery -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            // messages from corect or not 
 
+            if (isset($_SESSION['message'])) {
+            ?>
+                alertify.set('notifier', 'position', 'bottom-right');
+                // alertify.success('Current position : ' + aler tify.get('notifier', 'position'));
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+                alertify.success('<?= $_SESSION['message'] ?>');
+            <?php
+                unset($_SESSION['message']);
+            }
+            ?>
+            </script>
