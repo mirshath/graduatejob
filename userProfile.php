@@ -720,19 +720,21 @@ if ($result_categories->num_rows > 0) {
 
                                                 <style>
                                                     .invalid-feedback {
-    display: none;
-    width: 100%;
-    margin-top: 0.5rem;
-    font-size: 0.875em;
-    color: var(--bs-form-invalid-color);
-}
+                                                        display: none;
+                                                        width: 100%;
+                                                        margin-top: 0.5rem;
+                                                        font-size: 0.875em;
+                                                        color: var(--bs-form-invalid-color);
+                                                    }
                                                 </style>
+
+
                                                 <!-- Bootstrap Modal -->
                                                 <div class="modal fade" id="newPasswordModal" tabindex="-1" aria-labelledby="newPasswordModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h3 class="modal-title" id="newPasswordModalLabel">Update Password</h3>
+                                                                <h3 class="modal-title" style="font-weight: 600;" id="newPasswordModalLabel">Update Password</h3>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
