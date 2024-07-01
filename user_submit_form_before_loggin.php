@@ -51,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 
         // Add profile image update if file is uploaded
         if (!empty($profile_image['name'])) {
-            $upload_dir = 'uploads/'; // Directory where files will be uploaded
+            // $upload_dir = 'uploads/'; // Directory where files will be uploaded
+            $upload_dir = 'userDashboards/uploads/profiles/'; // Directory where files will be uploaded
             $file_name = basename($profile_image['name']);
             $target_path = $upload_dir . $file_name;
 

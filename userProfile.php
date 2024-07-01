@@ -138,9 +138,9 @@ if ($result_categories->num_rows > 0) {
                                     <a href="#">followers</a>
                                 </span>
                             </div>
-                            
+
                         </li>
-                        
+
                     </ul>
                 </div>
 
@@ -193,7 +193,7 @@ if ($result_categories->num_rows > 0) {
                                 <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Subscriptions
                                 </button>
                                 <button class="nav-link" id="nav-update-password-tab" data-bs-toggle="tab" data-bs-target="#nav-update-password" type="button" role="tab" aria-controls="nav-update-password" aria-selected="false">Update Password</button>
-                                <button class="nav-link" id="nav-mmm-tab" data-bs-toggle="tab" data-bs-target="#nav-mmm" type="button" role="tab" aria-controls="nav-mmm" aria-selected="false">MMM</button>
+                                <!-- <button class="nav-link" id="nav-mmm-tab" data-bs-toggle="tab" data-bs-target="#nav-mmm" type="button" role="tab" aria-controls="nav-mmm" aria-selected="false">MMM</button> -->
                             </div>
                         </nav>
 
@@ -308,10 +308,16 @@ if ($result_categories->num_rows > 0) {
                                                         </div>
                                                     </a>
                                                 </div>
-                                        <?php
+                                            <?php
                                             }
                                         } else {
-                                            echo "No jobs found for the given jobseeker_id.";
+                                            // echo "No jobs found for the given jobseeker_id.";
+                                            ?>
+                                            <div class=" mt-3 mb-3">
+                                                <h4><i class="fas fa-exclamation-circle text-warning"></i> &nbsp; No jobs found for the given jobseeker_id.</h4>
+                                            </div>
+
+                                        <?php
                                         }
                                         ?>
                                     </div>
@@ -369,7 +375,7 @@ if ($result_categories->num_rows > 0) {
 
 
 
-                           
+
                             <!--  -------------------------------------- Profile information section --------------------------------------  -->
 
 
@@ -782,11 +788,15 @@ if ($result_categories->num_rows > 0) {
 
 
                             <!-- -------------------------------------- MMM section -------------------------------------- -->
-                            <div class="tab-pane fade" id="nav-mmm" role="tabpanel" aria-labelledby="nav-mmm-tab">
+                            <!-- <div class="tab-pane fade" id="nav-mmm" role="tabpanel" aria-labelledby="nav-mmm-tab">
                                 <div class="container p-3">
                                     MMM content
                                 </div>
-                            </div>
+                            </div> -->
+
+
+
+
                         </div>
 
                     </div>
