@@ -7,7 +7,6 @@ $first_name = '';
 $last_name = '';
 $email = '';
 
-
 $categories = []; // Array to store fetched categories
 
 // Fetch categories from database
@@ -29,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
     $professional_qualification = $_POST['professionalQualification'];
     $studied_at = $_POST['studiedAt'];
     $other_studied_at = isset($_POST['otherStudiedAtInput']) ? $_POST['otherStudiedAtInput'] : '';
+    $profile_image = $_FILES['profileImage']; // File upload data
+    $student_cv = $_FILES['studentCV']; // File upload data for student CV
 
     // Check if token is valid
     $sql = "SELECT * FROM userregister WHERE token = ? AND user_active = 0";
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 
     if ($result->num_rows == 1) {
         // Update user data and activate account
-        $update_sql = "UPDATE userregister SET phone_no = ?, St_address = ?, education_qualification = ?, interested_field = ?, professional_qualification = ?, studied_at = ?, token='', user_active=1 WHERE token = ?";
+        $update_sql = "UPDATE userregister SET phone_no = ?, St_address = ?, education_qualification = ?, interested_field = ?, professional_qualification = ?, studied_at = ?, profile = ?, studentCV = ?, token = '', user_active = 1 WHERE token = ?";
 
         // Determine the studied_at value based on dropdown selection
         if ($studied_at === 'other' && !empty($other_studied_at)) {
@@ -48,8 +49,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
             $studied_at_value = $studied_at;
         }
 
+        // Add profile image update if file is uploaded
+        if (!empty($profile_image['name'])) {
+            $upload_dir = 'uploads/'; // Directory where files will be uploaded
+            $file_name = basename($profile_image['name']);
+            $target_path = $upload_dir . $file_name;
+
+            // Move uploaded file to desired location
+            if (move_uploaded_file($profile_image['tmp_name'], $target_path)) {
+                // Update SQL statement to include profile image
+                $profile_image_name = $file_name;
+            } else {
+                echo "Error uploading profile image.";
+                exit;
+            }
+        } else {
+            $profile_image_name = '';
+        }
+
+        // Add student CV update if file is uploaded
+        if (!empty($student_cv['name'])) {
+            $upload_dir = 'resumes/'; // Directory where files will be uploaded
+            $file_name_cv = basename($student_cv['name']);
+            $target_path_cv = $upload_dir . $file_name_cv;
+
+            // Move uploaded file to desired location
+            if (move_uploaded_file($student_cv['tmp_name'], $target_path_cv)) {
+                // Update SQL statement to include student CV
+                $student_cv_name = $file_name_cv;
+            } else {
+                echo "Error uploading student CV.";
+                exit;
+            }
+        } else {
+            $student_cv_name = '';
+        }
+
+        // Execute the update statement with all parameters
         $update_stmt = $conn->prepare($update_sql);
-        $update_stmt->bind_param("sssssss", $phone, $address, $education_qualification, $interested_field, $professional_qualification, $studied_at_value, $token);
+        $update_stmt->bind_param("sssssssss", $phone, $address, $education_qualification, $interested_field, $professional_qualification, $studied_at_value, $profile_image_name, $student_cv_name, $token);
 
         if ($update_stmt->execute()) {
             echo "Details updated successfully!";
@@ -90,6 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
             <div class="card-body bg-light">
 
                 <h2 class="text-center mb-4">Update Form</h2>
-                <form id="contact-form" role="form" method="POST" action="">
+                <form id="contact-form" role="form" method="POST" action="" enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="firstName">First Name</label>
@@ -122,24 +161,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                         </div>
                     </div>
                     <div class="form-row">
-
                         <div class="form-group col-md-4">
                             <label for="phone">Phone Number</label>
                             <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number">
                         </div>
-
-                        <div class="form-group  col-md-4">
-                            <label for="profileImage ">Profile Image</label>
-                            <input type="file" class="form-control-file" id="profileImage">
+                        <div class="form-group col-md-4">
+                            <label for="profileImage">Profile Image</label>
+                            <input type="file" class="form-control-file" id="profileImage" name="profileImage">
                         </div>
-                        <div class="form-group  col-md-4">
-                            <label for="studentCV ">Student CV</label>
-                            <input type="file" class="form-control-file" id="studentCV">
+                        <div class="form-group col-md-4">
+                            <label for="studentCV">Student CV</label>
+                            <input type="file" class="form-control-file" id="studentCV" name="studentCV">
                         </div>
                     </div>
-
                     <div class="form-row">
-
                         <div class="form-group col-md-4">
                             <label for="address">Address</label>
                             <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St">
@@ -155,19 +190,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                                 <!-- Add more options as needed -->
                             </select>
                         </div>
-
-                        <!-- <div class="form-group col-md-4">
-                            <label for="interestedField">Interested Field</label>
-                            <select class="form-control" id="interestedField" name="interestedField">
-                                <option value="">Select Interested Field</option>
-                                <option value="IT">IT</option>
-                                <option value="Engineering">Engineering</option>
-                                <option value="Marketing">Marketing</option>
-                                <option value="Finance">Finance</option>
-                            </select>
-                        </div> -->
-
-
                         <div class="form-group col-md-4">
                             <label for="interestedField">Interested Field</label>
                             <select class="form-control" id="interestedField" name="interestedField">
@@ -178,70 +200,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['token'])) {
                             </select>
                         </div>
                     </div>
-
                     <div class="form-row">
-
                         <div class="form-group col-md-4">
                             <label for="professionalQualification">Professional Qualification</label>
-                            <select class="form-control" id="professionalQualification" name="professionalQualification">
-                                <option value="">Select Professional Qualification</option>
-                                <option value="Certification">Certification</option>
-                                <option value="Diploma">Diploma</option>
-                                <option value="Associate_Degree">Associate Degree</option>
-                                <option value="Bachelor's_Degree">Bachelor's Degree</option>
-                                <option value="Master's_Degree">Master's Degree</option>
-                                <option value="PhD">PhD</option>
+                            <input type="text" class="form-control" id="professionalQualification" name="professionalQualification" placeholder="Professional Qualification">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="studiedAt">Studied At</label>
+                            <select class="form-control" id="studiedAt" name="studiedAt">
+                                <option value="">Select Studied At</option>
+                                <option value="BMS">BMS</option>
+                                <option value="other">Other</option>
                                 <!-- Add more options as needed -->
                             </select>
                         </div>
-
-                        <!-- Dropdown for Studied At with other option -->
-                        <div class="form-group col-md-4">
-                            <label for="studiedAt">Studied At</label>
-                            <select class="form-control" id="studiedAt" name="studiedAt" onchange="toggleOtherInput()">
-                                <option value="">Select University/Institute</option>
-                                <option value="esoft">ESoft</option>
-                                <option value="BMS">BMS College</option>
-                                <option value="other">Other</option>
-                            </select>
+                        <div class="form-group col-md-4" id="otherStudiedAtInput" style="display: none;">
+                            <label for="otherStudiedAtInput">Other Studied At</label>
+                            <input type="text" class="form-control" id="otherStudiedAtInput" name="otherStudiedAtInput" placeholder="Other Institution">
                         </div>
-
-                        <!-- Input field for Other option -->
-                        <div class="form-group col-md-4" id="otherStudiedAt" style="display: none;">
-                            <label for="otherStudiedAtInput">Other University/Institute</label>
-                            <input type="text" class="form-control" id="otherStudiedAtInput" name="otherStudiedAtInput" placeholder="Enter University/Institute">
-                        </div>
-
-
-                        <script>
-                            // Function to show/hide input field based on dropdown selection
-                            function toggleOtherInput() {
-                                var studiedAt = document.getElementById('studiedAt');
-                                var otherInput = document.getElementById('otherStudiedAt');
-
-                                if (studiedAt.value === 'other') {
-                                    otherInput.style.display = 'block';
-                                } else {
-                                    otherInput.style.display = 'none';
-                                }
-                            }
-                        </script>
-
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-success btn-send pt-2 btn-block">Update Details</button>
                     </div>
-
                 </form>
 
             </div>
         </div>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Script to show/hide 'Other Studied At' input field based on dropdown selection
+        document.getElementById('studiedAt').addEventListener('change', function() {
+            var otherInput = document.getElementById('otherStudiedAtInput');
+            if (this.value === 'other') {
+                otherInput.style.display = 'block';
+            } else {
+                otherInput.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>
