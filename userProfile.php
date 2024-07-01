@@ -147,7 +147,7 @@ if ($result_categories->num_rows > 0) {
             <section class="profile-info-tabs mt-4 d-none d-md-flex">
                 <div class="row">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <ul class="user-details">
+                        <!-- <ul class="user-details">
                             <li>
                                 <a href="#">
                                     <i class="entypo-location"></i>
@@ -167,7 +167,7 @@ if ($result_categories->num_rows > 0) {
                                     16 October
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
 
 
 
@@ -199,7 +199,7 @@ if ($result_categories->num_rows > 0) {
 
 
                             <!-- Home section -->
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div classF="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <div class=" p-3 text-white">
                                     <div class="row">
                                         <?php
@@ -308,8 +308,11 @@ if ($result_categories->num_rows > 0) {
                                         <?php
                                             }
                                         } else {
-                                            echo "No jobs found for the given jobseeker_id.";
+                                            // echo '<div style="text-align: center; color: red; margin-top: 20px;">';
+                                            // echo '<i class="fa fa-exclamation-circle"></i> No jobs found for the given jobseeker_id.';
+                                            // echo '</div>';
                                         }
+
                                         ?>
                                     </div>
 
