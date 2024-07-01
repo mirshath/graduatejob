@@ -669,7 +669,7 @@ if ($result_categories->num_rows > 0) {
                                                             <div class="card mb-4">
                                                                 <div class="container">
 
-                                                                <!-- current password section  -->
+                                                                    <!-- current password section  -->
                                                                     <div class="wrap-input100 mt-3 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                                                                         <input class="input100" placeholder="Enter Your Old Password *" type="password" id="current_password">
                                                                         <span class="focus-input100"></span>
@@ -718,6 +718,15 @@ if ($result_categories->num_rows > 0) {
                                                     </div>
                                                 </form>
 
+                                                <style>
+                                                    .invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 0.875em;
+    color: var(--bs-form-invalid-color);
+}
+                                                </style>
                                                 <!-- Bootstrap Modal -->
                                                 <div class="modal fade" id="newPasswordModal" tabindex="-1" aria-labelledby="newPasswordModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
@@ -727,47 +736,27 @@ if ($result_categories->num_rows > 0) {
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="update_password.php" method="post" enctype="multipart/form-data">
+                                                                <form action="update_password.php" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                                                                     <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                                                     <div class="container">
                                                                         <div class="row mb-4">
-                                                                            <div class="col-md-12">
-                                                                                <!-- <div class="input-icon"> -->
-                                                                                    <!-- <i class="fas fa-lock"></i> -->
-                                                                                    <!-- <label for="modal_password">New Password</label> -->
-                                                                                    <!-- <input type="password" class="form-control form-control-user" id="modal_password" placeholder="Enter Your New Password Here.." name="password" required> -->
-                                                                                <!-- </div> -->
-
-
-
-                                                                                <div class="wrap-input100  validate-input" data-validate="">
+                                                                            <div class="col-md-12 mb-4">
+                                                                                <div class="wrap-input100 validate-input" data-validate="">
                                                                                     <input class="input100" placeholder="Enter New Password *" type="password" id="modal_password" name="password" required>
                                                                                     <span class="focus-input100"></span>
-                                                                                    <!-- <span class="label-input100">Email</span> -->
-                                                                                    <!-- <span class="error-message" id="error-current-password" style="display:none; color: red; margin-top: 12px;">* Please fill the current password.</span> -->
-                                                                                    <!-- <button type="button" class="btn btn-primary btn-user mt-3 float-right" id="check_password">Check Password</button> -->
-
+                                                                                    <div class="invalid-feedback" id="strength_error"></div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-12 ">
-                                                                                <!-- <div class="input-icon">
-                                                                                    <i class="fas fa-lock"></i>
-                                                                                    <label for="modal_cpassword">Confirm Password</label>
-                                                                                    <input type="password" class="form-control form-control-user" id="modal_cpassword" placeholder="Enter Your Password Again.." name="cpassword" required>
-                                                                                </div> -->
-
-                                                                                <div class="wrap-input100  validate-input" data-validate="">
+                                                                            <div class="col-md-12 mb-4">
+                                                                                <div class="wrap-input100 validate-input" data-validate="">
                                                                                     <input class="input100" placeholder="Enter Confirm Password *" type="password" id="modal_cpassword" name="cpassword" required>
                                                                                     <span class="focus-input100"></span>
-                                                                                    <!-- <span class="label-input100">Email</span> -->
-                                                                                    <!-- <span class="error-message" id="error-current-password" style="display:none; color: red; margin-top: 12px;">* Please fill the current password.</span> -->
-                                                                                    <!-- <button type="button" class="btn btn-primary btn-user mt-3 float-right" id="check_password">Check Password</button> -->
-
+                                                                                    <div class="invalid-feedback" id="password_error"></div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-12 text-end  mb-3">
+                                                                    <div class="col-12 text-end mb-3">
                                                                         <button type="submit" class="login100-form-btn" name="update_password">Update Password</button>
                                                                     </div>
                                                                 </form>
@@ -776,6 +765,61 @@ if ($result_categories->num_rows > 0) {
                                                     </div>
                                                 </div>
 
+
+
+                                                <script>
+                                                    $(document).ready(function() {
+                                                        // Function to check password strength
+                                                        function checkPasswordStrength(password) {
+                                                            // Implement your password strength logic here
+                                                            // Example: Check if password length is at least 8 characters
+                                                            return password.length >= 8;
+                                                        }
+
+                                                        // Function to validate passwords on input
+                                                        function validatePasswords() {
+                                                            var password = $('#modal_password').val();
+                                                            var confirmPassword = $('#modal_cpassword').val();
+
+                                                            // Check if passwords match
+                                                            if (password !== confirmPassword) {
+                                                                $('#password_error').text('Passwords do not match');
+                                                                $('#password_error').addClass('invalid-feedback');
+                                                                $('#modal_cpassword').get(0).setCustomValidity('Passwords do not match');
+                                                            } else {
+                                                                $('#password_error').text('');
+                                                                $('#password_error').removeClass('invalid-feedback');
+                                                                $('#modal_cpassword').get(0).setCustomValidity('');
+                                                            }
+
+                                                            // Check password strength
+                                                            if (!checkPasswordStrength(password)) {
+                                                                $('#strength_error').text('Password should be at least 8 characters long');
+                                                                $('#strength_error').addClass('invalid-feedback');
+                                                                $('#modal_password').get(0).setCustomValidity('Password should be at least 8 characters long');
+                                                            } else {
+                                                                $('#strength_error').text('');
+                                                                $('#strength_error').removeClass('invalid-feedback');
+                                                                $('#modal_password').get(0).setCustomValidity('');
+                                                            }
+                                                        }
+
+                                                        // Bind validatePasswords function to input events
+                                                        $('#modal_password, #modal_cpassword').on('keyup', validatePasswords);
+
+                                                        // Optional: If you want to disable submit button until passwords are valid
+                                                        $('form').on('submit', function(event) {
+                                                            if (!this.checkValidity()) {
+                                                                event.preventDefault();
+                                                                event.stopPropagation();
+                                                            }
+                                                            $(this).addClass('was-validated');
+                                                        });
+                                                    });
+                                                </script>
+
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -783,7 +827,6 @@ if ($result_categories->num_rows > 0) {
                             </div>
 
                             <script>
-                                // Update Password button click event handler
                                 document.getElementById('check_password').addEventListener('click', function() {
                                     var currentPassword = document.getElementById('current_password').value;
                                     var userId = document.querySelector('input[name="id"]').value;
@@ -791,10 +834,10 @@ if ($result_categories->num_rows > 0) {
                                     var errorMessage = document.getElementById('error-current-password');
 
                                     if (currentPassword.trim() === '') {
-                                        errorMessage.style.display = 'block'; // Show error message
+                                        errorMessage.style.display = 'block';
                                         return;
                                     } else {
-                                        errorMessage.style.display = 'none'; // Hide error message
+                                        errorMessage.style.display = 'none';
                                     }
 
                                     var xhr = new XMLHttpRequest();
@@ -803,10 +846,8 @@ if ($result_categories->num_rows > 0) {
                                     xhr.onreadystatechange = function() {
                                         if (xhr.readyState === 4 && xhr.status === 200) {
                                             if (xhr.responseText.trim() === "success") {
-                                                // Populate modal fields with values from the form
                                                 document.getElementById("modal_password").value = "";
                                                 document.getElementById("modal_cpassword").value = ""; // Clear confirm password field
-                                                // Show the modal
                                                 $('#newPasswordModal').modal('show');
                                             } else {
                                                 errorMessage.textContent = "Incorrect current password.";

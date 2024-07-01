@@ -327,6 +327,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $('#email').on('input', function() {
             validateEmail();
         });
+
+
+        
         $('#registrationForm').submit(function(event) {
             var firstname = $('#firstname').val();
             var lastname = $('#lastname').val();
