@@ -108,7 +108,7 @@ if (isset($_GET['id'])) {
                                                         <div class="form-group">
                                                             <?php if (!empty($row["company_logo"])) : ?>
                                                                 <div class="mb-3">
-                                                                    <img src="../Admin/uploads/<?= $row["company_logo"] ?>" alt="Company Logo" class="img-thumbnail" style="max-width: 150px;">
+                                                                    <img src="../Admin/uploads/job_posters/<?= $row["company_logo"] ?>" alt="Company Logo" class="img-thumbnail" style="max-width: 300px;">
                                                                 </div>
                                                             <?php endif; ?>
                                                         </div>

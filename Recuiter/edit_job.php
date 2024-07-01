@@ -13,8 +13,24 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 
-$sql = "SELECT * FROM category";
-$categrory_result = mysqli_query($conn, $sql);
+// $sql = "SELECT * FROM category";
+// $categrory_result = mysqli_query($conn, $sql);
+
+// ----------------- cetegory fetching datas ---------------
+
+
+$categories = []; // Array to store fetched categories
+
+// Fetch categories from database
+$sql_categories = "SELECT * FROM category";
+$result_categories = $conn->query($sql_categories);
+
+if ($result_categories->num_rows > 0) {
+    while ($rows = $result_categories->fetch_assoc()) {
+        $categories[] = $rows;
+    }
+}
+// ----------------- cetegory fetching datas ---------------
 
 
 ?>
@@ -128,7 +144,7 @@ $categrory_result = mysqli_query($conn, $sql);
                                             <label for="editCompanyLogo">Poster</label>
                                             <?php if (!empty($row["company_logo"])) : ?>
                                                 <div class="mb-3">
-                                                    <img src="../Admin/uploads/<?= $row["company_logo"] ?>" alt="Company Logo" class="img-thumbnail" style="max-width: 150px;">
+                                                    <img src="../Admin/uploads/job_posters/<?= $row["company_logo"] ?>" alt="Company Logo" class="img-thumbnail" style="max-width: 150px;">
                                                 </div>
                                             <?php endif; ?>
                                             <input type="file" class="form-control-file" id="editCompanyLogo" name="editCompanyLogo">
@@ -143,19 +159,18 @@ $categrory_result = mysqli_query($conn, $sql);
                                         <!-- Job Category -->
                                         <div class="form-group">
                                             <label for="jobCategory">Job Category/Industry</label>
-                                            <select name="category" id="category" class="form-control mb-4">
-                                                <?php
-                                                if (mysqli_num_rows($categrory_result) > 0) {
-                                                    while ($categ_row = mysqli_fetch_array($categrory_result)) {
-                                                        $categoryName = $categ_row['category_name'];
-                                                        $isSelected = ($categoryName == $selectedCategory) ? 'selected' : '';
-                                                        echo "<option value='" . $categoryName . "' " . $isSelected . ">" . $categoryName . "</option>";
-                                                    }
-                                                }
-                                                ?>
+                                            <select class="form-control" id="interestedField" name="interestedField">
+                                                <option value="">Job Category</option>
+                                                <?php foreach ($categories as $category) : ?>
+                                                    <option value="<?= $category['category_name']; ?>" <?php if ($category['category_name'] == $row['job_category']) echo 'selected'; ?>>
+                                                        <?= $category['category_name']; ?>
+                                                    </option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>
+
+
                                     <div class="col-md-4 mb-4">
                                         <!-- Contact Info -->
                                         <div class="form-group">
@@ -182,6 +197,8 @@ $categrory_result = mysqli_query($conn, $sql);
                                             </select>
                                         </div>
                                     </div>
+
+
                                     <div class="col-md-4 mb-4">
                                         <!-- Location -->
                                         <div class="form-group">
@@ -189,6 +206,8 @@ $categrory_result = mysqli_query($conn, $sql);
                                             <input type="text" class="form-control" id="editLocation" name="editLocation" value="<?= $row["location"] ?>">
                                         </div>
                                     </div>
+
+
                                     <div class="col-md-4 mb-4">
                                         <!-- Salary Range -->
                                         <div class="form-group">
@@ -197,6 +216,7 @@ $categrory_result = mysqli_query($conn, $sql);
                                         </div>
                                     </div>
                                 </div>
+
 
                                 <div class="row">
                                     <div class="col-md-4 mb-4">
@@ -211,6 +231,7 @@ $categrory_result = mysqli_query($conn, $sql);
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
                                         <!-- Experience Level -->
                                         <div class="form-group">
@@ -236,8 +257,8 @@ $categrory_result = mysqli_query($conn, $sql);
                                     </div>
                                 </div>
 
-                                 <!-- Skills Required -->
-                                 <div class="form-group mb-4">
+                                <!-- Skills Required -->
+                                <div class="form-group mb-4">
                                     <label for="editSkillsRequired">Skills Required</label>
                                     <textarea class="form-control" id="editSkillsRequired" name="editSkillsRequired" rows="3"><?= $row["skills_required"] ?></textarea>
                                 </div>
@@ -297,10 +318,10 @@ $categrory_result = mysqli_query($conn, $sql);
                                     </script>
                                 </div>
 
-                               
 
-                               
-                               
+
+
+
 
 
 

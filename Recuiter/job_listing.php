@@ -49,18 +49,18 @@ $getJobs_run = mysqli_query($conn, $getJobs);
 
 <style>
     .no-data {
-    text-align: center;
-    color: red;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 20px;
-  }
+        text-align: center;
+        color: red;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 20px;
+    }
 
-  .no-data-icon {
-    font-size: 24px;
-    margin-right: 8px;
-    vertical-align: middle;
-  }
+    .no-data-icon {
+        font-size: 24px;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
 </style>
 
 <!-- CONTENT -->
@@ -93,12 +93,12 @@ $getJobs_run = mysqli_query($conn, $getJobs);
 
         <!-- --------------------------------  -->
 
-      
+
 
 
         <!-- ------------------------------------  all jobs arelisting ------------------------------------  -->
 
-        
+
         <div class="container">
             <div class="row table-data">
                 <div class="col-md-12">
@@ -138,12 +138,12 @@ $getJobs_run = mysqli_query($conn, $getJobs);
                                     $badge_color = 'bg-secondary';
                                     $status_text = 'Unknown';
                             }
-                    ?>
+                     ?>
 
                             <tr>
                                 <td><?= $row["job_title"]; ?></td>
                                 <td><?= $row["company_name"]; ?></td>
-                                <td><img src="../Admin/uploads/<?= $row["company_logo"]; ?>" class="img-fluid" alt="Job Image" width="50px" style="border-radius: 10px;"></td>
+                                <td><img src="../Admin/uploads/job_posters/<?= $row["company_logo"]; ?>" class="img-fluid" alt="Job Image" width="50px" style="border-radius: 10px;"></td>
 
                                 <td><?= $row["job_category"]; ?></td>
                                 <td>
@@ -156,7 +156,7 @@ $getJobs_run = mysqli_query($conn, $getJobs);
                                         $applicationCountData = mysqli_fetch_assoc($getApplicationCount_run);
                                     ?>
                                         <span class="badge bg-danger p-2 mb-2"><?= $applicationCountData['application_count'] ?></span> <br>
-                                        <span class="badge <?= $badge_color ?> p-2">  <?= $status_text ?></span>
+                                        <span class="badge <?= $badge_color ?> p-2"> <?= $status_text ?></span>
                                     <?php
 
                                     } else {
@@ -180,20 +180,19 @@ $getJobs_run = mysqli_query($conn, $getJobs);
                                 </td>
 
                             </tr>
-                    <?php
+                        <?php
                         }
-                    }
-                    else {
+                    } else {
 
                         ?>
                         <tr>
-                          <td colspan="7" class="no-data">
-                            <i class="fas fa-exclamation-circle no-data-icon"></i>
-                            No data found
-                          </td>
+                            <td colspan="7" class="no-data">
+                                <i class="fas fa-exclamation-circle no-data-icon"></i>
+                                No data found
+                            </td>
                         </tr>
-                      <?php
-                      }
+                    <?php
+                    }
                     ?>
                 </table>
 
@@ -233,4 +232,4 @@ $getJobs_run = mysqli_query($conn, $getJobs);
 
 
 
-<script src="script.js"></script>
+        <script src="script.js"></script>
