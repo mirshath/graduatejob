@@ -110,6 +110,10 @@ alertify.error("not success");
 
 
 
+
+
+
+
                  echo '<script>
 
                         window.location.href = "job-details.php?id=' . $applied_job_id . '";
